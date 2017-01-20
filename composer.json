@@ -15,10 +15,16 @@
       "email": "aqangeles@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/yajra/html"
+    }
+  ],
   "require": {
     "php": ">=5.6.4",
     "yajra/laravel-datatables-oracle": "dev-master",
-    "laravelcollective/html": "5.4.*"
+    "laravelcollective/html": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*",
