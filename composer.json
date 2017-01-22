@@ -1,5 +1,5 @@
 {
-  "name": "yajra/laravel-datatables-oracle",
+  "name": "yajra/laravel-datatables-html",
   "description": "Laravel DataTables HTML builder plugin for Laravel 5.4+.",
   "keywords": [
     "laravel",
