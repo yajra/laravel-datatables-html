@@ -23,7 +23,7 @@
   ],
   "require": {
     "php": ">=5.6.4",
-    "yajra/laravel-datatables-oracle": "dev-master",
+    "yajra/laravel-datatables-oracle": "7.*",
     "laravelcollective/html": "dev-master"
   },
   "require-dev": {
@@ -35,9 +35,10 @@
       "Yajra\\Datatables\\": "src/"
     }
   },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
