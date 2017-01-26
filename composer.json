@@ -24,7 +24,7 @@
   "require": {
     "php": ">=5.6.4",
     "yajra/laravel-datatables-oracle": "7.*",
-    "laravelcollective/html": "dev-master"
+    "laravelcollective/html": "5.4.*"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*",
