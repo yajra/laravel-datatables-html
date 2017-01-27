@@ -15,12 +15,6 @@
       "email": "aqangeles@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/yajra/html"
-    }
-  ],
   "require": {
     "php": ">=5.6.4",
     "yajra/laravel-datatables-oracle": "7.*",
