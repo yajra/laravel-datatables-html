@@ -8,5 +8,9 @@
 
 ## Change Log
 
+### v1.1.0 - 02-03-20017
+- Configurable header attributes. #4
+- Credits to @alfa6661.
+
 ### v1.0.0 - 01-27-20017
 - First release.
