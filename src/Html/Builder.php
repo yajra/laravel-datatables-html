@@ -590,9 +590,10 @@ class Builder
     {
         $th = [];
         foreach ($this->collection->toArray() as $row) {
-            $thAttr = $this->html->attributes(
-                array_only($row, ['class', 'id', 'width', 'style', 'data-class', 'data-hide'])
-            );
+            $thAttr = $this->html->attributes(array_merge(
+                array_only($row, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']),
+                $row['attributes']
+            ));
             $th[]   = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
         }
 
