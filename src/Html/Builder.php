@@ -60,6 +60,11 @@ class Builder
     protected $tableAttributes = ['class' => 'table', 'id' => 'dataTableBuilder'];
 
     /**
+     * @var array
+     */
+    protected $allowedHeaderAttributes = ['class', 'id', 'width', 'style', 'data-class', 'data-hide'];
+
+    /**
      * @var string
      */
     protected $template = '';
@@ -563,9 +568,10 @@ class Builder
      * @param bool $drawFooter
      * @return string
      */
-    public function table(array $attributes = [], $drawFooter = false)
+    public function table(array $attributes = [], $drawFooter = false, array $headerAttributes = [])
     {
         $this->tableAttributes = array_merge($this->tableAttributes, $attributes);
+        $this->allowedHeaderAttributes = array_merge($this->allowedHeaderAttributes, $headerAttributes);
 
         $th       = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
@@ -591,7 +597,7 @@ class Builder
         $th = [];
         foreach ($this->collection->toArray() as $row) {
             $thAttr = $this->html->attributes(
-                array_only($row, ['class', 'id', 'width', 'style', 'data-class', 'data-hide'])
+                array_only($row, $this->allowedHeaderAttributes)
             );
             $th[]   = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
         }
