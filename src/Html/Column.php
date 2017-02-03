@@ -23,6 +23,7 @@ class Column extends Fluent
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
         $attributes['printable']  = isset($attributes['printable']) ? $attributes['printable'] : true;
         $attributes['footer']     = isset($attributes['footer']) ? $attributes['footer'] : '';
+        $attributes['attributes'] = isset($attributes['attributes']) ? $attributes['attributes'] : [];
 
         // Allow methods override attribute value
         foreach ($attributes as $attribute => $value) {
