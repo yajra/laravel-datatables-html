@@ -137,7 +137,7 @@ class Builder
     {
         $args = array_merge(
             $this->attributes, [
-                'ajax'    => $this->ajax,
+                'ajax'    => "{$this->ajax}?tableId={$this->tableAttributes['id']}",
                 'columns' => $this->collection->toArray(),
             ]
         );
