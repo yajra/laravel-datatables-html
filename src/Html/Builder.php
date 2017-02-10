@@ -129,15 +129,46 @@ class Builder
     }
 
     /**
+     * Determine if the datatable has a custom id.
+     *  
+     * @return boolean
+     */
+    private function hasCustomTableId()
+    {
+        return $this->tableAttributes['id'] != 'dataTableBuilder';
+    }
+
+    /**
+     * Prepare ajax attributes.
+     */
+    private function prepareAjaxAttributes()
+    {
+        $queryString = '';
+        if ($this->hasCustomTableId()) {
+            $queryString = '?'.http_build_query([
+                'tableId' => $this->tableAttributes['id'],
+            ]);
+        }
+
+        if (is_array($this->ajax)) {
+            $this->ajax['url'] = $this->ajax['url'].$queryString;
+        } else {
+            $this->ajax = $this->ajax.$queryString;
+        }
+    }
+
+    /**
      * Get generated raw scripts.
      *
      * @return string
      */
     public function generateScripts()
     {
+        $this->prepareAjaxAttributes();
+
         $args = array_merge(
             $this->attributes, [
-                'ajax'    => "{$this->ajax}?tableId={$this->tableAttributes['id']}",
+                'ajax'    => $this->ajax,
                 'columns' => $this->collection->toArray(),
             ]
         );
