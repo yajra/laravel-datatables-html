@@ -139,33 +139,12 @@ class Builder
     }
 
     /**
-     * Prepare ajax attributes.
-     */
-    private function prepareAjaxAttributes()
-    {
-        $queryString = '';
-        if ($this->hasCustomTableId()) {
-            $queryString = '?'.http_build_query([
-                'tableId' => $this->tableAttributes['id'],
-            ]);
-        }
-
-        if (is_array($this->ajax)) {
-            $this->ajax['url'] = $this->ajax['url'].$queryString;
-        } else {
-            $this->ajax = $this->ajax.$queryString;
-        }
-    }
-
-    /**
      * Get generated raw scripts.
      *
      * @return string
      */
     public function generateScripts()
     {
-        $this->prepareAjaxAttributes();
-
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
@@ -182,19 +161,20 @@ class Builder
     }
 
     /**
-     * Generate DataTables js parameters.
-     *
-     * @param  array $attributes
-     * @return string
+     * Translates literal jQuery functions to key value pairs. (Recursively)
+     * 
+     * @param  array &$parameters
+     * @param  array $values
+     * @param  array $replacements
+     * 
+     * @return array
      */
-    public function parameterize($attributes = [])
+    public function parseJQueryFunctions(&$parameters, $values = [], $replacements = [])
     {
-        $parameters = (new Parameters($attributes))->toArray();
-
-        $values = [];
-        $replacements = [];
-        foreach($parameters as $key => &$value){
-            if (!is_array($value)) {
+        foreach($parameters as $key => &$value) {
+            if (is_array($value)) {
+                list($values, $replacements) = $this->parseJQueryFunctions($value, $values, $replacements);
+            } else {
                 if (strpos($value, '$.') === 0)
                 {
                     // Store function string.
@@ -206,6 +186,21 @@ class Builder
                 }
             }
         }
+
+        return [$values, $replacements];
+    }
+
+    /**
+     * Generate DataTables js parameters.
+     *
+     * @param  array $attributes
+     * @return string
+     */
+    public function parameterize($attributes = [])
+    {
+        $parameters = (new Parameters($attributes))->toArray();
+
+        list($values, $replacements) = $this->parseJQueryFunctions($parameters);
 
         list($ajaxDataFunction, $parameters) = $this->encodeAjaxDataFunction($parameters);
         list($columnFunctions, $parameters) = $this->encodeColumnFunctions($parameters);
@@ -569,9 +564,18 @@ class Builder
      */
     public function pipeline($url, $pages)
     {
+        $url .= $this->getQueryString();
+
         $this->ajax = "$.fn.dataTable.pipeline({ url: '{$url}', pages: {$pages} })";
 
         return $this;
+    }
+
+    public function getQueryString()
+    {
+        return $this->hasCustomTableId() ? '?'.http_build_query([
+            'tableId' => $this->tableAttributes['id'],
+        ]) : '';
     }
 
     /**
@@ -583,6 +587,14 @@ class Builder
     public function ajax($attributes)
     {
         $this->ajax = $attributes;
+
+        $queryString = $this->getQueryString();
+
+        if (is_array($this->ajax)) {
+            $this->ajax['url'] = $this->ajax['url'].$queryString;
+        } else {
+            $this->ajax = $this->ajax.$queryString;
+        }
 
         return $this;
     }
