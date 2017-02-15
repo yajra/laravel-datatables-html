@@ -18,7 +18,7 @@ This package is a plugin of [Laravel Datatables](https://github.com/yajra/larave
 - [Demo Application](http://datatables.yajrabox.com) is available for artisan's reference.
 
 ## Quick Installation
-`composer require yajra/laravel-datatables-html:1.*`
+`composer require yajra/laravel-datatables-html:^1.0`
 
 #### Service Provider
 `Yajra\Datatables\HtmlServiceProvider::class`
