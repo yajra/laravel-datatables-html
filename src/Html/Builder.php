@@ -572,9 +572,18 @@ class Builder
 
     public function getQueryString()
     {
-        return $this->hasCustomTableId() ? '?'.http_build_query([
+        if (!$this->hasCustomTableId()) {
+            return '';
+        }
+
+        $url = is_array($ajax) ? $this->ajax['url'] : $this->ajax;
+
+        $hasQueryString = str_contains($url, ['?']);
+        $separator = $hasQueryString ? '&' : '?';
+
+        return $separator.http_build_query([
             'tableId' => $this->tableAttributes['id'],
-        ]) : '';
+        ]);
     }
 
     /**
