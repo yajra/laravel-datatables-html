@@ -161,7 +161,7 @@ class Builder
     }
 
     /**
-     * Translates literal jQuery functions to key value pairs. (Recursively)
+     * Translates literal javascript functions to key value pairs. (Recursively)
      * 
      * @param  array &$parameters
      * @param  array $values
@@ -169,14 +169,13 @@ class Builder
      * 
      * @return array
      */
-    public function parseJQueryFunctions(&$parameters, $values = [], $replacements = [])
+    public function parseJavascriptFunctions(&$parameters, $values = [], $replacements = [])
     {
         foreach($parameters as $key => &$value) {
             if (is_array($value)) {
-                list($values, $replacements) = $this->parseJQueryFunctions($value, $values, $replacements);
+                list($values, $replacements) = $this->parseJavascriptFunctions($value, $values, $replacements);
             } else {
-                if (strpos($value, '$.') === 0)
-                {
+                if (str_contains($value, ['$.', 'function'])) {
                     // Store function string.
                     $values[] = $value;
                     // Replace function string in $foo with a 'unique' special key.
@@ -200,7 +199,7 @@ class Builder
     {
         $parameters = (new Parameters($attributes))->toArray();
 
-        list($values, $replacements) = $this->parseJQueryFunctions($parameters);
+        list($values, $replacements) = $this->parseJavascriptFunctions($parameters);
 
         list($ajaxDataFunction, $parameters) = $this->encodeAjaxDataFunction($parameters);
         list($columnFunctions, $parameters) = $this->encodeColumnFunctions($parameters);
