@@ -576,7 +576,7 @@ class Builder
             return '';
         }
 
-        $url = is_array($ajax) ? $this->ajax['url'] : $this->ajax;
+        $url = is_array($this->ajax) ? $this->ajax['url'] : $this->ajax;
 
         $hasQueryString = str_contains($url, ['?']);
         $separator = $hasQueryString ? '&' : '?';
