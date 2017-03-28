@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v1.1.1 - 03-28-20017
+- Fix columns setter. #8
+
 ### v1.1.0 - 02-03-20017
 - Configurable header attributes. #4
 - Credits to @alfa6661.
