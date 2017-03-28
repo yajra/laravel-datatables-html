@@ -652,4 +652,21 @@ class Builder
     {
         return $this->collection;
     }
+
+    /**
+     * Remove column by name.
+     *
+     * @param array $names
+     * @return $this
+     */
+    public function removeColumn(...$names)
+    {
+        foreach ($names as $name) {
+            $this->collection = $this->collection->filter(function (Column $column) use ($name) {
+                return $column->name !== $name;
+            })->flatten();
+        }
+
+        return $this;
+    }
 }
