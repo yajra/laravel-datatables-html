@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v1.2.0 - 03-28-20017
+- Add method to remove column by names. #9
+
 ### v1.1.1 - 03-28-20017
 - Fix columns setter. #8
 
