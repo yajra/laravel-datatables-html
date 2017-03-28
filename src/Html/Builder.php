@@ -406,6 +406,8 @@ class Builder
      */
     public function columns(array $columns)
     {
+        $this->collection = new Collection;
+
         foreach ($columns as $key => $value) {
             if (! is_a($value, Column::class)) {
                 if (is_array($value)) {
