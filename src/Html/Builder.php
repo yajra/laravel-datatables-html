@@ -386,6 +386,32 @@ class Builder
     }
 
     /**
+     * Add a Column object at the beginning of collection
+     *
+     * @param \Yajra\Datatables\Html\Column $column
+     * @return $this
+     */
+    public function addBefore(Column $column)
+    {
+        $this->collection->prepend($column);
+
+        return $this;
+    }
+    
+    /**
+     * Add a column at the beginning of collection using attributes.
+     *
+     * @param  array $attributes
+     * @return $this
+     */
+    public function addColumnBefore(array $attributes)
+    {
+        $this->collection->prepend(new Column($attributes));
+
+        return $this;
+    }
+
+    /**
      * Add a Column object in collection.
      *
      * @param \Yajra\Datatables\Html\Column $column
