@@ -129,6 +129,16 @@ class Builder
     }
 
     /**
+     * Determine if the datatable has a custom id.
+     *  
+     * @return boolean
+     */
+    private function hasCustomTableId()
+    {
+        return $this->tableAttributes['id'] != 'dataTableBuilder';
+    }
+
+    /**
      * Get generated raw scripts.
      *
      * @return string
@@ -151,21 +161,21 @@ class Builder
     }
 
     /**
-     * Generate DataTables js parameters.
-     *
-     * @param  array $attributes
-     * @return string
+     * Translates literal javascript functions to key value pairs. (Recursively)
+     * 
+     * @param  array &$parameters
+     * @param  array $values
+     * @param  array $replacements
+     * 
+     * @return array
      */
-    public function parameterize($attributes = [])
+    public function parseJavascriptFunctions(&$parameters, $values = [], $replacements = [])
     {
-        $parameters = (new Parameters($attributes))->toArray();
-
-        $values = [];
-        $replacements = [];
-        foreach($parameters as $key => &$value){
-            if (!is_array($value)) {
-                if (strpos($value, '$.') === 0)
-                {
+        foreach($parameters as $key => &$value) {
+            if (is_array($value)) {
+                list($values, $replacements) = $this->parseJavascriptFunctions($value, $values, $replacements);
+            } else {
+                if (str_contains($value, ['$.', 'function'])) {
                     // Store function string.
                     $values[] = $value;
                     // Replace function string in $foo with a 'unique' special key.
@@ -175,6 +185,21 @@ class Builder
                 }
             }
         }
+
+        return [$values, $replacements];
+    }
+
+    /**
+     * Generate DataTables js parameters.
+     *
+     * @param  array $attributes
+     * @return string
+     */
+    public function parameterize($attributes = [])
+    {
+        $parameters = (new Parameters($attributes))->toArray();
+
+        list($values, $replacements) = $this->parseJavascriptFunctions($parameters);
 
         list($ajaxDataFunction, $parameters) = $this->encodeAjaxDataFunction($parameters);
         list($columnFunctions, $parameters) = $this->encodeColumnFunctions($parameters);
@@ -566,9 +591,27 @@ class Builder
      */
     public function pipeline($url, $pages)
     {
+        $url .= $this->getQueryString();
+
         $this->ajax = "$.fn.dataTable.pipeline({ url: '{$url}', pages: {$pages} })";
 
         return $this;
+    }
+
+    public function getQueryString()
+    {
+        if (!$this->hasCustomTableId()) {
+            return '';
+        }
+
+        $url = is_array($this->ajax) ? $this->ajax['url'] : $this->ajax;
+
+        $hasQueryString = str_contains($url, ['?']);
+        $separator = $hasQueryString ? '&' : '?';
+
+        return $separator.http_build_query([
+            'tableId' => $this->tableAttributes['id'],
+        ]);
     }
 
     /**
@@ -580,6 +623,14 @@ class Builder
     public function ajax($attributes)
     {
         $this->ajax = $attributes;
+
+        $queryString = $this->getQueryString();
+
+        if (is_array($this->ajax)) {
+            $this->ajax['url'] = $this->ajax['url'].$queryString;
+        } else {
+            $this->ajax = $this->ajax.$queryString;
+        }
 
         return $this;
     }
