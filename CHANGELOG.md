@@ -8,6 +8,10 @@
 
 ## Change Log
 
+### v1.3.0 - 06-24-20017
+- Adding addBefore and addColumnBefore in Builder.
+- PR #12, credits to @lk77.
+
 ### v1.2.0 - 03-28-20017
 - Add method to remove column by names. #9
 
