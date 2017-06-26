@@ -695,4 +695,50 @@ class Builder
 
         return $this;
     }
+
+    /**
+     * Minify ajax url generated when using get request
+     * by deleting unnecessary url params.
+     *
+     * @param string $url
+     * @param string $script
+     * @param array  $data
+     * @return $this
+     */
+    public function minifiedAjax($url, $script = null, $data = [])
+    {
+        $appendData = $this->makeDataScript($data);
+        $this->ajax = [
+            'ajax' => $url,
+            'data' => "function(data) {
+    for (var i = 0, len = data.columns.length; i < len; i++) {
+        if (! data.columns[i].search.value) delete data.columns[i].search;
+        if (data.columns[i].searchable === true) delete data.columns[i].searchable;
+        if (data.columns[i].orderable === true) delete data.columns[i].orderable;
+        if (data.columns[i].data === data.columns[i].name) delete data.columns[i].name;
+    }
+    delete data.search.regex;
+    $appendData
+    $script;
+}",
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Make a data script to be appended on ajax request of dataTables.
+     *
+     * @param array $data
+     * @return string
+     */
+    protected function makeDataScript(array $data)
+    {
+        $script = '';
+        foreach ($data as $key => $value) {
+            $script .= PHP_EOL."data.{$key} = {$value};";
+        }
+
+        return $script;
+    }
 }
