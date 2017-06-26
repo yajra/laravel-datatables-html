@@ -20,6 +20,6 @@ class Parameters extends Fluent
         'serverSide' => true,
         'processing' => true,
         'ajax'       => '',
-        'columns'    => []
+        'columns'    => [],
     ];
 }
