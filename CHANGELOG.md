@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v1.4.1 - 06-26-2017
+- Set default ajax url to empty string.
+
 ### v1.4.0 - 06-26-2017
 - Add minifiedAjax method to minify url generated when using get request. #13
 - Fixes `php artisan serve` and IE issues on long URL.
