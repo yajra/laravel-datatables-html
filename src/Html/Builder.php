@@ -704,7 +704,7 @@ class Builder
      * @param array  $data
      * @return $this
      */
-    public function minifiedAjax($url, $script = null, $data = [])
+    public function minifiedAjax($url = '', $script = null, $data = [])
     {
         $appendData = $this->makeDataScript($data);
         $this->ajax = [
