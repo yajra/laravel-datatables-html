@@ -736,7 +736,7 @@ class Builder
     {
         $script = '';
         foreach ($data as $key => $value) {
-            $script .= PHP_EOL."data.{$key} = {$value};";
+            $script .= PHP_EOL."data.{$key} = '{$value}';";
         }
 
         return $script;
