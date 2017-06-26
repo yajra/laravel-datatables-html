@@ -708,7 +708,7 @@ class Builder
     {
         $appendData = $this->makeDataScript($data);
         $this->ajax = [
-            'ajax' => $url,
+            'url'  => $url,
             'data' => "function(data) {
     for (var i = 0, len = data.columns.length; i < len; i++) {
         if (! data.columns[i].search.value) delete data.columns[i].search;
