@@ -29,7 +29,7 @@ function app($instance)
 
 function view($view = null, array $data = [])
 {
-    if (! $view) {
+    if (!$view) {
         return new BladeView();
     }
 

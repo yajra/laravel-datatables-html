@@ -93,11 +93,11 @@ class Builder
     ];
 
     /**
-     * @param Repository $config
-     * @param Factory $view
-     * @param HtmlBuilder $html
+     * @param Repository   $config
+     * @param Factory      $view
+     * @param HtmlBuilder  $html
      * @param UrlGenerator $url
-     * @param FormBuilder $form
+     * @param FormBuilder  $form
      */
     public function __construct(
         Repository $config,
@@ -117,7 +117,7 @@ class Builder
     /**
      * Generate DataTable javascript.
      *
-     * @param  null $script
+     * @param  null  $script
      * @param  array $attributes
      * @return string
      */
@@ -160,12 +160,11 @@ class Builder
     {
         $parameters = (new Parameters($attributes))->toArray();
 
-        $values = [];
+        $values       = [];
         $replacements = [];
-        foreach($parameters as $key => &$value){
+        foreach ($parameters as $key => &$value) {
             if (!is_array($value)) {
-                if (strpos($value, '$.') === 0)
-                {
+                if (strpos($value, '$.') === 0) {
                     // Store function string.
                     $values[] = $value;
                     // Replace function string in $foo with a 'unique' special key.
@@ -282,7 +281,7 @@ class Builder
     /**
      * Decode columns render functions.
      *
-     * @param array $columnFunctions
+     * @param array  $columnFunctions
      * @param string $json
      * @return string
      */
@@ -298,7 +297,7 @@ class Builder
     /**
      * Decode DataTables callbacks function.
      *
-     * @param array $callbackFunctions
+     * @param array  $callbackFunctions
      * @param string $json
      * @return string
      */
@@ -327,7 +326,7 @@ class Builder
      * Sets HTML table attribute(s).
      *
      * @param string|array $attribute
-     * @param mixed $value
+     * @param mixed        $value
      * @return $this
      */
     public function setTableAttribute($attribute, $value = null)
@@ -365,7 +364,7 @@ class Builder
      */
     public function getTableAttribute($attribute)
     {
-        if (! array_key_exists($attribute, $this->tableAttributes)) {
+        if (!array_key_exists($attribute, $this->tableAttributes)) {
             throw new \Exception("Table attribute '{$attribute}' does not exist.");
         }
 
@@ -397,7 +396,7 @@ class Builder
 
         return $this;
     }
-    
+
     /**
      * Add a column at the beginning of collection using attributes.
      *
@@ -435,7 +434,7 @@ class Builder
         $this->collection = new Collection;
 
         foreach ($columns as $key => $value) {
-            if (! is_a($value, Column::class)) {
+            if (!is_a($value, Column::class)) {
                 if (is_array($value)) {
                     $attributes = array_merge(['name' => $key, 'data' => $key], $this->setTitle($key, $value));
                 } else {
@@ -459,12 +458,12 @@ class Builder
      * Set title attribute of an array if not set.
      *
      * @param string $title
-     * @param array $attributes
+     * @param array  $attributes
      * @return array
      */
     public function setTitle($title, array $attributes)
     {
-        if (! isset($attributes['title'])) {
+        if (!isset($attributes['title'])) {
             $attributes['title'] = $this->getQualifiedTitle($title);
         }
 
@@ -588,7 +587,7 @@ class Builder
      * Generate DataTable's table html.
      *
      * @param array $attributes
-     * @param bool $drawFooter
+     * @param bool  $drawFooter
      * @return string
      */
     public function table(array $attributes = [], $drawFooter = false)
@@ -601,7 +600,7 @@ class Builder
         $tableHtml = '<table ' . $htmlAttr . '>';
         $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr></thead>';
         if ($drawFooter) {
-            $tf = $this->compileTableFooter();
+            $tf        = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
         }
         $tableHtml .= '</table>';
@@ -736,7 +735,7 @@ class Builder
     {
         $script = '';
         foreach ($data as $key => $value) {
-            $script .= PHP_EOL."data.{$key} = '{$value}';";
+            $script .= PHP_EOL . "data.{$key} = '{$value}';";
         }
 
         return $script;
