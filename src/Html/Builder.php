@@ -2,7 +2,6 @@
 
 namespace Yajra\Datatables\Html;
 
-use Collective\Html\FormBuilder;
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
@@ -37,11 +36,6 @@ class Builder
      * @var HtmlBuilder
      */
     public $html;
-
-    /**
-     * @var FormBuilder
-     */
-    public $form;
 
     /**
      * @var string|array
@@ -90,19 +84,13 @@ class Builder
      * @param Repository  $config
      * @param Factory     $view
      * @param HtmlBuilder $html
-     * @param FormBuilder $form
      */
-    public function __construct(
-        Repository $config,
-        Factory $view,
-        HtmlBuilder $html,
-        FormBuilder $form
-    ) {
+    public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
+    {
         $this->config     = $config;
         $this->view       = $view;
         $this->html       = $html;
         $this->collection = new Collection;
-        $this->form       = $form;
     }
 
     /**
@@ -630,7 +618,7 @@ class Builder
     {
         $footer = [];
         foreach ($this->collection->all() as $row) {
-            $footer[]   = '<th>' . $row->footer . '</th>';
+            $footer[] = '<th>' . $row->footer . '</th>';
         }
 
         return $footer;

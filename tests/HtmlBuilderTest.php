@@ -13,9 +13,6 @@ class HtmlBuilderTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox" id="foo"/>');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo'])
@@ -56,9 +53,6 @@ class HtmlBuilderTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox" id="foo"/>');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo'])
@@ -89,9 +83,6 @@ class HtmlBuilderTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox" id="foo"/>');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo', 'footer' => 'test'])
