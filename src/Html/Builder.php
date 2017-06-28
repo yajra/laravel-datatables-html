@@ -110,28 +110,29 @@ class Builder
      *
      * @param  null  $script
      * @param  array $attributes
-     * @return string
+     * @return \Illuminate\Support\HtmlString
      */
     public function scripts($script = null, array $attributes = ['type' => 'text/javascript'])
     {
-        $script = $script ?: $this->generateScripts();
-
+        $script     = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
 
-        return new HtmlString("<script{$attributes}>{$script}</script>" . PHP_EOL);
+        return new HtmlString("<script{$attributes}>{$script}</script>\n");
     }
 
     /**
      * Get generated raw scripts.
      *
-     * @return string
+     * @return \Illuminate\Support\HtmlString
      */
     public function generateScripts()
     {
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
-                'columns' => $this->collection->toArray(),
+                'columns' => $this->collection->map(function (Column $column) {
+                    return $column->toArray();
+                })->toArray(),
             ]
         );
 
@@ -367,7 +368,7 @@ class Builder
     }
 
     /**
-     * Add a column in collection using attributes.
+     * Add a column in collection usingsl attributes.
      *
      * @param  array $attributes
      * @return $this
@@ -486,7 +487,7 @@ class Builder
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
-            'title'          => $this->form->checkbox('', '', false, ['id' => 'dataTablesCheckbox']),
+            'title'          => '<input type="checkbox" id="dataTablesCheckbox"/>',
             'data'           => 'checkbox',
             'name'           => 'checkbox',
             'orderable'      => false,
@@ -583,7 +584,7 @@ class Builder
      *
      * @param array $attributes
      * @param bool  $drawFooter
-     * @return string
+     * @return \Illuminate\Support\HtmlString
      */
     public function table(array $attributes = [], $drawFooter = false)
     {
@@ -630,8 +631,8 @@ class Builder
     private function compileTableFooter()
     {
         $footer = [];
-        foreach ($this->collection->toArray() as $row) {
-            $footer[] = '<th>' . $row['footer'] . '</th>';
+        foreach ($this->collection->all() as $row) {
+            $footer[]   = '<th>' . $row->footer . '</th>';
         }
 
         return $footer;

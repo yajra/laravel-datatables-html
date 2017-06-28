@@ -13,7 +13,6 @@ function app($instance)
                 m::mock('Illuminate\Contracts\Config\Repository'),
                 m::mock('Illuminate\Contracts\View\Factory'),
                 m::mock('Collective\Html\HtmlBuilder'),
-                m::mock('Illuminate\Routing\UrlGenerator'),
                 m::mock('Collective\Html\FormBuilder')
             );
         case 'config':

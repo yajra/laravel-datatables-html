@@ -72,4 +72,12 @@ class Column extends Fluent
     {
         return "function(data,type,full,meta){return $value;}";
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
+    }
 }
