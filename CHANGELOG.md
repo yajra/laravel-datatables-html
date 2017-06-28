@@ -17,6 +17,7 @@
 - Use HtmlString when generating table and scripts markup.
 - Make default table attributes configurable. Fix #3
 - Use PHPUNIT 6.x, update tests.
+- Add macroable trait for builder extension via macro calls.
 
 ### v1.4.1 - 06-26-2017
 - Set default ajax url to empty string.

@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 
 /**
  * Class Builder.
@@ -17,6 +18,8 @@ use Illuminate\Support\Str;
  */
 class Builder
 {
+    use Macroable;
+
     /**
      * @var Collection
      */
