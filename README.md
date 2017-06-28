@@ -23,7 +23,7 @@ This package is a plugin of [Laravel Datatables](https://github.com/yajra/larave
 #### Service Provider (Optional on Laravel 5.5)
 `Yajra\Datatables\HtmlServiceProvider::class`
 
-#### Publish Assets
+#### Publish Assets (Optional)
 `$ php artisan vendor:publish --tag=datatables-html`
 
 And that's it! Start building out some awesome DataTables!
