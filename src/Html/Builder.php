@@ -558,7 +558,7 @@ class Builder
      * @param  string|array $attributes
      * @return $this
      */
-    public function ajax($attributes)
+    public function ajax($attributes = '')
     {
         $this->ajax = $attributes;
 
