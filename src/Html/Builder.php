@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 /**
@@ -125,7 +126,9 @@ class Builder
     {
         $script = $script ?: $this->generateScripts();
 
-        return '<script' . $this->html->attributes($attributes) . '>' . $script . '</script>' . PHP_EOL;
+        $attributes = $this->html->attributes($attributes);
+
+        return new HtmlString("<script{$attributes}>{$script}</script>" . PHP_EOL);
     }
 
     /**
@@ -144,9 +147,8 @@ class Builder
 
         $parameters = $this->parameterize($args);
 
-        return sprintf(
-            $this->template(),
-            $this->tableAttributes['id'], $parameters
+        return new HtmlString(
+            sprintf($this->template(), $this->tableAttributes['id'], $parameters)
         );
     }
 
@@ -605,7 +607,7 @@ class Builder
         }
         $tableHtml .= '</table>';
 
-        return $tableHtml;
+        return new HtmlString($tableHtml);
     }
 
     /**
