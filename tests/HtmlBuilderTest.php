@@ -12,6 +12,11 @@ class HtmlBuilderTest extends TestCase
     public function test_generate_table_html()
     {
         $builder = $this->getHtmlBuilder();
+        $builder->config->shouldReceive('get')->andReturn([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
+
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
@@ -53,6 +58,10 @@ class HtmlBuilderTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
+        $builder->config->shouldReceive('get')->andReturn([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo'])
@@ -83,6 +92,10 @@ class HtmlBuilderTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
+        $builder->config->shouldReceive('get')->andReturn([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo', 'footer' => 'test'])

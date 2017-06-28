@@ -45,7 +45,7 @@ class Builder
     /**
      * @var array
      */
-    protected $tableAttributes = ['class' => 'table', 'id' => 'dataTableBuilder'];
+    protected $tableAttributes = [];
 
     /**
      * @var string
@@ -323,21 +323,6 @@ class Builder
     }
 
     /**
-     * Sets multiple HTML table attributes at once.
-     *
-     * @param array $attributes
-     * @return $this
-     */
-    public function setTableAttributes(array $attributes)
-    {
-        foreach ($attributes as $attribute => $value) {
-            $this->setTableAttribute($attribute, $value);
-        }
-
-        return $this;
-    }
-
-    /**
      * Retrieves HTML table attribute value.
      *
      * @param string $attribute
@@ -574,7 +559,7 @@ class Builder
      */
     public function table(array $attributes = [], $drawFooter = false)
     {
-        $this->tableAttributes = array_merge($this->tableAttributes, $attributes);
+        $this->tableAttributes = array_merge($this->getTableAttributes(), $attributes);
 
         $th       = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
@@ -588,6 +573,33 @@ class Builder
         $tableHtml .= '</table>';
 
         return new HtmlString($tableHtml);
+    }
+
+    /**
+     * Get table computed table attributes.
+     *
+     * @return array
+     */
+    public function getTableAttributes()
+    {
+        $default = $this->config->get('datatables-html.table', ['class' => 'table', 'id' => 'dataTableBuilder']);
+
+        return array_merge($default, $this->tableAttributes);
+    }
+
+    /**
+     * Sets multiple HTML table attributes at once.
+     *
+     * @param array $attributes
+     * @return $this
+     */
+    public function setTableAttributes(array $attributes)
+    {
+        foreach ($attributes as $attribute => $value) {
+            $this->setTableAttribute($attribute, $value);
+        }
+
+        return $this;
     }
 
     /**
