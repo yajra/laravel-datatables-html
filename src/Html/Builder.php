@@ -6,7 +6,6 @@ use Collective\Html\FormBuilder;
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\HtmlString;
@@ -39,11 +38,6 @@ class Builder
      * @var HtmlBuilder
      */
     public $html;
-
-    /**
-     * @var UrlGenerator
-     */
-    public $url;
 
     /**
      * @var FormBuilder
@@ -94,23 +88,20 @@ class Builder
     ];
 
     /**
-     * @param Repository   $config
-     * @param Factory      $view
-     * @param HtmlBuilder  $html
-     * @param UrlGenerator $url
-     * @param FormBuilder  $form
+     * @param Repository  $config
+     * @param Factory     $view
+     * @param HtmlBuilder $html
+     * @param FormBuilder $form
      */
     public function __construct(
         Repository $config,
         Factory $view,
         HtmlBuilder $html,
-        UrlGenerator $url,
         FormBuilder $form
     ) {
         $this->config     = $config;
         $this->view       = $view;
         $this->html       = $html;
-        $this->url        = $url;
         $this->collection = new Collection;
         $this->form       = $form;
     }
