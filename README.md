@@ -10,17 +10,17 @@
 This package is a plugin of [Laravel Datatables](https://github.com/yajra/laravel-datatables) for generating dataTables script using PHP.
 
 ## Requirements
-- [Laravel 5.4](https://github.com/laravel/framework)
-- [Laravel DataTables v7.x](https://github.com/yajra/laravel-datatables)
+- [Laravel 5.4|5.5](https://github.com/laravel/framework)
+- [Laravel DataTables v7.x|v8.x](https://github.com/yajra/laravel-datatables)
 
 ## Documentations
 - [Laravel Datatables Documentation](http://datatables.yajrabox.com/docs/laravel-datatables)
 - [Demo Application](http://datatables.yajrabox.com) is available for artisan's reference.
 
 ## Quick Installation
-`composer require yajra/laravel-datatables-html:^1.0`
+`composer require yajra/laravel-datatables-html:^2.0`
 
-#### Service Provider
+#### Service Provider (Optional on Laravel 5.5)
 `Yajra\Datatables\HtmlServiceProvider::class`
 
 #### Publish Assets

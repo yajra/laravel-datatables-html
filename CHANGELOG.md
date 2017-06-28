@@ -8,7 +8,7 @@
 
 ## Change Log
 
-### 2.0-dev - UNRELEASED
+### v2.0.0 - 06-28-2017
 - Add support for Laravel 5.5
 - Removed unused classes on constructor.
     - UrlGenerator
