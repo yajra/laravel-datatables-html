@@ -7,7 +7,6 @@ use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
@@ -534,7 +533,7 @@ class Builder
      */
     public function addIndex(array $attributes = [])
     {
-        $indexColumn = Config::get('datatables.index_column', 'DT_Row_Index');
+        $indexColumn = config('datatables.index_column', 'DT_Row_Index');
         $attributes  = array_merge([
             'defaultContent' => '',
             'data'           => $indexColumn,
