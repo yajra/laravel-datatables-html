@@ -8,6 +8,16 @@
 
 ## Change Log
 
+### 2.0-dev - UNRELEASED
+- Add support for Laravel 5.5
+- Removed unused classes on constructor.
+    - UrlGenerator
+    - FormBuilder
+- Fix addCheckbox.
+- Use HtmlString when generating table and scripts markup.
+- Make default table attributes configurable. Fix #3
+- Use PHPUNIT 6.x, update tests.
+
 ### v1.4.1 - 06-26-2017
 - Set default ajax url to empty string.
 
