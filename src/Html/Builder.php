@@ -201,9 +201,10 @@ class Builder
     protected function encodeAjaxDataFunction($parameters)
     {
         $ajaxData = '';
-        if (isset($parameters['ajax']['data'])) {
-            $ajaxData                   = $parameters['ajax']['data'];
-            $parameters['ajax']['data'] = "#ajax_data#";
+        $ajax     = $parameters['ajax'];
+        if (isset($ajax['data'])) {
+            $ajaxData     = $ajax['data'];
+            $ajax['data'] = "#ajax_data#";
         }
 
         return [$ajaxData, $parameters];
@@ -217,19 +218,21 @@ class Builder
      */
     protected function encodeColumnFunctions(array $parameters)
     {
-        $columnFunctions = [];
-        foreach ($parameters['columns'] as $i => $column) {
-            unset($parameters['columns'][$i]['exportable']);
-            unset($parameters['columns'][$i]['printable']);
-            unset($parameters['columns'][$i]['footer']);
+        $fn      = [];
+        $columns = $parameters['columns'];
+
+        foreach ($columns as $i => $column) {
+            unset($columns[$i]['exportable']);
+            unset($columns[$i]['printable']);
+            unset($columns[$i]['footer']);
 
             if (isset($column['render'])) {
-                $columnFunctions[$i]                 = $column['render'];
-                $parameters['columns'][$i]['render'] = "#column_function.{$i}#";
+                $fn[$i]                = $column['render'];
+                $columns[$i]['render'] = "#column_function.{$i}#";
             }
         }
 
-        return [$columnFunctions, $parameters];
+        return [$fn, $parameters];
     }
 
     /**
