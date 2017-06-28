@@ -505,7 +505,7 @@ class Builder
      */
     public function addIndex(array $attributes = [])
     {
-        $indexColumn = config('datatables.index_column', 'DT_Row_Index');
+        $indexColumn = $this->config->get('datatables.index_column', 'DT_Row_Index');
         $attributes  = array_merge([
             'defaultContent' => '',
             'data'           => $indexColumn,
