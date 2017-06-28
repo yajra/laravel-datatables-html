@@ -485,7 +485,7 @@ class Builder
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
-            'title'          => '<input type="checkbox" id="dataTablesCheckbox"/>',
+            'title'          => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
             'data'           => 'checkbox',
             'name'           => 'checkbox',
             'orderable'      => false,
