@@ -8,6 +8,14 @@ use Illuminate\Support\Fluent;
  * Class Column.
  *
  * @package Yajra\Datatables\Html
+ * @property string data
+ * @property string name
+ * @property string orderable
+ * @property string searchable
+ * @property string printable
+ * @property string exportable
+ * @property string footer
+ * @property array  attributes
  * @see     https://datatables.net/reference/option/ for possible columns option
  * @author  Arjay Angeles <aqangeles@gmail.com>
  */
