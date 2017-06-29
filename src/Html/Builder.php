@@ -132,7 +132,7 @@ class Builder
         $parameters = $this->parameterize($args);
 
         return new HtmlString(
-            sprintf($this->template(), $this->tableAttributes['id'], $parameters)
+            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
         );
     }
 
