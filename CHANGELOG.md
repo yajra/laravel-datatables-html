@@ -8,6 +8,11 @@
 
 ## Change Log
 
+### v2.0.3 - 06-29-2017
+- Script cleanup #18
+- Clean up extra space and floating ; on generated ajax data script.
+- Do not include attributes on generated column scripts.
+
 ### v2.0.2 - 06-29-2017
 - Fix parsing of column functions. #17
 
