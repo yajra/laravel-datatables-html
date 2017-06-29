@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.1 - 06-29-2017
+- Fix parsing of ajax data where function is rendered as string. #16
+
 ### v2.0.0 - 06-28-2017
 - Add support for Laravel 5.5
 - Removed unused classes on constructor.
