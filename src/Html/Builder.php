@@ -181,10 +181,9 @@ class Builder
     protected function encodeAjaxDataFunction($parameters)
     {
         $ajaxData = '';
-        $ajax     = $parameters['ajax'];
-        if (isset($ajax['data'])) {
-            $ajaxData     = $ajax['data'];
-            $ajax['data'] = "#ajax_data#";
+        if (isset($parameters['ajax']['data'])) {
+            $ajaxData                   = $parameters['ajax']['data'];
+            $parameters['ajax']['data'] = "#ajax_data#";
         }
 
         return [$ajaxData, $parameters];
