@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.2 - 06-29-2017
+- Fix parsing of column functions. #17
+
 ### v2.0.1 - 06-29-2017
 - Fix parsing of ajax data where function is rendered as string. #16
 
