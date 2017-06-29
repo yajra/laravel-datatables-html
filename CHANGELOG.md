@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.4 - 06-29-2017
+- Fix missing semi-colon.
+
 ### v2.0.3 - 06-29-2017
 - Script cleanup #18
 - Clean up extra space and floating ; on generated ajax data script.
