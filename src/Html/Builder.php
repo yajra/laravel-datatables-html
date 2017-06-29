@@ -715,7 +715,7 @@ class Builder
         if (data.columns[i].orderable === true) delete data.columns[i].orderable;
         if (data.columns[i].data === data.columns[i].name) delete data.columns[i].name;
     }
-    delete data.search.regex";
+    delete data.search.regex;";
 
         if ($appendData) {
             $this->ajax['data'] .= $appendData;
