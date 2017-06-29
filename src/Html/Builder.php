@@ -197,21 +197,19 @@ class Builder
      */
     protected function encodeColumnFunctions(array $parameters)
     {
-        $fn      = [];
-        $columns = $parameters['columns'];
-
-        foreach ($columns as $i => $column) {
-            unset($columns[$i]['exportable']);
-            unset($columns[$i]['printable']);
-            unset($columns[$i]['footer']);
+        $columnFunctions = [];
+        foreach ($parameters['columns'] as $i => $column) {
+            unset($parameters['columns'][$i]['exportable']);
+            unset($parameters['columns'][$i]['printable']);
+            unset($parameters['columns'][$i]['footer']);
 
             if (isset($column['render'])) {
-                $fn[$i]                = $column['render'];
-                $columns[$i]['render'] = "#column_function.{$i}#";
+                $columnFunctions[$i]                 = $column['render'];
+                $parameters['columns'][$i]['render'] = "#column_function.{$i}#";
             }
         }
 
-        return [$fn, $parameters];
+        return [$columnFunctions, $parameters];
     }
 
     /**
