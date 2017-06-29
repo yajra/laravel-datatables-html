@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.5 - 06-29-2017
+- Fix fetching of default table id from config. #19
+
 ### v2.0.4 - 06-29-2017
 - Fix missing semi-colon.
 
