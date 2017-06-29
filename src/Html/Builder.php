@@ -121,7 +121,11 @@ class Builder
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
-                'columns' => $this->collection->toArray(),
+                'columns' => $this->collection->map(function ($column) {
+                    unset($column->attributes);
+
+                    return $column;
+                })->toArray(),
             ]
         );
 
