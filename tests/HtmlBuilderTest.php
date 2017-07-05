@@ -1,9 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Yajra\Datatables\Datatables;
-use Yajra\Datatables\Html\Column;
-use Yajra\Datatables\Request;
+use Yajra\DataTables\Factory;
+use Yajra\DataTables\Html\Column;
 
 require_once 'helper.php';
 
@@ -45,7 +44,7 @@ class HtmlBuilderTest extends TestCase
     }
 
     /**
-     * @return \Mockery\MockInterface|\Yajra\Datatables\Datatables|\Yajra\Datatables\Html\Builder
+     * @return \Mockery\MockInterface|\Yajra\DataTables\Factory|\Yajra\DataTables\Html\Builder
      */
     protected function getHtmlBuilder()
     {
@@ -151,12 +150,12 @@ class HtmlBuilderTest extends TestCase
     }
 
     /**
-     * @return \Yajra\Datatables\Datatables
+     * @return \Yajra\DataTables\DataTables
      */
-    protected function getDatatables()
+    protected function getDataTables()
     {
-        $datatables = new Datatables(Request::capture());
+        $factory = new Factory;
 
-        return $datatables;
+        return $factory;
     }
 }

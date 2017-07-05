@@ -1,13 +1,10 @@
 <?php
 
-namespace Yajra\Datatables\Html;
+namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Fluent;
 
 /**
- * Class Column.
- *
- * @package Yajra\Datatables\Html
  * @property string data
  * @property string name
  * @property string orderable
@@ -17,7 +14,6 @@ use Illuminate\Support\Fluent;
  * @property string footer
  * @property array  attributes
  * @see     https://datatables.net/reference/option/ for possible columns option
- * @author  Arjay Angeles <aqangeles@gmail.com>
  */
 class Column extends Fluent
 {

@@ -1,9 +1,8 @@
 <?php
 
 use Mockery as m;
-use Yajra\Datatables\Datatables;
-use Yajra\Datatables\Html\Builder;
-use Yajra\Datatables\Request;
+use Yajra\DataTables\Factory;
+use Yajra\DataTables\Html\Builder;
 
 function app($instance)
 {
@@ -22,7 +21,7 @@ function app($instance)
             });
     }
 
-    return new Datatables(Request::capture());
+    return new Factory();
 }
 
 function view($view = null, array $data = [])

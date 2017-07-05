@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\Datatables\Html;
+namespace Yajra\DataTables\Html;
 
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
@@ -10,12 +10,6 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
-/**
- * Class Builder.
- *
- * @package Yajra\Datatables\Html
- * @author  Arjay Angeles <aqangeles@gmail.com>
- */
 class Builder
 {
     use Macroable;

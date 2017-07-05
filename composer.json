@@ -16,8 +16,8 @@
     }
   ],
   "require": {
-    "php": ">=5.6.4",
-    "yajra/laravel-datatables-oracle": "7.*|8.*",
+    "php": ">=7.0",
+    "yajra/laravel-datatables-oracle": "8.*",
     "laravelcollective/html": "5.4.*|5.5.*"
   },
   "require-dev": {
@@ -26,21 +26,21 @@
   },
   "autoload": {
     "psr-4": {
-      "Yajra\\Datatables\\": "src/"
+      "Yajra\\DataTables\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Yajra\\Datatables\\Tests\\": "tests/"
+      "Yajra\\DataTables\\Tests\\": "tests/"
     }
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.0-dev"
+      "dev-master": "3.0-dev"
     },
     "laravel": {
       "providers": [
-        "Yajra\\Datatables\\HtmlServiceProvider"
+        "Yajra\\DataTables\\HtmlServiceProvider"
       ]
     }
   },

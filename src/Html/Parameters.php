@@ -1,15 +1,14 @@
 <?php
 
-namespace Yajra\Datatables\Html;
+namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Fluent;
 
 /**
- * Class Parameters.
- *
- * @package Yajra\Datatables\Html
- * @see     https://datatables.net/reference/option/ for possible columns option
- * @author  Arjay Angeles <aqangeles@gmail.com>
+ * @property bool serverSide
+ * @property bool processing
+ * @property mixed ajax
+ * @property array columns
  */
 class Parameters extends Fluent
 {
