@@ -44,7 +44,7 @@ class HtmlBuilderTest extends TestCase
     }
 
     /**
-     * @return \Mockery\MockInterface|\Yajra\DataTables\Factory|\Yajra\DataTables\Html\Builder
+     * @return \Mockery\MockInterface|\Yajra\DataTables\Html\Builder
      */
     protected function getHtmlBuilder()
     {
@@ -150,7 +150,7 @@ class HtmlBuilderTest extends TestCase
     }
 
     /**
-     * @return \Yajra\DataTables\DataTables
+     * @return \Yajra\DataTables\Factory
      */
     protected function getDataTables()
     {
