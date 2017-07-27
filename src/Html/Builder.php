@@ -708,6 +708,7 @@ class Builder
         $appendData = $this->makeDataScript($data);
 
         $this->ajax['url']  = $url;
+        $this->ajax['type'] = 'GET';
         $this->ajax['data'] = "function(data) {
     for (var i = 0, len = data.columns.length; i < len; i++) { 
         if (!data.columns[i].search.value) delete data.columns[i].search;
