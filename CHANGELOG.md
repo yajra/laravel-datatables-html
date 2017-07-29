@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.6 - 07-29-2017
+- Adding type GET to minifiedAjax in Html/Builder #21, credits to @lk77.
+
 ### v2.0.5 - 06-29-2017
 - Fix fetching of default table id from config. #19
 
