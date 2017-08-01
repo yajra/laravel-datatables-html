@@ -631,7 +631,8 @@ class Builder
             if(is_array($row->footer))
             {
                 $footerAttr = $this->html->attributes(array_only($row->footer, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
-                $footer[]   = '<th ' . $footerAttr . '>' . $row->footer['title'] . '</th>';
+                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
+                $footer[]   = '<th ' . $footerAttr . '>' . $title . '</th>';
             }
             else
             {
