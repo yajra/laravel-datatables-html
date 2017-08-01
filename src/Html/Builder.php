@@ -559,9 +559,10 @@ class Builder
      *
      * @param array $attributes
      * @param bool  $drawFooter
+     * @param bool  $drawSearch
      * @return \Illuminate\Support\HtmlString
      */
-    public function table(array $attributes = [], $drawFooter = false)
+    public function table(array $attributes = [], $drawFooter = false, $drawSearch = false)
     {
         $this->tableAttributes = array_merge($this->getTableAttributes(), $attributes);
 
@@ -569,7 +570,8 @@ class Builder
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
         $tableHtml = '<table ' . $htmlAttr . '>';
-        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr></thead>';
+        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('', $this->compileTableSearchHeaders()) . '</tr>' : '';
+        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf        = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
@@ -623,6 +625,21 @@ class Builder
         }
 
         return $th;
+    }
+    
+    /**
+     * Compile table search headers
+     *
+     * @return array
+     */
+    private function compileTableSearchHeaders()
+    {
+        $search = [];
+        foreach ($this->collection->all() as $key => $row) {
+            $search[] = $row['searchable'] ? '<th>' . (isset($row->search) ? $row->search : '') . '</th>' : '<th></th>';
+        }
+
+        return $search;
     }
 
     /**
