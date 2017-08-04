@@ -18,7 +18,7 @@
   "require": {
     "php": ">=7.0",
     "yajra/laravel-datatables-oracle": "8.*",
-    "laravelcollective/html": "5.4.*|5.5.*"
+    "laravelcollective/html": "5.4.*|5.5.*|dev-master"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*",
