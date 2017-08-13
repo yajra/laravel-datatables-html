@@ -628,7 +628,16 @@ class Builder
     {
         $footer = [];
         foreach ($this->collection->all() as $row) {
-            $footer[] = '<th>' . $row->footer . '</th>';
+            if(is_array($row->footer))
+            {
+                $footerAttr = $this->html->attributes(array_only($row->footer, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
+                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
+                $footer[]   = '<th ' . $footerAttr . '>' . $title . '</th>';
+            }
+            else
+            {
+                $footer[] = '<th>' . $row->footer . '</th>';
+            }
         }
 
         return $footer;
