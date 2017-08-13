@@ -22,7 +22,7 @@ class HtmlServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'datatables');
-        $this->mergeConfigFrom(__DIR__.'/resources/config/config.php', 'datatables-html');
+        $this->mergeConfigFrom(__DIR__ . '/resources/config/config.php', 'datatables-html');
 
         $this->publishAssets();
     }
@@ -33,7 +33,7 @@ class HtmlServiceProvider extends ServiceProvider
     protected function publishAssets()
     {
         $this->publishes([
-            __DIR__ . '/resources/views' => base_path('/resources/views/vendor/datatables'),
+            __DIR__ . '/resources/views'             => base_path('/resources/views/vendor/datatables'),
             __DIR__ . '/resources/config/config.php' => config_path('datatables-html.php'),
         ], 'datatables-html');
     }

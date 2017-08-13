@@ -303,6 +303,33 @@ class Builder
     }
 
     /**
+     * Get table computed table attributes.
+     *
+     * @return array
+     */
+    public function getTableAttributes()
+    {
+        $default = $this->config->get('datatables-html.table', ['class' => 'table', 'id' => 'dataTableBuilder']);
+
+        return array_merge($default, $this->tableAttributes);
+    }
+
+    /**
+     * Sets multiple HTML table attributes at once.
+     *
+     * @param array $attributes
+     * @return $this
+     */
+    public function setTableAttributes(array $attributes)
+    {
+        foreach ($attributes as $attribute => $value) {
+            $this->setTableAttribute($attribute, $value);
+        }
+
+        return $this;
+    }
+
+    /**
      * Sets HTML table attribute(s).
      *
      * @param string|array $attribute
@@ -563,9 +590,10 @@ class Builder
         $th       = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
-        $tableHtml = '<table ' . $htmlAttr . '>';
-        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('', $this->compileTableSearchHeaders()) . '</tr>' : '';
-        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
+        $tableHtml  = '<table ' . $htmlAttr . '>';
+        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
+                $this->compileTableSearchHeaders()) . '</tr>' : '';
+        $tableHtml  .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf        = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
@@ -573,33 +601,6 @@ class Builder
         $tableHtml .= '</table>';
 
         return new HtmlString($tableHtml);
-    }
-
-    /**
-     * Get table computed table attributes.
-     *
-     * @return array
-     */
-    public function getTableAttributes()
-    {
-        $default = $this->config->get('datatables-html.table', ['class' => 'table', 'id' => 'dataTableBuilder']);
-
-        return array_merge($default, $this->tableAttributes);
-    }
-
-    /**
-     * Sets multiple HTML table attributes at once.
-     *
-     * @param array $attributes
-     * @return $this
-     */
-    public function setTableAttributes(array $attributes)
-    {
-        foreach ($attributes as $attribute => $value) {
-            $this->setTableAttribute($attribute, $value);
-        }
-
-        return $this;
     }
 
     /**
@@ -620,7 +621,7 @@ class Builder
 
         return $th;
     }
-    
+
     /**
      * Compile table search headers
      *
@@ -645,14 +646,12 @@ class Builder
     {
         $footer = [];
         foreach ($this->collection->all() as $row) {
-            if(is_array($row->footer))
-            {
-                $footerAttr = $this->html->attributes(array_only($row->footer, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
-                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
+            if (is_array($row->footer)) {
+                $footerAttr = $this->html->attributes(array_only($row->footer,
+                    ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
+                $title      = isset($row->footer['title']) ? $row->footer['title'] : '';
                 $footer[]   = '<th ' . $footerAttr . '>' . $title . '</th>';
-            }
-            else
-            {
+            } else {
                 $footer[] = '<th>' . $row->footer . '</th>';
             }
         }
