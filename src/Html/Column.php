@@ -67,6 +67,14 @@ class Column extends Fluent
     }
 
     /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
+    }
+
+    /**
      * Display render value as is.
      *
      * @param mixed $value
@@ -75,13 +83,5 @@ class Column extends Fluent
     private function parseRenderAsString($value)
     {
         return "function(data,type,full,meta){return $value;}";
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
     }
 }

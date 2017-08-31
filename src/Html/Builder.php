@@ -171,138 +171,6 @@ class Builder
     }
 
     /**
-     * Encode ajax data function param.
-     *
-     * @param array $parameters
-     * @return mixed
-     */
-    protected function encodeAjaxDataFunction($parameters)
-    {
-        $ajaxData = '';
-        if (isset($parameters['ajax']['data'])) {
-            $ajaxData                   = $parameters['ajax']['data'];
-            $parameters['ajax']['data'] = "#ajax_data#";
-        }
-
-        return [$ajaxData, $parameters];
-    }
-
-    /**
-     * Encode columns render function.
-     *
-     * @param array $parameters
-     * @return array
-     */
-    protected function encodeColumnFunctions(array $parameters)
-    {
-        $columnFunctions = [];
-        foreach ($parameters['columns'] as $i => $column) {
-            unset($parameters['columns'][$i]['exportable']);
-            unset($parameters['columns'][$i]['printable']);
-            unset($parameters['columns'][$i]['footer']);
-
-            if (isset($column['render'])) {
-                $columnFunctions[$i]                 = $column['render'];
-                $parameters['columns'][$i]['render'] = "#column_function.{$i}#";
-            }
-        }
-
-        return [$columnFunctions, $parameters];
-    }
-
-    /**
-     * Encode DataTables callbacks function.
-     *
-     * @param array $parameters
-     * @return array
-     */
-    protected function encodeCallbackFunctions(array $parameters)
-    {
-        $callbackFunctions = [];
-        foreach ($parameters as $key => $callback) {
-            if (in_array($key, $this->validCallbacks)) {
-                $callbackFunctions[$key] = $this->compileCallback($callback);
-                $parameters[$key]        = "#callback_function.{$key}#";
-            }
-        }
-
-        return [$callbackFunctions, $parameters];
-    }
-
-    /**
-     * Compile DataTable callback value.
-     *
-     * @param mixed $callback
-     * @return mixed|string
-     */
-    private function compileCallback($callback)
-    {
-        if (is_callable($callback)) {
-            return value($callback);
-        } elseif ($this->view->exists($callback)) {
-            return $this->view->make($callback)->render();
-        }
-
-        return $callback;
-    }
-
-    /**
-     * Decode ajax data method.
-     *
-     * @param string $function
-     * @param string $json
-     * @return string
-     */
-    protected function decodeAjaxDataFunction($function, $json)
-    {
-        return str_replace("\"#ajax_data#\"", $function, $json);
-    }
-
-    /**
-     * Decode columns render functions.
-     *
-     * @param array  $columnFunctions
-     * @param string $json
-     * @return string
-     */
-    protected function decodeColumnFunctions(array $columnFunctions, $json)
-    {
-        foreach ($columnFunctions as $i => $function) {
-            $json = str_replace("\"#column_function.{$i}#\"", $function, $json);
-        }
-
-        return $json;
-    }
-
-    /**
-     * Decode DataTables callbacks function.
-     *
-     * @param array  $callbackFunctions
-     * @param string $json
-     * @return string
-     */
-    protected function decodeCallbackFunctions(array $callbackFunctions, $json)
-    {
-        foreach ($callbackFunctions as $i => $function) {
-            $json = str_replace("\"#callback_function.{$i}#\"", $function, $json);
-        }
-
-        return $json;
-    }
-
-    /**
-     * Get javascript template to use.
-     *
-     * @return string
-     */
-    protected function template()
-    {
-        return $this->view->make(
-            $this->template ?: $this->config->get('datatables.script_template', 'datatables::script')
-        )->render();
-    }
-
-    /**
      * Get table computed table attributes.
      *
      * @return array
@@ -604,62 +472,6 @@ class Builder
     }
 
     /**
-     * Compile table headers and to support responsive extension.
-     *
-     * @return array
-     */
-    private function compileTableHeaders()
-    {
-        $th = [];
-        foreach ($this->collection->toArray() as $row) {
-            $thAttr = $this->html->attributes(array_merge(
-                array_only($row, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']),
-                $row['attributes']
-            ));
-            $th[]   = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
-        }
-
-        return $th;
-    }
-
-    /**
-     * Compile table search headers
-     *
-     * @return array
-     */
-    private function compileTableSearchHeaders()
-    {
-        $search = [];
-        foreach ($this->collection->all() as $key => $row) {
-            $search[] = $row['searchable'] ? '<th>' . (isset($row->search) ? $row->search : '') . '</th>' : '<th></th>';
-        }
-
-        return $search;
-    }
-
-    /**
-     * Compile table footer contents.
-     *
-     * @return array
-     */
-    private function compileTableFooter()
-    {
-        $footer = [];
-        foreach ($this->collection->all() as $row) {
-            if (is_array($row->footer)) {
-                $footerAttr = $this->html->attributes(array_only($row->footer,
-                    ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
-                $title      = isset($row->footer['title']) ? $row->footer['title'] : '';
-                $footer[]   = '<th ' . $footerAttr . '>' . $title . '</th>';
-            } else {
-                $footer[] = '<th>' . $row->footer . '</th>';
-            }
-        }
-
-        return $footer;
-    }
-
-    /**
      * Configure DataTable's parameters.
      *
      * @param  array $attributes
@@ -728,8 +540,7 @@ class Builder
 
         $this->ajax['url']  = $url;
         $this->ajax['type'] = 'GET';
-        if(isset($this->attributes['serverSide']) ? $this->attributes['serverSide'] : true)
-        {
+        if (isset($this->attributes['serverSide']) ? $this->attributes['serverSide'] : true) {
             $this->ajax['data'] = "function(data) {
             for (var i = 0, len = data.columns.length; i < len; i++) { 
                 if (!data.columns[i].search.value) delete data.columns[i].search;
@@ -738,9 +549,7 @@ class Builder
                 if (data.columns[i].data === data.columns[i].name) delete data.columns[i].name;
             }
             delete data.search.regex;";
-        }
-        else
-        {
+        } else {
             $this->ajax['data'] = "function(data){";
         }
 
@@ -758,6 +567,121 @@ class Builder
     }
 
     /**
+     * Encode ajax data function param.
+     *
+     * @param array $parameters
+     * @return mixed
+     */
+    protected function encodeAjaxDataFunction($parameters)
+    {
+        $ajaxData = '';
+        if (isset($parameters['ajax']['data'])) {
+            $ajaxData                   = $parameters['ajax']['data'];
+            $parameters['ajax']['data'] = "#ajax_data#";
+        }
+
+        return [$ajaxData, $parameters];
+    }
+
+    /**
+     * Encode columns render function.
+     *
+     * @param array $parameters
+     * @return array
+     */
+    protected function encodeColumnFunctions(array $parameters)
+    {
+        $columnFunctions = [];
+        foreach ($parameters['columns'] as $i => $column) {
+            unset($parameters['columns'][$i]['exportable']);
+            unset($parameters['columns'][$i]['printable']);
+            unset($parameters['columns'][$i]['footer']);
+
+            if (isset($column['render'])) {
+                $columnFunctions[$i]                 = $column['render'];
+                $parameters['columns'][$i]['render'] = "#column_function.{$i}#";
+            }
+        }
+
+        return [$columnFunctions, $parameters];
+    }
+
+    /**
+     * Encode DataTables callbacks function.
+     *
+     * @param array $parameters
+     * @return array
+     */
+    protected function encodeCallbackFunctions(array $parameters)
+    {
+        $callbackFunctions = [];
+        foreach ($parameters as $key => $callback) {
+            if (in_array($key, $this->validCallbacks)) {
+                $callbackFunctions[$key] = $this->compileCallback($callback);
+                $parameters[$key]        = "#callback_function.{$key}#";
+            }
+        }
+
+        return [$callbackFunctions, $parameters];
+    }
+
+    /**
+     * Decode ajax data method.
+     *
+     * @param string $function
+     * @param string $json
+     * @return string
+     */
+    protected function decodeAjaxDataFunction($function, $json)
+    {
+        return str_replace("\"#ajax_data#\"", $function, $json);
+    }
+
+    /**
+     * Decode columns render functions.
+     *
+     * @param array  $columnFunctions
+     * @param string $json
+     * @return string
+     */
+    protected function decodeColumnFunctions(array $columnFunctions, $json)
+    {
+        foreach ($columnFunctions as $i => $function) {
+            $json = str_replace("\"#column_function.{$i}#\"", $function, $json);
+        }
+
+        return $json;
+    }
+
+    /**
+     * Decode DataTables callbacks function.
+     *
+     * @param array  $callbackFunctions
+     * @param string $json
+     * @return string
+     */
+    protected function decodeCallbackFunctions(array $callbackFunctions, $json)
+    {
+        foreach ($callbackFunctions as $i => $function) {
+            $json = str_replace("\"#callback_function.{$i}#\"", $function, $json);
+        }
+
+        return $json;
+    }
+
+    /**
+     * Get javascript template to use.
+     *
+     * @return string
+     */
+    protected function template()
+    {
+        return $this->view->make(
+            $this->template ?: $this->config->get('datatables.script_template', 'datatables::script')
+        )->render();
+    }
+
+    /**
      * Make a data script to be appended on ajax request of dataTables.
      *
      * @param array $data
@@ -771,5 +695,78 @@ class Builder
         }
 
         return $script;
+    }
+
+    /**
+     * Compile DataTable callback value.
+     *
+     * @param mixed $callback
+     * @return mixed|string
+     */
+    private function compileCallback($callback)
+    {
+        if (is_callable($callback)) {
+            return value($callback);
+        } elseif ($this->view->exists($callback)) {
+            return $this->view->make($callback)->render();
+        }
+
+        return $callback;
+    }
+
+    /**
+     * Compile table headers and to support responsive extension.
+     *
+     * @return array
+     */
+    private function compileTableHeaders()
+    {
+        $th = [];
+        foreach ($this->collection->toArray() as $row) {
+            $thAttr = $this->html->attributes(array_merge(
+                array_only($row, ['class', 'id', 'width', 'style', 'data-class', 'data-hide']),
+                $row['attributes']
+            ));
+            $th[]   = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
+        }
+
+        return $th;
+    }
+
+    /**
+     * Compile table search headers
+     *
+     * @return array
+     */
+    private function compileTableSearchHeaders()
+    {
+        $search = [];
+        foreach ($this->collection->all() as $key => $row) {
+            $search[] = $row['searchable'] ? '<th>' . (isset($row->search) ? $row->search : '') . '</th>' : '<th></th>';
+        }
+
+        return $search;
+    }
+
+    /**
+     * Compile table footer contents.
+     *
+     * @return array
+     */
+    private function compileTableFooter()
+    {
+        $footer = [];
+        foreach ($this->collection->all() as $row) {
+            if (is_array($row->footer)) {
+                $footerAttr = $this->html->attributes(array_only($row->footer,
+                    ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
+                $title      = isset($row->footer['title']) ? $row->footer['title'] : '';
+                $footer[]   = '<th ' . $footerAttr . '>' . $title . '</th>';
+            } else {
+                $footer[] = '<th>' . $row->footer . '</th>';
+            }
+        }
+
+        return $footer;
     }
 }
