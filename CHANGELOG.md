@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v3.0.0 - 08-31-2017
+- v3.0 stable release.
+
 ### v2.0.6 - 07-29-2017
 - Adding type GET to minifiedAjax in Html/Builder #21, credits to @lk77.
 
