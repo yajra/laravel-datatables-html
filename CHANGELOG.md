@@ -8,6 +8,10 @@
 
 ## Change Log
 
+### v3.0.2 - 09-09-2017
+- Fix Request class doc blocks.
+- Fix typo Datatables to DataTables.
+
 ### v3.0.1 - 09-09-2017
 - Add fnServerParams to validCallbacks #26. Credits to @cracki.
 
