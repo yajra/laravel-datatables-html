@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v2.0.7 - 09-09-2017
+- Remove support for yajra/laravel-datatables-oracle v8.* #27, credits to @harimayco
+
 ### v2.0.6 - 07-29-2017
 - Adding type GET to minifiedAjax in Html/Builder #21, credits to @lk77.
 
