@@ -248,7 +248,7 @@ class Builder
     /**
      * Add a Column object at the beginning of collection
      *
-     * @param \Yajra\Datatables\Html\Column $column
+     * @param \Yajra\DataTables\Html\Column $column
      * @return $this
      */
     public function addBefore(Column $column)
@@ -274,7 +274,7 @@ class Builder
     /**
      * Add a Column object in collection.
      *
-     * @param \Yajra\Datatables\Html\Column $column
+     * @param \Yajra\DataTables\Html\Column $column
      * @return $this
      */
     public function add(Column $column)
