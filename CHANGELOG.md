@@ -1,4 +1,4 @@
-## Laravel Datatables Html Plugin.
+## Laravel DataTables Html Plugin.
 
 [![Latest Stable Version](https://poser.pugx.org/yajra/laravel-datatables-html/v/stable.png)](https://packagist.org/packages/yajra/laravel-datatables-html)
 [![Total Downloads](https://poser.pugx.org/yajra/laravel-datatables-html/downloads.png)](https://packagist.org/packages/yajra/laravel-datatables-html)
