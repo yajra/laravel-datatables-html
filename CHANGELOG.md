@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v3.0.1 - 09-09-2017
+- Add fnServerParams to validCallbacks #26. Credits to @cracki.
+
 ### v3.0.0 - 08-31-2017
 - v3.0 stable release.
 
