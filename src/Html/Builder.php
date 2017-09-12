@@ -117,8 +117,9 @@ class Builder
             $this->attributes, [
                 'ajax'    => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
-                    $column=$column->toArray();
+                    $column = $column->toArray();
                     unset($column['attributes']);
+
                     return $column;
                 })->toArray(),
             ]
