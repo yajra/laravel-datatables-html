@@ -8,6 +8,10 @@
 
 ## Change Log
 
+### v3.0.3 - 09-12-2017
+- Fix column attributes removed when generate script. #28, credits to @as247.
+- Fix https://github.com/yajra/laravel-datatables/issues/1380.
+
 ### v3.0.2 - 09-09-2017
 - Fix Request class doc blocks.
 - Fix typo Datatables to DataTables.
