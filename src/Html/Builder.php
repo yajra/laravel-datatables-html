@@ -105,13 +105,27 @@ class Builder
 
         return new HtmlString("<script{$attributes}>{$script}</script>\n");
     }
-
+    
     /**
      * Get generated raw scripts.
      *
      * @return \Illuminate\Support\HtmlString
      */
     public function generateScripts()
+    {
+        $parameters = $this->generateJson();
+
+        return new HtmlString(
+            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
+        );
+    }
+
+    /**
+     * Get generated json configuration
+     *
+     * @return string
+     */
+    public function generateJson()
     {
         $args = array_merge(
             $this->attributes, [
@@ -125,11 +139,7 @@ class Builder
             ]
         );
 
-        $parameters = $this->parameterize($args);
-
-        return new HtmlString(
-            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
-        );
+        return $this->parameterize($args);
     }
 
     /**
