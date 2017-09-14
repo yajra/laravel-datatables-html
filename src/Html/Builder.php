@@ -113,6 +113,20 @@ class Builder
      */
     public function generateScripts()
     {
+        $parameters = $this->generateJson();
+
+        return new HtmlString(
+            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
+        );
+    }
+
+    /**
+     * Get generated json configuration.
+     *
+     * @return string
+     */
+    public function generateJson()
+    {
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
@@ -125,11 +139,7 @@ class Builder
             ]
         );
 
-        $parameters = $this->parameterize($args);
-
-        return new HtmlString(
-            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
-        );
+        return $this->parameterize($args);
     }
 
     /**
