@@ -8,6 +8,9 @@
 
 ## Change Log
 
+### v3.1.0 - 09-14-2017
+- Added generateJson to Html/Builder #29, credits to @lk77.
+
 ### v3.0.3 - 09-12-2017
 - Fix column attributes removed when generate script. #28, credits to @as247.
 - Fix https://github.com/yajra/laravel-datatables/issues/1380.
