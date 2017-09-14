@@ -90,7 +90,7 @@ class Builder
         $this->html       = $html;
         $this->collection = new Collection;
     }
-
+    
     /**
      * Generate DataTable javascript.
      *
@@ -119,9 +119,9 @@ class Builder
             sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
         );
     }
-
+    
     /**
-     * Get generated json configuration
+     * Get generated json configuration.
      *
      * @return string
      */
@@ -141,7 +141,7 @@ class Builder
 
         return $this->parameterize($args);
     }
-
+    
     /**
      * Generate DataTables js parameters.
      *
