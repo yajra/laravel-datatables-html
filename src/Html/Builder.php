@@ -89,6 +89,7 @@ class Builder
         $this->view       = $view;
         $this->html       = $html;
         $this->collection = new Collection;
+        $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
     /**
@@ -189,9 +190,7 @@ class Builder
      */
     public function getTableAttributes()
     {
-        $default = $this->config->get('datatables-html.table', ['class' => 'table', 'id' => 'dataTableBuilder']);
-
-        return array_merge($default, $this->tableAttributes);
+        return $this->tableAttributes;
     }
 
     /**
