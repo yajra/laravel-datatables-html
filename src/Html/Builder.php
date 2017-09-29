@@ -117,7 +117,7 @@ class Builder
         $parameters = $this->generateJson();
 
         return new HtmlString(
-            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
+            sprintf($this->template(), $this->getTableAttribute('id'), $parameters)
         );
     }
 
