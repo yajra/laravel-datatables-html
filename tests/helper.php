@@ -4,12 +4,15 @@ use Mockery as m;
 use Yajra\DataTables\Factory;
 use Yajra\DataTables\Html\Builder;
 
-function app($instance)
+function app($instance, $config = [])
 {
     switch ($instance) {
         case 'datatables.html':
+            $configMock = m::mock('Illuminate\Contracts\Config\Repository');
+            $configMock->shouldReceive('get')->andReturn($config);
+
             return new Builder(
-                m::mock('Illuminate\Contracts\Config\Repository'),
+                $configMock,
                 m::mock('Illuminate\Contracts\View\Factory'),
                 m::mock('Collective\Html\HtmlBuilder')
             );
