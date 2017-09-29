@@ -464,7 +464,7 @@ class Builder
      */
     public function table(array $attributes = [], $drawFooter = false, $drawSearch = false)
     {
-        $this->tableAttributes = array_merge($this->getTableAttributes(), $attributes);
+        $this->setTableAttributes($attributes);
 
         $th       = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
