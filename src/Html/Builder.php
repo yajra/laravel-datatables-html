@@ -202,7 +202,7 @@ class Builder
     public function setTableAttributes(array $attributes)
     {
         foreach ($attributes as $attribute => $value) {
-            $this->setTableAttribute($attribute, $value);
+            $this->tableAttributes[$attribute] = $value;
         }
 
         return $this;
@@ -218,10 +218,10 @@ class Builder
     public function setTableAttribute($attribute, $value = null)
     {
         if (is_array($attribute)) {
-            $this->setTableAttributes($attribute);
-        } else {
-            $this->tableAttributes[$attribute] = $value;
+            return $this->setTableAttributes($attribute);
         }
+
+        $this->tableAttributes[$attribute] = $value;
 
         return $this;
     }
