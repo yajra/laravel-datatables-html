@@ -8,4 +8,11 @@ return [
         'class' => 'table',
         'id'    => 'dataTableBuilder',
     ],
+
+    /*
+     * Default table builder attributes
+     */
+    'builder-attributes' => [
+        //
+    ],
 ];
