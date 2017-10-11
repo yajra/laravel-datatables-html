@@ -228,6 +228,17 @@ class Builder
     }
 
     /**
+     * Sets HTML table "id" attribute.
+     *
+     * @param string $id
+     * @return $this
+     */
+    public function setTableId($id)
+    {
+        return $this->setTableAttribute('id', $id);
+    }
+
+    /**
      * Retrieves HTML table attribute value.
      *
      * @param string $attribute

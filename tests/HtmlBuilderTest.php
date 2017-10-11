@@ -130,6 +130,15 @@ class HtmlBuilderTest extends TestCase
         $this->assertEquals('val', $builder->getTableAttribute('attr'));
     }
 
+    public function test_setting_table_id_attribute()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->setTableId('val');
+
+        $this->assertEquals('val', $builder->getTableAttribute('id'));
+    }
+
     public function test_settings_multiple_table_attributes()
     {
         $builder = $this->getHtmlBuilder();
