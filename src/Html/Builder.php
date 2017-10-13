@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html;
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
@@ -241,6 +242,43 @@ class Builder
         }
 
         return $this->tableAttributes[$attribute];
+    }
+
+    /**
+     * Add class names to the "class" attribute of HTML table.
+     *
+     * @param string|array $class
+     * @return $this
+     */
+    public function addTableClass($class)
+    {
+        $class = is_array($class) ? implode(' ', $class) : $class;
+        $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
+
+        $classes = preg_split('#\s+#', $currentClass.' '.$class, null, PREG_SPLIT_NO_EMPTY);
+        $class = implode(' ', array_unique($classes));
+
+        return $this->setTableAttribute('class', $class);
+    }
+
+    /**
+     * Remove class names from the "class" attribute of HTML table.
+     *
+     * @param string|array $class
+     * @return $this
+     */
+    public function removeTableClass($class)
+    {
+        $class = is_array($class) ? implode(' ', $class) : $class;
+        $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
+
+        $classes = array_diff(
+            preg_split('#\s+#', $currentClass, null, PREG_SPLIT_NO_EMPTY),
+            preg_split('#\s+#', $class, null, PREG_SPLIT_NO_EMPTY)
+        );
+        $class = implode(' ', array_unique($classes));
+
+        return $this->setTableAttribute('class', $class);
     }
 
     /**

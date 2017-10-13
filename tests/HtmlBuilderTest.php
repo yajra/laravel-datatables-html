@@ -149,6 +149,35 @@ class HtmlBuilderTest extends TestCase
         $builder->getTableAttribute('boohoo');
     }
 
+    public function test_adding_table_class_attribute()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->addTableClass('foo');
+        $this->assertEquals('foo', $builder->getTableAttribute('class'));
+
+        $builder->addTableClass('  foo  bar  ');
+        $this->assertEquals('foo bar', $builder->getTableAttribute('class'));
+
+        $builder->addTableClass([' a-b ', 'foo c bar', 'key' => 'value']);
+        $this->assertEquals('foo bar a-b c value', $builder->getTableAttribute('class'));
+    }
+
+    public function test_removing_table_class_attribute()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->setTableAttribute('class', ' foo  bar  a  b  c ');
+
+        $builder->removeTableClass('bar');
+        $this->assertEquals('foo a b c', $builder->getTableAttribute('class'));
+
+        $builder->removeTableClass('  x  c  y ');
+        $this->assertEquals('foo a b', $builder->getTableAttribute('class'));
+
+        $builder->removeTableClass(['a' => ' b ', ' foo  bar ']);
+        $this->assertEquals('a', $builder->getTableAttribute('class'));
+    }
+
     /**
      * @return \Yajra\DataTables\Factory
      */
