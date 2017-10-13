@@ -592,7 +592,7 @@ class Builder
         $this->ajax['type'] = 'GET';
         if (isset($this->attributes['serverSide']) ? $this->attributes['serverSide'] : true) {
             $this->ajax['data'] = "function(data) {
-            for (var i = 0, len = data.columns.length; i < len; i++) { 
+            for (var i = 0, len = data.columns.length; i < len; i++) {
                 if (!data.columns[i].search.value) delete data.columns[i].search;
                 if (data.columns[i].searchable === true) delete data.columns[i].searchable;
                 if (data.columns[i].orderable === true) delete data.columns[i].orderable;
