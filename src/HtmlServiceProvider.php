@@ -15,7 +15,6 @@ class HtmlServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'datatables');
-        $this->mergeConfigFrom(__DIR__ . '/resources/config/config.php', 'datatables-html');
 
         $this->publishAssets();
     }
@@ -38,6 +37,8 @@ class HtmlServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/resources/config/config.php', 'datatables-html');
+
         $this->app->register(CollectiveHtml::class);
 
         $this->app->bind('datatables.html', function () {
