@@ -8,13 +8,6 @@ use Illuminate\Support\ServiceProvider;
 class HtmlServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Bootstrap the application events.
      *
      * @return void
@@ -50,15 +43,5 @@ class HtmlServiceProvider extends ServiceProvider
         $this->app->bind('datatables.html', function () {
             return $this->app->make(Html\Builder::class);
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return string[]
-     */
-    public function provides()
-    {
-        return ['datatables.html'];
     }
 }
