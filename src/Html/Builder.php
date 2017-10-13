@@ -81,6 +81,7 @@ class Builder
         'stateLoadParams',
         'stateSaveCallback',
         'stateSaveParams',
+        'fnServerParams',
     ];
 
     /**
