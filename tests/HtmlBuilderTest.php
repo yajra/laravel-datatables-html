@@ -10,8 +10,7 @@ class HtmlBuilderTest extends TestCase
 {
     public function test_generate_table_html()
     {
-        $builder = $this->getHtmlBuilder();
-        $builder->config->shouldReceive('get')->andReturn([
+        $builder = $this->getHtmlBuilder([
             'class' => 'table',
             'id'    => 'dataTableBuilder',
         ]);
@@ -46,21 +45,20 @@ class HtmlBuilderTest extends TestCase
     /**
      * @return \Mockery\MockInterface|\Yajra\DataTables\Html\Builder
      */
-    protected function getHtmlBuilder()
+    protected function getHtmlBuilder($config = [])
     {
-        $builder = app('datatables.html');
+        $builder = app('datatables.html', $config);
 
         return $builder;
     }
 
     public function test_generate_table_html_with_empty_footer()
     {
-        $builder = $this->getHtmlBuilder();
-        $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->config->shouldReceive('get')->andReturn([
+        $builder = $this->getHtmlBuilder([
             'class' => 'table',
             'id'    => 'dataTableBuilder',
         ]);
+        $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo'])
@@ -89,12 +87,11 @@ class HtmlBuilderTest extends TestCase
 
     public function test_generate_table_html_with_footer_content()
     {
-        $builder = $this->getHtmlBuilder();
-        $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->config->shouldReceive('get')->andReturn([
+        $builder = $this->getHtmlBuilder([
             'class' => 'table',
             'id'    => 'dataTableBuilder',
         ]);
+        $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo', 'footer' => 'test'])

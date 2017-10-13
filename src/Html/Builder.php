@@ -90,6 +90,7 @@ class Builder
         $this->view       = $view;
         $this->html       = $html;
         $this->collection = new Collection;
+        $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
     /**
@@ -117,7 +118,7 @@ class Builder
         $parameters = $this->generateJson();
 
         return new HtmlString(
-            sprintf($this->template(), $this->getTableAttributes()['id'], $parameters)
+            sprintf($this->template(), $this->getTableAttribute('id'), $parameters)
         );
     }
 
@@ -190,9 +191,7 @@ class Builder
      */
     public function getTableAttributes()
     {
-        $default = $this->config->get('datatables-html.table', ['class' => 'table', 'id' => 'dataTableBuilder']);
-
-        return array_merge($default, $this->tableAttributes);
+        return $this->tableAttributes;
     }
 
     /**
@@ -204,7 +203,7 @@ class Builder
     public function setTableAttributes(array $attributes)
     {
         foreach ($attributes as $attribute => $value) {
-            $this->setTableAttribute($attribute, $value);
+            $this->tableAttributes[$attribute] = $value;
         }
 
         return $this;
@@ -220,10 +219,10 @@ class Builder
     public function setTableAttribute($attribute, $value = null)
     {
         if (is_array($attribute)) {
-            $this->setTableAttributes($attribute);
-        } else {
-            $this->tableAttributes[$attribute] = $value;
+            return $this->setTableAttributes($attribute);
         }
+
+        $this->tableAttributes[$attribute] = $value;
 
         return $this;
     }
@@ -514,7 +513,7 @@ class Builder
      */
     public function table(array $attributes = [], $drawFooter = false, $drawSearch = false)
     {
-        $this->tableAttributes = array_merge($this->getTableAttributes(), $attributes);
+        $this->setTableAttributes($attributes);
 
         $th       = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
