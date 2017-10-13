@@ -6,7 +6,10 @@
 [![Latest Unstable Version](https://poser.pugx.org/yajra/laravel-datatables-html/v/unstable.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 [![License](https://poser.pugx.org/yajra/laravel-datatables-html/license.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 
-## Change Log
+## CHANGELOG
+
+### v2.1.0 - 10-13-2017
+- Add fnServerParams to valid Callbacks. #34, credits to @cracki.
 
 ### v2.0.7 - 09-09-2017
 - Remove support for yajra/laravel-datatables-oracle v8.* #27, credits to @harimayco
