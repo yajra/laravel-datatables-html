@@ -6,7 +6,14 @@
 [![Latest Unstable Version](https://poser.pugx.org/yajra/laravel-datatables-html/v/unstable.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 [![License](https://poser.pugx.org/yajra/laravel-datatables-html/license.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 
-## Change Log
+## CHANGELOG
+
+### v3.2.0 - 10-13-2017
+- Review tableAttributes getter and setter #31
+- Fix CS. #36
+- Add setTableId() to Html Builder #35.
+- Add addTableClass, removeTableClass to Html Builder #37
+- All changes credits to @ElfSundae.
 
 ### v3.1.0 - 09-14-2017
 - Added generateJson to Html/Builder #29, credits to @lk77.
