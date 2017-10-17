@@ -8,8 +8,9 @@
 
 ## CHANGELOG
 
-### UNRELEASED
+### v3.2.1 - 10-18-2017
 - Fix HtmlServiceProvider. [#38], credits to @ElfSundae.
+- Fix changelog PR links. [#39]
 
 ### v3.2.0 - 10-13-2017
 - Review tableAttributes getter and setter [#31]
@@ -114,5 +115,6 @@
 [#36]: https://github.com/yajra/laravel-datatables-html/pull/36
 [#37]: https://github.com/yajra/laravel-datatables-html/pull/37
 [#38]: https://github.com/yajra/laravel-datatables-html/pull/38
+[#39]: https://github.com/yajra/laravel-datatables-html/pull/39
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
