@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use Yajra\DataTables\Factory;
+use PHPUnit\Framework\TestCase;
 use Yajra\DataTables\Html\Column;
 
 require_once 'helper.php';

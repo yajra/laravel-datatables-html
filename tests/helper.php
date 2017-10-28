@@ -29,7 +29,7 @@ function app($instance, $config = [])
 
 function view($view = null, array $data = [])
 {
-    if (!$view) {
+    if (! $view) {
         return new BladeView();
     }
 
@@ -37,7 +37,7 @@ function view($view = null, array $data = [])
 }
 
 /**
- * Blade View Stub
+ * Blade View Stub.
  */
 class BladeView
 {

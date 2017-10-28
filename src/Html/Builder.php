@@ -2,14 +2,14 @@
 
 namespace Yajra\DataTables\Html;
 
-use Collective\Html\HtmlBuilder;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Collective\Html\HtmlBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Contracts\Config\Repository;
 
 class Builder
 {
@@ -86,10 +86,10 @@ class Builder
      */
     public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
     {
-        $this->config     = $config;
-        $this->view       = $view;
-        $this->html       = $html;
-        $this->collection = new Collection;
+        $this->config          = $config;
+        $this->view            = $view;
+        $this->html            = $html;
+        $this->collection      = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
@@ -157,7 +157,7 @@ class Builder
         $values       = [];
         $replacements = [];
         foreach ($parameters as $key => &$value) {
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 if (strpos($value, '$.') === 0) {
                     // Store function string.
                     $values[] = $value;
@@ -169,8 +169,8 @@ class Builder
             }
         }
 
-        list($ajaxDataFunction, $parameters) = $this->encodeAjaxDataFunction($parameters);
-        list($columnFunctions, $parameters) = $this->encodeColumnFunctions($parameters);
+        list($ajaxDataFunction, $parameters)  = $this->encodeAjaxDataFunction($parameters);
+        list($columnFunctions, $parameters)   = $this->encodeColumnFunctions($parameters);
         list($callbackFunctions, $parameters) = $this->encodeCallbackFunctions($parameters);
 
         $json = json_encode($parameters);
@@ -247,7 +247,7 @@ class Builder
      */
     public function getTableAttribute($attribute)
     {
-        if (!array_key_exists($attribute, $this->tableAttributes)) {
+        if (! array_key_exists($attribute, $this->tableAttributes)) {
             throw new \Exception("Table attribute '{$attribute}' does not exist.");
         }
 
@@ -262,11 +262,11 @@ class Builder
      */
     public function addTableClass($class)
     {
-        $class = is_array($class) ? implode(' ', $class) : $class;
+        $class        = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = preg_split('#\s+#', $currentClass.' '.$class, null, PREG_SPLIT_NO_EMPTY);
-        $class = implode(' ', array_unique($classes));
+        $class   = implode(' ', array_unique($classes));
 
         return $this->setTableAttribute('class', $class);
     }
@@ -279,7 +279,7 @@ class Builder
      */
     public function removeTableClass($class)
     {
-        $class = is_array($class) ? implode(' ', $class) : $class;
+        $class        = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = array_diff(
@@ -305,7 +305,7 @@ class Builder
     }
 
     /**
-     * Add a Column object at the beginning of collection
+     * Add a Column object at the beginning of collection.
      *
      * @param \Yajra\DataTables\Html\Column $column
      * @return $this
@@ -354,7 +354,7 @@ class Builder
         $this->collection = new Collection;
 
         foreach ($columns as $key => $value) {
-            if (!is_a($value, Column::class)) {
+            if (! is_a($value, Column::class)) {
                 if (is_array($value)) {
                     $attributes = array_merge(['name' => $key, 'data' => $key], $this->setTitle($key, $value));
                 } else {
@@ -383,7 +383,7 @@ class Builder
      */
     public function setTitle($title, array $attributes)
     {
-        if (!isset($attributes['title'])) {
+        if (! isset($attributes['title'])) {
             $attributes['title'] = $this->getQualifiedTitle($title);
         }
 
@@ -477,7 +477,7 @@ class Builder
     }
 
     /**
-     * Setup ajax parameter for datatables pipeline plugin
+     * Setup ajax parameter for datatables pipeline plugin.
      *
      * @param  string $url
      * @param  string $pages
@@ -491,7 +491,7 @@ class Builder
     }
 
     /**
-     * Setup ajax parameter
+     * Setup ajax parameter.
      *
      * @param  string|array $attributes
      * @return $this
@@ -521,7 +521,7 @@ class Builder
         $tableHtml  = '<table ' . $htmlAttr . '>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
                 $this->compileTableSearchHeaders()) . '</tr>' : '';
-        $tableHtml  .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
+        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf        = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
@@ -601,16 +601,16 @@ class Builder
         $this->ajax['url']  = $url;
         $this->ajax['type'] = 'GET';
         if (isset($this->attributes['serverSide']) ? $this->attributes['serverSide'] : true) {
-            $this->ajax['data'] = "function(data) {
+            $this->ajax['data'] = 'function(data) {
             for (var i = 0, len = data.columns.length; i < len; i++) {
                 if (!data.columns[i].search.value) delete data.columns[i].search;
                 if (data.columns[i].searchable === true) delete data.columns[i].searchable;
                 if (data.columns[i].orderable === true) delete data.columns[i].orderable;
                 if (data.columns[i].data === data.columns[i].name) delete data.columns[i].name;
             }
-            delete data.search.regex;";
+            delete data.search.regex;';
         } else {
-            $this->ajax['data'] = "function(data){";
+            $this->ajax['data'] = 'function(data){';
         }
 
         if ($appendData) {
@@ -621,7 +621,7 @@ class Builder
             $this->ajax['data'] .= $script;
         }
 
-        $this->ajax['data'] .= "}";
+        $this->ajax['data'] .= '}';
 
         return $this;
     }
@@ -637,7 +637,7 @@ class Builder
         $ajaxData = '';
         if (isset($parameters['ajax']['data'])) {
             $ajaxData                   = $parameters['ajax']['data'];
-            $parameters['ajax']['data'] = "#ajax_data#";
+            $parameters['ajax']['data'] = '#ajax_data#';
         }
 
         return [$ajaxData, $parameters];
@@ -694,7 +694,7 @@ class Builder
      */
     protected function decodeAjaxDataFunction($function, $json)
     {
-        return str_replace("\"#ajax_data#\"", $function, $json);
+        return str_replace('"#ajax_data#"', $function, $json);
     }
 
     /**
@@ -794,7 +794,7 @@ class Builder
     }
 
     /**
-     * Compile table search headers
+     * Compile table search headers.
      *
      * @return array
      */
