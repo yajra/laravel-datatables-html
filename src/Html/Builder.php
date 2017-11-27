@@ -504,6 +504,28 @@ class Builder
     }
 
     /**
+     * Setup "ajax" parameter with POST method.
+     *
+     * @param  string|array  $attributes
+     * @return $this
+     */
+    public function postAjax($attributes = [])
+    {
+        if (! is_array($attributes)) {
+            $attributes = ['url' => (string) $attributes];
+        }
+
+        if (app()->bound('session') && $token = app('session')->token()) {
+            $attributes = Arr::add($attributes, 'headers.X-CSRF-TOKEN', $token);
+        }
+
+        return $this->ajax(array_merge(
+            Arr::except($attributes, 'method'),
+            ['type' => 'POST']
+        ));
+    }
+
+    /**
      * Generate DataTable's table html.
      *
      * @param array $attributes
