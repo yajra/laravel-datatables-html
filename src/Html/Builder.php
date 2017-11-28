@@ -493,12 +493,16 @@ class Builder
     /**
      * Setup ajax parameter.
      *
-     * @param  string|array $attributes
-     * @param  bool         $post
+     * @param  string|array|bool  $attributes
+     * @param  bool               $post
      * @return $this
      */
     public function ajax($attributes = '', $post = false)
     {
+        if (is_bool($attributes)) {
+            list($attributes, $post) = [$this->ajax, $attributes];
+        }
+
         $this->ajax = $post === true ? $this->postAjax($attributes) : $attributes;
 
         return $this;
