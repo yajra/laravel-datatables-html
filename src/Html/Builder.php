@@ -494,13 +494,33 @@ class Builder
      * Setup ajax parameter.
      *
      * @param  string|array $attributes
+     * @param  bool         $post
      * @return $this
      */
-    public function ajax($attributes = '')
+    public function ajax($attributes = '', $post = false)
     {
-        $this->ajax = $attributes;
+        $this->ajax = $post === true ? $this->postAjax($attributes) : $attributes;
 
         return $this;
+    }
+
+    /**
+     * Set ajax method to POST, X-HTTP-Method-Override header to GET.
+     *
+     * @param  string|array  $attributes
+     * @return array
+     */
+    protected function postAjax($attributes)
+    {
+        if (! is_array($attributes)) {
+            $attributes = ['url' => (string) $attributes];
+        }
+
+        unset($attributes['method']);
+        Arr::set($attributes, 'type', 'POST');
+        Arr::set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
+
+        return $attributes;
     }
 
     /**
