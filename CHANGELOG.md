@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.3.0 - 12-15-2017
+- Add postAjax() to Html Builder [#45], credits to @ElfSundae.
+- Fix https://github.com/yajra/laravel-datatables-html/pull/13#issuecomment-337947000.
+
 ### v3.2.1 - 10-18-2017
 - Fix HtmlServiceProvider. [#38], credits to @ElfSundae.
 - Fix changelog PR links. [#39]
