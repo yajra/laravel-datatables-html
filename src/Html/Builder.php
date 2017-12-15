@@ -504,6 +504,25 @@ class Builder
     }
 
     /**
+     * Setup "ajax" parameter with POST method.
+     *
+     * @param  string|array  $attributes
+     * @return $this
+     */
+    public function postAjax($attributes = '')
+    {
+        if (! is_array($attributes)) {
+            $attributes = ['url' => (string) $attributes];
+        }
+
+        unset($attributes['method']);
+        Arr::set($attributes, 'type', 'POST');
+        Arr::set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
+
+        return $this->ajax($attributes);
+    }
+
+    /**
      * Generate DataTable's table html.
      *
      * @param array $attributes
