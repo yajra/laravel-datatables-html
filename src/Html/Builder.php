@@ -515,14 +515,11 @@ class Builder
             $attributes = ['url' => (string) $attributes];
         }
 
-        if (app()->bound('session') && $token = app('session')->token()) {
-            $attributes = Arr::add($attributes, 'headers.X-CSRF-TOKEN', $token);
-        }
+        unset($attributes['method']);
+        Arr::set($attributes, 'type', 'POST');
+        Arr::set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
 
-        return $this->ajax(array_merge(
-            Arr::except($attributes, 'method'),
-            ['type' => 'POST']
-        ));
+        return $this->ajax($attributes);
     }
 
     /**
