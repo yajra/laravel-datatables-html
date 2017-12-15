@@ -509,7 +509,7 @@ class Builder
      * @param  string|array  $attributes
      * @return $this
      */
-    public function postAjax($attributes = [])
+    public function postAjax($attributes = '')
     {
         if (! is_array($attributes)) {
             $attributes = ['url' => (string) $attributes];
