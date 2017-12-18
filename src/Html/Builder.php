@@ -172,7 +172,7 @@ class Builder
         list($ajaxDataFunction, $parameters)  = $this->encodeAjaxDataFunction($parameters);
         list($columnFunctions, $parameters)   = $this->encodeColumnFunctions($parameters);
         list($callbackFunctions, $parameters) = $this->encodeCallbackFunctions($parameters);
-        list($editorButtons, $parameters) = $this->encodeEditorButtons($parameters);
+        list($editorButtons, $parameters)     = $this->encodeEditorButtons($parameters);
 
         $json = json_encode($parameters);
 
@@ -186,7 +186,6 @@ class Builder
         return $json;
     }
 
-
     /**
      * Encode DataTables editor buttons.
      *
@@ -199,11 +198,12 @@ class Builder
         if (isset($parameters['buttons'])) {
             foreach ($parameters['buttons'] as $i => $button) {
                 if (isset($button['editor'])) {
-                    $editorButtons[$i] = $this->compileCallback($button['editor']);
+                    $editorButtons[$i]                          = $this->compileCallback($button['editor']);
                     $parameters['buttons'][$i]['editor']        = "#editor_button.{$i}#";
                 }
             }
         }
+
         return [$editorButtons, $parameters];
     }
 
@@ -219,6 +219,7 @@ class Builder
         foreach ($editorButtons as $i => $function) {
             $json = str_replace("\"#editor_button.{$i}#\"", $function, $json);
         }
+
         return $json;
     }
 
