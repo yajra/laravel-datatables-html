@@ -8,6 +8,9 @@
 
 ## CHANGELOG
 
+### v3.4.0 - 12-18-2017
+- Implement buttons support for editor. [#47]
+
 ### v3.3.0 - 12-15-2017
 - Add postAjax() to Html Builder [#45], credits to @ElfSundae.
 - Fix https://github.com/yajra/laravel-datatables-html/pull/13#issuecomment-337947000.
@@ -120,5 +123,6 @@
 [#37]: https://github.com/yajra/laravel-datatables-html/pull/37
 [#38]: https://github.com/yajra/laravel-datatables-html/pull/38
 [#39]: https://github.com/yajra/laravel-datatables-html/pull/39
+[#47]: https://github.com/yajra/laravel-datatables-html/pull/47
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
