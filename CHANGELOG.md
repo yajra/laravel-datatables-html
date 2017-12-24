@@ -8,6 +8,9 @@
 
 ## CHANGELOG
 
+### v3.5.0 - 12-24-2017
+- Improve handling of function callbacks and better editor support. [#49]
+
 ### v3.4.0 - 12-18-2017
 - Implement buttons support for editor. [#47]
 
@@ -124,5 +127,6 @@
 [#38]: https://github.com/yajra/laravel-datatables-html/pull/38
 [#39]: https://github.com/yajra/laravel-datatables-html/pull/39
 [#47]: https://github.com/yajra/laravel-datatables-html/pull/47
+[#49]: https://github.com/yajra/laravel-datatables-html/pull/49
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
