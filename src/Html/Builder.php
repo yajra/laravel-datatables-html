@@ -2,14 +2,14 @@
 
 namespace Yajra\DataTables\Html;
 
-use Collective\Html\HtmlBuilder;
-use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Collective\Html\HtmlBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Contracts\Config\Repository;
 
 class Builder
 {
@@ -532,7 +532,7 @@ class Builder
         $tableHtml  = '<table ' . $htmlAttr . '>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
                 $this->compileTableSearchHeaders()) . '</tr>' : '';
-        $tableHtml  .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
+        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf        = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
