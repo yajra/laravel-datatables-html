@@ -76,6 +76,11 @@ class Builder
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
+    /**
+     * Sets the smart datatable class name.
+     *
+     * @var this
+     */
     public function setSmartDataTable($className)
     {
     	$this->smartDataTable = $className;
@@ -112,12 +117,38 @@ class Builder
         );
     }
 
+    /**
+     * Get the "url" from the ajax attribute.
+     * 
+     * @return string
+     */
     public function getAjaxUrl()
     {
     	return is_array($this->ajax) ? $this->ajax['url'] : $this->ajax;
     }
 
-    public function getQueryString()
+    /**
+     * Set the "url" of the ajax attribute.
+     * 
+     * @return this
+     */
+    public function setAjaxUrl($url)
+    {
+    	if (is_array($this->ajax)) {
+    	 	$this->ajax['url'] = $url;
+    	} else {
+    	 	$this->ajax = $url;
+    	}
+
+    	return $this;
+    }
+
+    /**
+     * Prepares the query string to use on ajax.
+     * 
+     * @return string
+     */
+    public function prepareQueryString()
     {
     	if ($this->hasCustomTableId()) {
 	    	$separator = str_contains($this->getAjaxUrl(), '?') ? '&' : '?';
@@ -136,17 +167,16 @@ class Builder
     	return '';
     }
 
-    public function buildAjax()
+    /**
+     * Builds the ajax url with the required query string parameters.
+     * 
+     * @return void
+     */
+    public function prepareAjax()
     {
-    	$queryString = $this->getQueryString();
+    	$queryString = $this->prepareQueryString();
 
-    	if (is_array($this->ajax)) {
-    	    $this->ajax['url'] = $this->ajax['url'].$queryString;
-    	} else {
-    	    $this->ajax = $this->ajax.$queryString;
-    	}
-
-    	return $this->ajax;
+    	$this->setAjaxUrl($queryString);
     }
 
     /**
@@ -156,8 +186,6 @@ class Builder
      */
     public function generateJson()
     {
-    	$this->buildAjax();
-
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
@@ -186,9 +214,8 @@ class Builder
         $values       = [];
         $replacements = [];
 
-
         foreach (array_dot($parameters) as $key => $value) {
-            if ($this->isCallbackFunction($value, $key) || $this->isJavascriptFunction($value, $key)) {
+            if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
                 array_set($parameters, $key, '%' . $key . '%');
                 $replacements[] = '"%' . $key . '%"';
@@ -216,18 +243,6 @@ class Builder
     protected function isCallbackFunction($value, $key)
     {
         return Str::startsWith(trim($value), 'function') || Str::contains($key, 'editor');
-    }
-
-    /**
-     * Check if given key & value is a valid callback js function.
-     *
-     * @param string $value
-     * @param string $key
-     * @return bool
-     */
-    protected function isJavascriptFunction($value, $key)
-    {
-        return Str::startsWith(trim($value), ['$', '$.', 'function']);
     }
 
     /**
@@ -586,6 +601,8 @@ class Builder
     public function ajax($attributes = '')
     {
         $this->ajax = $attributes;
+
+    	$this->prepareAjax();
 
         return $this;
     }

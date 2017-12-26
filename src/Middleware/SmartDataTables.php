@@ -20,18 +20,10 @@ class SmartDataTables
             return $next($request);
         }
 
-        $dataTable = app($request->smartDataTable);
+        $dataTable = app($request->get('smartDataTable'));
 
-        if ($request->ajax() && $request->wantsJson()) {
-            return app()->call([$dataTable, 'ajax']);
-        }
-
-        if ($action = $dataTable->request()->get('action') and in_array($action, $dataTable->getActions())) {
-            if ($action == 'print') {
-                return app()->call([$dataTable, 'printPreview']);
-            }
-
-            return app()->call([$dataTable, $action]);
+        if ($response = $dataTable->render()) {
+        	return $response;
         }
 
         return $next($request);
