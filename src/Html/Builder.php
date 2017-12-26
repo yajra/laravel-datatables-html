@@ -56,6 +56,13 @@ class Builder
     protected $attributes = [];
 
     /**
+     * Dynamically detects which DataTable to initialize for backend processing and responds.
+     *
+     * @var string|null
+     */
+    protected $smartDataTable = null;
+
+    /**
      * @param Repository  $config
      * @param Factory     $view
      * @param HtmlBuilder $html
@@ -67,6 +74,13 @@ class Builder
         $this->html            = $html;
         $this->collection      = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
+    }
+
+    public function setSmartDataTable($className)
+    {
+    	$this->smartDataTable = $className;
+
+    	return $this;
     }
 
     /**
@@ -98,6 +112,43 @@ class Builder
         );
     }
 
+    public function getAjaxUrl()
+    {
+    	return is_array($this->ajax) ? $this->ajax['url'] : $this->ajax;
+    }
+
+    public function getQueryString()
+    {
+    	if ($this->hasCustomTableId()) {
+	    	$separator = str_contains($this->getAjaxUrl(), '?') ? '&' : '?';
+
+	    	$http_build_query = [
+	    	    'tableId' => $this->tableAttributes['id'],
+	    	];
+
+	    	if (!is_null($this->smartDataTable)) {
+				$http_build_query['smartDataTable'] = $this->smartDataTable;	    		
+	    	}
+
+	    	return $separator.http_build_query($http_build_query);
+    	}
+
+    	return '';
+    }
+
+    public function buildAjax()
+    {
+    	$queryString = $this->getQueryString();
+
+    	if (is_array($this->ajax)) {
+    	    $this->ajax['url'] = $this->ajax['url'].$queryString;
+    	} else {
+    	    $this->ajax = $this->ajax.$queryString;
+    	}
+
+    	return $this->ajax;
+    }
+
     /**
      * Get generated json configuration.
      *
@@ -105,6 +156,8 @@ class Builder
      */
     public function generateJson()
     {
+    	$this->buildAjax();
+
         $args = array_merge(
             $this->attributes, [
                 'ajax'    => $this->ajax,
@@ -133,8 +186,9 @@ class Builder
         $values       = [];
         $replacements = [];
 
+
         foreach (array_dot($parameters) as $key => $value) {
-            if ($this->isCallbackFunction($value, $key)) {
+            if ($this->isCallbackFunction($value, $key) || $this->isJavascriptFunction($value, $key)) {
                 $values[] = trim($value);
                 array_set($parameters, $key, '%' . $key . '%');
                 $replacements[] = '"%' . $key . '%"';
@@ -162,6 +216,18 @@ class Builder
     protected function isCallbackFunction($value, $key)
     {
         return Str::startsWith(trim($value), 'function') || Str::contains($key, 'editor');
+    }
+
+    /**
+     * Check if given key & value is a valid callback js function.
+     *
+     * @param string $value
+     * @param string $key
+     * @return bool
+     */
+    protected function isJavascriptFunction($value, $key)
+    {
+        return Str::startsWith(trim($value), ['$', '$.', 'function']);
     }
 
     /**
@@ -226,6 +292,16 @@ class Builder
     public function setTableId($id)
     {
         return $this->setTableAttribute('id', $id);
+    }
+
+    /**
+     * Determine if the datatable has a custom id.
+     *  
+     * @return boolean
+     */
+    private function hasCustomTableId()
+    {
+        return $this->tableAttributes['id'] != 'dataTableBuilder';
     }
 
     /**

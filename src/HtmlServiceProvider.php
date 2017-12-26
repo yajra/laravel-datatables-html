@@ -3,6 +3,7 @@
 namespace Yajra\DataTables;
 
 use Illuminate\Support\ServiceProvider;
+use Yajra\DataTables\Html\Middleware\SmartDataTables;
 use Collective\Html\HtmlServiceProvider as CollectiveHtml;
 
 class HtmlServiceProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class HtmlServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishAssets();
         }
+
+        $this->app['Illuminate\Contracts\Http\Kernel']->pushMiddleware(SmartDataTables::class);
     }
 
     /**
