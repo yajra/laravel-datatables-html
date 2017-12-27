@@ -161,7 +161,7 @@ class Builder
      */
     protected function isCallbackFunction($value, $key)
     {
-        return Str::startsWith(trim($value), 'function') || Str::contains($key, 'editor');
+        return Str::startsWith(trim($value), ['$', '$.', 'function']) || Str::contains($key, 'editor');
     }
 
     /**
