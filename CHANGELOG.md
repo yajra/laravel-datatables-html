@@ -8,6 +8,9 @@
 
 ## CHANGELOG
 
+### v3.5.1 - 12-27-2017
+- Allow jQuery functions callback. [#52], credits to @OzanKurt.
+
 ### v3.5.0 - 12-24-2017
 - Improve handling of function callbacks and better editor support. [#49]
 
@@ -128,5 +131,6 @@
 [#39]: https://github.com/yajra/laravel-datatables-html/pull/39
 [#47]: https://github.com/yajra/laravel-datatables-html/pull/47
 [#49]: https://github.com/yajra/laravel-datatables-html/pull/49
+[#52]: https://github.com/yajra/laravel-datatables-html/pull/52
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
