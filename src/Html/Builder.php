@@ -161,7 +161,7 @@ class Builder
      */
     protected function isCallbackFunction($value, $key)
     {
-        return Str::startsWith(trim($value), config('datatables-html.callback', ['$', '$.', 'function'])) || Str::contains($key, 'editor');
+        return Str::startsWith(trim($value), $this->config->get('datatables-html.callback', ['$', '$.', 'function'])) || Str::contains($key, 'editor');
     }
 
     /**
