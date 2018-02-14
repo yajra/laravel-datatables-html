@@ -690,7 +690,7 @@ class Builder
         }
 
         $this->ajax['data'] .= '}';
- 
+
         $this->ajax = array_merge($this->ajax, $ajaxParameters);
 
         return $this;
