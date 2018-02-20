@@ -37,7 +37,7 @@ class Column extends Fluent
             }
         }
 
-        if (!isset($attributes['name']) && isset($attributes['data'])) {
+        if (! isset($attributes['name']) && isset($attributes['data'])) {
             $attributes['name'] = $attributes['data'];
         }
 
