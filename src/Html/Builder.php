@@ -348,7 +348,13 @@ class Builder
         foreach ($columns as $key => $value) {
             if (! is_a($value, Column::class)) {
                 if (is_array($value)) {
-                    $attributes = array_merge(['name' => $key, 'data' => $key], $this->setTitle($key, $value));
+                    $attributes = array_merge(
+                        [
+                            'name' => $value['name'] ?? $value['data'] ?? $key,
+                            'data' => $value['data'] ?? $key,
+                        ],
+                        $this->setTitle($key, $value)
+                    );
                 } else {
                     $attributes = [
                         'name'  => $value,
