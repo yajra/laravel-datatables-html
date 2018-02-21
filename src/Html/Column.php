@@ -37,6 +37,10 @@ class Column extends Fluent
             }
         }
 
+        if (! isset($attributes['name']) && isset($attributes['data'])) {
+            $attributes['name'] = $attributes['data'];
+        }
+
         parent::__construct($attributes);
     }
 
