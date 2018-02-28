@@ -477,7 +477,7 @@ class Builder
             'width'          => '10px',
         ], $attributes);
 
-        if($prependColumn) {
+        if ($prependColumn) {
             $this->collection->prepend(new Column($attributes));
         } else {
             $this->collection->push(new Column($attributes));
