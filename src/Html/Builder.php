@@ -460,10 +460,10 @@ class Builder
      * Add a checkbox column.
      *
      * @param  array $attributes
-     * @param  bool $prependColumn
+     * @param  bool $position
      * @return $this
      */
-    public function addCheckbox(array $attributes = [], bool $prependColumn = false)
+    public function addCheckbox(array $attributes = [], bool $position = false)
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
@@ -477,10 +477,12 @@ class Builder
             'width'          => '10px',
         ], $attributes);
 
-        if ($prependColumn) {
-            $this->collection->prepend(new Column($attributes));
+        if ($position === true) {
+            $this->collection->prepend($column);
+        } else if ($position === false || $position >= $this->collection->count()) {
+            $this->collection->push($column);
         } else {
-            $this->collection->push(new Column($attributes));
+            $this->collection->splice($position, 0, [$column]);
         }
 
         return $this;
