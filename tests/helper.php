@@ -1,20 +1,20 @@
 <?php
 
 use Mockery as m;
-use Yajra\Datatables\Datatables;
-use Yajra\Datatables\Html\Builder;
-use Yajra\Datatables\Request;
+use Yajra\DataTables\Factory;
+use Yajra\DataTables\Html\Builder;
 
-function app($instance)
+function app($instance, $config = [])
 {
     switch ($instance) {
         case 'datatables.html':
+            $configMock = m::mock('Illuminate\Contracts\Config\Repository');
+            $configMock->shouldReceive('get')->andReturn($config);
+
             return new Builder(
-                m::mock('Illuminate\Contracts\Config\Repository'),
+                $configMock,
                 m::mock('Illuminate\Contracts\View\Factory'),
-                m::mock('Collective\Html\HtmlBuilder'),
-                m::mock('Illuminate\Routing\UrlGenerator'),
-                m::mock('Collective\Html\FormBuilder')
+                m::mock('Collective\Html\HtmlBuilder')
             );
         case 'config':
             return new Config;
@@ -24,7 +24,7 @@ function app($instance)
             });
     }
 
-    return new Datatables(Request::capture());
+    return new Factory();
 }
 
 function view($view = null, array $data = [])
@@ -37,7 +37,7 @@ function view($view = null, array $data = [])
 }
 
 /**
- * Blade View Stub
+ * Blade View Stub.
  */
 class BladeView
 {

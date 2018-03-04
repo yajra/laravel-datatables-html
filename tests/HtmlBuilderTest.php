@@ -1,30 +1,32 @@
 <?php
 
-use Yajra\Datatables\Datatables;
-use Yajra\Datatables\Html\Column;
-use Yajra\Datatables\Request;
+use Yajra\DataTables\Factory;
+use PHPUnit\Framework\TestCase;
+use Yajra\DataTables\Html\Column;
 
 require_once 'helper.php';
 
-class HtmlBuilderTest extends PHPUnit_Framework_TestCase
+class HtmlBuilderTest extends TestCase
 {
     public function test_generate_table_html()
     {
-        $builder = $this->getHtmlBuilder();
-        $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox "id"="dataTablesCheckbox"/>');
+        $builder = $this->getHtmlBuilder([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
 
-        $builder->columns(['foo', 'bar' => ['data' => 'foo']])
+        $builder->html->shouldReceive('attributes')->times(10)->andReturn('id="foo"');
+
+        $builder->columns(['foo', 'bar' => ['data' => 'foo'], 'biz' => ['name' => 'baz']])
                 ->addCheckbox(['id' => 'foo'])
                 ->addColumn(['name' => 'id', 'data' => 'id', 'title' => 'Id'])
+                ->addColumn(['data' => 'meh', 'title' => 'Muh'])
                 ->add(new Column(['name' => 'a', 'data' => 'a', 'title' => 'A']))
                 ->addAction(['title' => 'Options'])
                 ->ajax('ajax-url')
                 ->parameters(['bFilter' => false]);
-        $table    = $builder->table(['id' => 'foo']);
-        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo"><input type="checkbox "id"="dataTablesCheckbox"/></th><th id="foo">Id</th><th id="foo">A</th><th id="foo">Options</th></tr></thead></table>';
+        $table    = $builder->table(['id' => 'foo'])->toHtml();
+        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo">Biz</th><th id="foo"><input type="checkbox" id="foo"/></th><th id="foo">Id</th><th id="foo">Muh</th><th id="foo">A</th><th id="foo">Options</th></tr></thead></table>';
         $this->assertEquals($expected, $table);
 
         $builder->view->shouldReceive('make')->times(2)->andReturn($builder->view);
@@ -33,31 +35,31 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
         $builder->view->shouldReceive('render')->times(2)->andReturn(trim($template));
         $builder->html->shouldReceive('attributes')->once()->andReturn();
 
-        $script   = $builder->scripts();
-        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox \"id\"=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);</script>' . PHP_EOL;
+        $script   = $builder->scripts()->toHtml();
+        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"name":"baz","data":"biz","title":"Biz","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"data":"meh","title":"Muh","orderable":true,"searchable":true,"name":"meh"},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);</script>' . "\n";
         $this->assertEquals($expected, $script);
 
-        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox \"id\"=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);';
-        $this->assertEquals($expected, $builder->generateScripts());
+        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"name":"baz","data":"biz","title":"Biz","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"data":"meh","title":"Muh","orderable":true,"searchable":true,"name":"meh"},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);';
+        $this->assertEquals($expected, $builder->generateScripts()->toHtml());
     }
 
     /**
-     * @return \Mockery\MockInterface|\Yajra\Datatables\Datatables|\Yajra\Datatables\Html\Builder
+     * @return \Mockery\MockInterface|\Yajra\DataTables\Html\Builder
      */
-    protected function getHtmlBuilder()
+    protected function getHtmlBuilder($config = [])
     {
-        $builder = app('datatables.html');
+        $builder = app('datatables.html', $config);
 
         return $builder;
     }
 
     public function test_generate_table_html_with_empty_footer()
     {
-        $builder = $this->getHtmlBuilder();
+        $builder = $this->getHtmlBuilder([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox "id"="dataTablesCheckbox"/>');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo'])
@@ -66,8 +68,8 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
                 ->addAction(['title' => 'Options'])
                 ->ajax('ajax-url')
                 ->parameters(['bFilter' => false]);
-        $table    = $builder->table(['id' => 'foo'], true);
-        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo"><input type="checkbox "id"="dataTablesCheckbox"/></th><th id="foo">Id</th><th id="foo">A</th><th id="foo">Options</th></tr></thead><tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th></tr></tfoot></table>';
+        $table    = $builder->table(['id' => 'foo'], true)->toHtml();
+        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo"><input type="checkbox" id="foo"/></th><th id="foo">Id</th><th id="foo">A</th><th id="foo">Options</th></tr></thead><tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th></tr></tfoot></table>';
         $this->assertEquals($expected, $table);
 
         $builder->view->shouldReceive('make')->times(2)->andReturn($builder->view);
@@ -76,21 +78,21 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
         $builder->view->shouldReceive('render')->times(2)->andReturn(trim($template));
         $builder->html->shouldReceive('attributes')->once()->andReturn();
 
-        $script   = $builder->scripts();
-        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox \"id\"=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);</script>' . PHP_EOL;
+        $script   = $builder->scripts()->toHtml();
+        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);</script>' . "\n";
         $this->assertEquals($expected, $script);
 
-        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox \"id\"=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);';
-        $this->assertEquals($expected, $builder->generateScripts());
+        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);';
+        $this->assertEquals($expected, $builder->generateScripts()->toHtml());
     }
 
     public function test_generate_table_html_with_footer_content()
     {
-        $builder = $this->getHtmlBuilder();
+        $builder = $this->getHtmlBuilder([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
         $builder->html->shouldReceive('attributes')->times(8)->andReturn('id="foo"');
-        $builder->form->shouldReceive('checkbox')
-                      ->once()
-                      ->andReturn('<input type="checkbox" id="dataTablesCheckbox"/>');
 
         $builder->columns(['foo', 'bar' => ['data' => 'foo']])
                 ->addCheckbox(['id' => 'foo', 'footer' => 'test'])
@@ -99,8 +101,8 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
                 ->addAction(['title' => 'Options'])
                 ->ajax('ajax-url')
                 ->parameters(['bFilter' => false]);
-        $table    = $builder->table(['id' => 'foo'], true);
-        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo"><input type="checkbox" id="dataTablesCheckbox"/></th><th id="foo">Id</th><th id="foo">A</th><th id="foo">Options</th></tr></thead><tfoot><tr><th></th><th></th><th>test</th><th></th><th></th><th></th></tr></tfoot></table>';
+        $table    = $builder->table(['id' => 'foo'], true)->toHtml();
+        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo"><input type="checkbox" id="foo"/></th><th id="foo">Id</th><th id="foo">A</th><th id="foo">Options</th></tr></thead><tfoot><tr><th></th><th></th><th>test</th><th></th><th></th><th></th></tr></tfoot></table>';
         $this->assertEquals($expected, $table);
 
         $builder->view->shouldReceive('make')->times(2)->andReturn($builder->view);
@@ -109,12 +111,12 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
         $builder->view->shouldReceive('render')->times(2)->andReturn(trim($template));
         $builder->html->shouldReceive('attributes')->once()->andReturn();
 
-        $script   = $builder->scripts();
-        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);</script>' . PHP_EOL;
+        $script   = $builder->scripts()->toHtml();
+        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);</script>' . "\n";
         $this->assertEquals($expected, $script);
 
-        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true,"attributes":[]},{"name":"bar","data":"foo","title":"Bar","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"dataTablesCheckbox\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo","attributes":[]},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true,"attributes":[]},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true,"attributes":[]},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false,"attributes":[]}],"bFilter":false});})(window,jQuery);';
-        $this->assertEquals($expected, $builder->generateScripts());
+        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"name":"id","data":"id","title":"Id","orderable":true,"searchable":true},{"name":"a","data":"a","title":"A","orderable":true,"searchable":true},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);';
+        $this->assertEquals($expected, $builder->generateScripts()->toHtml());
     }
 
     public function test_setting_table_attribute()
@@ -124,6 +126,15 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
         $builder->setTableAttribute('attr', 'val');
 
         $this->assertEquals('val', $builder->getTableAttribute('attr'));
+    }
+
+    public function test_setting_table_id_attribute()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->setTableId('val');
+
+        $this->assertEquals('val', $builder->getTableAttribute('id'));
     }
 
     public function test_settings_multiple_table_attributes()
@@ -138,20 +149,49 @@ class HtmlBuilderTest extends PHPUnit_Framework_TestCase
 
     public function test_getting_inexistent_table_attribute_throws()
     {
-        $this->setExpectedExceptionRegExp(\Exception::class, '/Table attribute \'.+?\' does not exist\./');
+        $this->expectExceptionMessage('Table attribute \'boohoo\' does not exist.');
 
         $builder = $this->getHtmlBuilder();
 
         $builder->getTableAttribute('boohoo');
     }
 
-    /**
-     * @return \Yajra\Datatables\Datatables
-     */
-    protected function getDatatables()
+    public function test_adding_table_class_attribute()
     {
-        $datatables = new Datatables(Request::capture());
+        $builder = $this->getHtmlBuilder();
 
-        return $datatables;
+        $builder->addTableClass('foo');
+        $this->assertEquals('foo', $builder->getTableAttribute('class'));
+
+        $builder->addTableClass('  foo  bar  ');
+        $this->assertEquals('foo bar', $builder->getTableAttribute('class'));
+
+        $builder->addTableClass([' a-b ', 'foo c bar', 'key' => 'value']);
+        $this->assertEquals('foo bar a-b c value', $builder->getTableAttribute('class'));
+    }
+
+    public function test_removing_table_class_attribute()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->setTableAttribute('class', ' foo  bar  a  b  c ');
+
+        $builder->removeTableClass('bar');
+        $this->assertEquals('foo a b c', $builder->getTableAttribute('class'));
+
+        $builder->removeTableClass('  x  c  y ');
+        $this->assertEquals('foo a b', $builder->getTableAttribute('class'));
+
+        $builder->removeTableClass(['a' => ' b ', ' foo  bar ']);
+        $this->assertEquals('a', $builder->getTableAttribute('class'));
+    }
+
+    /**
+     * @return \Yajra\DataTables\Factory
+     */
+    protected function getDataTables()
+    {
+        $factory = new Factory;
+
+        return $factory;
     }
 }

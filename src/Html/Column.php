@@ -1,15 +1,19 @@
 <?php
 
-namespace Yajra\Datatables\Html;
+namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Fluent;
 
 /**
- * Class Column.
- *
- * @package Yajra\Datatables\Html
+ * @property string data
+ * @property string name
+ * @property string orderable
+ * @property string searchable
+ * @property string printable
+ * @property string exportable
+ * @property string footer
+ * @property array  attributes
  * @see     https://datatables.net/reference/option/ for possible columns option
- * @author  Arjay Angeles <aqangeles@gmail.com>
  */
 class Column extends Fluent
 {
@@ -31,6 +35,10 @@ class Column extends Fluent
             if (method_exists($this, $method)) {
                 $attributes[$attribute] = $this->$method($value);
             }
+        }
+
+        if (! isset($attributes['name']) && isset($attributes['data'])) {
+            $attributes['name'] = $attributes['data'];
         }
 
         parent::__construct($attributes);
@@ -60,6 +68,14 @@ class Column extends Fluent
         }
 
         return $value ? $this->parseRenderAsString($value) : null;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
     }
 
     /**
