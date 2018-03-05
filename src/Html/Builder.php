@@ -420,13 +420,14 @@ class Builder
             'width'          => '10px',
         ], $attributes);
         $column = new Column($attributes);
-	    if ($position === true) {
-		    $this->collection->prepend($column);
-	    } else if ($position === false || $position >= $this->collection->count()) {
-		    $this->collection->push($column);
-	    } else {
-		    $this->collection->splice($position, 0, [$column]);
-	    }
+
+        if ($position === true) {
+            $this->collection->prepend($column);
+        } elseif ($position === false || $position >= $this->collection->count()) {
+            $this->collection->push($column);
+        } else {
+            $this->collection->splice($position, 0, [$column]);
+        }
 
         return $this;
     }
