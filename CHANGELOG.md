@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.7.1 - 03-16-2018
+
+- Add parameter in addCheckbox to prepend or append the checkbox column [#55], credits to @karmendra
+
 ### v3.7.0 - 02-21-2018
 
 - Adding ajaxParameters to minifiedAjax [#57], credits to @lk77
@@ -172,8 +176,9 @@
 [#52]: https://github.com/yajra/laravel-datatables-html/pull/52
 [#54]: https://github.com/yajra/laravel-datatables-html/pull/54
 [#56]: https://github.com/yajra/laravel-datatables-html/pull/56
-[#56]: https://github.com/yajra/laravel-datatables-html/pull/57
-[#56]: https://github.com/yajra/laravel-datatables-html/pull/59
+[#57]: https://github.com/yajra/laravel-datatables-html/pull/57
+[#59]: https://github.com/yajra/laravel-datatables-html/pull/59
+[#55]: https://github.com/yajra/laravel-datatables-html/pull/55
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
