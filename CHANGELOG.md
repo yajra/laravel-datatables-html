@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.7.2 - 07-06-2018
+
+- Fix callback check on empty values. [#62] Credits to @apreiml.
+
 ### v3.7.1 - 03-16-2018
 
 - Add parameter in addCheckbox to prepend or append the checkbox column [#55], credits to @karmendra
@@ -179,6 +183,7 @@
 [#57]: https://github.com/yajra/laravel-datatables-html/pull/57
 [#59]: https://github.com/yajra/laravel-datatables-html/pull/59
 [#55]: https://github.com/yajra/laravel-datatables-html/pull/55
+[#62]: https://github.com/yajra/laravel-datatables-html/pull/62
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
