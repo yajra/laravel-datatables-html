@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.8.0 - 09-05-2018
+
+- Add support for Laravel 5.7
+
 ### v3.7.2 - 07-06-2018
 
 - Fix callback check on empty values. [#62] Credits to @apreiml.
