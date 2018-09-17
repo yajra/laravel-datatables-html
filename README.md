@@ -14,7 +14,7 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 - [Laravel DataTables v7.x|v8.x](https://github.com/yajra/laravel-datatables)
 
 ## Documentations
-- [Laravel DataTables Documentation](http://datatables.yajrabox.com/docs/laravel-datatables)
+- [Laravel DataTables Documentation](http://yajrabox.com/docs/laravel-datatables)
 - [Demo Application](http://datatables.yajrabox.com) is available for artisan's reference.
 
 ## Quick Installation
