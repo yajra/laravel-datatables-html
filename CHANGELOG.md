@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v3.8.1 - 10-30-2018
+
+- Fix the default name of index column to follow DT syntax. [#69], credits to @jaydons.
+- Fix missing periods. [#70], credits to @jaydons.
+
 ### v3.8.0 - 09-05-2018
 
 - Add support for Laravel 5.7
@@ -188,6 +193,8 @@
 [#59]: https://github.com/yajra/laravel-datatables-html/pull/59
 [#55]: https://github.com/yajra/laravel-datatables-html/pull/55
 [#62]: https://github.com/yajra/laravel-datatables-html/pull/62
+[#69]: https://github.com/yajra/laravel-datatables-html/pull/69
+[#70]: https://github.com/yajra/laravel-datatables-html/pull/70
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
