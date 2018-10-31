@@ -96,7 +96,6 @@ class Column extends Fluent
      * Check if given key & value is a valid datatables built-in renderer function.
      *
      * @param string $value
-     * @param string $key
      * @return bool
      */
     private function isBuiltInRenderFunction($value)
