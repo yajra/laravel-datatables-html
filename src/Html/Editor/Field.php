@@ -2,8 +2,8 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
 
 class Field extends Fluent
 {
@@ -36,8 +36,8 @@ class Field extends Fluent
         }
 
         $data = [
-            'name' => $name,
-            'label' => $label ?: Str::title($name)
+            'name'  => $name,
+            'label' => $label ?: Str::title($name),
         ];
 
         return new static($data);
