@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v3.11.0 - 11-02-2018
+
+- Add option to prepend action column. [#77]
+- Enhance column fluent builder. [#78]
+
 ### v3.10.0 - 11-02-2018
 
 - Add support for DataTables Editor script generation. [#73]
@@ -206,6 +211,9 @@
 [#69]: https://github.com/yajra/laravel-datatables-html/pull/69
 [#70]: https://github.com/yajra/laravel-datatables-html/pull/70
 [#71]: https://github.com/yajra/laravel-datatables-html/pull/71
+[#73]: https://github.com/yajra/laravel-datatables-html/pull/73
+[#77]: https://github.com/yajra/laravel-datatables-html/pull/77
+[#78]: https://github.com/yajra/laravel-datatables-html/pull/78
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
