@@ -118,7 +118,7 @@ class Column extends Fluent
      * Set column class name.
      *
      * @param string $class
-     * @return $this\
+     * @return $this
      */
     public function className($class)
     {
