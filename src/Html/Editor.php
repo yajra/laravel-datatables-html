@@ -35,6 +35,11 @@ class Editor
     public $language = [];
 
     /**
+     * @var string
+     */
+    public $scripts = '';
+
+    /**
      * Editor constructor.
      *
      * @param string $instance
@@ -42,6 +47,18 @@ class Editor
     public function __construct(string $instance = 'editor')
     {
         $this->instance = $instance;
+    }
+
+    /**
+     * Append raw scripts.
+     *
+     * @param string $scripts
+     */
+    public function scripts($scripts)
+    {
+        $this->scripts = $scripts;
+
+        return $this;
     }
 
     /**

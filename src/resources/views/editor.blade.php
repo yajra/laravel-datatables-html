@@ -17,6 +17,7 @@
             i18n: @json($editor->language)
         @endif
         });
+        {!! $editor->scripts  !!}
     @endforeach
     window.LaravelDataTables["%1$s"] = $("#%1$s").DataTable(%2$s);
 })(window,jQuery);
