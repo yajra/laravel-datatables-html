@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
 
 /**
@@ -63,6 +64,8 @@ class Column extends Fluent
 
         if (is_callable($value)) {
             return $value($parameters);
+        } elseif ($this->isBuiltInRenderFunction($value)) {
+            return $value;
         } elseif ($view->exists($value)) {
             return $view->make($value)->with($parameters)->render();
         }
@@ -87,5 +90,20 @@ class Column extends Fluent
     private function parseRenderAsString($value)
     {
         return "function(data,type,full,meta){return $value;}";
+    }
+
+    /**
+     * Check if given key & value is a valid datatables built-in renderer function.
+     *
+     * @param string $value
+     * @return bool
+     */
+    private function isBuiltInRenderFunction($value)
+    {
+        if (empty($value)) {
+            return false;
+        }
+
+        return Str::startsWith(trim($value), ['$.fn.dataTable.render']);
     }
 }

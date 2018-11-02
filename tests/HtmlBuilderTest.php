@@ -119,6 +119,40 @@ class HtmlBuilderTest extends TestCase
         $this->assertEquals($expected, $builder->generateScripts()->toHtml());
     }
 
+    public function test_generate_table_html_with_render_helpers()
+    {
+        $builder = $this->getHtmlBuilder([
+            'class' => 'table',
+            'id'    => 'dataTableBuilder',
+        ]);
+
+        $builder->html->shouldReceive('attributes')->times(10)->andReturn('id="foo"');
+
+        $builder->columns(['foo', 'bar' => ['data' => 'foo'], 'biz' => ['name' => 'baz']])
+                ->addCheckbox(['id' => 'foo'])
+                ->addColumn(['data' => '1.0000', 'title' => 'Num', 'render' => '$.fn.dataTable.render.number( ",", ".", 2, "" )'])
+                ->addColumn(['data' => '<br/>', 'title' => 'Tex', 'render' => '$.fn.dataTable.render.text()'])
+                ->addAction(['title' => 'Options'])
+                ->ajax('ajax-url')
+                ->parameters(['bFilter' => false]);
+        $table    = $builder->table(['id' => 'foo'])->toHtml();
+        $expected = '<table id="foo"><thead><tr><th id="foo">Foo</th><th id="foo">Bar</th><th id="foo">Biz</th><th id="foo"><input type="checkbox" id="foo"/></th><th id="foo">Num</th><th id="foo">Tex</th><th id="foo">Options</th></tr></thead></table>';
+        $this->assertEquals($expected, $table);
+
+        $builder->view->shouldReceive('make')->times(2)->andReturn($builder->view);
+        $builder->config->shouldReceive('get')->times(2)->andReturn('datatables::script');
+        $template = file_get_contents(__DIR__ . '/../src/resources/views/script.blade.php');
+        $builder->view->shouldReceive('render')->times(2)->andReturn(trim($template));
+        $builder->html->shouldReceive('attributes')->once()->andReturn();
+
+        $script   = $builder->scripts()->toHtml();
+        $expected = '<script>(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"name":"baz","data":"biz","title":"Biz","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"data":"1.0000","title":"Num","render":"$.fn.dataTable.render.number( \",\", \".\", 2, \"\" )","orderable":true,"searchable":true,"name":"1.0000"},{"data":"<br\/>","title":"Tex","render":"$.fn.dataTable.render.text()","orderable":true,"searchable":true,"name":"<br\/>"},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);</script>' . "\n";
+        $this->assertEquals($expected, $script);
+
+        $expected = '(function(window,$){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo"]=$("#foo").DataTable({"serverSide":true,"processing":true,"ajax":"ajax-url","columns":[{"name":"foo","data":"foo","title":"Foo","orderable":true,"searchable":true},{"name":"foo","data":"foo","title":"Bar","orderable":true,"searchable":true},{"name":"baz","data":"biz","title":"Biz","orderable":true,"searchable":true},{"defaultContent":"<input type=\"checkbox\" id=\"foo\"\/>","title":"<input type=\"checkbox\" id=\"foo\"\/>","data":"checkbox","name":"checkbox","orderable":false,"searchable":false,"width":"10px","id":"foo"},{"data":"1.0000","title":"Num","render":"$.fn.dataTable.render.number( \",\", \".\", 2, \"\" )","orderable":true,"searchable":true,"name":"1.0000"},{"data":"<br\/>","title":"Tex","render":"$.fn.dataTable.render.text()","orderable":true,"searchable":true,"name":"<br\/>"},{"defaultContent":"","data":"action","name":"action","title":"Options","render":null,"orderable":false,"searchable":false}],"bFilter":false});})(window,jQuery);';
+        $this->assertEquals($expected, $builder->generateScripts()->toHtml());
+    }
+
     public function test_setting_table_attribute()
     {
         $builder = $this->getHtmlBuilder();
