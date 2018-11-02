@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.9.0 - 11-02-2018
+
+- Add support for [built-in render helpers](https://datatables.net/manual/data/renderers#Built-in-helpers). [#71], credits to @Razoxane.
+
 ### v3.8.1 - 10-30-2018
 
 - Fix the default name of index column to follow DT syntax. [#69], credits to @jaydons.
@@ -195,6 +199,7 @@
 [#62]: https://github.com/yajra/laravel-datatables-html/pull/62
 [#69]: https://github.com/yajra/laravel-datatables-html/pull/69
 [#70]: https://github.com/yajra/laravel-datatables-html/pull/70
+[#71]: https://github.com/yajra/laravel-datatables-html/pull/71
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
