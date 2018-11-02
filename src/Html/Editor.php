@@ -22,6 +22,11 @@ class Editor
     /**
      * @var string
      */
+    public $template = '';
+
+    /**
+     * @var string
+     */
     public $fields = '';
 
     /**
@@ -40,6 +45,8 @@ class Editor
     }
 
     /**
+     * Set Editor's variable name / instance.
+     *
      * @param $instance
      * @return $this
      */
@@ -51,6 +58,8 @@ class Editor
     }
 
     /**
+     * Set Editor's ajax parameter.
+     *
      * @param string|array $ajax
      * @return $this
      */
@@ -62,6 +71,8 @@ class Editor
     }
 
     /**
+     * Set Editor's table source.
+     *
      * @param string $table
      * @return $this
      */
@@ -73,6 +84,8 @@ class Editor
     }
 
     /**
+     * Set Editor's fields.
+     *
      * @param array $fields
      * @return $this
      */
@@ -84,12 +97,27 @@ class Editor
     }
 
     /**
+     * Set Editor's language.
+     *
      * @param array $language
      * @return $this
      */
     public function language(array $language)
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Set Editor's template.
+     *
+     * @param string $template
+     * @return $this
+     */
+    public function template($template)
+    {
+        $this->template = $template;
 
         return $this;
     }

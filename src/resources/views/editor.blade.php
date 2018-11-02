@@ -9,6 +9,9 @@
             ajax: '{{$editor->ajax}}',
         @endif
         table: '#{{$editor->table}}',
+        @if($editor->template)
+            template: '{{$editor->template}}',
+        @endif
         fields: @json($editor->fields),
         @if($editor->language)
             i18n: @json($editor->language)
