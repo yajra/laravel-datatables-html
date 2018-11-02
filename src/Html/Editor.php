@@ -44,9 +44,20 @@ class Editor
      *
      * @param string $instance
      */
-    public function __construct(string $instance = 'editor')
+    public function __construct($instance = 'editor')
     {
         $this->instance = $instance;
+    }
+
+    /**
+     * Make new Editor instance.
+     *
+     * @param string $instance
+     * @return Editor
+     */
+    public static function make($instance = 'editor')
+    {
+        return new static($instance);
     }
 
     /**
