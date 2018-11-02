@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v3.10.0 - 11-02-2018
+
+- Add support for DataTables Editor script generation. [#73]
+- Fix script template config key `datatables-html.script`.
+- Add method to `getAjaxUrl()`.
+
 ### v3.9.0 - 11-02-2018
 
 - Add support for [built-in render helpers](https://datatables.net/manual/data/renderers#Built-in-helpers). [#71], credits to @Razoxane.
