@@ -13,7 +13,7 @@ use Illuminate\Support\Fluent;
  * @property string printable
  * @property string exportable
  * @property string footer
- * @property array  attributes
+ * @property array attributes
  * @see     https://datatables.net/reference/option/ for possible columns option
  */
 class Column extends Fluent
@@ -23,6 +23,7 @@ class Column extends Fluent
      */
     public function __construct($attributes = [])
     {
+        $attributes['title']      = isset($attributes['title']) ? $attributes['title'] : Str::title($attributes['data']);
         $attributes['orderable']  = isset($attributes['orderable']) ? $attributes['orderable'] : true;
         $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
@@ -43,6 +44,178 @@ class Column extends Fluent
         }
 
         parent::__construct($attributes);
+    }
+
+    /**
+     * Create a computed column that is not searchable/orderable.
+     *
+     * @param string $data
+     * @return Column
+     */
+    public static function computed($data)
+    {
+        return static::make($data)->orderable(false)->searchable(false);
+    }
+
+    /**
+     * Set column searchable flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function searchable(bool $flag = true)
+    {
+        $this->attributes['searchable'] = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Set column orderable flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function orderable(bool $flag = true)
+    {
+        $this->attributes['orderable'] = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Make a new column instance.
+     *
+     * @param string $data
+     * @param string $name
+     * @return Column
+     */
+    public static function make($data, $name = '')
+    {
+        $attr = [
+            'data' => $data,
+            'name' => $name ?: $data,
+        ];
+
+        return new static($attr);
+    }
+
+    /**
+     * Create a checkbox column.
+     *
+     * @return Column
+     */
+    public static function checkbox()
+    {
+        return static::make('')
+                     ->content('')
+                     ->className('select-checkbox')
+                     ->orderable(false)
+                     ->searchable(false);
+    }
+
+    /**
+     * Set column class name.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function className($class)
+    {
+        $this->attributes['className'] = $class;
+
+        return $this;
+    }
+
+    /**
+     * Set column default content.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function content($value)
+    {
+        $this->attributes['defaultContent'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column exportable flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function exportable(bool $flag = true)
+    {
+        $this->attributes['exportable'] = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Set column printable flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function printable(bool $flag = true)
+    {
+        $this->attributes['printable'] = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Set column width value.
+     *
+     * @param int|string $value
+     * @return $this
+     */
+    public function width($value)
+    {
+        $this->attributes['width'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column title.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function title($value)
+    {
+        $this->attributes['title'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column name.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function name($value)
+    {
+        $this->attributes['name'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column renderer.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function render($value)
+    {
+        $this->attributes['render'] = $value;
+
+        return $this;
     }
 
     /**
@@ -74,11 +247,18 @@ class Column extends Fluent
     }
 
     /**
-     * @return array
+     * Check if given key & value is a valid datatables built-in renderer function.
+     *
+     * @param string $value
+     * @return bool
      */
-    public function toArray()
+    private function isBuiltInRenderFunction($value)
     {
-        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
+        if (empty($value)) {
+            return false;
+        }
+
+        return Str::startsWith(trim($value), ['$.fn.dataTable.render']);
     }
 
     /**
@@ -93,17 +273,10 @@ class Column extends Fluent
     }
 
     /**
-     * Check if given key & value is a valid datatables built-in renderer function.
-     *
-     * @param string $value
-     * @return bool
+     * @return array
      */
-    private function isBuiltInRenderFunction($value)
+    public function toArray()
     {
-        if (empty($value)) {
-            return false;
-        }
-
-        return Str::startsWith(trim($value), ['$.fn.dataTable.render']);
+        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
     }
 }
