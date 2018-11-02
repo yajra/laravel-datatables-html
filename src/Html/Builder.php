@@ -449,9 +449,10 @@ class Builder
      * Add a action column.
      *
      * @param  array $attributes
+     * @param  bool  $prepend
      * @return $this
      */
-    public function addAction(array $attributes = [])
+    public function addAction(array $attributes = [], $prepend = false)
     {
         $attributes = array_merge([
             'defaultContent' => '',
@@ -465,7 +466,12 @@ class Builder
             'printable'      => true,
             'footer'         => '',
         ], $attributes);
-        $this->collection->push(new Column($attributes));
+
+        if ($prepend) {
+            $this->collection->prepend(new Column($attributes));
+        } else {
+            $this->collection->push(new Column($attributes));
+        }
 
         return $this;
     }
