@@ -86,7 +86,7 @@ class Column extends Fluent
     /**
      * Make a new column instance.
      *
-     * @param $data
+     * @param string $data
      * @param string $name
      * @return Column
      */
