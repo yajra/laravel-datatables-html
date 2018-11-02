@@ -2,14 +2,14 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Collective\Html\HtmlBuilder;
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Contracts\Config\Repository;
 
 class Builder
 {
@@ -56,11 +56,11 @@ class Builder
     protected $attributes = [];
 
     /**
-     * Editor variable instance.
+     * Collection of Editors.
      *
      * @var null|Editor
      */
-    protected $editor = null;
+    protected $editors = [];
 
     /**
      * @param Repository $config
@@ -69,10 +69,10 @@ class Builder
      */
     public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
     {
-        $this->config          = $config;
-        $this->view            = $view;
-        $this->html            = $html;
-        $this->collection      = new Collection;
+        $this->config = $config;
+        $this->view = $view;
+        $this->html = $html;
+        $this->collection = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
@@ -85,7 +85,7 @@ class Builder
      */
     public function scripts($script = null, array $attributes = ['type' => 'text/javascript'])
     {
-        $script     = $script ?: $this->generateScripts();
+        $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
 
         return new HtmlString("<script{$attributes}>{$script}</script>\n");
@@ -114,7 +114,7 @@ class Builder
     {
         $args = array_merge(
             $this->attributes, [
-                'ajax'    => $this->ajax,
+                'ajax' => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
                     $column = $column->toArray();
                     unset($column['attributes']);
@@ -137,7 +137,7 @@ class Builder
     {
         $parameters = (new Parameters($attributes))->toArray();
 
-        $values       = [];
+        $values = [];
         $replacements = [];
 
         foreach (array_dot($parameters) as $key => $value) {
@@ -184,10 +184,9 @@ class Builder
      */
     protected function template()
     {
-        return $this->view->make(
-            $this->template ?: $this->config->get('datatables-html.script', 'datatables::script'),
-            ['editor' => $this->editor]
-        )->render();
+        $template = $this->template ?: $this->config->get('datatables-html.script', 'datatables::script');
+
+        return $this->view->make($template, ['editors' => $this->editors])->render();
     }
 
     /**
@@ -268,11 +267,11 @@ class Builder
      */
     public function addTableClass($class)
     {
-        $class        = is_array($class) ? implode(' ', $class) : $class;
+        $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = preg_split('#\s+#', $currentClass . ' ' . $class, null, PREG_SPLIT_NO_EMPTY);
-        $class   = implode(' ', array_unique($classes));
+        $class = implode(' ', array_unique($classes));
 
         return $this->setTableAttribute('class', $class);
     }
@@ -285,7 +284,7 @@ class Builder
      */
     public function removeTableClass($class)
     {
-        $class        = is_array($class) ? implode(' ', $class) : $class;
+        $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = array_diff(
@@ -371,8 +370,8 @@ class Builder
                     );
                 } else {
                     $attributes = [
-                        'name'  => $value,
-                        'data'  => $value,
+                        'name' => $value,
+                        'data' => $value,
                         'title' => $this->getQualifiedTitle($value),
                     ];
                 }
@@ -424,14 +423,14 @@ class Builder
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
-            'title'          => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
-            'data'           => 'checkbox',
-            'name'           => 'checkbox',
-            'orderable'      => false,
-            'searchable'     => false,
-            'exportable'     => false,
-            'printable'      => true,
-            'width'          => '10px',
+            'title' => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
+            'data' => 'checkbox',
+            'name' => 'checkbox',
+            'orderable' => false,
+            'searchable' => false,
+            'exportable' => false,
+            'printable' => true,
+            'width' => '10px',
         ], $attributes);
         $column = new Column($attributes);
 
@@ -456,15 +455,15 @@ class Builder
     {
         $attributes = array_merge([
             'defaultContent' => '',
-            'data'           => 'action',
-            'name'           => 'action',
-            'title'          => 'Action',
-            'render'         => null,
-            'orderable'      => false,
-            'searchable'     => false,
-            'exportable'     => false,
-            'printable'      => true,
-            'footer'         => '',
+            'data' => 'action',
+            'name' => 'action',
+            'title' => 'Action',
+            'render' => null,
+            'orderable' => false,
+            'searchable' => false,
+            'exportable' => false,
+            'printable' => true,
+            'footer' => '',
         ], $attributes);
         $this->collection->push(new Column($attributes));
 
@@ -480,17 +479,17 @@ class Builder
     public function addIndex(array $attributes = [])
     {
         $indexColumn = $this->config->get('datatables.index_column', 'DT_RowIndex');
-        $attributes  = array_merge([
+        $attributes = array_merge([
             'defaultContent' => '',
-            'data'           => $indexColumn,
-            'name'           => $indexColumn,
-            'title'          => '',
-            'render'         => null,
-            'orderable'      => false,
-            'searchable'     => false,
-            'exportable'     => false,
-            'printable'      => true,
-            'footer'         => '',
+            'data' => $indexColumn,
+            'name' => $indexColumn,
+            'title' => '',
+            'render' => null,
+            'orderable' => false,
+            'searchable' => false,
+            'exportable' => false,
+            'printable' => true,
+            'footer' => '',
         ], $attributes);
         $this->collection->push(new Column($attributes));
 
@@ -555,10 +554,10 @@ class Builder
     {
         $this->setTableAttributes($attributes);
 
-        $th       = $this->compileTableHeaders();
+        $th = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
-        $tableHtml  = '<table ' . $htmlAttr . '>';
+        $tableHtml = '<table ' . $htmlAttr . '>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
                 $this->compileTableSearchHeaders()) . '</tr>' : '';
         $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
@@ -617,7 +616,7 @@ class Builder
             if (is_array($row->footer)) {
                 $footerAttr = $this->html->attributes(array_only($row->footer,
                     ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
-                $title    = isset($row->footer['title']) ? $row->footer['title'] : '';
+                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
                 $footer[] = '<th ' . $footerAttr . '>' . $title . '</th>';
             } else {
                 $footer[] = '<th>' . $row->footer . '</th>';
@@ -636,19 +635,6 @@ class Builder
     public function parameters(array $attributes = [])
     {
         $this->attributes = array_merge($this->attributes, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * Set custom javascript template.
-     *
-     * @param string $template
-     * @return $this
-     */
-    public function setTemplate($template)
-    {
-        $this->template = $template;
 
         return $this;
     }
@@ -695,7 +681,7 @@ class Builder
         $this->ajax = [];
         $appendData = $this->makeDataScript($data);
 
-        $this->ajax['url']  = $url;
+        $this->ajax['url'] = $url;
         $this->ajax['type'] = 'GET';
         if (isset($this->attributes['serverSide']) ? $this->attributes['serverSide'] : true) {
             $this->ajax['data'] = 'function(data) {
@@ -742,6 +728,21 @@ class Builder
     }
 
     /**
+     * Attach multiple editors to builder.
+     *
+     * @param mixed ...$editors
+     * @return $this
+     */
+    public function editors(...$editors)
+    {
+        foreach ($editors as $editor) {
+            $this->editor($editor);
+        }
+
+        return $this;
+    }
+
+    /**
      * Integrate with DataTables Editor.
      *
      * @param array|Editor $fields
@@ -751,22 +752,48 @@ class Builder
     {
         $this->setTemplate($this->config->get('datatables-html.editor', 'datatables::editor'));
 
-        if ($fields instanceof Editor) {
-            $this->editor = $fields;
-        } else {
-            $this->editor = new Editor;
-            $this->editor->fields($fields);
-        }
+        $editor = $this->newEditor($fields);
 
-        if (! $this->editor->table) {
-            $this->editor->table($this->getTableAttribute('id'));
-        }
-
-        if (! $this->editor->ajax) {
-            $this->editor->ajax($this->getAjaxUrl());
-        }
+        $this->editors[] = $editor;
 
         return $this;
+    }
+
+    /**
+     * Set custom javascript template.
+     *
+     * @param string $template
+     * @return $this
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+
+        return $this;
+    }
+
+    /**
+     * @param array|Editor $fields
+     * @throws \Exception
+     */
+    protected function newEditor($fields)
+    {
+        if ($fields instanceof Editor) {
+            $editor = $fields;
+        } else {
+            $editor = new Editor;
+            $editor->fields($fields);
+        }
+
+        if (! $editor->table) {
+            $editor->table($this->getTableAttribute('id'));
+        }
+
+        if (! $editor->ajax) {
+            $editor->ajax($this->getAjaxUrl());
+        }
+
+        return $editor;
     }
 
     /**

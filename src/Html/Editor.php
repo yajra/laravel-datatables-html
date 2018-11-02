@@ -7,7 +7,7 @@ class Editor
     /**
      * @var string
      */
-    public $instance = 'editor';
+    public $instance = '';
 
     /**
      * @var string
@@ -28,6 +28,16 @@ class Editor
      * @var array
      */
     public $language = [];
+
+    /**
+     * Editor constructor.
+     *
+     * @param string $instance
+     */
+    public function __construct(string $instance = 'editor')
+    {
+        $this->instance = $instance;
+    }
 
     /**
      * @param $instance
