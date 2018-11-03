@@ -4,6 +4,7 @@ namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Illuminate\Contracts\Support\Arrayable;
 
 class Field extends Fluent
 {
@@ -83,6 +84,81 @@ class Field extends Fluent
     public function type($type)
     {
         $this->attributes['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get options from a model.
+     *
+     * @param mixed $model
+     * @param string $value
+     * @param string $key
+     * @return Field
+     */
+    public function modelOptions($model, $value, $key = 'id')
+    {
+        return $this->options(
+            Options::model($model, $value, $key)
+        );
+    }
+
+    /**
+     * Set select options.
+     *
+     * @param array|mixed $options
+     * @return $this
+     */
+    public function options($options)
+    {
+        if ($options instanceof Arrayable) {
+            $options = $options->toArray();
+        }
+
+        $this->attributes['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Get options from a table.
+     *
+     * @param mixed $table
+     * @param string $value
+     * @param string $key
+     * @param \Closure $whereCallback
+     * @param string|null $key
+     * @return Field
+     */
+    public function tableOptions($table, $value, $key = 'id', \Closure $whereCallback = null, $connection = null)
+    {
+        return $this->options(
+            Options::table($table, $value, $key, $whereCallback, $connection)
+        );
+    }
+
+    /**
+     * Set checkbox separator.
+     *
+     * @param string $separator
+     * @return $this
+     */
+    public function separator($separator = ',')
+    {
+        $this->attributes['separator'] = $separator;
+
+        return $this;
+    }
+
+    /**
+     * Set dateTime format.
+     *
+     * @param string $format
+     * @return $this
+     */
+    public function format($format)
+    {
+        $this->attributes['format'] = $format;
 
         return $this;
     }
