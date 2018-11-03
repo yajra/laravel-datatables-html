@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.12.3 - 11-03-2018
+
+- Fix options: Use 1 and 0 for true or false.
+
 ### v3.12.2 - 11-03-2018
 
 - Add missing field options setter and add docs link.
