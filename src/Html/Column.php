@@ -50,12 +50,12 @@ class Column extends Fluent
      * Create a computed column that is not searchable/orderable.
      *
      * @param string $data
-     * @param string $name
+     * @param string $title
      * @return Column
      */
-    public static function computed($data, $name = '')
+    public static function computed($data, $title = '')
     {
-        return static::make($data, $name)->orderable(false)->searchable(false);
+        return static::make($data)->title($title)->orderable(false)->searchable(false);
     }
 
     /**
@@ -104,12 +104,14 @@ class Column extends Fluent
     /**
      * Create a checkbox column.
      *
+     * @param string $title
      * @return Column
      */
-    public static function checkbox()
+    public static function checkbox($title = '')
     {
         return static::make('')
                      ->content('')
+                    ->title($title)
                      ->className('select-checkbox')
                      ->orderable(false)
                      ->searchable(false);
