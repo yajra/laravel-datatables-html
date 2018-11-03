@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.12.7 - 11-03-2018
+
+- Add checker if className is not yet set when adding class.
+
 ### v3.12.6 - 11-03-2018
 
 - Fix setting of title.
