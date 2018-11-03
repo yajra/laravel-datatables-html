@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.12.0 - 11-03-2018
+
+- Add editor options collection builder. [#80]
+
 ### v3.11.0 - 11-02-2018
 
 - Add option to prepend action column. [#77]
@@ -214,6 +218,7 @@
 [#73]: https://github.com/yajra/laravel-datatables-html/pull/73
 [#77]: https://github.com/yajra/laravel-datatables-html/pull/77
 [#78]: https://github.com/yajra/laravel-datatables-html/pull/78
+[#80]: https://github.com/yajra/laravel-datatables-html/pull/80
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
