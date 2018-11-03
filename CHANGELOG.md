@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v3.12.6 - 11-03-2018
+
+- Fix setting of title.
+- Add title option for checkbox column.
+
 ### v3.12.5 - 11-03-2018
 
 - Add name arg for computed column.
