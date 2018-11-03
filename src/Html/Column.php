@@ -138,7 +138,11 @@ class Column extends Fluent
      */
     public function addClass($class)
     {
-        $this->attributes['className'] .= " $class";
+        if (! isset($this->attributes['className'])) {
+            $this->attributes['className'] = $class;
+        } else {
+            $this->attributes['className'] .= " $class";
+        }
 
         return $this;
     }
