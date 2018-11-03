@@ -128,6 +128,19 @@ class Column extends Fluent
     }
 
     /**
+     * Append a class name to field.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function addClass($class)
+    {
+        $this->attributes['className'] .= " $class";
+
+        return $this;
+    }
+
+    /**
      * Set column default content.
      *
      * @param string $value
