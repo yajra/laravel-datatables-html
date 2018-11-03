@@ -6,6 +6,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @see https://editor.datatables.net/reference/option/
+ */
 class Field extends Fluent
 {
     /**
@@ -47,6 +50,7 @@ class Field extends Fluent
     /**
      * @param string $label
      * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.label
      */
     public function label($label)
     {
@@ -58,6 +62,7 @@ class Field extends Fluent
     /**
      * @param string $name
      * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.name
      */
     public function name($name)
     {
@@ -69,6 +74,7 @@ class Field extends Fluent
     /**
      * @param string $data
      * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.data
      */
     public function data($data)
     {
@@ -80,6 +86,7 @@ class Field extends Fluent
     /**
      * @param string $type
      * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.type
      */
     public function type($type)
     {
@@ -155,10 +162,137 @@ class Field extends Fluent
      *
      * @param string $format
      * @return $this
+     * @see https://editor.datatables.net/reference/field/datetime
      */
     public function format($format)
     {
         $this->attributes['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Set field default value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.def
+     */
+    public function default($value)
+    {
+        $this->attributes['def'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field message value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.message
+     */
+    public function message($value)
+    {
+        $this->attributes['message'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field fieldInfo value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.fieldInfo
+     */
+    public function fieldInfo($value)
+    {
+        $this->attributes['fieldInfo'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field labelInfo value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.labelInfo
+     */
+    public function labelInfo($value)
+    {
+        $this->attributes['labelInfo'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field entityDecode value.
+     *
+     * @param mixed|bool $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.entityDecode
+     */
+    public function entityDecode($value)
+    {
+        $this->attributes['entityDecode'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field multiEditable value.
+     *
+     * @param mixed|bool $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.multiEditable
+     */
+    public function multiEditable($value)
+    {
+        $this->attributes['multiEditable'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field id value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.id
+     */
+    public function id($value)
+    {
+        $this->attributes['id'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field submit value.
+     *
+     * @param bool $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.submit
+     */
+    public function submit($value)
+    {
+        $this->attributes['submit'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field compare value.
+     *
+     * @param bool $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.compare
+     */
+    public function compare($value)
+    {
+        $this->attributes['compare'] = $value;
 
         return $this;
     }
