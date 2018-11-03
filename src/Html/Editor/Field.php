@@ -2,9 +2,9 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
+use Illuminate\Contracts\Support\Arrayable;
 
 class Field extends Fluent
 {
@@ -37,7 +37,7 @@ class Field extends Fluent
         }
 
         $data = [
-            'name' => $name,
+            'name'  => $name,
             'label' => $label ?: Str::title($name),
         ];
 
