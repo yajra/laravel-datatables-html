@@ -46,7 +46,7 @@ class Options extends Collection
     }
 
     /**
-     * Get options from a model.
+     * Get options from a table.
      *
      * @param mixed $table
      * @param string $value
