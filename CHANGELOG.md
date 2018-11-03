@@ -8,13 +8,15 @@
 
 ## CHANGELOG
 
-### v3.12.4 - 11-03-2018
+### v3.12.5 - 11-03-2018
 
 - Add name arg for computed column.
 
-### v3.12.3 - 11-03-2018
+### v3.12.4 - 11-03-2018
 
 - Fix options: Use 1 and 0 for true or false.
+
+### v3.12.3 - Skipped (My Bad)
 
 ### v3.12.2 - 11-03-2018
 
