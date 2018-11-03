@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.12.1 - 11-03-2018
+
+- Add to method to append a class to the field.
+
 ### v3.12.0 - 11-03-2018
 
 - Add editor options collection builder. [#80]
