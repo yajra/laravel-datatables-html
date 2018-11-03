@@ -86,4 +86,43 @@ class Field extends Fluent
 
         return $this;
     }
+
+    /**
+     * Set select options.
+     *
+     * @param array $options
+     * @return $this
+     */
+    public function options(array $options)
+    {
+        $this->attributes['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Set checkbox separator.
+     *
+     * @param string $separator
+     * @return $this
+     */
+    public function separator($separator = ',')
+    {
+        $this->attributes['separator'] = $separator;
+
+        return $this;
+    }
+
+    /**
+     * Set dateTime format.
+     *
+     * @param string $format
+     * @return $this
+     */
+    public function format($format)
+    {
+        $this->attributes['format'] = $format;
+
+        return $this;
+    }
 }
