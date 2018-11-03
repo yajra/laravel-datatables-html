@@ -50,11 +50,12 @@ class Column extends Fluent
      * Create a computed column that is not searchable/orderable.
      *
      * @param string $data
+     * @param string $name
      * @return Column
      */
-    public static function computed($data)
+    public static function computed($data, $name = '')
     {
-        return static::make($data)->orderable(false)->searchable(false);
+        return static::make($data, $name)->orderable(false)->searchable(false);
     }
 
     /**
