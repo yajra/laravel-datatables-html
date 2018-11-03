@@ -4,6 +4,7 @@ namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Options extends Collection
 {
@@ -32,16 +33,39 @@ class Options extends Collection
      */
     public static function model($model, $value, $key = 'id')
     {
-        if (!$model instanceof Builder) {
+        if (! $model instanceof Builder) {
             $model = $model::query();
         }
 
-        return $model->get()->map(function($model) use($value, $key) {
+        return $model->get()->map(function ($model) use ($value, $key) {
             return [
                 'value' => $model->{$key},
-                'label' => $model->{$value}
+                'label' => $model->{$value},
             ];
         });
+    }
+
+    /**
+     * Get options from a model.
+     *
+     * @param mixed $table
+     * @param string $value
+     * @param string $key
+     * @param \Closure $whereCallback
+     * @param string|null $key
+     * @return Collection
+     */
+    public static function table($table, $value, $key = 'id', \Closure $whereCallback = null, $connection = null)
+    {
+        $query = DB::connection($connection)
+                   ->table($table)
+                   ->select("{$value} as label", "{$key} as value");
+
+        if ($whereCallback) {
+            $query->where($whereCallback);
+        }
+
+        return $query->get();
     }
 
     /**
