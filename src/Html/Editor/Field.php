@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
 
@@ -90,11 +91,15 @@ class Field extends Fluent
     /**
      * Set select options.
      *
-     * @param array $options
+     * @param array|mixed $options
      * @return $this
      */
-    public function options(array $options)
+    public function options($options)
     {
+        if ($options instanceof Arrayable) {
+            $options = $options->toArray();
+        }
+
         $this->attributes['options'] = $options;
 
         return $this;
