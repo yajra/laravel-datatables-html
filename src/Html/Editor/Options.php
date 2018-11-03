@@ -14,8 +14,8 @@ class Options extends Collection
     public static function yesNo()
     {
         $data = [
-            ['label' => __("Yes"), 'value' => true],
-            ['label' => __("No"), 'value' => false],
+            ['label' => __('Yes'), 'value' => true],
+            ['label' => __('No'), 'value' => false],
         ];
 
         return new static($data);
@@ -29,8 +29,8 @@ class Options extends Collection
     public static function trueFalse()
     {
         $data = [
-            ['label' => __("True"), 'value' => true],
-            ['label' => __("False"), 'value' => false],
+            ['label' => __('True'), 'value' => true],
+            ['label' => __('False'), 'value' => false],
         ];
 
         return new static($data);
