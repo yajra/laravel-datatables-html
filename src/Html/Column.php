@@ -23,7 +23,10 @@ class Column extends Fluent
      */
     public function __construct($attributes = [])
     {
-        $attributes['title']      = isset($attributes['title']) ? $attributes['title'] : Str::title($attributes['data']);
+        $attributes['title'] = isset($attributes['title']) ? $attributes['title'] : Str::title(
+            str_replace('_', ' ', $attributes['data'])
+        );
+
         $attributes['orderable']  = isset($attributes['orderable']) ? $attributes['orderable'] : true;
         $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
