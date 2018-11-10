@@ -29,9 +29,11 @@ class Field extends Fluent
     }
 
     /**
+     * Make a new instance of a field.
+     *
      * @param string $name
      * @param string $label
-     * @return Field|Select|Password|DateTime|Checkbox|Radio|Hidden|ReadOnly|TextArea
+     * @return Field
      */
     public static function make($name, $label = '')
     {
