@@ -8,6 +8,32 @@
 
 ## CHANGELOG
 
+### v3.13.0 - 11-10-2018
+
+- Add missing visible option setter. [#83]
+- Add new fields, fix dateTime field format. [#84]
+
+#### Changed
+
+- Fix field and column computed title.
+
+From `created_at` with title `Created_At`
+To `created_at` with title `Created At`
+
+#### Fixed
+
+- Fix DateTime field.
+- Set format to `YYYY-MM-DD hh:mm a`.
+- Add `military()` setter to set the time to military format.
+
+#### Added New Fields
+
+- Boolean
+- Date
+- Time
+- Text
+- Number
+
 ### v3.12.7 - 11-03-2018
 
 - Add checker if className is not yet set when adding class.
@@ -246,6 +272,8 @@
 [#77]: https://github.com/yajra/laravel-datatables-html/pull/77
 [#78]: https://github.com/yajra/laravel-datatables-html/pull/78
 [#80]: https://github.com/yajra/laravel-datatables-html/pull/80
+[#83]: https://github.com/yajra/laravel-datatables-html/pull/83
+[#84]: https://github.com/yajra/laravel-datatables-html/pull/84
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
