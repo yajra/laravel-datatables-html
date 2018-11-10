@@ -85,6 +85,19 @@ class Column extends Fluent
     }
 
     /**
+     * Set column visible flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function visible(bool $flag = true)
+    {
+        $this->attributes['visible'] = $flag;
+
+        return $this;
+    }
+
+    /**
      * Make a new column instance.
      *
      * @param string $data
