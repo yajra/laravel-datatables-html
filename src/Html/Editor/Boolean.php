@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-class Boolean extends Select
+class Boolean extends Checkbox
 {
     /**
      * Make a new instance of a field.
@@ -13,6 +13,8 @@ class Boolean extends Select
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->options(Options::trueFalse());
+        return parent::make($name, $label)->separator(',')->options(
+            Options::make()->append('', 1)
+        );
     }
 }
