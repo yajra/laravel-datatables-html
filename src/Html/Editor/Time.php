@@ -2,20 +2,18 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-class DateTime extends Field
+class Time extends DateTime
 {
-    protected $type = 'datetime';
-
     /**
      * Make a new instance of a field.
      *
      * @param string $name
      * @param string $label
-     * @return Field|\DateTime
+     * @return Field|Time
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->format('YYYY-MM-DD hh:mm a');
+        return parent::make($name, $label)->format('hh:mm a');
     }
 
     /**
@@ -25,6 +23,6 @@ class DateTime extends Field
      */
     public function military()
     {
-        return $this->format('YYYY-MM-DD HH:mm');
+        return $this->format('HH:mm');
     }
 }
