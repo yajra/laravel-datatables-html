@@ -16,6 +16,7 @@ class Builder
 {
     use Macroable;
     use HasOptions;
+    use HasEditor;
 
     /**
      * @var Collection
@@ -51,13 +52,6 @@ class Builder
      * @var array
      */
     protected $attributes = [];
-
-    /**
-     * Collection of Editors.
-     *
-     * @var null|Editor
-     */
-    protected $editors = [];
 
     /**
      * @param Repository $config
@@ -507,42 +501,6 @@ class Builder
     }
 
     /**
-     * Attach multiple editors to builder.
-     *
-     * @param mixed ...$editors
-     * @return $this
-     * @see https://editor.datatables.net/
-     * @throws \Exception
-     */
-    public function editors(...$editors)
-    {
-        foreach ($editors as $editor) {
-            $this->editor($editor);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Integrate with DataTables Editor.
-     *
-     * @param array|Editor $fields
-     * @return $this
-     * @see https://editor.datatables.net/
-     * @throws \Exception
-     */
-    public function editor($fields)
-    {
-        $this->setTemplate($this->config->get('datatables-html.editor', 'datatables::editor'));
-
-        $editor = $this->newEditor($fields);
-
-        $this->editors[] = $editor;
-
-        return $this;
-    }
-
-    /**
      * Set custom javascript template.
      *
      * @param string $template
@@ -553,31 +511,6 @@ class Builder
         $this->template = $template;
 
         return $this;
-    }
-
-    /**
-     * @param array|Editor $fields
-     * @return array|Editor
-     * @throws \Exception
-     */
-    protected function newEditor($fields)
-    {
-        if ($fields instanceof Editor) {
-            $editor = $fields;
-        } else {
-            $editor = new Editor;
-            $editor->fields($fields);
-        }
-
-        if (! $editor->table) {
-            $editor->table($this->getTableAttribute('id'));
-        }
-
-        if (! $editor->ajax) {
-            $editor->ajax($this->getAjaxUrl());
-        }
-
-        return $editor;
     }
 
     /**
