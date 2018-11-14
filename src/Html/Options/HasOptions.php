@@ -20,6 +20,7 @@ trait HasOptions
     use Plugins\Buttons;
     use Plugins\ColReorder;
     use Plugins\FixedColumns;
+    use Plugins\FixedHeader;
 
     /**
      * Set deferLoading option value.
