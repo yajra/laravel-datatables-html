@@ -12,6 +12,7 @@ trait HasDataTablesOptions
     use HasDataTablesFeaturesOptions;
     use HasDataTablesDataOptions;
     use HasDataTablesCallbacksOptions;
+    use HasDataTablesColumnsOptions;
 
     /**
      * Set deferLoading option value.
