@@ -15,9 +15,7 @@ use Illuminate\Contracts\Config\Repository;
 class Builder
 {
     use Macroable;
-    use HasDataTablesFeaturesOptions;
-    use HasDataTablesDataOptions;
-    use HasDataTablesCallbacksOptions;
+    use HasDataTablesOptions;
 
     /**
      * @var Collection
@@ -752,52 +750,6 @@ class Builder
     public function responsive($options = true)
     {
         $this->attributes['responsive'] = $options;
-
-        return $this;
-    }
-
-    /**
-     * Order option builder.
-     *
-     * @param int|array $index
-     * @param string $direction
-     * @return $this
-     * @see https://datatables.net/reference/option/order
-     */
-    public function orderBy($index, $direction = 'desc')
-    {
-        if ($direction != 'desc') {
-            $direction = 'asc';
-        }
-
-        if (is_array($index)) {
-            $this->attributes['order'][] = $index;
-        } else {
-            $this->attributes['order'][] = [$index, $direction];
-        }
-
-        return $this;
-    }
-
-    /**
-     * Order Fixed option builder.
-     *
-     * @param int|array $index
-     * @param string $direction
-     * @return $this
-     * @see https://datatables.net/reference/option/orderFixed
-     */
-    public function orderByFixed($index, $direction = 'desc')
-    {
-        if ($direction != 'desc') {
-            $direction = 'asc';
-        }
-
-        if (is_array($index)) {
-            $this->attributes['orderFixed'][] = $index;
-        } else {
-            $this->attributes['orderFixed'][] = [$index, $direction];
-        }
 
         return $this;
     }
