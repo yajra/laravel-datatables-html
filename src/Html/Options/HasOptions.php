@@ -24,6 +24,7 @@ trait HasOptions
     use Plugins\KeyTable;
     use Plugins\Responsive;
     use Plugins\RowGroup;
+    use Plugins\RowReorder;
 
     /**
      * Set deferLoading option value.
