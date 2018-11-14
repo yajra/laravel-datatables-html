@@ -572,6 +572,7 @@ class Builder
 
     /**
      * @param array|Editor $fields
+     * @return array|Editor
      * @throws \Exception
      */
     protected function newEditor($fields)
@@ -609,19 +610,5 @@ class Builder
         }
 
         return $callback;
-    }
-
-    /**
-     * Select plugin integration/option.
-     *
-     * @param bool|array $options
-     * @return $this
-     * @see https://www.datatables.net/extensions/select/
-     */
-    public function select($options = true)
-    {
-        $this->attributes['select'] = $options;
-
-        return $this;
     }
 }

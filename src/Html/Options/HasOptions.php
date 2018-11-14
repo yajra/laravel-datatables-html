@@ -26,6 +26,7 @@ trait HasOptions
     use Plugins\RowGroup;
     use Plugins\RowReorder;
     use Plugins\Scroller;
+    use Plugins\Select;
 
     /**
      * Set deferLoading option value.
