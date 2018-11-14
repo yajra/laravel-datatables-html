@@ -8,6 +8,48 @@
 
 ## CHANGELOG
 
+### v4.0.0-RC - 11-14-2018
+
+#### ADDED
+
+Add full builder support for the following options based on https://datatables.net/reference/option/.
+
+##### Add builder support for the following plugins:
+
+- [x] AutoFill 
+- [x] Buttons 
+- [x] ColReorder 
+- [x] FixedColumns 
+- [x] FixedHeader 
+- [x] KeyTable 
+- [x] Responsive 
+- [x] RowGroup 
+- [x] RowReorder 
+- [x] Scroller 
+- [x] Select 
+
+> Note: All plugins requires their corresponding asset files.
+
+##### Add Buttons builder with support for authorization.
+
+```php
+->buttons(
+    Button::makeIfCan('manage-users', 'create')->editor('create'),
+    Button::makeIf(true, 'edit')->editor('edit'),
+    Button::make('remove')->editor('password')->className('btn-danger'),
+    Button::make('colvis')->text('<i class="fa fa-eye"></i>'),
+    Button::make('export'),
+    Button::make('print'),
+    Button::make('reset'),
+    Button::make('reload')
+)
+```
+
+#### CHANGED
+
+- `Editor` class was moved from `Yajra\DataTables\Html\Editor` to `Yajra\DataTables\Html\Editor\Editor`.
+- All fields were moved from `Yajra\DataTables\Html\Editor` to `Yajra\DataTables\Html\Editor\Fields` namespace.
+
 ### v3.13.0 - 11-10-2018
 
 - Add missing visible option setter. [#83]
