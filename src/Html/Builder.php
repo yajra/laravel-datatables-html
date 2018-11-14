@@ -868,6 +868,10 @@ class Builder
      */
     public function orderBy($index, $direction = 'desc')
     {
+        if ($direction != 'desc') {
+            $direction = 'asc';
+        }
+
         if (is_array($index)) {
             $this->attributes['order'][] = $index;
         } else {
