@@ -858,4 +858,22 @@ class Builder
 
         return $this;
     }
+
+    /**
+     * Order option builder.
+     *
+     * @param int|array $index
+     * @param string $direction
+     * @return $this
+     */
+    public function orderBy($index, $direction = 'desc')
+    {
+        if (is_array($index)) {
+            $this->attributes['order'][] = $index;
+        } else {
+            $this->attributes['order'][] = [$index, $direction];
+        }
+
+        return $this;
+    }
 }
