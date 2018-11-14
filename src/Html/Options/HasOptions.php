@@ -18,6 +18,7 @@ trait HasOptions
     use HasInternationalisation;
     use Plugins\AutoFill;
     use Plugins\Buttons;
+    use Plugins\ColReorder;
 
     /**
      * Set deferLoading option value.
