@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Editor;
 
 class Editor
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\DataTables\Html\Editor;
+namespace Yajra\DataTables\Html\Editor\Fields;
 
 class Select extends Field
 {

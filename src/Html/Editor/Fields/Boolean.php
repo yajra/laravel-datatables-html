@@ -1,8 +1,8 @@
 <?php
 
-namespace Yajra\DataTables\Html\Editor;
+namespace Yajra\DataTables\Html\Editor\Fields;
 
-class Date extends DateTime
+class Boolean extends Checkbox
 {
     /**
      * Make a new instance of a field.
@@ -13,6 +13,8 @@ class Date extends DateTime
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->format('YYYY-MM-DD');
+        return parent::make($name, $label)->separator(',')->options(
+            Options::make()->append('', 1)
+        );
     }
 }
