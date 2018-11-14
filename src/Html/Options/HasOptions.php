@@ -2,6 +2,8 @@
 
 namespace Yajra\DataTables\Html\Options;
 
+use Yajra\DataTables\Html\Options\Plugins;
+
 /**
  * DataTables - Options builder.
  *
@@ -14,6 +16,7 @@ trait HasOptions
     use HasCallbacks;
     use HasColumns;
     use HasInternationalisation;
+    use Plugins\AutoFill;
 
     /**
      * Set deferLoading option value.
