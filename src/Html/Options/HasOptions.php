@@ -25,6 +25,7 @@ trait HasOptions
     use Plugins\Responsive;
     use Plugins\RowGroup;
     use Plugins\RowReorder;
+    use Plugins\Scroller;
 
     /**
      * Set deferLoading option value.
