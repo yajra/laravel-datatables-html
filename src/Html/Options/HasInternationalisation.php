@@ -1,13 +1,13 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Internationalisation option builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesInternationalisationOptions
+trait HasInternationalisation
 {
     /**
      * Set language option value.

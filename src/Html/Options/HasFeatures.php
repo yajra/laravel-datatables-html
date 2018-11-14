@@ -1,13 +1,13 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Features option builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesFeaturesOptions
+trait HasFeatures
 {
     /**
      * Set autoWidth option value.

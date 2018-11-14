@@ -1,19 +1,19 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Options builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesOptions
+trait HasOptions
 {
-    use HasDataTablesFeaturesOptions;
-    use HasDataTablesDataOptions;
-    use HasDataTablesCallbacksOptions;
-    use HasDataTablesColumnsOptions;
-    use HasDataTablesInternationalisationOptions;
+    use HasFeatures;
+    use HasData;
+    use HasCallbacks;
+    use HasColumns;
+    use HasInternationalisation;
 
     /**
      * Set deferLoading option value.

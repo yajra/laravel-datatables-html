@@ -1,13 +1,13 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Data option builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesDataOptions
+trait HasData
 {
     /**
      * @var string|array

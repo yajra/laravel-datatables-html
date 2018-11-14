@@ -1,15 +1,16 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 use Illuminate\Support\Collection;
+use Yajra\DataTables\Html\Column;
 
 /**
  * DataTables - Columns option builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesColumnsOptions
+trait HasColumns
 {
     /**
      * Set columnDefs option value.

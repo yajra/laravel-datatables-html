@@ -1,13 +1,13 @@
 <?php
 
-namespace Yajra\DataTables\Html;
+namespace Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Callbacks option builder.
  *
  * @see https://datatables.net/reference/option/
  */
-trait HasDataTablesCallbacksOptions
+trait HasCallbacks
 {
     /**
      * Set createdRow option value.

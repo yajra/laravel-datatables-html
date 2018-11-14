@@ -11,11 +11,12 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Config\Repository;
+use Yajra\DataTables\Html\Options\HasOptions;
 
 class Builder
 {
     use Macroable;
-    use HasDataTablesOptions;
+    use HasOptions;
 
     /**
      * @var Collection
