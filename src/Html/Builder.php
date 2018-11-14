@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Collective\Html\HtmlBuilder;
@@ -876,6 +877,21 @@ class Builder
             $this->attributes['order'][] = $index;
         } else {
             $this->attributes['order'][] = [$index, $direction];
+        }
+
+        return $this;
+    }
+
+    /**
+     * Attach multiple buttons to builder.
+     *
+     * @param mixed ...$buttons
+     * @return $this
+     */
+    public function buttons(...$buttons)
+    {
+        foreach ($buttons as $button) {
+            $this->attributes['buttons'][] = $button instanceof Arrayable ? $button->toArray() : $button;
         }
 
         return $this;
