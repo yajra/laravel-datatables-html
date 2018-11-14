@@ -15,6 +15,7 @@ use Illuminate\Contracts\Config\Repository;
 class Builder
 {
     use Macroable;
+    use HasDataTablesFeaturesOptions;
 
     /**
      * @var Collection
