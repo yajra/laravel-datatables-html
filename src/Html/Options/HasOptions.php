@@ -23,6 +23,7 @@ trait HasOptions
     use Plugins\FixedHeader;
     use Plugins\KeyTable;
     use Plugins\Responsive;
+    use Plugins\RowGroup;
 
     /**
      * Set deferLoading option value.
