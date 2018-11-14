@@ -64,6 +64,7 @@ class Editor
      * Append raw scripts.
      *
      * @param string $scripts
+     * @return Editor
      */
     public function scripts($scripts)
     {
