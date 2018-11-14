@@ -739,6 +739,7 @@ class Builder
      *
      * @param mixed ...$editors
      * @return $this
+     * @see https://editor.datatables.net/
      */
     public function editors(...$editors)
     {
@@ -754,6 +755,7 @@ class Builder
      *
      * @param array|Editor $fields
      * @return $this
+     * @see https://editor.datatables.net/
      */
     public function editor($fields)
     {
@@ -839,6 +841,7 @@ class Builder
      *
      * @param bool|array $options
      * @return $this
+     * @see https://www.datatables.net/extensions/select/
      */
     public function select($options = true)
     {
@@ -852,6 +855,7 @@ class Builder
      *
      * @param bool|array $options
      * @return $this
+     * @see https://www.datatables.net/extensions/responsive/
      */
     public function responsive($options = true)
     {
@@ -866,6 +870,7 @@ class Builder
      * @param int|array $index
      * @param string $direction
      * @return $this
+     * @see https://datatables.net/reference/option/order
      */
     public function orderBy($index, $direction = 'desc')
     {
@@ -883,10 +888,34 @@ class Builder
     }
 
     /**
+     * Order Fixed option builder.
+     *
+     * @param int|array $index
+     * @param string $direction
+     * @return $this
+     * @see https://datatables.net/reference/option/orderFixed
+     */
+    public function orderByFixed($index, $direction = 'desc')
+    {
+        if ($direction != 'desc') {
+            $direction = 'asc';
+        }
+
+        if (is_array($index)) {
+            $this->attributes['orderFixed'][] = $index;
+        } else {
+            $this->attributes['orderFixed'][] = [$index, $direction];
+        }
+
+        return $this;
+    }
+
+    /**
      * Attach multiple buttons to builder.
      *
      * @param mixed ...$buttons
      * @return $this
+     * @see https://www.datatables.net/extensions/buttons/
      */
     public function buttons(...$buttons)
     {
