@@ -2,13 +2,13 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Support\Str;
 use Collective\Html\HtmlBuilder;
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Contracts\Config\Repository;
 use Yajra\DataTables\Html\Editor\HasEditor;
 use Yajra\DataTables\Html\Options\HasOptions;
 
@@ -64,10 +64,10 @@ class Builder
      */
     public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
     {
-        $this->config          = $config;
-        $this->view            = $view;
-        $this->html            = $html;
-        $this->collection      = new Collection;
+        $this->config = $config;
+        $this->view = $view;
+        $this->html = $html;
+        $this->collection = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
     }
 
@@ -81,7 +81,7 @@ class Builder
      */
     public function scripts($script = null, array $attributes = ['type' => 'text/javascript'])
     {
-        $script     = $script ?: $this->generateScripts();
+        $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
 
         return new HtmlString("<script{$attributes}>{$script}</script>\n");
@@ -111,7 +111,7 @@ class Builder
     {
         $args = array_merge(
             $this->attributes, [
-                'ajax'    => $this->ajax,
+                'ajax' => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
                     $column = $column->toArray();
                     unset($column['attributes']);
@@ -134,7 +134,7 @@ class Builder
     {
         $parameters = (new Parameters($attributes))->toArray();
 
-        $values       = [];
+        $values = [];
         $replacements = [];
 
         foreach (array_dot($parameters) as $key => $value) {
@@ -199,10 +199,10 @@ class Builder
     {
         $this->setTableAttributes($attributes);
 
-        $th       = $this->compileTableHeaders();
+        $th = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
-        $tableHtml  = '<table ' . $htmlAttr . '>';
+        $tableHtml = '<table ' . $htmlAttr . '>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
                 $this->compileTableSearchHeaders()) . '</tr>' : '';
         $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';

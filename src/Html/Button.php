@@ -2,9 +2,9 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Support\Fluent;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Auth\Access\Authorizable;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Fluent;
 
 class Button extends Fluent implements Arrayable
 {

@@ -18,15 +18,15 @@ trait Index
 
         $attributes = array_merge([
             'defaultContent' => '',
-            'data'           => $indexColumn,
-            'name'           => $indexColumn,
-            'title'          => '',
-            'render'         => null,
-            'orderable'      => false,
-            'searchable'     => false,
-            'exportable'     => false,
-            'printable'      => true,
-            'footer'         => '',
+            'data' => $indexColumn,
+            'name' => $indexColumn,
+            'title' => '',
+            'render' => null,
+            'orderable' => false,
+            'searchable' => false,
+            'exportable' => false,
+            'printable' => true,
+            'footer' => '',
         ], $attributes);
 
         $this->collection->push(new Column($attributes));
