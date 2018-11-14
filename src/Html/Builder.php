@@ -17,6 +17,7 @@ class Builder
     use Macroable;
     use HasDataTablesFeaturesOptions;
     use HasDataTablesDataOptions;
+    use HasDataTablesCallbacksOptions;
 
     /**
      * @var Collection
@@ -170,9 +171,8 @@ class Builder
             return false;
         }
 
-        return Str::startsWith(trim($value),
-                $this->config->get('datatables-html.callback', ['$', '$.', 'function'])) || Str::contains($key,
-                'editor');
+        return Str::startsWith(trim($value), $this->config->get('datatables-html.callback', ['$', '$.', 'function']))
+            || Str::contains($key, 'editor');
     }
 
     /**
