@@ -17,6 +17,7 @@
   ],
   "require": {
     "php": ">=7.0",
+    "ext-json": "*",
     "yajra/laravel-datatables-oracle": "8.*",
     "laravelcollective/html": "^5.4"
   },
