@@ -638,20 +638,4 @@ class Builder
 
         return $this;
     }
-
-    /**
-     * Attach multiple buttons to builder.
-     *
-     * @param mixed ...$buttons
-     * @return $this
-     * @see https://www.datatables.net/extensions/buttons/
-     */
-    public function buttons(...$buttons)
-    {
-        foreach ($buttons as $button) {
-            $this->attributes['buttons'][] = $button instanceof Arrayable ? $button->toArray() : $button;
-        }
-
-        return $this;
-    }
 }
