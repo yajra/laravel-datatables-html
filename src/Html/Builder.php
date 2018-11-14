@@ -531,21 +531,4 @@ class Builder
 
         return $script;
     }
-
-    /**
-     * Compile DataTable callback value.
-     *
-     * @param mixed $callback
-     * @return mixed|string
-     */
-    private function compileCallback($callback)
-    {
-        if (is_callable($callback)) {
-            return value($callback);
-        } elseif ($this->view->exists($callback)) {
-            return $this->view->make($callback)->render();
-        }
-
-        return $callback;
-    }
 }
