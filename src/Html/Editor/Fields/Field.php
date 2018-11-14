@@ -2,9 +2,9 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * @see https://editor.datatables.net/reference/option/

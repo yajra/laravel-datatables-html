@@ -17,14 +17,14 @@ trait Checkbox
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
-            'title' => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
-            'data' => 'checkbox',
-            'name' => 'checkbox',
-            'orderable' => false,
-            'searchable' => false,
-            'exportable' => false,
-            'printable' => true,
-            'width' => '10px',
+            'title'          => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
+            'data'           => 'checkbox',
+            'name'           => 'checkbox',
+            'orderable'      => false,
+            'searchable'     => false,
+            'exportable'     => false,
+            'printable'      => true,
+            'width'          => '10px',
         ], $attributes);
 
         $column = new Column($attributes);

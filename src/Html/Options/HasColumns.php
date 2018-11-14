@@ -2,8 +2,8 @@
 
 namespace Yajra\DataTables\Html\Options;
 
-use Illuminate\Support\Collection;
 use Yajra\DataTables\Html\Column;
+use Illuminate\Support\Collection;
 
 /**
  * DataTables - Columns option builder.
@@ -49,8 +49,8 @@ trait HasColumns
                     );
                 } else {
                     $attributes = [
-                        'name' => $value,
-                        'data' => $value,
+                        'name'  => $value,
+                        'data'  => $value,
                         'title' => $this->getQualifiedTitle($value),
                     ];
                 }

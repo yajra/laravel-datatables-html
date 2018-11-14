@@ -2,8 +2,6 @@
 
 namespace Yajra\DataTables\Html\Options;
 
-use Yajra\DataTables\Html\Options\Plugins;
-
 /**
  * DataTables - Options builder.
  *
