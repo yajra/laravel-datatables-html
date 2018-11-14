@@ -832,4 +832,17 @@ class Builder
 
         return $callback;
     }
+
+    /**
+     * Select plugin integration/option.
+     *
+     * @param bool|array $options
+     * @return $this
+     */
+    public function select($options = true)
+    {
+        $this->attributes['select'] = $options;
+
+        return $this;
+    }
 }
