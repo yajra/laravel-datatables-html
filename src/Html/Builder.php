@@ -845,4 +845,17 @@ class Builder
 
         return $this;
     }
+
+    /**
+     * Responsive plugin integration/option.
+     *
+     * @param bool|array $options
+     * @return $this
+     */
+    public function responsive($options = true)
+    {
+        $this->attributes['responsive'] = $options;
+
+        return $this;
+    }
 }
