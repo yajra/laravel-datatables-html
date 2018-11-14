@@ -74,6 +74,7 @@ class Builder
      * @param  null $script
      * @param  array $attributes
      * @return \Illuminate\Support\HtmlString
+     * @throws \Exception
      */
     public function scripts($script = null, array $attributes = ['type' => 'text/javascript'])
     {
@@ -87,6 +88,7 @@ class Builder
      * Get generated raw scripts.
      *
      * @return \Illuminate\Support\HtmlString
+     * @throws \Exception
      */
     public function generateScripts()
     {
