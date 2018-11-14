@@ -14,7 +14,7 @@ trait ColReorder
      * Set colReorder option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param string|array $value
+     * @param bool|array $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder
      */
