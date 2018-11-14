@@ -42,7 +42,7 @@ class Field extends Fluent
         }
 
         $data = [
-            'name'  => $name,
+            'name' => $name,
             'label' => $label ?: Str::title(str_replace('_', ' ', $name)),
         ];
 

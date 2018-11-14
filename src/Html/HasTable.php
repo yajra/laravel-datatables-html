@@ -84,11 +84,11 @@ trait HasTable
      */
     public function addTableClass($class)
     {
-        $class        = is_array($class) ? implode(' ', $class) : $class;
+        $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = preg_split('#\s+#', $currentClass . ' ' . $class, null, PREG_SPLIT_NO_EMPTY);
-        $class   = implode(' ', array_unique($classes));
+        $class = implode(' ', array_unique($classes));
 
         return $this->setTableAttribute('class', $class);
     }
@@ -101,7 +101,7 @@ trait HasTable
      */
     public function removeTableClass($class)
     {
-        $class        = is_array($class) ? implode(' ', $class) : $class;
+        $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = array_diff(
@@ -159,7 +159,7 @@ trait HasTable
             if (is_array($row->footer)) {
                 $footerAttr = $this->html->attributes(array_only($row->footer,
                     ['class', 'id', 'width', 'style', 'data-class', 'data-hide']));
-                $title    = isset($row->footer['title']) ? $row->footer['title'] : '';
+                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
                 $footer[] = '<th ' . $footerAttr . '>' . $title . '</th>';
             } else {
                 $footer[] = '<th>' . $row->footer . '</th>';

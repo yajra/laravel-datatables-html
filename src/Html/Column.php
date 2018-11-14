@@ -2,8 +2,8 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
 
 /**
  * @property string data
@@ -27,11 +27,11 @@ class Column extends Fluent
             str_replace('_', ' ', $attributes['data'])
         );
 
-        $attributes['orderable']  = isset($attributes['orderable']) ? $attributes['orderable'] : true;
+        $attributes['orderable'] = isset($attributes['orderable']) ? $attributes['orderable'] : true;
         $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
-        $attributes['printable']  = isset($attributes['printable']) ? $attributes['printable'] : true;
-        $attributes['footer']     = isset($attributes['footer']) ? $attributes['footer'] : '';
+        $attributes['printable'] = isset($attributes['printable']) ? $attributes['printable'] : true;
+        $attributes['footer'] = isset($attributes['footer']) ? $attributes['footer'] : '';
         $attributes['attributes'] = isset($attributes['attributes']) ? $attributes['attributes'] : [];
 
         // Allow methods override attribute value
@@ -88,14 +88,14 @@ class Column extends Fluent
     }
 
     /**
-     * Set column visible flag.
+     * Set column title.
      *
-     * @param bool $flag
+     * @param string $value
      * @return $this
      */
-    public function visible(bool $flag = true)
+    public function title($value)
     {
-        $this->attributes['visible'] = $flag;
+        $this->attributes['title'] = $value;
 
         return $this;
     }
@@ -127,7 +127,7 @@ class Column extends Fluent
     {
         return static::make('')
                      ->content('')
-                    ->title($title)
+                     ->title($title)
                      ->className('select-checkbox')
                      ->orderable(false)
                      ->searchable(false);
@@ -147,6 +147,32 @@ class Column extends Fluent
     }
 
     /**
+     * Set column default content.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function content($value)
+    {
+        $this->attributes['defaultContent'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column visible flag.
+     *
+     * @param bool $flag
+     * @return $this
+     */
+    public function visible(bool $flag = true)
+    {
+        $this->attributes['visible'] = $flag;
+
+        return $this;
+    }
+
+    /**
      * Append a class name to field.
      *
      * @param string $class
@@ -159,19 +185,6 @@ class Column extends Fluent
         } else {
             $this->attributes['className'] .= " $class";
         }
-
-        return $this;
-    }
-
-    /**
-     * Set column default content.
-     *
-     * @param string $value
-     * @return $this
-     */
-    public function content($value)
-    {
-        $this->attributes['defaultContent'] = $value;
 
         return $this;
     }
@@ -216,19 +229,6 @@ class Column extends Fluent
     }
 
     /**
-     * Set column title.
-     *
-     * @param string $value
-     * @return $this
-     */
-    public function title($value)
-    {
-        $this->attributes['title'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set column name.
      *
      * @param string $value
@@ -263,12 +263,12 @@ class Column extends Fluent
     public function parseRender($value)
     {
         /** @var \Illuminate\Contracts\View\Factory $view */
-        $view       = app('view');
+        $view = app('view');
         $parameters = [];
 
         if (is_array($value)) {
             $parameters = array_except($value, 0);
-            $value      = $value[0];
+            $value = $value[0];
         }
 
         if (is_callable($value)) {

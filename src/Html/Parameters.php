@@ -5,8 +5,8 @@ namespace Yajra\DataTables\Html;
 use Illuminate\Support\Fluent;
 
 /**
- * @property bool  serverSide
- * @property bool  processing
+ * @property bool serverSide
+ * @property bool processing
  * @property mixed ajax
  * @property array columns
  */
@@ -18,7 +18,7 @@ class Parameters extends Fluent
     protected $attributes = [
         'serverSide' => true,
         'processing' => true,
-        'ajax'       => '',
-        'columns'    => [],
+        'ajax' => '',
+        'columns' => [],
     ];
 }

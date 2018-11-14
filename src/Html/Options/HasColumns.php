@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html\Options;
 
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Column;
 use Illuminate\Support\Collection;
 
@@ -62,6 +63,33 @@ trait HasColumns
         }
 
         return $this;
+    }
+
+    /**
+     * Set title attribute of an array if not set.
+     *
+     * @param string $title
+     * @param array $attributes
+     * @return array
+     */
+    public function setTitle($title, array $attributes)
+    {
+        if (! isset($attributes['title'])) {
+            $attributes['title'] = $this->getQualifiedTitle($title);
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * Convert string into a readable title.
+     *
+     * @param string $title
+     * @return string
+     */
+    public function getQualifiedTitle($title)
+    {
+        return Str::title(str_replace(['.', '_'], ' ', Str::snake($title)));
     }
 
     /**
