@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Yajra\DataTables\Html\Columns;
 use Yajra\DataTables\Html\Editor\HasEditor;
 use Yajra\DataTables\Html\Options\HasOptions;
 
@@ -18,6 +19,9 @@ class Builder
     use HasOptions;
     use HasTable;
     use HasEditor;
+    use Columns\Index;
+    use Columns\Action;
+    use Columns\Checkbox;
 
     /**
      * @var Collection
@@ -182,96 +186,6 @@ class Builder
         $template = $this->template ?: $this->config->get('datatables-html.script', 'datatables::script');
 
         return $this->view->make($template, ['editors' => $this->editors])->render();
-    }
-
-    /**
-     * Add a checkbox column.
-     *
-     * @param  array $attributes
-     * @param  bool|int $position true to prepend, false to append or a zero-based index for positioning
-     * @return $this
-     */
-    public function addCheckbox(array $attributes = [], $position = false)
-    {
-        $attributes = array_merge([
-            'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',
-            'title' => '<input type="checkbox" ' . $this->html->attributes($attributes + ['id' => 'dataTablesCheckbox']) . '/>',
-            'data' => 'checkbox',
-            'name' => 'checkbox',
-            'orderable' => false,
-            'searchable' => false,
-            'exportable' => false,
-            'printable' => true,
-            'width' => '10px',
-        ], $attributes);
-        $column = new Column($attributes);
-
-        if ($position === true) {
-            $this->collection->prepend($column);
-        } elseif ($position === false || $position >= $this->collection->count()) {
-            $this->collection->push($column);
-        } else {
-            $this->collection->splice($position, 0, [$column]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add a action column.
-     *
-     * @param  array $attributes
-     * @param  bool $prepend
-     * @return $this
-     */
-    public function addAction(array $attributes = [], $prepend = false)
-    {
-        $attributes = array_merge([
-            'defaultContent' => '',
-            'data' => 'action',
-            'name' => 'action',
-            'title' => 'Action',
-            'render' => null,
-            'orderable' => false,
-            'searchable' => false,
-            'exportable' => false,
-            'printable' => true,
-            'footer' => '',
-        ], $attributes);
-
-        if ($prepend) {
-            $this->collection->prepend(new Column($attributes));
-        } else {
-            $this->collection->push(new Column($attributes));
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add a index column.
-     *
-     * @param  array $attributes
-     * @return $this
-     */
-    public function addIndex(array $attributes = [])
-    {
-        $indexColumn = $this->config->get('datatables.index_column', 'DT_RowIndex');
-        $attributes = array_merge([
-            'defaultContent' => '',
-            'data' => $indexColumn,
-            'name' => $indexColumn,
-            'title' => '',
-            'render' => null,
-            'orderable' => false,
-            'searchable' => false,
-            'exportable' => false,
-            'printable' => true,
-            'footer' => '',
-        ], $attributes);
-        $this->collection->push(new Column($attributes));
-
-        return $this;
     }
 
     /**
