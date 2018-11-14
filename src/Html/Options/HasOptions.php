@@ -19,6 +19,7 @@ trait HasOptions
     use Plugins\AutoFill;
     use Plugins\Buttons;
     use Plugins\ColReorder;
+    use Plugins\FixedColumns;
 
     /**
      * Set deferLoading option value.
