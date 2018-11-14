@@ -17,15 +17,15 @@ trait Action
     {
         $attributes = array_merge([
             'defaultContent' => '',
-            'data' => 'action',
-            'name' => 'action',
-            'title' => 'Action',
-            'render' => null,
-            'orderable' => false,
-            'searchable' => false,
-            'exportable' => false,
-            'printable' => true,
-            'footer' => '',
+            'data'           => 'action',
+            'name'           => 'action',
+            'title'          => 'Action',
+            'render'         => null,
+            'orderable'      => false,
+            'searchable'     => false,
+            'exportable'     => false,
+            'printable'      => true,
+            'footer'         => '',
         ], $attributes);
 
         if ($prepend) {

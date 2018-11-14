@@ -2,9 +2,9 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Options extends Collection
 {
