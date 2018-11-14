@@ -17,7 +17,7 @@ trait KeyTable
      * @return $this
      * @see https://datatables.net/reference/option/keys
      */
-    public function keys($value)
+    public function keys($value = true)
     {
         $this->attributes['keys'] = $value;
 

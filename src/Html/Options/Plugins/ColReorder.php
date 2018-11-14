@@ -18,7 +18,7 @@ trait ColReorder
      * @return $this
      * @see https://datatables.net/reference/option/colReorder
      */
-    public function colReorder($value)
+    public function colReorder($value = true)
     {
         $this->attributes['colReorder'] = $value;
 

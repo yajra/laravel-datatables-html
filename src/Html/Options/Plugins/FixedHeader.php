@@ -17,7 +17,7 @@ trait FixedHeader
      * @return $this
      * @see https://datatables.net/reference/option/fixedHeader
      */
-    public function fixedHeader($value)
+    public function fixedHeader($value = true)
     {
         $this->attributes['fixedHeader'] = $value;
 

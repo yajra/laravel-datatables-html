@@ -17,7 +17,7 @@ trait RowReorder
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder
      */
-    public function rowReorder($value)
+    public function rowReorder($value = true)
     {
         $this->attributes['rowReorder'] = $value;
 

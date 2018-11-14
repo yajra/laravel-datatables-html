@@ -17,7 +17,7 @@ trait RowGroup
      * @return $this
      * @see https://datatables.net/reference/option/rowGroup
      */
-    public function rowGroup($value)
+    public function rowGroup($value = true)
     {
         $this->attributes['rowGroup'] = $value;
 

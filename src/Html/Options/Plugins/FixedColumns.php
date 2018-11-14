@@ -17,7 +17,7 @@ trait FixedColumns
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns
      */
-    public function fixedColumns($value)
+    public function fixedColumns($value = true)
     {
         $this->attributes['fixedColumns'] = $value;
 

@@ -17,7 +17,7 @@ trait Select
      * @return $this
      * @see https://datatables.net/reference/option/select
      */
-    public function select($value)
+    public function select($value = true)
     {
         $this->attributes['select'] = $value;
 

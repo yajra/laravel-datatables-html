@@ -18,7 +18,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/autoFill
      */
-    public function autoFill($value)
+    public function autoFill($value = true)
     {
         $this->attributes['autoFill'] = $value;
 

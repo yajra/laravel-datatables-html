@@ -17,7 +17,7 @@ trait Responsive
      * @return $this
      * @see https://datatables.net/reference/option/responsive
      */
-    public function responsive($value)
+    public function responsive($value = true)
     {
         $this->attributes['responsive'] = $value;
 

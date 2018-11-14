@@ -17,7 +17,7 @@ trait Scroller
      * @return $this
      * @see https://datatables.net/reference/option/scroller
      */
-    public function scroller($value)
+    public function scroller($value = true)
     {
         $this->attributes['scroller'] = $value;
 
