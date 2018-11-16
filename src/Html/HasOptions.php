@@ -1,6 +1,8 @@
 <?php
 
-namespace Yajra\DataTables\Html\Options;
+namespace Yajra\DataTables\Html;
+
+use Yajra\DataTables\Html\Options;
 
 /**
  * DataTables - Options builder.
@@ -9,22 +11,22 @@ namespace Yajra\DataTables\Html\Options;
  */
 trait HasOptions
 {
-    use HasFeatures;
-    use HasData;
-    use HasCallbacks;
-    use HasColumns;
-    use HasInternationalisation;
-    use Plugins\AutoFill;
-    use Plugins\Buttons;
-    use Plugins\ColReorder;
-    use Plugins\FixedColumns;
-    use Plugins\FixedHeader;
-    use Plugins\KeyTable;
-    use Plugins\Responsive;
-    use Plugins\RowGroup;
-    use Plugins\RowReorder;
-    use Plugins\Scroller;
-    use Plugins\Select;
+    use Options\HasFeatures;
+    use Options\HasData;
+    use Options\HasCallbacks;
+    use Options\HasColumns;
+    use Options\HasInternationalisation;
+    use Options\Plugins\AutoFill;
+    use Options\Plugins\Buttons;
+    use Options\Plugins\ColReorder;
+    use Options\Plugins\FixedColumns;
+    use Options\Plugins\FixedHeader;
+    use Options\Plugins\KeyTable;
+    use Options\Plugins\Responsive;
+    use Options\Plugins\RowGroup;
+    use Options\Plugins\RowReorder;
+    use Options\Plugins\Scroller;
+    use Options\Plugins\Select;
 
     /**
      * Set deferLoading option value.
