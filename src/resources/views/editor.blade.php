@@ -12,6 +12,9 @@
         @if($editor->template)
             template: '{{$editor->template}}',
         @endif
+        @if($editor->display)
+            display: '{{$editor->display}}',
+        @endif
         fields: @json($editor->fields),
         @if($editor->language)
             i18n: @json($editor->language)

@@ -2,42 +2,15 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-class Editor
+use Illuminate\Support\Fluent;
+
+class Editor extends Fluent
 {
-    /**
-     * @var string
-     */
-    public $instance = '';
-
-    /**
-     * @var string
-     */
-    public $ajax = '';
-
-    /**
-     * @var string
-     */
-    public $table = '';
-
-    /**
-     * @var string
-     */
-    public $template = '';
-
-    /**
-     * @var string
-     */
-    public $fields = '';
-
-    /**
-     * @var array
-     */
-    public $language = [];
-
-    /**
-     * @var string
-     */
-    public $scripts = '';
+    const DISPLAY_LIGHTBOX = 'lightbox';
+    const DISPLAY_ENVELOPE = 'envelope';
+    const DISPLAY_BOOTSTRAP = 'bootstrap';
+    const DISPLAY_FOUNDATION = 'foundation';
+    const DISPLAY_JQUERYUI = 'jqueryui';
 
     /**
      * Editor constructor.
@@ -46,7 +19,9 @@ class Editor
      */
     public function __construct($instance = 'editor')
     {
-        $this->instance = $instance;
+        $attributes['instance'] = $instance;
+
+        parent::__construct($attributes);
     }
 
     /**
@@ -68,7 +43,7 @@ class Editor
      */
     public function scripts($scripts)
     {
-        $this->scripts = $scripts;
+        $this->attributes['scripts'] = $scripts;
 
         return $this;
     }
@@ -81,7 +56,7 @@ class Editor
      */
     public function instance($instance)
     {
-        $this->instance = $instance;
+        $this->attributes['instance'] = $instance;
 
         return $this;
     }
@@ -94,7 +69,7 @@ class Editor
      */
     public function ajax($ajax)
     {
-        $this->ajax = $ajax;
+        $this->attributes['ajax'] = $ajax;
 
         return $this;
     }
@@ -107,7 +82,20 @@ class Editor
      */
     public function table($table)
     {
-        $this->table = $table;
+        $this->attributes['table'] = $table;
+
+        return $this;
+    }
+
+    /**
+     * Set Editor's display option.
+     *
+     * @param string $display
+     * @return $this
+     */
+    public function display($display)
+    {
+        $this->attributes['display'] = $display;
 
         return $this;
     }
@@ -120,7 +108,7 @@ class Editor
      */
     public function fields(array $fields)
     {
-        $this->fields = $fields;
+        $this->attributes['fields'] = $fields;
 
         return $this;
     }
@@ -133,7 +121,7 @@ class Editor
      */
     public function language(array $language)
     {
-        $this->language = $language;
+        $this->attributes['language'] = $language;
 
         return $this;
     }
@@ -146,7 +134,7 @@ class Editor
      */
     public function template($template)
     {
-        $this->template = $template;
+        $this->attributes['template'] = $template;
 
         return $this;
     }
