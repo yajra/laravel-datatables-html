@@ -66,6 +66,7 @@ class Editor extends Fluent
      *
      * @param string|array $ajax
      * @return $this
+     * @see https://editor.datatables.net/reference/option/ajax
      */
     public function ajax($ajax)
     {
@@ -79,6 +80,7 @@ class Editor extends Fluent
      *
      * @param string $table
      * @return $this
+     * @see https://editor.datatables.net/reference/option/table
      */
     public function table($table)
     {
@@ -88,10 +90,25 @@ class Editor extends Fluent
     }
 
     /**
+     * Set Editor's idSrc option.
+     *
+     * @param string $idSrc
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/idSrc
+     */
+    public function idSrc($idSrc = 'DT_RowId')
+    {
+        $this->attributes['idSrc'] = $idSrc;
+
+        return $this;
+    }
+
+    /**
      * Set Editor's display option.
      *
      * @param string $display
      * @return $this
+     * @see https://editor.datatables.net/reference/option/display
      */
     public function display($display)
     {
@@ -105,6 +122,7 @@ class Editor extends Fluent
      *
      * @param array $fields
      * @return $this
+     * @see https://editor.datatables.net/reference/option/fields
      */
     public function fields(array $fields)
     {
@@ -118,6 +136,7 @@ class Editor extends Fluent
      *
      * @param array $language
      * @return $this
+     * @see https://editor.datatables.net/reference/option/i18n
      */
     public function language(array $language)
     {
@@ -131,6 +150,7 @@ class Editor extends Fluent
      *
      * @param string $template
      * @return $this
+     * @see https://editor.datatables.net/reference/option/template
      */
     public function template($template)
     {
