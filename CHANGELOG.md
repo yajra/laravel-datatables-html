@@ -25,6 +25,8 @@ Editor::make('create')
 - Add missing `idSrc` Editor option setter.
 - Add missing `display` Editor option setter.
 
+> NOTE: You need to force [publish](https://github.com/yajra/laravel-datatables-html#publish-assets-optional) the blade templates to be able to use the features if needed.
+
 ### v4.0.0 - 11-14-2018
 
 #### ADDED
