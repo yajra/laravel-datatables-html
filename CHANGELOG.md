@@ -11,6 +11,17 @@
 ### v4.1.0 - 11-16-2018
 
 - Add full Editor events script builder as per https://editor.datatables.net/reference/event/.
+
+```php
+Editor::make('create')
+  ->on('create', 'js-script-here')
+  ->onCreate('js-script-here') // event via magic method.
+  ->fields([
+      Fields\Text::make('name'),
+      Fields\Text::make('email'),
+  ]);
+```
+
 - Add missing `idSrc` Editor option setter.
 - Add missing `display` Editor option setter.
 
