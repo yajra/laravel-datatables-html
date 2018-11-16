@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v4.1.0 - 11-16-2018
+
+- Add full Editor events script builder as per https://editor.datatables.net/reference/event/.
+- Add missing `idSrc` Editor option setter.
+- Add missing `display` Editor option setter.
+
 ### v4.0.0 - 11-14-2018
 
 #### ADDED
@@ -16,17 +22,17 @@ Add full builder support for the following options based on https://datatables.n
 
 ##### Add builder support for the following plugins:
 
-- [x] AutoFill 
-- [x] Buttons 
-- [x] ColReorder 
-- [x] FixedColumns 
-- [x] FixedHeader 
-- [x] KeyTable 
-- [x] Responsive 
-- [x] RowGroup 
-- [x] RowReorder 
-- [x] Scroller 
-- [x] Select 
+- [x] AutoFill
+- [x] Buttons
+- [x] ColReorder
+- [x] FixedColumns
+- [x] FixedHeader
+- [x] KeyTable
+- [x] Responsive
+- [x] RowGroup
+- [x] RowReorder
+- [x] Scroller
+- [x] Select
 
 > Note: All plugins requires their corresponding asset files.
 
