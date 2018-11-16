@@ -6,6 +6,8 @@ use Illuminate\Support\Fluent;
 
 class Editor extends Fluent
 {
+    use HasEvents;
+
     const DISPLAY_LIGHTBOX = 'lightbox';
     const DISPLAY_ENVELOPE = 'envelope';
     const DISPLAY_BOOTSTRAP = 'bootstrap';

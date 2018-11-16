@@ -24,6 +24,9 @@
         @endif
         });
         {!! $editor->scripts  !!}
+        @foreach ((array) $editor->events as $event)
+            {{$editor->instance}}.on('{!! $event['event']  !!}', {!! $event['script'] !!});
+        @endforeach
     @endforeach
     window.LaravelDataTables["%1$s"] = $("#%1$s").DataTable(%2$s);
 })(window,jQuery);
