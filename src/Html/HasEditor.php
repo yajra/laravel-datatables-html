@@ -1,6 +1,8 @@
 <?php
 
-namespace Yajra\DataTables\Html\Editor;
+namespace Yajra\DataTables\Html;
+
+use Yajra\DataTables\Html\Editor\Editor;
 
 trait HasEditor
 {
