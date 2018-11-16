@@ -40,9 +40,9 @@ Add full builder support for the following options based on https://datatables.n
 
 ```php
 ->buttons(
-    Button::makeIfCan('manage-users', 'create')->editor('create'),
-    Button::makeIf(true, 'edit')->editor('edit'),
-    Button::make('remove')->editor('password')->className('btn-danger'),
+    Button::makeIfCan('manage-users', 'create')->editor('editor'),
+    Button::makeIf(true, 'edit')->editor('editor'),
+    Button::make('remove')->editor('editor')->className('btn-danger'),
     Button::make('colvis')->text('<i class="fa fa-eye"></i>'),
     Button::make('export'),
     Button::make('print'),
