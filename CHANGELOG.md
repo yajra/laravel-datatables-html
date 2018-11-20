@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.2.0 - 11-20-2018
+
+- Add ajaxWithForm api to process dataTables with form data. [#86]
+
 ### v4.1.0 - 11-16-2018
 
 - Add full Editor events script builder as per https://editor.datatables.net/reference/event/.
@@ -335,6 +339,7 @@ To `created_at` with title `Created At`
 [#80]: https://github.com/yajra/laravel-datatables-html/pull/80
 [#83]: https://github.com/yajra/laravel-datatables-html/pull/83
 [#84]: https://github.com/yajra/laravel-datatables-html/pull/84
+[#86]: https://github.com/yajra/laravel-datatables-html/pull/86
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
