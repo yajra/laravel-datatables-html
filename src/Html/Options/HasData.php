@@ -118,4 +118,23 @@ trait HasData
 
         return $this->ajax ?: url()->current();
     }
+
+    /**
+     * Set ajax url with data added from form.
+     *
+     * @param string $url
+     * @param string $formSelector
+     * @return $this
+     */
+    public function ajaxWithForm($url, $formSelector)
+    {
+        $script = <<<CDATA
+var formData = $("{$formSelector}").find("input, select").serializeArray();
+$.each(formData, function(i, obj){
+    data[obj.name] = obj.value;
+});
+CDATA;
+
+        return $this->minifiedAjax($url, $script);
+    }
 }
