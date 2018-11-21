@@ -2,6 +2,8 @@
 
 namespace Yajra\DataTables\Html\Options;
 
+use Yajra\DataTables\Html\Options\Languages;
+
 /**
  * DataTables - Internationalisation option builder.
  *
@@ -9,6 +11,8 @@ namespace Yajra\DataTables\Html\Options;
  */
 trait HasInternationalisation
 {
+    use Languages\AutoFill;
+
     /**
      * Set language option value.
      *
