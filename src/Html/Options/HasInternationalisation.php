@@ -37,7 +37,7 @@ trait HasInternationalisation
     /**
      * Set language decimal option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.decimal
      */
@@ -51,7 +51,7 @@ trait HasInternationalisation
     /**
      * Set language emptyTable option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.emptyTable
      */
@@ -65,7 +65,7 @@ trait HasInternationalisation
     /**
      * Set language info option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.info
      */
@@ -79,7 +79,7 @@ trait HasInternationalisation
     /**
      * Set language infoEmpty option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoEmpty
      */
@@ -93,7 +93,7 @@ trait HasInternationalisation
     /**
      * Set language infoFiltered option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoFiltered
      */
@@ -107,7 +107,7 @@ trait HasInternationalisation
     /**
      * Set language infoPostFix option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoPostFix
      */
@@ -121,7 +121,7 @@ trait HasInternationalisation
     /**
      * Set language lengthMenu option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.lengthMenu
      */
@@ -135,7 +135,7 @@ trait HasInternationalisation
     /**
      * Set language loadingRecords option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.loadingRecords
      */
@@ -149,7 +149,7 @@ trait HasInternationalisation
     /**
      * Set language processing option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.processing
      */
@@ -163,7 +163,7 @@ trait HasInternationalisation
     /**
      * Set language search option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.search
      */
@@ -177,7 +177,7 @@ trait HasInternationalisation
     /**
      * Set language searchPlaceholder option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.searchPlaceholder
      */
@@ -191,7 +191,7 @@ trait HasInternationalisation
     /**
      * Set language thousands option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.thousands
      */
@@ -205,7 +205,7 @@ trait HasInternationalisation
     /**
      * Set language url option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.url
      */
@@ -219,7 +219,7 @@ trait HasInternationalisation
     /**
      * Set language zeroRecords option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.zeroRecords
      */

@@ -7,11 +7,11 @@ trait AutoFill
     /**
      * Set language autoFill option value.
      *
-     * @param mixed $value
+     * @param array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill
      */
-    public function languageAutoFill($value)
+    public function languageAutoFill(array $value)
     {
         $this->attributes['language']['autoFill'] = $value;
 

@@ -7,11 +7,11 @@ trait Aria
     /**
      * Set language aria option value.
      *
-     * @param mixed $value
+     * @param array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria
      */
-    public function languageAria($value)
+    public function languageAria(array $value)
     {
         $this->attributes['language']['aria'] = $value;
 
@@ -21,11 +21,11 @@ trait Aria
     /**
      * Set language aria paginate option value.
      *
-     * @param mixed $value
+     * @param array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate
      */
-    public function languageAriaPaginate($value)
+    public function languageAriaPaginate(array $value)
     {
         $this->attributes['language']['aria']['paginate'] = $value;
 
@@ -35,7 +35,7 @@ trait Aria
     /**
      * Set language aria paginate first option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.first
      */
@@ -49,7 +49,7 @@ trait Aria
     /**
      * Set language aria paginate last option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.last
      */
@@ -63,7 +63,7 @@ trait Aria
     /**
      * Set language aria paginate next option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.next
      */
@@ -77,7 +77,7 @@ trait Aria
     /**
      * Set language aria paginate previous option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.previous
      */
@@ -91,7 +91,7 @@ trait Aria
     /**
      * Set language aria sortAscending option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.sortAscending
      */
@@ -105,7 +105,7 @@ trait Aria
     /**
      * Set language aria sortDescending option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.sortDescending
      */

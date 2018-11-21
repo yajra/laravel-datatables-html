@@ -7,11 +7,11 @@ trait Paginate
     /**
      * Set language aria paginate option value.
      *
-     * @param mixed $value
+     * @param array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate
      */
-    public function languagePaginate($value)
+    public function languagePaginate(array $value)
     {
         $this->attributes['language']['paginate'] = $value;
 
@@ -21,7 +21,7 @@ trait Paginate
     /**
      * Set language aria paginate first option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.first
      */
@@ -35,7 +35,7 @@ trait Paginate
     /**
      * Set language aria paginate last option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.last
      */
@@ -49,7 +49,7 @@ trait Paginate
     /**
      * Set language aria paginate next option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.next
      */
@@ -63,7 +63,7 @@ trait Paginate
     /**
      * Set language aria paginate previous option value.
      *
-     * @param mixed $value
+     * @param string $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.previous
      */

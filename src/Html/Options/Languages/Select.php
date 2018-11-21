@@ -7,7 +7,7 @@ trait Select
     /**
      * Set language select option value.
      *
-     * @param mixed $value
+     * @param array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select
      */
@@ -21,7 +21,7 @@ trait Select
     /**
      * Set language select cells option value.
      *
-     * @param mixed $value
+     * @param string|array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.cells
      */
@@ -35,7 +35,7 @@ trait Select
     /**
      * Set language select columns option value.
      *
-     * @param mixed $value
+     * @param string|array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.columns
      */
@@ -49,7 +49,7 @@ trait Select
     /**
      * Set language select rows option value.
      *
-     * @param mixed $value
+     * @param string|array $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.rows
      */
