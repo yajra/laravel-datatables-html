@@ -78,6 +78,7 @@ class Column extends Fluent
      *
      * @param bool $flag
      * @return $this
+     * @see https://datatables.net/reference/option/columns.searchable
      */
     public function searchable(bool $flag = true)
     {
@@ -91,6 +92,7 @@ class Column extends Fluent
      *
      * @param bool $flag
      * @return $this
+     * @see https://datatables.net/reference/option/columns.orderable
      */
     public function orderable(bool $flag = true)
     {
@@ -104,6 +106,7 @@ class Column extends Fluent
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/columns.title
      */
     public function title($value)
     {
@@ -150,6 +153,7 @@ class Column extends Fluent
      *
      * @param string $class
      * @return $this
+     * @see https://datatables.net/reference/option/columns.className
      */
     public function className($class)
     {
@@ -163,6 +167,7 @@ class Column extends Fluent
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/columns.defaultContent
      */
     public function content($value)
     {
@@ -176,6 +181,7 @@ class Column extends Fluent
      *
      * @param bool $flag
      * @return $this
+     * @see https://datatables.net/reference/option/columns.visible
      */
     public function visible(bool $flag = true)
     {
@@ -232,6 +238,7 @@ class Column extends Fluent
      *
      * @param int|string $value
      * @return $this
+     * @see https://datatables.net/reference/option/columns.width
      */
     public function width($value)
     {
@@ -245,6 +252,7 @@ class Column extends Fluent
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/columns.name
      */
     public function name($value)
     {
@@ -254,10 +262,25 @@ class Column extends Fluent
     }
 
     /**
+     * Set column edit field.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.editField
+     */
+    public function editField($value)
+    {
+        $this->attributes['editField'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Set column renderer.
      *
      * @param mixed $value
      * @return $this
+     * @see https://datatables.net/reference/option/columns.render
      */
     public function render($value)
     {
