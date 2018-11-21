@@ -11,6 +11,7 @@ use Yajra\DataTables\Html\Options\Languages;
  */
 trait HasInternationalisation
 {
+    use Languages\Aria;
     use Languages\AutoFill;
 
     /**
