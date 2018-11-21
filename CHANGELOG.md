@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.3.1 - 11-21-2018
+
+- Allow null string computed column title.
+
 ### v4.3.0 - 11-21-2018
 
 #### Added
