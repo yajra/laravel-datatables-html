@@ -14,6 +14,7 @@ trait HasInternationalisation
     use Languages\Aria;
     use Languages\AutoFill;
     use Languages\Paginate;
+    use Languages\Select;
 
     /**
      * Set language option value.
