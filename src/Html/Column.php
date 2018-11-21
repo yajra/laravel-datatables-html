@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
  * @property string exportable
  * @property string footer
  * @property array attributes
- * @see     https://datatables.net/reference/option/ for possible columns option
+ * @see https://datatables.net/reference/option/#columns
  */
 class Column extends Fluent
 {
@@ -248,7 +248,21 @@ class Column extends Fluent
     }
 
     /**
-     * Set column name.
+     * Set column data option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.data
+     */
+    public function data($value)
+    {
+        $this->attributes['data'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column name option value.
      *
      * @param string $value
      * @return $this
@@ -262,7 +276,7 @@ class Column extends Fluent
     }
 
     /**
-     * Set column edit field.
+     * Set column edit field option value.
      *
      * @param string $value
      * @return $this
@@ -271,6 +285,104 @@ class Column extends Fluent
     public function editField($value)
     {
         $this->attributes['editField'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column orderData option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.orderData
+     */
+    public function orderData($value)
+    {
+        $this->attributes['orderData'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column orderDataType option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.orderDataType
+     */
+    public function orderDataType($value)
+    {
+        $this->attributes['orderDataType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column orderSequence option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.orderSequence
+     */
+    public function orderSequence($value)
+    {
+        $this->attributes['orderSequence'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column cellType option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.cellType
+     */
+    public function cellType($value)
+    {
+        $this->attributes['cellType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column type option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.type
+     */
+    public function type($value)
+    {
+        $this->attributes['type'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column contentPadding option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.contentPadding
+     */
+    public function contentPadding($value)
+    {
+        $this->attributes['contentPadding'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set column createdCell option value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.createdCell
+     */
+    public function createdCell($value)
+    {
+        $this->attributes['createdCell'] = $value;
 
         return $this;
     }
