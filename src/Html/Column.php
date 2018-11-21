@@ -61,12 +61,12 @@ class Column extends Fluent
      * Create a computed column that is not searchable/orderable.
      *
      * @param string $data
-     * @param string $title
+     * @param string|null $title
      * @return Column
      */
-    public static function computed($data, $title = '')
+    public static function computed($data, $title = null)
     {
-        if (empty($title)) {
+        if (is_null($title)) {
             $title = self::titleFormat($data);
         }
 
