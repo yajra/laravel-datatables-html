@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.2.1 - 11-21-2018
+
+- Fix computed column title if nothing is set.
+
 ### v4.2.0 - 11-20-2018
 
 - Add ajaxWithForm api to process dataTables with form data. [#86]
