@@ -23,10 +23,7 @@ class Column extends Fluent
      */
     public function __construct($attributes = [])
     {
-        $attributes['title'] = isset($attributes['title']) ? $attributes['title'] : Str::title(
-            str_replace('_', ' ', $attributes['data'])
-        );
-
+        $attributes['title'] = isset($attributes['title']) ? $attributes['title'] : self::titleFormat($attributes['data']);
         $attributes['orderable'] = isset($attributes['orderable']) ? $attributes['orderable'] : true;
         $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
@@ -50,6 +47,17 @@ class Column extends Fluent
     }
 
     /**
+     * Format string to title case.
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function titleFormat($value)
+    {
+        return Str::title(str_replace('_', ' ', $value));
+    }
+
+    /**
      * Create a computed column that is not searchable/orderable.
      *
      * @param string $data
@@ -58,6 +66,10 @@ class Column extends Fluent
      */
     public static function computed($data, $title = '')
     {
+        if (empty($title)) {
+            $title = self::titleFormat($data);
+        }
+
         return static::make($data)->title($title)->orderable(false)->searchable(false);
     }
 
