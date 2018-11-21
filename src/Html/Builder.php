@@ -20,6 +20,16 @@ class Builder
     use Columns\Action;
     use Columns\Checkbox;
 
+    // Select plugin constants.
+    const SELECT_STYLE_API         = 'api';
+    const SELECT_STYLE_SINGLE      = 'single';
+    const SELECT_STYLE_MULTI       = 'multi';
+    const SELECT_STYLE_OS          = 'os';
+    const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
+    const SELECT_ITEMS_ROW         = 'row';
+    const SELECT_ITEMS_COLUMN      = 'column';
+    const SELECT_ITEMS_CELL        = 'cell';
+
     /**
      * @var Collection
      */
