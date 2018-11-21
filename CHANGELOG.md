@@ -8,6 +8,43 @@
 
 ## CHANGELOG
 
+### v4.3.0 - 11-21-2018
+
+#### Added
+
+- Builder Support for the following plugins:
+
+- [x] AutoFill
+- [x] ColReorder
+- [x] FixedColumns
+- [x] FixedHeader
+- [x] KeyTable
+- [x] Responsive
+- [x] RowGroup
+- [x] RowReorder
+- [x] Scroller
+- [x] Select
+
+- Builder Support for setting the language:
+
+- [x] Language
+- [x] Language\Aria
+- [x] Language\AutoFill
+- [x] Language\Paginate
+- [x] Language\Select
+
+- Add missing column option setters:
+
+- [x] data
+- [x] orderData
+- [x] orderDataType
+- [x] orderSequence
+- [x] cellType
+- [x] type
+- [x] contentPadding
+- [x] createdCell
+- [x] editField
+
 ### v4.2.1 - 11-21-2018
 
 - Fix computed column title if nothing is set.
