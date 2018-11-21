@@ -11,7 +11,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria
      */
-    public function languageAutoFill($value)
+    public function languageAria($value)
     {
         $this->attributes['language']['aria'] = $value;
 
