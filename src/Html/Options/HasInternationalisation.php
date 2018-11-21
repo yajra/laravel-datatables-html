@@ -13,6 +13,7 @@ trait HasInternationalisation
 {
     use Languages\Aria;
     use Languages\AutoFill;
+    use Languages\Paginate;
 
     /**
      * Set language option value.
