@@ -34,7 +34,7 @@ class Column extends Fluent
         // Allow methods override attribute value
         foreach ($attributes as $attribute => $value) {
             $method = 'parse' . ucfirst(strtolower($attribute));
-            if (method_exists($this, $method)) {
+            if (! is_null($value) && method_exists($this, $method)) {
                 $attributes[$attribute] = $this->$method($value);
             }
         }
