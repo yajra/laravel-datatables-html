@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.3.2 - 02-05-2019
+
+- Avoid call parseRender when render attribute is null. [#87] credits to @JulianBustamante.
+
 ### v4.3.1 - 11-21-2018
 
 - Allow null string computed column title.
@@ -385,6 +389,7 @@ To `created_at` with title `Created At`
 [#83]: https://github.com/yajra/laravel-datatables-html/pull/83
 [#84]: https://github.com/yajra/laravel-datatables-html/pull/84
 [#86]: https://github.com/yajra/laravel-datatables-html/pull/86
+[#87]: https://github.com/yajra/laravel-datatables-html/pull/87
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
