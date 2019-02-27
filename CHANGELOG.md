@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.4.0 - 02-27-2019
+
+- Add support for Laravel 5.8 / DataTables v9.0 [#90].
+
 ### v4.3.2 - 02-05-2019
 
 - Avoid call parseRender when render attribute is null. [#87] credits to @JulianBustamante.
@@ -390,6 +394,7 @@ To `created_at` with title `Created At`
 [#84]: https://github.com/yajra/laravel-datatables-html/pull/84
 [#86]: https://github.com/yajra/laravel-datatables-html/pull/86
 [#87]: https://github.com/yajra/laravel-datatables-html/pull/87
+[#90]: https://github.com/yajra/laravel-datatables-html/pull/90
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
