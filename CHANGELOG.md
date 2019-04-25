@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.4.1 - 04-25-2019
+
+- Add title attribute for table headers. [#94], credits to @HOFFMACHINE.
+
+
 ### v4.4.0 - 02-27-2019
 
 - Add support for Laravel 5.8 / DataTables v9.0 [#90].
@@ -395,6 +400,7 @@ To `created_at` with title `Created At`
 [#86]: https://github.com/yajra/laravel-datatables-html/pull/86
 [#87]: https://github.com/yajra/laravel-datatables-html/pull/87
 [#90]: https://github.com/yajra/laravel-datatables-html/pull/90
+[#94]: https://github.com/yajra/laravel-datatables-html/pull/94
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
