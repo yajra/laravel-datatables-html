@@ -298,4 +298,17 @@ class Field extends Fluent
 
         return $this;
     }
+
+    /**
+     * Set field opts value.
+     *
+     * @param bool $value
+     * @return $this
+     */
+    public function opts(array $value)
+    {
+        $this->attributes['opts'] = $value;
+
+        return $this;
+    }
 }
