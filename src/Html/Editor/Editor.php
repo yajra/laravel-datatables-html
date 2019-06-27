@@ -2,7 +2,10 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Html\Editor\Fields\Field;
 
 class Editor extends Fluent
 {
@@ -159,5 +162,78 @@ class Editor extends Fluent
         $this->attributes['template'] = $template;
 
         return $this;
+    }
+
+    /**
+     * Convert the fluent instance to an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = parent::toArray();
+
+        foreach ($array['fields'] as &$field) {
+            if ($field instanceof Field) {
+                $field = $field->toArray();
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * Convert the fluent instance to JSON.
+     *
+     * @param  int  $options
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        $parameters = $this->jsonSerialize();
+
+        $values = [];
+        $replacements = [];
+
+        foreach (array_dot($parameters) as $key => $value) {
+            if ($key === 'table') {
+                array_set($parameters, $key, '#' . $value);
+            }
+
+            if ($this->isCallbackFunction($value, $key)) {
+                $values[] = trim($value);
+                array_set($parameters, $key, '%' . $key . '%');
+                $replacements[] = '"%' . $key . '%"';
+            }
+        }
+
+        $new = [];
+        foreach ($parameters as $key => $value) {
+            array_set($new, $key, $value);
+        }
+
+        $json = json_encode($new, $options);
+
+        $json = str_replace($replacements, $values, $json);
+
+        return $json;
+    }
+
+    /**
+     * Check if given key & value is a valid callback js function.
+     *
+     * @param string $value
+     * @param string $key
+     * @return bool
+     */
+    protected function isCallbackFunction($value, $key)
+    {
+        if (empty($value)) {
+            return false;
+        }
+
+        $callbacks = config('datatables-html.callback', ['$', '$.', 'function']);
+
+        return Str::startsWith(trim($value), $callbacks) || Str::contains($key, ['editor', 'minDate', 'maxDate']);
     }
 }

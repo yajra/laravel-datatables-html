@@ -264,4 +264,16 @@ class Builder
 
         return $script;
     }
+
+    /**
+     * Generate scripts that sets the dataTables options into a variable.
+     *
+     * @return $this
+     */
+    public function asOptions()
+    {
+        $this->setTemplate('datatables::options');
+
+        return $this;
+    }
 }
