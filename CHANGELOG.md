@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.5.0 - 06-27-2019
+
+- Add ability to generate dataTables options for external js use. [#99]
+
 ### v4.4.1 - 04-25-2019
 
 - Add title attribute for table headers. [#94], credits to @HOFFMACHINE.
@@ -401,6 +405,7 @@ To `created_at` with title `Created At`
 [#87]: https://github.com/yajra/laravel-datatables-html/pull/87
 [#90]: https://github.com/yajra/laravel-datatables-html/pull/90
 [#94]: https://github.com/yajra/laravel-datatables-html/pull/94
+[#99]: https://github.com/yajra/laravel-datatables-html/pull/99
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
