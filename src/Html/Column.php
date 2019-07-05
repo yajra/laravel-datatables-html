@@ -402,6 +402,19 @@ class Column extends Fluent
     }
 
     /**
+     * Set column footer.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function footer($value)
+    {
+        $this->attributes['footer'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Parse render attribute.
      *
      * @param mixed $value
