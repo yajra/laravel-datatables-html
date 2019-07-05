@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.5.1 - 07-05-2019
+
+- Add fluent column footer setter. [#101]
+
+
 ### v4.5.0 - 06-27-2019
 
 - Add ability to generate dataTables options for external js use. [#99]
@@ -406,6 +411,7 @@ To `created_at` with title `Created At`
 [#90]: https://github.com/yajra/laravel-datatables-html/pull/90
 [#94]: https://github.com/yajra/laravel-datatables-html/pull/94
 [#99]: https://github.com/yajra/laravel-datatables-html/pull/99
+[#101]: https://github.com/yajra/laravel-datatables-html/pull/101
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
