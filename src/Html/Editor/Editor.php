@@ -145,7 +145,7 @@ class Editor extends Fluent
      */
     public function language(array $language)
     {
-        $this->attributes['language'] = $language;
+        $this->attributes['i18n'] = $language;
 
         return $this;
     }
