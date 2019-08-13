@@ -8,10 +8,13 @@
 
 ## CHANGELOG
 
+### v4.5.2 - 09-13-2019
+
+- Fix [#102] language key and use i18n. [#103], credits to @matteocostantini.
+
 ### v4.5.1 - 07-05-2019
 
 - Add fluent column footer setter. [#101]
-
 
 ### v4.5.0 - 06-27-2019
 
@@ -412,6 +415,8 @@ To `created_at` with title `Created At`
 [#94]: https://github.com/yajra/laravel-datatables-html/pull/94
 [#99]: https://github.com/yajra/laravel-datatables-html/pull/99
 [#101]: https://github.com/yajra/laravel-datatables-html/pull/101
+[#103]: https://github.com/yajra/laravel-datatables-html/pull/103
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
+[#102]: https://github.com/yajra/laravel-datatables-html/issues/102
