@@ -229,7 +229,7 @@ class Editor extends Fluent
      */
     protected function isCallbackFunction($value, $key)
     {
-        if (empty($value)) {
+        if (empty($value) || is_object($value) || is_array($value)) {
             return false;
         }
 
