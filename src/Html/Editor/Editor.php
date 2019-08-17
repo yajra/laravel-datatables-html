@@ -3,6 +3,7 @@
 namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Editor\Fields\Field;
@@ -173,9 +174,9 @@ class Editor extends Fluent
     {
         $array = parent::toArray();
 
-        foreach ($array['fields'] as &$field) {
+        foreach (Arr::get($array, 'fields', []) as $key => &$field) {
             if ($field instanceof Field) {
-                $field = $field->toArray();
+                Arr::set($array['fields'], $key, $field->toArray());
             }
         }
 
