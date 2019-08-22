@@ -8,12 +8,12 @@
 
 ## CHANGELOG
 
-### v4.5.3 - 09-17-2019
+### v4.5.3 - 08-17-2019
 
 - Fix error when no editor fields was defined. [52f0537c5913c84fb5e8a58bbd7db142b987daaf](https://github.com/yajra/laravel-datatables-html/commit/52f0537c5913c84fb5e8a58bbd7db142b987daaf)
 - Return false when validating callback value is an array or an object. [b76cdf806c85368fce70a9034153dec6e107dd2f](https://github.com/yajra/laravel-datatables-html/commit/52f0537c5913c84fb5e8a58bbd7db142b987daaf)
 
-### v4.5.2 - 09-13-2019
+### v4.5.2 - 08-13-2019
 
 - Fix [#102] language key and use i18n. [#103], credits to @matteocostantini.
 
