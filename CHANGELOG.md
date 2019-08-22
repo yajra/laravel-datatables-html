@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.5.4 - 08-22-2019
+
+- Add missing buttons columns & exportOptions setter.
+
 ### v4.5.3 - 08-17-2019
 
 - Fix error when no editor fields was defined. [52f0537c5913c84fb5e8a58bbd7db142b987daaf](https://github.com/yajra/laravel-datatables-html/commit/52f0537c5913c84fb5e8a58bbd7db142b987daaf)
