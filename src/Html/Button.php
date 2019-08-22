@@ -133,6 +133,32 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set columns option value.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function columns($value)
+    {
+        $this->attributes['columns'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set exportOptions option value.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function exportOptions($value)
+    {
+        $this->attributes['exportOptions'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Convert the Fluent instance to an array.
      *
      * @return array
