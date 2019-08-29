@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.6.0 - 08-29-2019
+
+- Return static on Field for better IDE support.
+- Add initial support for Select2 editor plugin.
+
 ### v4.5.4 - 08-22-2019
 
 - Add missing buttons columns & exportOptions setter.
