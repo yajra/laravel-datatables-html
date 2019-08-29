@@ -8,6 +8,14 @@
 
 ## CHANGELOG
 
+### v4.7.0 - 08-29-2019
+
+- Add BelongsTo field builder.
+
+```php
+BelongsTo::model(Model::class, 'name')
+```
+
 ### v4.6.0 - 08-29-2019
 
 - Return static on Field for better IDE support.
