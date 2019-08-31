@@ -174,6 +174,8 @@ class Editor extends Fluent
     {
         $array = parent::toArray();
 
+        unset($array['events']);
+
         foreach (Arr::get($array, 'fields', []) as $key => &$field) {
             if ($field instanceof Field) {
                 Arr::set($array['fields'], $key, $field->toArray());
@@ -192,6 +194,8 @@ class Editor extends Fluent
     public function toJson($options = 0)
     {
         $parameters = $this->jsonSerialize();
+
+        unset($parameters['events']);
 
         $values = [];
         $replacements = [];
