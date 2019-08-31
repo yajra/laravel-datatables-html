@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.7.1 - 08-31-2019
+
+- Unset editor events key when serializing to array or json.
+- Fix editor events script builder.
+
 ### v4.7.0 - 08-29-2019
 
 - Add BelongsTo field builder.
