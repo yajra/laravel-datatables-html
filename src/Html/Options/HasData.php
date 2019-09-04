@@ -2,6 +2,8 @@
 
 namespace Yajra\DataTables\Html\Options;
 
+use Illuminate\Support\Arr;
+
 /**
  * DataTables - Data option builder.
  *
@@ -40,8 +42,8 @@ trait HasData
         }
 
         unset($attributes['method']);
-        array_set($attributes, 'type', 'POST');
-        array_set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
+        Arr::set($attributes, 'type', 'POST');
+        Arr::set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
 
         return $this->ajax($attributes);
     }

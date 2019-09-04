@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Mockery as m;
 use Yajra\DataTables\Factory;
 use Yajra\DataTables\Html\Builder;
@@ -53,7 +54,7 @@ class Config
     {
         $keys               = explode('.', $key);
         $config             = require __DIR__ . '/../src/config/config.php';
-        $config['builders'] = array_add($config['builders'], 'Mockery_8_Illuminate_Database_Query_Builder', 'query');
+        $config['builders'] = Arr::add($config['builders'], 'Mockery_8_Illuminate_Database_Query_Builder', 'query');
 
         return $config[$keys[1]];
     }
