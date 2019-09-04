@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.8.0 - 00-04-2019
+
+- Add support Laravel 6.0 & remove deprecated functions [#107], credits to @sangnguyenplus.
+
 ### v4.7.1 - 08-31-2019
 
 - Unset editor events key when serializing to array or json.
@@ -443,6 +447,7 @@ To `created_at` with title `Created At`
 [#99]: https://github.com/yajra/laravel-datatables-html/pull/99
 [#101]: https://github.com/yajra/laravel-datatables-html/pull/101
 [#103]: https://github.com/yajra/laravel-datatables-html/pull/103
+[#107]: https://github.com/yajra/laravel-datatables-html/pull/107
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
