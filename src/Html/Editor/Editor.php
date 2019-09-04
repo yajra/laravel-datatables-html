@@ -200,21 +200,21 @@ class Editor extends Fluent
         $values = [];
         $replacements = [];
 
-        foreach (array_dot($parameters) as $key => $value) {
+        foreach (Arr::dot($parameters) as $key => $value) {
             if ($key === 'table') {
-                array_set($parameters, $key, '#' . $value);
+                Arr::set($parameters, $key, '#' . $value);
             }
 
             if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
-                array_set($parameters, $key, '%' . $key . '%');
+                Arr::set($parameters, $key, '%' . $key . '%');
                 $replacements[] = '"%' . $key . '%"';
             }
         }
 
         $new = [];
         foreach ($parameters as $key => $value) {
-            array_set($new, $key, $value);
+            Arr::set($new, $key, $value);
         }
 
         $json = json_encode($new, $options);

@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
@@ -427,7 +428,7 @@ class Column extends Fluent
         $parameters = [];
 
         if (is_array($value)) {
-            $parameters = array_except($value, 0);
+            $parameters = Arr::except($value, 0);
             $value = $value[0];
         }
 
@@ -473,6 +474,6 @@ class Column extends Fluent
      */
     public function toArray()
     {
-        return array_except($this->attributes, ['printable', 'exportable', 'footer']);
+        return Arr::except($this->attributes, ['printable', 'exportable', 'footer']);
     }
 }
