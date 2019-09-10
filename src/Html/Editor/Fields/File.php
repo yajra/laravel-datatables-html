@@ -18,7 +18,7 @@ class File extends Field
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->displayFile();
+        return parent::make($name, $label)->displayFile()->clearText()->noImageText();
     }
 
     /**
