@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.10.1 - 09-10-2019
+
+- Remove editor dependency when display the image.
+- Fix js issue when editing.
+
 ### v4.10.0 - 09-10-2019
 
 - Fix displaying of uploaded image preview.
