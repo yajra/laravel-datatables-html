@@ -12,6 +12,13 @@ class File extends Field
     protected $type = 'upload';
 
     /**
+     * Editor instance.
+     *
+     * @var string
+     */
+    protected $editor = 'editor';
+
+    /**
      * @param string $name
      * @param string $label
      * @return \Yajra\DataTables\Html\Editor\Fields\Field|static
@@ -22,13 +29,26 @@ class File extends Field
     }
 
     /**
+     * Set editor instance for file upload.
+     *
+     * @param string $editor
+     * @return $this
+     */
+    public function editor($editor)
+    {
+        $this->editor = $editor;
+
+        return $this;
+    }
+
+    /**
      * Display image upon upload.
      *
      * @return $this
      */
     public function displayImage()
     {
-        return $this->display("function (file_id) { return '<img src=\"' + file_id + '\"/>'; }");
+        return $this->display("function (file_id) { return file_id ? '<img src=\"' + {$this->editor}.file('files', file_id).url + '\"/>' : null; }");
     }
 
     /**
