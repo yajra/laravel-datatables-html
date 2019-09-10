@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.10.0 - 09-10-2019
+
+- Fix displaying of uploaded image preview.
+- Add File editor instance setter.
+
 ### v4.9.0 - 09-10-2019
 
 - Add File and Image editor fields. [#108]
