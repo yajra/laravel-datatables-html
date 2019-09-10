@@ -48,7 +48,7 @@ class File extends Field
      */
     public function displayImage()
     {
-        return $this->display("function (file_id) { return file_id ? '<img src=\"' + {$this->editor}.file('files', file_id).url + '\"/>' : null; }");
+        return $this->display("function (file_id) { return file_id ? '<img src=\"storage/' + file_id + '\"/>' : null; }");
     }
 
     /**
