@@ -8,7 +8,11 @@
 
 ## CHANGELOG
 
-### v4.8.0 - 00-04-2019
+### v4.9.0 - 09-10-2019
+
+- Add File and Image editor fields. [#108]
+
+### v4.8.0 - 09-04-2019
 
 - Add support Laravel 6.0 & remove deprecated functions [#107], credits to @sangnguyenplus.
 
@@ -448,6 +452,7 @@ To `created_at` with title `Created At`
 [#101]: https://github.com/yajra/laravel-datatables-html/pull/101
 [#103]: https://github.com/yajra/laravel-datatables-html/pull/103
 [#107]: https://github.com/yajra/laravel-datatables-html/pull/107
+[#108]: https://github.com/yajra/laravel-datatables-html/pull/108
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
