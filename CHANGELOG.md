@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.11.0 - 09-13-2019
+
+- Add select2 ajax option support. [#109]
+
 ### v4.10.1 - 09-10-2019
 
 - Remove editor dependency when display the image.
@@ -463,6 +467,7 @@ To `created_at` with title `Created At`
 [#103]: https://github.com/yajra/laravel-datatables-html/pull/103
 [#107]: https://github.com/yajra/laravel-datatables-html/pull/107
 [#108]: https://github.com/yajra/laravel-datatables-html/pull/108
+[#109]: https://github.com/yajra/laravel-datatables-html/pull/109
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
