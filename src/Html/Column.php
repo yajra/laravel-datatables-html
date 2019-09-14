@@ -389,6 +389,18 @@ class Column extends Fluent
     }
 
     /**
+     * Use the js renderer "$.fn.dataTable.render.".
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.render
+     */
+    public function renderJs($value)
+    {
+        return $this->render('$.fn.dataTable.render.' . $value);
+    }
+
+    /**
      * Set column renderer.
      *
      * @param mixed $value
@@ -397,7 +409,7 @@ class Column extends Fluent
      */
     public function render($value)
     {
-        $this->attributes['render'] = $value;
+        $this->attributes['render'] = $this->parseRender($value);
 
         return $this;
     }
