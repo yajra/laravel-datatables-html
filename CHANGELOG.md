@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.13.0 - 09-14-2019
+
+- Add renderJs ability to pass parameter to js from php argument.
+- `->renderJs('prefix', 'hrs')` == `->renderJs('prefix("hrs")')`
+
 ### v4.12.0 - 09-14-2019
 
 - Add renderJs helper to use the built-in and custom renderer.
