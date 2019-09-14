@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.12.0 - 09-14-2019
+
+- Add renderJs helper to use the built-in and custom renderer.
+- Ex: `->renderJs("boolean()")`, `->renderJs("number()")`.
+
 ### v4.11.0 - 09-13-2019
 
 - Add select2 ajax option support. [#109]
