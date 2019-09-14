@@ -3,8 +3,8 @@
 namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
 
 /**
  * @property string data
@@ -24,12 +24,12 @@ class Column extends Fluent
      */
     public function __construct($attributes = [])
     {
-        $attributes['title'] = isset($attributes['title']) ? $attributes['title'] : self::titleFormat($attributes['data']);
-        $attributes['orderable'] = isset($attributes['orderable']) ? $attributes['orderable'] : true;
+        $attributes['title']      = isset($attributes['title']) ? $attributes['title'] : self::titleFormat($attributes['data']);
+        $attributes['orderable']  = isset($attributes['orderable']) ? $attributes['orderable'] : true;
         $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
         $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
-        $attributes['printable'] = isset($attributes['printable']) ? $attributes['printable'] : true;
-        $attributes['footer'] = isset($attributes['footer']) ? $attributes['footer'] : '';
+        $attributes['printable']  = isset($attributes['printable']) ? $attributes['printable'] : true;
+        $attributes['footer']     = isset($attributes['footer']) ? $attributes['footer'] : '';
         $attributes['attributes'] = isset($attributes['attributes']) ? $attributes['attributes'] : [];
 
         // Allow methods override attribute value
@@ -426,19 +426,6 @@ class Column extends Fluent
     }
 
     /**
-     * Set column footer.
-     *
-     * @param mixed $value
-     * @return $this
-     */
-    public function footer($value)
-    {
-        $this->attributes['footer'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Parse render attribute.
      *
      * @param mixed $value
@@ -447,12 +434,12 @@ class Column extends Fluent
     public function parseRender($value)
     {
         /** @var \Illuminate\Contracts\View\Factory $view */
-        $view = app('view');
+        $view       = app('view');
         $parameters = [];
 
         if (is_array($value)) {
             $parameters = Arr::except($value, 0);
-            $value = $value[0];
+            $value      = $value[0];
         }
 
         if (is_callable($value)) {
@@ -493,10 +480,27 @@ class Column extends Fluent
     }
 
     /**
+     * Set column footer.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function footer($value)
+    {
+        $this->attributes['footer'] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
     {
-        return Arr::except($this->attributes, ['printable', 'exportable', 'footer']);
+        return Arr::except($this->attributes, [
+            'printable',
+            'exportable',
+            'footer',
+        ]);
     }
 }
