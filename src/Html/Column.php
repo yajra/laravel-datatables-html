@@ -392,12 +392,23 @@ class Column extends Fluent
      * Use the js renderer "$.fn.dataTable.render.".
      *
      * @param mixed $value
+     * @param mixed ...$params
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
-    public function renderJs($value)
+    public function renderJs($value, ...$params)
     {
-        return $this->render('$.fn.dataTable.render.' . $value);
+        if ($params) {
+            $value .= '(';
+            foreach ($params as $param) {
+                $value .= '"' . str_replace('"', "'", $param) . '"';
+            }
+            $value .= ')';
+        }
+
+        $renderer = '$.fn.dataTable.render.' . $value;
+
+        return $this->render($renderer);
     }
 
     /**
