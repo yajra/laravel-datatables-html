@@ -103,7 +103,7 @@ class Field extends Fluent
      * @param mixed $model
      * @param string $value
      * @param string $key
-     * @return Field
+     * @return $this
      */
     public function modelOptions($model, $value, $key = 'id')
     {
@@ -308,6 +308,20 @@ class Field extends Fluent
     public function opts(array $value)
     {
         $this->attributes['opts'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field attr option.
+     *
+     * @param string $attribute
+     * @param string $value
+     * @return $this
+     */
+    public function attr($attribute, $value)
+    {
+        $this->attributes['attr'][$attribute] = $value;
 
         return $this;
     }
