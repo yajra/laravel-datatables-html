@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v4.14.1 - 09-16-2019
+
+- Fix Number field and set type attr to number.
+- Add missing attr setter.
+- Fix doc blocks for better IDE support.
+
 ### v4.14.0 - 09-16-2019
 
 - Add more dateTime opts setter.
