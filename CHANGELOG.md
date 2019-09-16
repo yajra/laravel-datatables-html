@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.14.0 - 09-16-2019
+
+- Add more dateTime opts setter.
+
 ### v4.13.0 - 09-14-2019
 
 - Add renderJs ability to pass parameter to js from php argument.
