@@ -9,7 +9,7 @@ class Time extends DateTime
      *
      * @param string $name
      * @param string $label
-     * @return Field|Time
+     * @return static
      */
     public static function make($name, $label = '')
     {
@@ -19,7 +19,7 @@ class Time extends DateTime
     /**
      * Set format to military time (24 hrs).
      *
-     * @return Field|Time
+     * @return $this
      */
     public function military()
     {

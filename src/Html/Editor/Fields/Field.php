@@ -137,7 +137,7 @@ class Field extends Fluent
      * @param string $key
      * @param \Closure $whereCallback
      * @param string|null $key
-     * @return Field
+     * @return $this
      */
     public function tableOptions($table, $value, $key = 'id', \Closure $whereCallback = null, $connection = null)
     {

@@ -9,7 +9,7 @@ class Date extends DateTime
      *
      * @param string $name
      * @param string $label
-     * @return Field
+     * @return static
      */
     public static function make($name, $label = '')
     {

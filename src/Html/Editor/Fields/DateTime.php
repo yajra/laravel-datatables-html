@@ -11,7 +11,7 @@ class DateTime extends Field
      *
      * @param string $name
      * @param string $label
-     * @return Field|\DateTime
+     * @return static
      */
     public static function make($name, $label = '')
     {
@@ -21,7 +21,7 @@ class DateTime extends Field
     /**
      * Set format to military time (24 hrs).
      *
-     * @return Field|Time
+     * @return $this
      */
     public function military()
     {
