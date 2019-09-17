@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.14.2 - 09-17-2019
+
+- Add missing Button buttons setter.
+
 ### v4.14.1 - 09-16-2019
 
 - Fix Number field and set type attr to number.
