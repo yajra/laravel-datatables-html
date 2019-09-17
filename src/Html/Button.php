@@ -2,9 +2,9 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Contracts\Auth\Access\Authorizable;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Fluent;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Auth\Access\Authorizable;
 
 class Button extends Fluent implements Arrayable
 {
@@ -102,6 +102,23 @@ class Button extends Fluent implements Arrayable
     public function editor($value)
     {
         $this->attributes['editor'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param array $buttons
+     * @return $this
+     */
+    public function buttons(array $buttons)
+    {
+        foreach ($buttons as $key => $button) {
+            if ($button instanceof Arrayable) {
+                $buttons[$key] = $button->toArray();
+            }
+        }
+
+        $this->attributes['buttons'] = $buttons;
 
         return $this;
     }
