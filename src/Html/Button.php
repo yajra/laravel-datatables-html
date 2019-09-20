@@ -60,6 +60,21 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Make a raw button that does not extend anything.
+     *
+     * @param array $options
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public static function raw($options = [])
+    {
+        if (is_string($options)) {
+            return new static(['text' => $options]);
+        }
+
+        return new static($options);
+    }
+
+    /**
      * Make a button if condition is true.
      *
      * @param string $permission
@@ -124,6 +139,24 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * @param array $buttons
+     * @return $this
+     * @see https://editor.datatables.net/examples/api/cancelButton
+     */
+    public function formButtons(array $buttons)
+    {
+        foreach ($buttons as $key => $button) {
+            if ($button instanceof Arrayable) {
+                $buttons[$key] = $button->toArray();
+            }
+        }
+
+        $this->attributes['formButtons'] = $buttons;
+
+        return $this;
+    }
+
+    /**
      * Set className option value.
      *
      * @param string $value
@@ -132,6 +165,19 @@ class Button extends Fluent implements Arrayable
     public function className($value)
     {
         $this->attributes['className'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set action option value.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function action($value)
+    {
+        $this->attributes['action'] = $value;
 
         return $this;
     }
