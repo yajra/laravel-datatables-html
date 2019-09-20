@@ -8,6 +8,26 @@
 
 ## CHANGELOG
 
+### v4.15.0 - 09-20-2019
+
+- Add missing formButtons and action setter.
+- Add raw buttons factory.
+
+```php
+Button::make('edit')
+  ->editor('approver')
+  ->text('<i class="fa fa-check-circle"></i> Approve Leave')
+  ->formButtons([
+      Button::raw('Approve')
+            ->className('btn btn-success')
+            ->action('function() { this.submit(); }'),
+      Button::raw('Cancel')
+            ->className('btn btn-secondary ml-2')
+            ->action('function() { this.close(); }'),
+  ])
+  ->className('btn-success'),
+```
+
 ### v4.14.2 - 09-17-2019
 
 - Add missing Button buttons setter.
