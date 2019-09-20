@@ -8,7 +8,28 @@
 
 ## CHANGELOG
 
-### v4.15.0 - 09-20-2019
+### v4.16.0 - 09-20-2019
+
+- Add action script helpers.
+- New actions: `actionSubmit(), actionClose(), actionHandler('editor-method-handler')`
+
+```php
+Button::make('edit')
+      ->editor('evaluator')
+      ->text('<i class="fa fa-check-circle"></i> Evaluate')
+      ->formButtons([
+          Button::raw('Approve')
+                ->className('btn btn-success ml-2')
+                ->actionHandler('approve'),
+          Button::raw('Decline')
+                ->className('btn btn-danger ml-2')
+                ->actionHandler('decline'),
+          Button::raw('Cancel')
+                ->className('btn btn-secondary ml-2')
+                ->actionClose(),
+      ])
+      ->className('btn-success'),
+```
 
 - Add missing formButtons and action setter.
 - Add raw buttons factory.
