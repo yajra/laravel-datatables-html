@@ -170,19 +170,6 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * Set action option value.
-     *
-     * @param string $value
-     * @return $this
-     */
-    public function action($value)
-    {
-        $this->attributes['action'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set text option value.
      *
      * @param string $value
@@ -233,5 +220,49 @@ class Button extends Fluent implements Arrayable
         }
 
         return [];
+    }
+
+    /**
+     * Set action to submit the form.
+     *
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public function actionSubmit()
+    {
+        return $this->action('function() { this.submit(); }');
+    }
+
+    /**
+     * Set action option value.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function action($value)
+    {
+        $this->attributes['action'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set editor class action handler.
+     *
+     * @param string $action
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public function actionHandler($action)
+    {
+        return $this->action("function() { this.submit(null, null, function(data) { data.action = '{$action}'; return data; }) }");
+    }
+
+    /**
+     * Set action to close the form.
+     *
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public function actionClose()
+    {
+        return $this->action('function() { this.close(); }');
     }
 }
