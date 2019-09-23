@@ -2,15 +2,18 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
+use Illuminate\Contracts\Support\Arrayable;
+use Yajra\DataTables\Html\HasAuthorizations;
 
 /**
  * @see https://editor.datatables.net/reference/option/
  */
 class Field extends Fluent
 {
+    use HasAuthorizations;
+
     /**
      * Field type.
      *
@@ -44,7 +47,7 @@ class Field extends Fluent
         }
 
         $data = [
-            'name' => $name,
+            'name'  => $name,
             'label' => $label ?: Str::title(str_replace('_', ' ', $name)),
         ];
 

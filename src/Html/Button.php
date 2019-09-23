@@ -153,20 +153,6 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * Convert the Fluent instance to an array.
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        if ($this->authorized) {
-            return parent::toArray();
-        }
-
-        return [];
-    }
-
-    /**
      * Set action to submit the form.
      *
      * @return \Yajra\DataTables\Html\Button

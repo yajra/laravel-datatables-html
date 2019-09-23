@@ -18,7 +18,7 @@ trait HasAuthorizations
      *
      * @param bool|callable $condition
      * @param string|array $options
-     * @return Button
+     * @return static
      */
     public static function makeIf($condition, $options)
     {
@@ -26,7 +26,7 @@ trait HasAuthorizations
             return static::make($options);
         }
 
-        return static::make()->authorized(false);
+        return static::make([])->authorized(false);
     }
 
     /**
@@ -35,7 +35,7 @@ trait HasAuthorizations
      * @param string $permission
      * @param string|array $options
      * @param Authorizable|null $user
-     * @return Button
+     * @return static
      */
     public static function makeIfCan($permission, $options, Authorizable $user = null)
     {
@@ -47,19 +47,33 @@ trait HasAuthorizations
             return static::make($options);
         }
 
-        return static::make()->authorized(false);
+        return static::make([])->authorized(false);
     }
 
     /**
-     * Set authotization status of the button.
+     * Set authorization status of the button.
      *
      * @param bool|callable $bool
-     * @return $this
+     * @return static
      */
     public function authorized($bool)
     {
         $this->authorized = value($bool);
 
         return $this;
+    }
+
+    /**
+     * Convert the Fluent instance to an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        if ($this->authorized) {
+            return parent::toArray();
+        }
+
+        return [];
     }
 }
