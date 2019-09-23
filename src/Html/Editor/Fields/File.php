@@ -21,11 +21,14 @@ class File extends Field
     /**
      * @param string $name
      * @param string $label
-     * @return \Yajra\DataTables\Html\Editor\Fields\Field|static
+     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->displayFile()->clearText()->noImageText();
+        /** @var \Yajra\DataTables\Html\Editor\Fields\File $field */
+        $field = parent::make($name, $label);
+
+        return $field->displayFile()->clearText()->noImageText();
     }
 
     /**
@@ -52,7 +55,7 @@ class File extends Field
     }
 
     /**
-     * @param string $label
+     * @param string $value
      * @return $this
      */
     public function display($value)

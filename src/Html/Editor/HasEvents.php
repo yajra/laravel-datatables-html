@@ -47,7 +47,7 @@ trait HasEvents
      *
      * @param string $name
      * @param mixed $arguments
-     * @return Editor
+     * @return $this
      */
     public function __call($name, $arguments)
     {
@@ -63,8 +63,9 @@ trait HasEvents
     /**
      * Add Editor event listener scripts.
      *
+     * @param string $event
      * @param string $script
-     * @return Editor
+     * @return $this
      * @see https://editor.datatables.net/reference/event
      */
     public function on($event, $script)

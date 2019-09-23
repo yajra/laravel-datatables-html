@@ -9,11 +9,14 @@ class Time extends DateTime
      *
      * @param string $name
      * @param string $label
-     * @return static
+     * @return static|\Yajra\DataTables\Html\Editor\Fields\File
      */
     public static function make($name, $label = '')
     {
-        return parent::make($name, $label)->format('hh:mm a');
+        /** @var \Yajra\DataTables\Html\Editor\Fields\Time $field */
+        $field = parent::make($name, $label);
+
+        return $field->format('hh:mm a');
     }
 
     /**

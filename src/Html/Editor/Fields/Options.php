@@ -100,7 +100,7 @@ class Options extends Collection
      *
      * @param  mixed $value
      * @param  mixed $key
-     * @return $this
+     * @return \Illuminate\Support\Collection
      */
     public function prepend($value, $key = null)
     {

@@ -20,6 +20,8 @@ class Field extends Fluent
 
     /**
      * Password constructor.
+     *
+     * @param array $attributes
      */
     public function __construct($attributes = [])
     {
@@ -33,7 +35,7 @@ class Field extends Fluent
      *
      * @param string $name
      * @param string $label
-     * @return static
+     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
      */
     public static function make($name, $label = '')
     {

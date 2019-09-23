@@ -9,7 +9,7 @@ class Boolean extends Checkbox
      *
      * @param string $name
      * @param string $label
-     * @return static
+     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
      */
     public static function make($name, $label = '')
     {
