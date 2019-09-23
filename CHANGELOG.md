@@ -8,6 +8,17 @@
 
 ## CHANGELOG
 
+### v4.17.0 - 09-23-2019
+
+- Add support for Field class authorizations.
+- Fix doc blocks and phpstorm warnings.
+
+```php
+Field\Select::makeIfCan('evaluate', 'evaluator_id')...
+Field\Select::makeIf(true, 'evaluator_id')...
+Field\Select::makeIf(function() { return true; }, 'evaluator_id')...
+```
+
 ### v4.16.0 - 09-20-2019
 
 - Add action script helpers.
