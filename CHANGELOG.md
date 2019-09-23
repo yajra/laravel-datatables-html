@@ -8,6 +8,14 @@
 
 ## CHANGELOG
 
+### v4.18.0 - 09-23-2019
+
+- Add makeIfCannot authorization.
+
+```php
+Field\Text::makeIfCannot('evaluate', 'evaluator_id')->data('evaluator.name')...
+```
+
 ### v4.17.0 - 09-23-2019
 
 - Add support for Field class authorizations.
