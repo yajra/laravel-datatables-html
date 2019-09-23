@@ -4,32 +4,10 @@ namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Auth\Access\Authorizable;
 
 class Button extends Fluent implements Arrayable
 {
-    /**
-     * Flag to check if user is authorized to use the button.
-     *
-     * @var bool
-     */
-    protected $authorized = true;
-
-    /**
-     * Make a button if condition is true.
-     *
-     * @param bool|callable $condition
-     * @param string|array $options
-     * @return Button
-     */
-    public static function makeIf($condition, $options)
-    {
-        if (value($condition)) {
-            return static::make($options);
-        }
-
-        return static::make()->authorized(false);
-    }
+    use HasAuthorizations;
 
     /**
      * Make a new button instance.
@@ -47,19 +25,6 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * Set authotization status of the button.
-     *
-     * @param bool|callable $bool
-     * @return $this
-     */
-    public function authorized($bool)
-    {
-        $this->authorized = value($bool);
-
-        return $this;
-    }
-
-    /**
      * Make a raw button that does not extend anything.
      *
      * @param array $options
@@ -72,27 +37,6 @@ class Button extends Fluent implements Arrayable
         }
 
         return new static($options);
-    }
-
-    /**
-     * Make a button if condition is true.
-     *
-     * @param string $permission
-     * @param string|array $options
-     * @param Authorizable|null $user
-     * @return Button
-     */
-    public static function makeIfCan($permission, $options, Authorizable $user = null)
-    {
-        if (is_null($user)) {
-            $user = auth()->user();
-        }
-
-        if ($user->can($permission)) {
-            return static::make($options);
-        }
-
-        return static::make()->authorized(false);
     }
 
     /**
