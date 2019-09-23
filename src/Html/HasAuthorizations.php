@@ -30,7 +30,7 @@ trait HasAuthorizations
     }
 
     /**
-     * Make a button if condition is true.
+     * Make a button if the user is authorized.
      *
      * @param string $permission
      * @param string|array $options
@@ -44,6 +44,27 @@ trait HasAuthorizations
         }
 
         if ($user->can($permission)) {
+            return static::make($options);
+        }
+
+        return static::make([])->authorized(false);
+    }
+
+    /**
+     * Make a button if the user is not authorized.
+     *
+     * @param string $permission
+     * @param string|array $options
+     * @param Authorizable|null $user
+     * @return static
+     */
+    public static function makeIfCannot($permission, $options, Authorizable $user = null)
+    {
+        if (is_null($user)) {
+            $user = auth()->user();
+        }
+
+        if (! $user->can($permission)) {
             return static::make($options);
         }
 
