@@ -150,6 +150,48 @@ class Editor extends Fluent
     }
 
     /**
+     * Set Editor's bubble formOptions.
+     *
+     * @param array $formOptions
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/formOptions.bubble
+     */
+    public function formOptionsBubble(array $formOptions)
+    {
+        $this->attributes['formOptions']['bubble'] = $formOptions;
+
+        return $this;
+    }
+
+    /**
+     * Set Editor's inline formOptions.
+     *
+     * @param array $formOptions
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/formOptions.inline
+     */
+    public function formOptionsInline(array $formOptions)
+    {
+        $this->attributes['formOptions']['inline'] = $formOptions;
+
+        return $this;
+    }
+
+    /**
+     * Set Editor's main formOptions.
+     *
+     * @param array $formOptions
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/formOptions.main
+     */
+    public function formOptionsMain(array $formOptions)
+    {
+        $this->attributes['formOptions']['main'] = $formOptions;
+
+        return $this;
+    }
+
+    /**
      * Set Editor's language.
      *
      * @param array $language
