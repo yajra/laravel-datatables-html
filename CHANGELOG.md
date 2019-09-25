@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.18.2 - 09-25-2019
+
+- Fix ajax data if value is an array.
+
 ### v4.18.1 - 09-25-2019
 
 - Add ajax url setter.
