@@ -2,21 +2,19 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Fluent;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 
 class Editor extends Fluent
 {
     use HasEvents;
-
-    const DISPLAY_LIGHTBOX = 'lightbox';
-    const DISPLAY_ENVELOPE = 'envelope';
-    const DISPLAY_BOOTSTRAP = 'bootstrap';
+    const DISPLAY_LIGHTBOX   = 'lightbox';
+    const DISPLAY_ENVELOPE   = 'envelope';
+    const DISPLAY_BOOTSTRAP  = 'bootstrap';
     const DISPLAY_FOUNDATION = 'foundation';
-    const DISPLAY_JQUERYUI = 'jqueryui';
+    const DISPLAY_JQUERYUI   = 'jqueryui';
 
     /**
      * Editor constructor.
@@ -202,7 +200,7 @@ class Editor extends Fluent
     /**
      * Convert the fluent instance to JSON.
      *
-     * @param  int  $options
+     * @param int $options
      * @return string
      */
     public function toJson($options = 0)
@@ -211,7 +209,7 @@ class Editor extends Fluent
 
         unset($parameters['events']);
 
-        $values = [];
+        $values       = [];
         $replacements = [];
 
         foreach (Arr::dot($parameters) as $key => $value) {
