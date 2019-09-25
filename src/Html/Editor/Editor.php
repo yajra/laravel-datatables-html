@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html\Editor;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Yajra\DataTables\Utilities\Helper;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 
 class Editor extends Fluent
@@ -138,7 +139,7 @@ class Editor extends Fluent
     /**
      * Set Editor's formOptions.
      *
-     * @param array $formOptions
+     * @param mixed $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions
      * @see https://editor.datatables.net/reference/type/form-options
@@ -153,13 +154,13 @@ class Editor extends Fluent
     /**
      * Set Editor's bubble formOptions.
      *
-     * @param array $formOptions
+     * @param mixed $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.bubble
      */
     public function formOptionsBubble(array $formOptions)
     {
-        $this->attributes['formOptions']['bubble'] = $formOptions;
+        $this->attributes['formOptions']['bubble'] = Helper::castToArray($formOptions);;
 
         return $this;
     }
@@ -167,13 +168,13 @@ class Editor extends Fluent
     /**
      * Set Editor's inline formOptions.
      *
-     * @param array $formOptions
+     * @param mixed $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.inline
      */
-    public function formOptionsInline(array $formOptions)
+    public function formOptionsInline($formOptions)
     {
-        $this->attributes['formOptions']['inline'] = $formOptions;
+        $this->attributes['formOptions']['inline'] = Helper::castToArray($formOptions);
 
         return $this;
     }
@@ -181,13 +182,13 @@ class Editor extends Fluent
     /**
      * Set Editor's main formOptions.
      *
-     * @param array $formOptions
+     * @param mixed $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.main
      */
-    public function formOptionsMain(array $formOptions)
+    public function formOptionsMain($formOptions)
     {
-        $this->attributes['formOptions']['main'] = $formOptions;
+        $this->attributes['formOptions']['main'] = Helper::castToArray($formOptions);
 
         return $this;
     }
