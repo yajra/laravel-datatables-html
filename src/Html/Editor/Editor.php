@@ -141,6 +141,7 @@ class Editor extends Fluent
      * @param array $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions
+     * @see https://editor.datatables.net/reference/type/form-options
      */
     public function formOptions(array $formOptions)
     {
