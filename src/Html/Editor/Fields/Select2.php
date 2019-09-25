@@ -43,6 +43,23 @@ class Select2 extends Select
      */
     public function ajax($value)
     {
+        if (is_array($value)) {
+            $this->attributes['opts']['ajax'] = $value;
+        } else {
+            $this->attributes['opts']['ajax']['url'] = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set select2 ajax url option.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function ajaxUrl($value)
+    {
         $this->attributes['opts']['ajax']['url'] = $value;
 
         return $this;
