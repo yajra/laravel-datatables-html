@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.19.0 - 09-25-2019
+
+- Add Editor formOptions setter as per docs: https://editor.datatables.net/reference/option/formOptions.
+
 ### v4.18.2 - 09-25-2019
 
 - Fix ajax data if value is an array.
