@@ -138,6 +138,20 @@ class Editor extends Fluent
     }
 
     /**
+     * Set Editor's formOptions.
+     *
+     * @param array $formOptions
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/formOptions
+     */
+    public function formOptions(array $formOptions)
+    {
+        $this->attributes['formOptions'] = $formOptions;
+
+        return $this;
+    }
+
+    /**
      * Set Editor's language.
      *
      * @param array $language
