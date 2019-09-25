@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.18.1 - 09-25-2019
+
+- Add ajax url setter.
+- Fix ajax option if array was passed.
+
 ### v4.18.0 - 09-23-2019
 
 - Add makeIfCannot authorization.
