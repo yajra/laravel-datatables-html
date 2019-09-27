@@ -127,6 +127,19 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set name option value.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function name($value)
+    {
+        $this->attributes['name'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Set columns option value.
      *
      * @param mixed $value
