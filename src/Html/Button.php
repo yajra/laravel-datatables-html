@@ -13,7 +13,7 @@ class Button extends Fluent implements Arrayable
      * Make a new button instance.
      *
      * @param string|array $options
-     * @return Button
+     * @return static
      */
     public static function make($options = [])
     {
@@ -28,7 +28,7 @@ class Button extends Fluent implements Arrayable
      * Make a raw button that does not extend anything.
      *
      * @param array $options
-     * @return \Yajra\DataTables\Html\Button
+     * @return static
      */
     public static function raw($options = [])
     {
