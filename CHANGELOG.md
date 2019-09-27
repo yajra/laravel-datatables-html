@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.19.3 - 09-27-2019
+
+- Fix Button class doc return type to static.
+
 ### v4.19.2 - 09-27-2019
 
 - Fix authorization options to allow null.
