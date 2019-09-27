@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.19.1 - 09-27-2019
+
+- Fix missing button name attr setter.
+
 ### v4.19.0 - 09-25-2019
 
 - Add Editor formOptions setter as per docs: https://editor.datatables.net/reference/option/formOptions.
