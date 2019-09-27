@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.19.2 - 09-27-2019
+
+- Fix authorization options to allow null.
+
 ### v4.19.1 - 09-27-2019
 
 - Fix missing button name attr setter.
