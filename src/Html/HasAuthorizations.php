@@ -20,7 +20,7 @@ trait HasAuthorizations
      * @param string|array $options
      * @return static
      */
-    public static function makeIf($condition, $options)
+    public static function makeIf($condition, $options = [])
     {
         if (value($condition)) {
             return static::make($options);
@@ -37,7 +37,7 @@ trait HasAuthorizations
      * @param Authorizable|null $user
      * @return static
      */
-    public static function makeIfCan($permission, $options, Authorizable $user = null)
+    public static function makeIfCan($permission, $options = [], Authorizable $user = null)
     {
         if (is_null($user)) {
             $user = auth()->user();
@@ -58,7 +58,7 @@ trait HasAuthorizations
      * @param Authorizable|null $user
      * @return static
      */
-    public static function makeIfCannot($permission, $options, Authorizable $user = null)
+    public static function makeIfCannot($permission, $options = [], Authorizable $user = null)
     {
         if (is_null($user)) {
             $user = auth()->user();
