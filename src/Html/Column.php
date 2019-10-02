@@ -401,8 +401,9 @@ class Column extends Fluent
         if ($params) {
             $value .= '(';
             foreach ($params as $param) {
-                $value .= '"' . str_replace('"', "'", $param) . '"';
+                $value .= "'{$param}',";
             }
+            $value = mb_substr($value, 0, -1);
             $value .= ')';
         }
 
