@@ -15,12 +15,16 @@ trait Buttons
     /**
      * Attach multiple buttons to builder.
      *
-     * @param mixed ...$buttons
+     * @param array|mixed ...$buttons
      * @return $this
      * @see https://www.datatables.net/extensions/buttons/
      */
     public function buttons(...$buttons)
     {
+        if (is_array($buttons[0])) {
+            $buttons = $buttons[0];
+        }
+
         foreach ($buttons as $button) {
             $this->attributes['buttons'][] = $button instanceof Arrayable ? $button->toArray() : $button;
         }
