@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v4.19.4 - 10-02-2019
+
+- Fix serialization of renderJs parameters. [#110]
+- Allow array parameter on buttons option for api consistency. [#111]
+- Allow array parameter on editors option for api consistency. [#112]
+
 ### v4.19.3 - 09-27-2019
 
 - Fix Button class doc return type to static.
@@ -577,6 +583,9 @@ To `created_at` with title `Created At`
 [#107]: https://github.com/yajra/laravel-datatables-html/pull/107
 [#108]: https://github.com/yajra/laravel-datatables-html/pull/108
 [#109]: https://github.com/yajra/laravel-datatables-html/pull/109
+[#110]: https://github.com/yajra/laravel-datatables-html/pull/110
+[#111]: https://github.com/yajra/laravel-datatables-html/pull/111
+[#112]: https://github.com/yajra/laravel-datatables-html/pull/112
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
