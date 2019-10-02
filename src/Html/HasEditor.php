@@ -16,13 +16,17 @@ trait HasEditor
     /**
      * Attach multiple editors to builder.
      *
-     * @param mixed ...$editors
+     * @param array|mixed ...$editors
      * @return $this
      * @see https://editor.datatables.net/
      * @throws \Exception
      */
     public function editors(...$editors)
     {
+        if (is_array($editors[0])) {
+            $editors = $editors[0];
+        }
+
         foreach ($editors as $editor) {
             $this->editor($editor);
         }
