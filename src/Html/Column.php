@@ -403,7 +403,7 @@ class Column extends Fluent
             foreach ($params as $param) {
                 $value .= "'{$param}',";
             }
-            $value = substr($value, 0, strlen($value) - 1);
+            $value = mb_substr($value, 0, - 1);
             $value .= ')';
         }
 
