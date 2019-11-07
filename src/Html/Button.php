@@ -172,7 +172,9 @@ class Button extends Fluent implements Arrayable
      */
     public function actionSubmit()
     {
-        return $this->action('function() { this.submit(); }');
+        $this->attributes['action'] = 'function() { this.submit(); }';
+
+        return $this;
     }
 
     /**
@@ -183,7 +185,7 @@ class Button extends Fluent implements Arrayable
      */
     public function action($value)
     {
-        $this->attributes['action'] = $value;
+        $this->attributes['action'] = "function(e, dt, node, config) { $value }";
 
         return $this;
     }
@@ -196,7 +198,9 @@ class Button extends Fluent implements Arrayable
      */
     public function actionHandler($action)
     {
-        return $this->action("function() { this.submit(null, null, function(data) { data.action = '{$action}'; return data; }) }");
+        $this->attributes['action'] = "function() { this.submit(null, null, function(data) { data.action = '{$action}'; return data; }) }";
+
+        return $this;
     }
 
     /**
@@ -206,6 +210,8 @@ class Button extends Fluent implements Arrayable
      */
     public function actionClose()
     {
-        return $this->action('function() { this.close(); }');
+        $this->attributes['action'] = 'function() { this.close(); }';
+
+        return $this;
     }
 }
