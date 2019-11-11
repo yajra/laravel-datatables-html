@@ -185,7 +185,7 @@ class Button extends Fluent implements Arrayable
      */
     public function action($value)
     {
-        if (substring($value, 0, 8) == 'function') {
+        if (substr($value, 0, 8) == 'function') {
             $this->attributes['action'] = $value;
         } else {
             $this->attributes['action'] = "function(e, dt, node, config) { $value }";
