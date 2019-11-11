@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.20.0 - 11-11-2019
+
+- Improve adding custom action to buttons. [#114], credits to @om3rcitak.
+
 ### v4.19.4 - 10-02-2019
 
 - Fix serialization of renderJs parameters. [#110]
@@ -586,6 +590,7 @@ To `created_at` with title `Created At`
 [#110]: https://github.com/yajra/laravel-datatables-html/pull/110
 [#111]: https://github.com/yajra/laravel-datatables-html/pull/111
 [#112]: https://github.com/yajra/laravel-datatables-html/pull/112
+[#114]: https://github.com/yajra/laravel-datatables-html/pull/114
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
