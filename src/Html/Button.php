@@ -114,6 +114,23 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Append a class name to column.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function addClass($class)
+    {
+        if (! isset($this->attributes['className'])) {
+            $this->attributes['className'] = $class;
+        } else {
+            $this->attributes['className'] .= " $class";
+        }
+
+        return $this;
+    }
+
+    /**
      * Set text option value.
      *
      * @param string $value
