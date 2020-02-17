@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.20.2 - 02-17-2020
+
+- Fix export function not working when base url is set on header.
+
 ### v4.20.1 - 11-11-2019
 
 - Fix substring to substr [#116].
