@@ -101,6 +101,35 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * @param mixed $message
+     * @return $this
+     * @see https://editor.datatables.net/examples/api/removeMessage
+     * @see https://editor.datatables.net/reference/button/create
+     * @see https://editor.datatables.net/reference/button/edit
+     * @see https://editor.datatables.net/reference/button/remove
+     */
+    public function formMessage($message)
+    {
+        $this->attributes['formMessage'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $title
+     * @return $this
+     * @see https://editor.datatables.net/reference/button/create
+     * @see https://editor.datatables.net/reference/button/edit
+     * @see https://editor.datatables.net/reference/button/remove
+     */
+    public function formTitle($title)
+    {
+        $this->attributes['formTitle'] = $title;
+
+        return $this;
+    }
+
+    /**
      * Set className option value.
      *
      * @param string $value
