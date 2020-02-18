@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.21.0 - 02-18-2020
+
+- Add editor button formMessage and formTitle fluent setter.
+
 ### v4.20.2 - 02-17-2020
 
 - Fix export function not working when base url is set on header.
