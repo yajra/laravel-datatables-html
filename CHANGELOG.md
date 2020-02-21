@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v4.21.1 - 02-21-2020
+
+- Use full url on ajax if not set. [#122]
+- Fix [yajra/laravel-datatables#2322](https://github.com/yajra/laravel-datatables/issues/2322).
+- Fix [#121]
+
 ### v4.21.0 - 02-18-2020
 
 - Add editor button formMessage and formTitle fluent setter.
@@ -604,7 +610,9 @@ To `created_at` with title `Created At`
 [#112]: https://github.com/yajra/laravel-datatables-html/pull/112
 [#114]: https://github.com/yajra/laravel-datatables-html/pull/114
 [#116]: https://github.com/yajra/laravel-datatables-html/pull/116
+[#122]: https://github.com/yajra/laravel-datatables-html/pull/122
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
 [#102]: https://github.com/yajra/laravel-datatables-html/issues/102
+[#121]: https://github.com/yajra/laravel-datatables-html/issues/121
