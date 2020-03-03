@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.22.0 - 03-03-2020
+
+- Add shortcut method `hidden` to hide column instead of `visible(false)`.
+
 ### v4.21.1 - 02-21-2020
 
 - Use full url on ajax if not set. [#122]
