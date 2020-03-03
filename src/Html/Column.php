@@ -192,6 +192,17 @@ class Column extends Fluent
     }
 
     /**
+     * Set column hidden state.
+     *
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.visible
+     */
+    public function hidden()
+    {
+        return $this->visible(false);
+    }
+
+    /**
      * Append a class name to field.
      *
      * @param string $class
