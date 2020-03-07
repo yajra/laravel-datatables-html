@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.23.1 - 03-04-2020
+
+- Improve addClass method. [#117], credits to @matteocostantini.
+
 ### v4.23.0 - 03-04-2020
 
 - Allow Laravel 7 [#124], credits to @barryvdh.
@@ -620,6 +624,7 @@ To `created_at` with title `Created At`
 [#116]: https://github.com/yajra/laravel-datatables-html/pull/116
 [#122]: https://github.com/yajra/laravel-datatables-html/pull/122
 [#124]: https://github.com/yajra/laravel-datatables-html/pull/124
+[#117]: https://github.com/yajra/laravel-datatables-html/pull/117
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
