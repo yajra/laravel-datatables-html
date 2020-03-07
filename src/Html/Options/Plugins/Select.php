@@ -55,6 +55,23 @@ trait Select
     }
 
     /**
+     * Append a class name to className option value.
+     *
+     * @param string $class
+     * @return $this
+     */
+    public function addClass($class)
+    {
+        if (! isset($this->attributes['className'])) {
+            $this->attributes['className'] = $class;
+        } else {
+            $this->attributes['className'] .= " $class";
+        }
+        return $this;
+    }
+
+
+    /**
      * Set select info option value.
      *
      * @param bool $value
