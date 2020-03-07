@@ -54,7 +54,7 @@ class Column extends Fluent
      *
      * @param string $data
      * @param string $title
-     * @return Column
+     * @return static
      */
     public static function computed($data, $title = '')
     {
@@ -105,7 +105,7 @@ class Column extends Fluent
      *
      * @param string $data
      * @param string $name
-     * @return Column
+     * @return static
      */
     public static function make($data, $name = '')
     {
@@ -121,7 +121,7 @@ class Column extends Fluent
      * Create a checkbox column.
      *
      * @param string $title
-     * @return Column
+     * @return static
      */
     public static function checkbox($title = '')
     {
