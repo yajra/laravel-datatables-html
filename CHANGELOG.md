@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v3.13.1 - 07-03-2020
+
+- Fixed @return types, allowing for better type hinting when the Column class is extended [#118]
+
 ### v3.13.0 - 11-10-2018
 
 - Add missing visible option setter. [#83]
@@ -274,6 +278,7 @@ To `created_at` with title `Created At`
 [#80]: https://github.com/yajra/laravel-datatables-html/pull/80
 [#83]: https://github.com/yajra/laravel-datatables-html/pull/83
 [#84]: https://github.com/yajra/laravel-datatables-html/pull/84
+[#118]: https://github.com/yajra/laravel-datatables-html/pull/118
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
