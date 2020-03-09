@@ -56,6 +56,13 @@ class Builder
     protected $attributes = [];
 
     /**
+     * Dynamically detects which DataTable to initialize for backend processing and responds.
+     *
+     * @var string|null
+     */
+    protected $smartDataTable = null;
+
+    /**
      * Collection of Editors.
      *
      * @var null|Editor
@@ -74,6 +81,18 @@ class Builder
         $this->html            = $html;
         $this->collection      = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
+    }
+
+    /**
+     * Sets the smart datatable class name.
+     *
+     * @var this
+     */
+    public function setSmartDataTable($className)
+    {
+    	$this->smartDataTable = $className;
+
+    	return $this;
     }
 
     /**
@@ -103,6 +122,68 @@ class Builder
         return new HtmlString(
             sprintf($this->template(), $this->getTableAttribute('id'), $parameters)
         );
+    }
+
+    /**
+     * Get the "url" from the ajax attribute.
+     * 
+     * @return string
+     */
+    public function getAjaxUrl()
+    {
+    	return is_array($this->ajax) ? $this->ajax['url'] : $this->ajax;
+    }
+
+    /**
+     * Set the "url" of the ajax attribute.
+     * 
+     * @return this
+     */
+    public function setAjaxUrl($url)
+    {
+    	if (is_array($this->ajax)) {
+    	 	$this->ajax['url'] = $url;
+    	} else {
+    	 	$this->ajax = $url;
+    	}
+
+    	return $this;
+    }
+
+    /**
+     * Prepares the query string to use on ajax.
+     * 
+     * @return string
+     */
+    public function prepareQueryString()
+    {
+    	if ($this->hasCustomTableId()) {
+	    	$separator = str_contains($this->getAjaxUrl(), '?') ? '&' : '?';
+
+	    	$http_build_query = [
+	    	    'tableId' => $this->tableAttributes['id'],
+	    	];
+
+	    	if (!is_null($this->smartDataTable)) {
+				$http_build_query['smartDataTable'] = $this->smartDataTable;	    		
+	    	}
+
+	    	return $separator.http_build_query($http_build_query);
+    	}
+
+    	return '';
+    }
+
+    /**
+     * Builds the ajax url with the required query string parameters.
+     * 
+     * @return void
+     */
+    public function prepareAjax()
+    {
+    	$queryString = $this->prepareQueryString();
+
+    	$this->setAjaxUrl($queryString);
     }
 
     /**
@@ -239,6 +320,16 @@ class Builder
     public function setTableId($id)
     {
         return $this->setTableAttribute('id', $id);
+    }
+
+    /**
+     * Determine if the datatable has a custom id.
+     *  
+     * @return boolean
+     */
+    private function hasCustomTableId()
+    {
+        return $this->tableAttributes['id'] != 'dataTableBuilder';
     }
 
     /**
@@ -544,6 +635,8 @@ class Builder
     public function ajax($attributes = '')
     {
         $this->ajax = $attributes;
+
+    	$this->prepareAjax();
 
         return $this;
     }
