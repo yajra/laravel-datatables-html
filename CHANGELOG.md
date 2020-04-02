@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.24.0 - 04-02-2020
+
+- Add TextArea rows & cols fluent attribute setter.
+
 ### v4.23.1 - 03-04-2020
 
 - Improve addClass method. [#117], credits to @matteocostantini.
