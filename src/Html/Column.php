@@ -505,6 +505,19 @@ class Column extends Fluent
     }
 
     /**
+     * Set custom html title instead defult label.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function htmlTitle($value)
+    {
+        $this->attributes['html-title'] = $value;
+
+        return $this;
+    }
+    
+    /**
      * @return array
      */
     public function toArray()
