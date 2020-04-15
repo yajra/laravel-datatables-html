@@ -125,7 +125,7 @@ trait HasTable
             $thAttr = $this->html->attributes(array_merge(
                 Arr::only($row, ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']),
                 $row['attributes'],
-                isset($row['html-title']) ? ['title' => $row['html-title']] : [],
+                isset($row['titleAttr']) ? ['title' => $row['titleAttr']] : [],
             ));
             $th[] = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
         }
