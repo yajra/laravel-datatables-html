@@ -510,9 +510,9 @@ class Column extends Fluent
      * @param mixed $value
      * @return $this
      */
-    public function htmlTitle($value)
+    public function titleAttr($value)
     {
-        $this->attributes['html-title'] = $value;
+        $this->attributes['titleAttr'] = $value;
 
         return $this;
     }
