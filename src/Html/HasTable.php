@@ -124,7 +124,8 @@ trait HasTable
         foreach ($this->collection->toArray() as $row) {
             $thAttr = $this->html->attributes(array_merge(
                 Arr::only($row, ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']),
-                $row['attributes']
+                $row['attributes'],
+                isset($row['titleAttr']) ? ['title' => $row['titleAttr']] : [],
             ));
             $th[] = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
         }
