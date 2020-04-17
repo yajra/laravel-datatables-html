@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.25.0 - 04-17-2020
+
+- HTML title for columns labels [#125], credits to @mgralikowski.
+
 ### v4.24.0 - 04-02-2020
 
 - Add TextArea rows & cols fluent attribute setter.
@@ -629,6 +633,7 @@ To `created_at` with title `Created At`
 [#122]: https://github.com/yajra/laravel-datatables-html/pull/122
 [#124]: https://github.com/yajra/laravel-datatables-html/pull/124
 [#117]: https://github.com/yajra/laravel-datatables-html/pull/117
+[#125]: https://github.com/yajra/laravel-datatables-html/pull/125
 
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
