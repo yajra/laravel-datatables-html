@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.25.1 - 04-17-2020
+
+- Fix PR [#125].
+
 ### v4.25.0 - 04-17-2020
 
 - HTML title for columns labels [#125], credits to @mgralikowski.
