@@ -516,7 +516,7 @@ class Column extends Fluent
 
         return $this;
     }
-    
+
     /**
      * @return array
      */
