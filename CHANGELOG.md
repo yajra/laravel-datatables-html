@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.27.0 - 05-29-2020
+
+- Add renderRaw method to set render value as is.
+
 ### v4.26.1 - 05-29-2020
 
 - Fix array listing and allow customer separator.
