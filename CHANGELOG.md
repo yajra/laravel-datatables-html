@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.26.1 - 05-29-2020
+
+- Fix array listing and allow customer separator.
+
 ### v4.26.0 - 05-29-2020
 
 - Add support for comma separated list from an array of objects.
