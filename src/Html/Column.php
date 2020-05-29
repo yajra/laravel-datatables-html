@@ -477,7 +477,7 @@ class Column extends Fluent
             return false;
         }
 
-        return Str::startsWith(trim($value), ['$.fn.dataTable.render']);
+        return Str::startsWith(trim($value), ['$.fn.dataTable.render', '[, ]']);
     }
 
     /**
