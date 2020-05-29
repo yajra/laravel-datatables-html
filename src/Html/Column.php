@@ -438,6 +438,20 @@ class Column extends Fluent
     }
 
     /**
+     * Set column renderer with give raw value.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.render
+     */
+    public function renderRaw($value)
+    {
+        $this->attributes['render'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Parse render attribute.
      *
      * @param mixed $value
