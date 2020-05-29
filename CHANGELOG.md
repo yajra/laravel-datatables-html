@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.26.0 - 05-29-2020
+
+- Add support for comma separated list from an array of objects.
+
 ### v4.25.1 - 04-17-2020
 
 - Fix PR [#125].
