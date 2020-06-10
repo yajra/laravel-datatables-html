@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.28.0 - 06-10-2020
+
+- Allow eloquent builder instance on BelongsTo model field.
+
 ### v4.27.0 - 05-29-2020
 
 - Add renderRaw method to set render value as is.
