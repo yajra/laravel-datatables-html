@@ -101,6 +101,20 @@ class Column extends Fluent
 
         return $this;
     }
+    
+     /**
+     * Set column responsive priority.
+     *
+     * @param int|string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.responsivePriority
+     */
+    public function responsivePriority($value)
+    {
+        $this->attributes['responsivePriority'] = $value;
+
+        return $this;
+    }
 
     /**
      * Set column title.
