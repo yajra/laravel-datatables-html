@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.30.0 - 06-18-2020
+
+- Add button align property setter.
+
 ### v4.29.0 - 06-17-2020
 
 - Add column responsive priority setter. [#131], credits to @SamDeimos.
