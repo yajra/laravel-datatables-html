@@ -264,4 +264,17 @@ class Button extends Fluent implements Arrayable
 
         return $this;
     }
+
+    /**
+     * Set button alignment.
+     *
+     * @param string $align
+     * @return \Yajra\DataTables\Html\Button
+     */
+    public function align($align = 'button-left')
+    {
+        $this->attributes['align'] = $align;
+
+        return $this;
+    }
 }
