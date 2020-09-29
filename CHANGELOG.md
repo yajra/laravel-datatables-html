@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.30.1 - 09-29-2020
+
+- Fix [#134] laravel 8 dependencies [#135], credits to @dyanakiev.
+
 ### v4.30.0 - 06-18-2020
 
 - Add button align property setter.
@@ -663,7 +667,9 @@ To `created_at` with title `Created At`
 [#117]: https://github.com/yajra/laravel-datatables-html/pull/117
 [#125]: https://github.com/yajra/laravel-datatables-html/pull/125
 [#131]: https://github.com/yajra/laravel-datatables-html/pull/131
+[#135]: https://github.com/yajra/laravel-datatables-html/pull/135
 
+[#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
 [#58]: https://github.com/yajra/laravel-datatables-html/issues/58
 [#102]: https://github.com/yajra/laravel-datatables-html/issues/102
