@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html\Options\Plugins;
 
-use Yajra\DataTables\Html\SearchPane;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * DataTables - Search panes plugin option builder.
@@ -21,11 +21,11 @@ trait SearchPanes
      */
     public function searchPanes($value = true)
     {
-        if ($value instanceof SearchPane) {
-            $this->attributes['searchPane'] = $value->toArray();
-        } else {
-            $this->attributes['searchPane'] = $value;
+        if ($value instanceof Arrayable) {
+            $value = $value->toArray();
         }
+
+        $this->attributes['searchPanes'] = $value;
 
         return $this;
     }
