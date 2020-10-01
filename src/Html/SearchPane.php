@@ -267,13 +267,25 @@ class SearchPane extends Fluent
     }
 
     /**
-     * @param mixed $value
+     * @param bool $value
      * @return static
      * @see https://datatables.net/reference/option/columns.searchPanes.show
      */
     public function show($value = true)
     {
         $this->attributes['show'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $value
+     * @return static
+     * @see https://datatables.net/reference/option/columns.searchPanes.name
+     */
+    public function name($value)
+    {
+        $this->attributes['name'] = $value;
 
         return $this;
     }
