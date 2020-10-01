@@ -289,4 +289,16 @@ class SearchPane extends Fluent
 
         return $this;
     }
+
+    /**
+     * @param mixed $value
+     * @return static
+     * @see https://datatables.net/reference/option/columns.searchPanes.orthogonal
+     */
+    public function orthogonal($value)
+    {
+        $this->attributes['orthogonal'] = $value;
+
+        return $this;
+    }
 }
