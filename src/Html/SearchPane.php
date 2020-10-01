@@ -158,4 +158,28 @@ class SearchPane extends Fluent
 
         return $this;
     }
+
+    /**
+     * @param mixed $value
+     * @return static
+     * @see https://datatables.net/reference/option/searchPanes.threshold
+     */
+    public function threshold($value)
+    {
+        $this->attributes['threshold'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param boolean $value
+     * @return static
+     * @see https://datatables.net/reference/option/searchPanes.viewTotal
+     */
+    public function viewTotal($value = true)
+    {
+        $this->attributes['viewTotal'] = $value;
+
+        return $this;
+    }
 }
