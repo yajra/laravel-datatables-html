@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.30.3 - 10-06-2020
+
+- Wait for DOM before executing script using jQuery [#138]
+- Fix [#133]
+
 ### v4.30.2 - 10-06-2020
 
 - Fix chrome bfcache issue with editor. [#139], credits to @jiwom
@@ -675,6 +680,8 @@ To `created_at` with title `Created At`
 [#135]: https://github.com/yajra/laravel-datatables-html/pull/135
 [#127]: https://github.com/yajra/laravel-datatables-html/pull/127
 [#139]: https://github.com/yajra/laravel-datatables-html/pull/139
+[#138]: https://github.com/yajra/laravel-datatables-html/pull/138
+[#133]: https://github.com/yajra/laravel-datatables-html/pull/133
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
