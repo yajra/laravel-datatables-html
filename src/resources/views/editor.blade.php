@@ -8,5 +8,5 @@ $(function(){
             {{$editor->instance}}.on('{!! $event['event']  !!}', {!! $event['script'] !!});
         @endforeach
     @endforeach
-window.LaravelDataTables["%1$s"] = $("#%1$s").DataTable(%2$s);
+    window.LaravelDataTables["%1$s"] = $("#%1$s").DataTable(%2$s);
 });
