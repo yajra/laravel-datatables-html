@@ -260,7 +260,8 @@ class Builder
     {
         $script = '';
         foreach ($data as $key => $value) {
-            $script .= PHP_EOL . "data.{$key} = '{$value}';";
+            $dataValue = $this->isCallbackFunction($value, $key) ? $value : "'{$value}'";
+            $script .= PHP_EOL . "data.{$key} = {$dataValue};";
         }
 
         return $script;
