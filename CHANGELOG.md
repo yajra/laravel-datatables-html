@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v4.30.2 - 10-06-2020
+
+- Fix chrome bfcache issue with editor. [#139], credits to @jiwom
+- Allow using callbacks as a data value. [#127], credits to @mgralikowski
+
 ### v4.30.1 - 09-29-2020
 
 - Fix [#134] laravel 8 dependencies [#135], credits to @dyanakiev.
@@ -668,6 +673,8 @@ To `created_at` with title `Created At`
 [#125]: https://github.com/yajra/laravel-datatables-html/pull/125
 [#131]: https://github.com/yajra/laravel-datatables-html/pull/131
 [#135]: https://github.com/yajra/laravel-datatables-html/pull/135
+[#127]: https://github.com/yajra/laravel-datatables-html/pull/127
+[#139]: https://github.com/yajra/laravel-datatables-html/pull/139
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
