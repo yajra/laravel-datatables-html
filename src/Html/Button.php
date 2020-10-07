@@ -147,6 +147,7 @@ class Button extends Fluent implements Arrayable
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/button/excelHtml5
      */
     public function customize($value)
     {
