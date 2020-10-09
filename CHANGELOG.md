@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v4.31.0 - 10-09-2020
+
+- Add button customize option value. [#142], credits to @gredimano
+- Fix https://github.com/yajra/laravel-datatables/issues/1541
+- Add template and method to wrap scripts with a function. [#143]
+
 ### v4.30.3 - 10-06-2020
 
 - Wait for DOM before executing script using jQuery [#138]
@@ -682,6 +688,8 @@ To `created_at` with title `Created At`
 [#139]: https://github.com/yajra/laravel-datatables-html/pull/139
 [#138]: https://github.com/yajra/laravel-datatables-html/pull/138
 [#133]: https://github.com/yajra/laravel-datatables-html/pull/133
+[#142]: https://github.com/yajra/laravel-datatables-html/pull/142
+[#143]: https://github.com/yajra/laravel-datatables-html/pull/143
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
