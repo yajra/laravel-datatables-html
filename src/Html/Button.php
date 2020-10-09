@@ -143,6 +143,20 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set customize option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/button/excelHtml5
+     */
+    public function customize($value)
+    {
+        $this->attributes['customize'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Append a class name to column.
      *
      * @param string $class
