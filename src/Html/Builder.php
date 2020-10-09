@@ -274,8 +274,16 @@ class Builder
      */
     public function asOptions()
     {
-        $this->setTemplate('datatables::options');
+        return $this->setTemplate('datatables::options');
+    }
 
-        return $this;
+    /**
+     * Wrap dataTable scripts with a function.
+     *
+     * @return $this
+     */
+    public function asFunction()
+    {
+        return $this->setTemplate('datatables::function');
     }
 }
