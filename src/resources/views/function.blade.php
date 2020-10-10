@@ -1,5 +1,5 @@
 window.dtx = window.dtx || {};
-window.dtx["%1$s"] = function() {
+window.dtx["%1$s"] = function(opts) {
     window.LaravelDataTables = window.LaravelDataTables || {};
     @if(isset($editors))
     @foreach($editors as $editor)
@@ -10,5 +10,5 @@ window.dtx["%1$s"] = function() {
         @endforeach
     @endforeach
     @endif
-    return $("#%1$s").DataTable(%2$s);
+    return window.LaravelDataTables["%1$s"] = $("#%1$s").DataTable($.extend(%2$s, opts));
 }
