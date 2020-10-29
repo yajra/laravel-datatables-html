@@ -2,6 +2,12 @@
 
 return [
     /*
+     * DataTables JavaScript global namespace.
+     */
+
+    'namespace' => 'LaravelDataTables',
+
+    /*
      * Default table attributes when generating the table.
      */
     'table' => [
