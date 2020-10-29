@@ -1,1 +1,1 @@
-$(function(){window.{{ config('datatables.variable_name') }}=window.{{ config('datatables.variable_name') }}||{};window.{{ config('datatables.variable_name') }}["%1$s"]=$("#%1$s").DataTable(%2$s);});
+$(function(){window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}=window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}||{};window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}["%1$s"]=$("#%1$s").DataTable(%2$s);});

@@ -1,6 +1,6 @@
-window.{{ config('datatables.variable_name') }} = window.{{ config('datatables.variable_name') }} || {};
-window.{{ config('datatables.variable_name') }}.options = %2$s
-window.{{ config('datatables.variable_name') }}.editors = [];
+window.{{ config('datatables-html.namespace', 'LaravelDataTables') }} = window.{{ config('datatables-html.namespace', 'LaravelDataTables') }} || {};
+window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}.options = %2$s
+window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}.editors = [];
 @foreach($editors as $editor)
-window.{{ config('datatables.variable_name') }}.editors["{{$editor->instance}}"] = {!! $editor->toJson()  !!}
+window.{{ config('datatables-html.namespace', 'LaravelDataTables') }}.editors["{{$editor->instance}}"] = {!! $editor->toJson()  !!}
 @endforeach
