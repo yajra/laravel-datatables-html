@@ -8,6 +8,14 @@
 
 ## CHANGELOG
 
+### v4.33.0 - 10-30-2020
+
+- Make LaravelDataTables javascript namespace configurable. [#145], credits to @om3rcitak
+
+### v4.32.0 - 10-10-2020
+
+- Add function argument to override the default options from php scripts. [#144]
+
 ### v4.31.0 - 10-09-2020
 
 - Add button customize option value. [#142], credits to @gredimano
@@ -690,6 +698,7 @@ To `created_at` with title `Created At`
 [#133]: https://github.com/yajra/laravel-datatables-html/pull/133
 [#142]: https://github.com/yajra/laravel-datatables-html/pull/142
 [#143]: https://github.com/yajra/laravel-datatables-html/pull/143
+[#144]: https://github.com/yajra/laravel-datatables-html/pull/144
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
