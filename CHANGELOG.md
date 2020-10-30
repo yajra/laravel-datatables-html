@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.33.0 - 10-30-2020
+
+- Make LaravelDataTables javascript namespace configurable. [#145], credits to @om3rcitak
+
 ### v4.32.0 - 10-10-2020
 
 - Add function argument to override the default options from php scripts. [#144]
