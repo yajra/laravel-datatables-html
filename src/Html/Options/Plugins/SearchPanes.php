@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html\Options\Plugins;
 
+use Yajra\DataTables\Html\SearchPane;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
@@ -21,8 +22,16 @@ trait SearchPanes
      */
     public function searchPanes($value = true)
     {
+        if (is_callable($value)) {
+            $value = app()->call($value);
+        }
+
         if ($value instanceof Arrayable) {
             $value = $value->toArray();
+        }
+
+        if (is_bool($value)) {
+            $value = SearchPane::make()->show($value)->toArray();
         }
 
         $this->attributes['searchPanes'] = $value;
