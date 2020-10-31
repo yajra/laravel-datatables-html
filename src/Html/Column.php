@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 
 /**
  * @property string data
@@ -19,6 +20,8 @@ use Illuminate\Support\Fluent;
  */
 class Column extends Fluent
 {
+    use SearchPanes;
+
     /**
      * @param array $attributes
      */
@@ -101,7 +104,7 @@ class Column extends Fluent
 
         return $this;
     }
-    
+
      /**
      * Set column responsive priority.
      *
