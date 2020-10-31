@@ -195,6 +195,18 @@ class SearchPane extends Fluent
     }
 
     /**
+     * @param boolean $value
+     * @return static
+     * @see https://datatables.net/reference/option/searchPanes.viewTotal
+     */
+    public function hideTotal($value = true)
+    {
+        $this->attributes['viewTotal'] = ! $value;
+
+        return $this;
+    }
+
+    /**
      * Get options from a model.
      *
      * @param mixed $model
