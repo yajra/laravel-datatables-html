@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html\Options;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Column;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * DataTables - Columns option builder.
@@ -16,13 +17,43 @@ trait HasColumns
     /**
      * Set columnDefs option value.
      *
-     * @param array $value
+     * @param mixed $value
      * @return $this
      * @see https://datatables.net/reference/option/columnDefs
      */
-    public function columnDefs(array $value)
+    public function columnDefs($value)
     {
+        if (is_callable($value)) {
+            $value = app()->call($value);
+        }
+
+        if ($value instanceof Arrayable) {
+            $value = $value->toArray();
+        }
+
         $this->attributes['columnDefs'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Add a columnDef option.
+     *
+     * @param mixed $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columnDefs
+     */
+    public function addColumnDef($value)
+    {
+        if (is_callable($value)) {
+            $value = app()->call($value);
+        }
+
+        if ($value instanceof Arrayable) {
+            $value = $value->toArray();
+        }
+
+        $this->attributes['columnDefs'][] = $value;
 
         return $this;
     }
