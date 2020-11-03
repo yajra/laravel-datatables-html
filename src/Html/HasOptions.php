@@ -27,6 +27,7 @@ trait HasOptions
     use Options\Plugins\RowReorder;
     use Options\Plugins\Scroller;
     use Options\Plugins\Select;
+    use Options\Plugins\SearchPanes;
 
     /**
      * Set deferLoading option value.
