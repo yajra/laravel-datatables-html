@@ -151,6 +151,23 @@ class Column extends Fluent
     }
 
     /**
+     * Make a new formatted column instance.
+     *
+     * @param string $name
+     * @return Column
+     */
+    public static function formatted($name)
+    {
+        $attr = [
+            'data'  => $name . '_formatted',
+            'name'  => $name,
+            'title' => self::titleFormat($name),
+        ];
+
+        return new static($attr);
+    }
+
+    /**
      * Create a checkbox column.
      *
      * @param string $title
