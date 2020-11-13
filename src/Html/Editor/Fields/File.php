@@ -32,6 +32,94 @@ class File extends Field
     }
 
     /**
+     * @param string $value
+     * @return $this
+     */
+    public function ajax($value)
+    {
+        $this->attributes['ajax'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function ajaxData($value)
+    {
+        $this->attributes['ajaxData'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $value
+     * @return $this
+     */
+    public function dragDrop($value = true)
+    {
+        $this->attributes['dragDrop'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function dragDropText($value)
+    {
+        $this->attributes['dragDropText'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function fileReadText($value)
+    {
+        $this->attributes['fileReadText'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function noFileText($value)
+    {
+        $this->attributes['noFileText'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function processingText($value)
+    {
+        $this->attributes['processingText'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function uploadText($value)
+    {
+        $this->attributes['uploadText'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Set editor instance for file upload.
      *
      * @param string $editor
