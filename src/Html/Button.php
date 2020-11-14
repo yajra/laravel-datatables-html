@@ -40,10 +40,100 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set attr option value.
+     *
+     * @param array $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.attr
+     */
+    public function attr(array $value)
+    {
+        $this->attributes['attr'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set available option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.available
+     */
+    public function available($value)
+    {
+        if ($this->isFunction($value)) {
+            $this->attributes['available'] = $value;
+        } else {
+            $this->attributes['available'] = "function(dt, config) { $value }";
+        }
+
+        return $this;
+    }
+
+    /**
+     * Check if a given value is a function.
+     *
+     * @param string $value
+     * @return bool
+     */
+    protected function isFunction($value)
+    {
+        return substr($value, 0, 8) == 'function';
+    }
+
+    /**
+     * Set enabled option value.
+     *
+     * @param bool $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.enabled
+     */
+    public function enabled($value = true)
+    {
+        $this->attributes['enabled'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set init option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.init
+     */
+    public function init($value)
+    {
+        if ($this->isFunction($value)) {
+            $this->attributes['init'] = $value;
+        } else {
+            $this->attributes['init'] = "function(dt, node, config) { $value }";
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set key option value.
+     *
+     * @param string|array $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.key
+     */
+    public function key($value)
+    {
+        $this->attributes['key'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Set extend option value.
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.extend
      */
     public function extend($value)
     {
@@ -57,6 +147,7 @@ class Button extends Fluent implements Arrayable
      *
      * @param string $value
      * @return $this
+     * @see https://editor.datatables.net/reference/button
      */
     public function editor($value)
     {
@@ -66,8 +157,11 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set buttons option value.
+     *
      * @param array $buttons
      * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons
      */
     public function buttons(array $buttons)
     {
@@ -134,10 +228,29 @@ class Button extends Fluent implements Arrayable
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.className
      */
     public function className($value)
     {
         $this->attributes['className'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set destroy option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.destroy
+     */
+    public function destroy($value)
+    {
+        if ($this->isFunction($value)) {
+            $this->attributes['destroy'] = $value;
+        } else {
+            $this->attributes['destroy'] = "function(dt, node, config) { $value }";
+        }
 
         return $this;
     }
@@ -178,6 +291,7 @@ class Button extends Fluent implements Arrayable
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.text
      */
     public function text($value)
     {
@@ -187,14 +301,57 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
+     * Set titleAttr option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.titleAttr
+     */
+    public function titleAttr($value)
+    {
+        $this->attributes['titleAttr'] = $value;
+
+        return $this;
+    }
+
+    /**
      * Set name option value.
      *
      * @param string $value
      * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.name
      */
     public function name($value)
     {
         $this->attributes['name'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set namespace option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.namespace
+     */
+    public function namespace($value)
+    {
+        $this->attributes['namespace'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set tag option value.
+     *
+     * @param string $value
+     * @return $this
+     * @see https://datatables.net/reference/option/buttons.buttons.tag
+     */
+    public function tag($value)
+    {
+        $this->attributes['tag'] = $value;
 
         return $this;
     }
