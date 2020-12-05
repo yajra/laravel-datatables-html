@@ -2,7 +2,7 @@
 
 [![Laravel 5.4+](https://img.shields.io/badge/Laravel-5.4+-orange.svg)](http://laravel.com)
 [![Latest Stable Version](https://img.shields.io/packagist/v/yajra/laravel-datatables-html.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
-[![Build Status](https://travis-ci.org/yajra/laravel-datatables-html.svg?branch=master)](https://travis-ci.org/yajra/laravel-datatables-html)
+![Build Status](https://github.com/yajra/laravel-datatables-html/workflows/tests/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/yajra/laravel-datatables-html.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
