@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.36.1 - 12-05-2020
+
+- Fix adding of class on Select plugin / extension. [#154]
+
 ### v4.36.0 - 11-14-2020
 
 - Add drawCallbackWithLivewire api.
@@ -723,6 +727,7 @@ To `created_at` with title `Created At`
 [#137]: https://github.com/yajra/laravel-datatables-html/pull/137
 [#147]: https://github.com/yajra/laravel-datatables-html/pull/147
 [#152]: https://github.com/yajra/laravel-datatables-html/pull/152
+[#154]: https://github.com/yajra/laravel-datatables-html/pull/154
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
