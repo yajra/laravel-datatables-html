@@ -10,7 +10,7 @@ jobs:
   tests:
 
     runs-on: ubuntu-latest
-    services:
+
     strategy:
       fail-fast: true
       matrix:
