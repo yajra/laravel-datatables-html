@@ -180,6 +180,7 @@ class Column extends Fluent
                      ->title($title)
                      ->className('select-checkbox')
                      ->orderable(false)
+                     ->exportable(false)
                      ->searchable(false);
     }
 
