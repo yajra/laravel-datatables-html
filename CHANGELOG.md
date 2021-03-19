@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.36.2 - 03-19-2021
+
+- Fix exportable flag, should be false.
+
 ### v4.36.1 - 12-05-2020
 
 - Fix adding of class on Select plugin / extension. [#154]
