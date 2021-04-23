@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.36.3 - 04-23-2021
+
+- Fix conflicts with createInline button. Use render instead of altering the data.
+
 ### v4.36.2 - 03-19-2021
 
 - Fix exportable flag, should be false.
