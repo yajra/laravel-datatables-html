@@ -60,16 +60,15 @@ trait Select
      * @param string $class
      * @return $this
      */
-    public function addClass($class)
+    public function selectAddClassName($class)
     {
-        if (! isset($this->attributes['className'])) {
-            $this->attributes['className'] = $class;
+        if (! isset($this->attributes['select']['className'])) {
+            $this->attributes['select']['className'] = $class;
         } else {
-            $this->attributes['className'] .= " $class";
+            $this->attributes['select']['className'] .= " $class";
         }
         return $this;
     }
-
 
     /**
      * Set select info option value.

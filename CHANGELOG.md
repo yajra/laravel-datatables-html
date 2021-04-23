@@ -8,7 +8,24 @@
 
 ## CHANGELOG
 
-### v4.35.2 - 11-04-2020
+### v4.36.3 - 04-23-2021
+
+- Fix conflicts with createInline button. Use render instead of altering the data.
+
+### v4.36.2 - 03-19-2021
+
+- Fix exportable flag, should be false.
+
+### v4.36.1 - 12-05-2020
+
+- Fix adding of class on Select plugin / extension. [#154]
+
+### v4.36.0 - 11-14-2020
+
+- Add drawCallbackWithLivewire api.
+- Solution as per issue https://github.com/yajra/laravel-datatables/issues/2401.
+
+### v4.35.2 - 11-14-2020
 
 - Add missing button options as per [docs](https://datatables.net/reference/option/#buttons).
 
@@ -718,6 +735,7 @@ To `created_at` with title `Created At`
 [#137]: https://github.com/yajra/laravel-datatables-html/pull/137
 [#147]: https://github.com/yajra/laravel-datatables-html/pull/147
 [#152]: https://github.com/yajra/laravel-datatables-html/pull/152
+[#154]: https://github.com/yajra/laravel-datatables-html/pull/154
 
 [#134]: https://github.com/yajra/laravel-datatables-html/issues/134
 [#3]: https://github.com/yajra/laravel-datatables-html/issues/3
