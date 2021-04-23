@@ -159,9 +159,10 @@ class Column extends Fluent
     public static function formatted($name)
     {
         $attr = [
-            'data'  => $name . '_formatted',
+            'data'  => $name,
             'name'  => $name,
             'title' => self::titleFormat($name),
+            'render' => 'full.'.$name.'_formatted',
         ];
 
         return new static($attr);
