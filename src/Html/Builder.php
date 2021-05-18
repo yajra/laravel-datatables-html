@@ -119,7 +119,8 @@ class Builder
     public function generateJson()
     {
         $args = array_merge(
-            $this->attributes, [
+            $this->attributes,
+            [
                 'ajax' => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
                     $column = $column->toArray();
@@ -142,6 +143,26 @@ class Builder
     public function parameterize($attributes = [])
     {
         $parameters = (new Parameters($attributes))->toArray();
+
+        $max_record_per_page = $this->config->get('datatables.max_record_per_page', 0);
+        if (!array_key_exists('lengthMenu', $parameters)) {
+            $parameters['lengthMenu'] = [10, 25, 50, 100];
+        }
+
+        if ($max_record_per_page != 0) {
+            $lengthMenu = array_unique($parameters['lengthMenu']);
+            foreach ($lengthMenu as $key => $value) {
+                if ($value > $max_record_per_page) {
+                    unset($lengthMenu[$key]);
+                }
+            }
+            $lengthMenu = array_values($lengthMenu);
+            if (empty($lengthMenu)) {
+                $lengthMenu = [$max_record_per_page];
+            }
+            sort($lengthMenu);
+            $parameters['lengthMenu'] = $lengthMenu;
+        }
 
         $values = [];
         $replacements = [];
@@ -212,8 +233,10 @@ class Builder
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
         $tableHtml = '<table ' . $htmlAttr . '>';
-        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
-                $this->compileTableSearchHeaders()) . '</tr>' : '';
+        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode(
+            '',
+            $this->compileTableSearchHeaders()
+        ) . '</tr>' : '';
         $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf = $this->compileTableFooter();
