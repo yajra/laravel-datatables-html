@@ -118,7 +118,17 @@ class Builder
      */
     public function generateJson()
     {
-        $args = array_merge(
+        return $this->parameterize($this->getOptions());
+    }
+
+    /**
+     * Get DataTable options array.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return array_merge(
             $this->attributes, [
                 'ajax' => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
@@ -129,8 +139,6 @@ class Builder
                 })->toArray(),
             ]
         );
-
-        return $this->parameterize($args);
     }
 
     /**
