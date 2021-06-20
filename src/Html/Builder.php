@@ -78,6 +78,10 @@ class Builder
         $this->html = $html;
         $this->collection = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
+        $this->attributes = [
+            'serverSide' => true,
+            'processing' => true,
+        ];
     }
 
     /**
