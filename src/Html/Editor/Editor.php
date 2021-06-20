@@ -264,10 +264,6 @@ class Editor extends Fluent
         $replacements = [];
 
         foreach (Arr::dot($parameters) as $key => $value) {
-            if ($key === 'table') {
-                Arr::set($parameters, $key, '#' . $value);
-            }
-
             if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
                 Arr::set($parameters, $key, '%' . $key . '%');
