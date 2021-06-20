@@ -8,6 +8,13 @@
 
 ## CHANGELOG
 
+### v4.38.0 - 06-20-2021
+
+- Fix fetching of editor table #158
+- Add method to get all editors instances.
+- Add method to get dataTable options array.
+- Set serverSide and processing option as true by default.
+
 ### v4.37.0 - 05-17-2021
 
 - Implement authorizations on Editor builder.
