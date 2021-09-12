@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.39.0 - 09-12-2021
+
+- Add missing select field options as of Editor 1.5.4.
+
 ### v4.38.0 - 06-20-2021
 
 - Fix fetching of editor table #158
