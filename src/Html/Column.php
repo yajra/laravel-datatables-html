@@ -326,7 +326,7 @@ class Column extends Fluent
     /**
      * Set column edit field option value.
      *
-     * @param string $value
+     * @param  string|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.editField
      */
