@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.40.0 - 10-04-2021
+
+- Add method getTableId() #159
+
 ### v4.39.1 - 09-12-2021
 
 - Fix doc block and add array as acceptable Column editField value.
