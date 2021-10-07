@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.41.0 - 10-07-2021
+
+- Add exportFormat method. #160
+
 ### v4.40.0 - 10-04-2021
 
 - Add method getTableId() #159
