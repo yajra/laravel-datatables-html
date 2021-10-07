@@ -568,6 +568,20 @@ class Column extends Fluent
     }
 
     /**
+     * Set excel column format when exporting.
+     *
+     * @param string $format
+     * @return $this
+     * @see https://github.com/yajra/laravel-datatables-export
+     */
+    public function exportFormat($format)
+    {
+        $this->attributes['exportFormat'] = $format;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
