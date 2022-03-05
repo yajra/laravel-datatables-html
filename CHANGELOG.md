@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v4.41.1 - 05-05-2022
+
+- Fix Field::attr() doc block.
+
 ### v4.41.0 - 10-07-2021
 
 - Add exportFormat method. #160
