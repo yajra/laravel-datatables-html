@@ -36,6 +36,15 @@ trait HasColumns
         return $this;
     }
 
+    private function camelRelation($column)
+    {
+
+        $parts      = explode('.', $column);
+        $columnName = array_pop($parts);
+        $relation   = Str::camel(implode('.', $parts));
+
+        return $relation . ($relation ? '.' : '') . $columnName;
+    }
     /**
      * Add a columnDef option.
      *
@@ -74,14 +83,14 @@ trait HasColumns
                 if (is_array($value)) {
                     $attributes = array_merge(
                         [
-                            'name' => $value['name'] ?? $value['data'] ?? $key,
+                            'name' => $value['name'] ?? $this->camelRelation($value['data'] ?? $key),
                             'data' => $value['data'] ?? $key,
                         ],
                         $this->setTitle($key, $value)
                     );
                 } else {
                     $attributes = [
-                        'name' => $value,
+                        'name' => $this->camelRelation($value),
                         'data' => $value,
                         'title' => $this->getQualifiedTitle($value),
                     ];
