@@ -68,7 +68,7 @@ trait HasEditor
         }
 
         if (! $editor->table) {
-            $editor->table($this->getTableAttribute('id'));
+            $editor->table('#' . $this->getTableAttribute('id'));
         }
 
         if (! $editor->ajax) {
@@ -76,5 +76,13 @@ trait HasEditor
         }
 
         return $editor;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getEditors()
+    {
+        return $this->editors;
     }
 }
