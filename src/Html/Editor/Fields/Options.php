@@ -2,16 +2,25 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
+use Closure;
+use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ */
 class Options extends Collection
 {
     /**
      * Return a Yes/No options.
      *
-     * @return Options
+     * @return static
      */
     public static function yesNo()
     {
@@ -26,12 +35,12 @@ class Options extends Collection
     /**
      * Get options from a model.
      *
-     * @param mixed $model
-     * @param string $value
-     * @param string $key
+     * @param  \Illuminate\Database\Eloquent\Model|EloquentBuilder  $model
+     * @param  string  $value
+     * @param  string  $key
      * @return Collection
      */
-    public static function model($model, $value, $key = 'id')
+    public static function model(Model|EloquentBuilder $model, string $value, string $key = 'id'): Collection
     {
         if (! $model instanceof Builder) {
             $model = $model::query();
@@ -48,21 +57,26 @@ class Options extends Collection
     /**
      * Get options from a table.
      *
-     * @param mixed $table
-     * @param string $value
-     * @param string $key
-     * @param \Closure $whereCallback
-     * @param string|null $key
+     * @param  string|\Closure|\Illuminate\Database\Query\Builder  $table
+     * @param  string  $value
+     * @param  string  $key
+     * @param  \Closure|null  $callback
+     * @param  \Illuminate\Database\Connection|null  $connection
      * @return Collection
      */
-    public static function table($table, $value, $key = 'id', \Closure $whereCallback = null, $connection = null)
-    {
+    public static function table(
+        string|Closure|QueryBuilder $table,
+        string $value,
+        string $key = 'id',
+        Closure $callback = null,
+        ?Connection $connection = null
+    ): Collection {
         $query = DB::connection($connection)
                    ->table($table)
-                   ->select("{$value} as label", "{$key} as value");
+                   ->select("{$value} as label", "$key as value");
 
-        if ($whereCallback) {
-            $query->where($whereCallback);
+        if (is_callable($callback)) {
+            $callback($query);
         }
 
         return $query->get();
@@ -71,9 +85,9 @@ class Options extends Collection
     /**
      * Return a True/False options.
      *
-     * @return Options
+     * @return static
      */
-    public static function trueFalse()
+    public static function trueFalse(): self
     {
         $data = [
             ['label' => __('True'), 'value' => 1],
@@ -86,11 +100,11 @@ class Options extends Collection
     /**
      * Push an item onto the end of the collection.
      *
-     * @param mixed $value
-     * @param mixed $key
-     * @return Options
+     * @param  string  $value
+     * @param  string  $key
+     * @return static
      */
-    public function append($value, $key)
+    public function append(string $value, string $key): self
     {
         return $this->push(['label' => $value, 'value' => $key]);
     }
@@ -98,11 +112,11 @@ class Options extends Collection
     /**
      * Push an item onto the beginning of the collection.
      *
-     * @param  mixed $value
-     * @param  mixed $key
-     * @return \Illuminate\Support\Collection
+     * @param  TValue  $value
+     * @param  TKey  $key
+     * @return static
      */
-    public function prepend($value, $key = null)
+    public function prepend($value, $key = null): self
     {
         $data = ['label' => $value, 'value' => $key];
 

@@ -8,9 +8,9 @@ class ColumnDefinition extends Fluent
 {
     use HasOptions;
 
-    public function targets($value)
+    public function targets(array $value): self
     {
-        $this->attributes['targets'] = (array) $value;
+        $this->attributes['targets'] = $value;
 
         return $this;
     }

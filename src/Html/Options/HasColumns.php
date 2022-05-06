@@ -2,14 +2,15 @@
 
 namespace Yajra\DataTables\Html\Options;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Column;
-use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * DataTables - Columns option builder.
  *
+ * @property Collection $collection
  * @see https://datatables.net/reference/option/
  */
 trait HasColumns
@@ -17,11 +18,11 @@ trait HasColumns
     /**
      * Set columnDefs option value.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return $this
      * @see https://datatables.net/reference/option/columnDefs
      */
-    public function columnDefs($value)
+    public function columnDefs(mixed $value): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);
@@ -39,11 +40,11 @@ trait HasColumns
     /**
      * Add a columnDef option.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return $this
      * @see https://datatables.net/reference/option/columnDefs
      */
-    public function addColumnDef($value)
+    public function addColumnDef(mixed $value): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);
@@ -61,11 +62,11 @@ trait HasColumns
     /**
      * Set columns option value.
      *
-     * @param array $columns
+     * @param  array  $columns
      * @return $this
      * @see https://datatables.net/reference/option/columns
      */
-    public function columns(array $columns)
+    public function columns(array $columns): static
     {
         $this->collection = new Collection;
 
@@ -99,11 +100,11 @@ trait HasColumns
     /**
      * Set title attribute of an array if not set.
      *
-     * @param string $title
-     * @param array $attributes
+     * @param  string  $title
+     * @param  array  $attributes
      * @return array
      */
-    public function setTitle($title, array $attributes)
+    public function setTitle(string $title, array $attributes): array
     {
         if (! isset($attributes['title'])) {
             $attributes['title'] = $this->getQualifiedTitle($title);
@@ -115,10 +116,10 @@ trait HasColumns
     /**
      * Convert string into a readable title.
      *
-     * @param string $title
+     * @param  string  $title
      * @return string
      */
-    public function getQualifiedTitle($title)
+    public function getQualifiedTitle(string $title): string
     {
         return Str::title(str_replace(['.', '_'], ' ', Str::snake($title)));
     }
@@ -126,10 +127,10 @@ trait HasColumns
     /**
      * Add a column in collection usingsl attributes.
      *
-     * @param  array $attributes
+     * @param  array  $attributes
      * @return $this
      */
-    public function addColumn(array $attributes)
+    public function addColumn(array $attributes): static
     {
         $this->collection->push(new Column($attributes));
 
@@ -139,10 +140,10 @@ trait HasColumns
     /**
      * Add a Column object at the beginning of collection.
      *
-     * @param \Yajra\DataTables\Html\Column $column
+     * @param  \Yajra\DataTables\Html\Column  $column
      * @return $this
      */
-    public function addBefore(Column $column)
+    public function addBefore(Column $column): static
     {
         $this->collection->prepend($column);
 
@@ -152,10 +153,10 @@ trait HasColumns
     /**
      * Add a column at the beginning of collection using attributes.
      *
-     * @param  array $attributes
+     * @param  array  $attributes
      * @return $this
      */
-    public function addColumnBefore(array $attributes)
+    public function addColumnBefore(array $attributes): static
     {
         $this->collection->prepend(new Column($attributes));
 
@@ -165,10 +166,10 @@ trait HasColumns
     /**
      * Add a Column object in collection.
      *
-     * @param \Yajra\DataTables\Html\Column $column
+     * @param  \Yajra\DataTables\Html\Column  $column
      * @return $this
      */
-    public function add(Column $column)
+    public function add(Column $column): static
     {
         $this->collection->push($column);
 
@@ -180,7 +181,7 @@ trait HasColumns
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getColumns()
+    public function getColumns(): Collection
     {
         return $this->collection;
     }
@@ -188,10 +189,10 @@ trait HasColumns
     /**
      * Remove column by name.
      *
-     * @param array $names
+     * @param  array  $names
      * @return $this
      */
-    public function removeColumn(...$names)
+    public function removeColumn(...$names): static
     {
         foreach ($names as $name) {
             $this->collection = $this->collection->filter(function (Column $column) use ($name) {

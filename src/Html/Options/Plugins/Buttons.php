@@ -7,6 +7,10 @@ use Illuminate\Contracts\Support\Arrayable;
 /**
  * DataTables - Buttons plugin option builder.
  *
+ * @template TKey of array-key
+ * @template TValue
+ * @property array<TKey, TValue> $attributes
+ *
  * @see https://datatables.net/extensions/buttons/
  * @see https://datatables.net/reference/option/buttons
  */
@@ -15,11 +19,11 @@ trait Buttons
     /**
      * Attach multiple buttons to builder.
      *
-     * @param array|mixed ...$buttons
+     * @param  array|mixed  ...$buttons
      * @return $this
      * @see https://www.datatables.net/extensions/buttons/
      */
-    public function buttons(...$buttons)
+    public function buttons(...$buttons): static
     {
         if (is_array($buttons[0])) {
             $buttons = $buttons[0];

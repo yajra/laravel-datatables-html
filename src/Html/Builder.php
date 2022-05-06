@@ -179,24 +179,6 @@ class Builder
     }
 
     /**
-     * Check if given key & value is a valid callback js function.
-     *
-     * @param string $value
-     * @param string $key
-     * @return bool
-     */
-    protected function isCallbackFunction($value, $key)
-    {
-        if (empty($value)) {
-            return false;
-        }
-
-        $callbacks = $this->config->get('datatables-html.callback', ['$', '$.', 'function']);
-
-        return Str::startsWith(trim($value), $callbacks) || Str::contains($key, 'editor');
-    }
-
-    /**
      * Get javascript template to use.
      *
      * @return string
@@ -263,28 +245,11 @@ class Builder
     }
 
     /**
-     * Make a data script to be appended on ajax request of dataTables.
-     *
-     * @param array $data
-     * @return string
-     */
-    protected function makeDataScript(array $data)
-    {
-        $script = '';
-        foreach ($data as $key => $value) {
-            $dataValue = $this->isCallbackFunction($value, $key) ? $value : "'{$value}'";
-            $script .= PHP_EOL . "data.{$key} = {$dataValue};";
-        }
-
-        return $script;
-    }
-
-    /**
      * Generate scripts that sets the dataTables options into a variable.
      *
      * @return $this
      */
-    public function asOptions()
+    public function asOptions(): static
     {
         return $this->setTemplate('datatables::options');
     }

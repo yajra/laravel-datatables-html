@@ -24,7 +24,7 @@ class HtmlServiceProvider extends ServiceProvider
     /**
      * Publish datatables assets.
      */
-    protected function publishAssets()
+    protected function publishAssets(): void
     {
         $this->publishes([
             __DIR__ . '/resources/views'             => base_path('/resources/views/vendor/datatables'),

@@ -15,7 +15,7 @@ class Select extends Field
      * @param  bool  $value
      * @return $this
      */
-    public function multiple(bool $value = true)
+    public function multiple(bool $value = true): self
     {
         $this->attributes['multiple'] = $value;
 
@@ -25,11 +25,11 @@ class Select extends Field
     /**
      * Set field optionsPair value.
      *
-     * @param  string|array  $label
+     * @param  array|string  $label
      * @param  string  $value
      * @return $this
      */
-    public function optionsPair($label = 'label', $value = 'value')
+    public function optionsPair(array|string $label = 'label', string $value = 'value'): self
     {
         if (is_array($label)) {
             $this->attributes['optionsPair'] = $label;
@@ -47,7 +47,7 @@ class Select extends Field
      * @param  string  $value
      * @return $this
      */
-    public function placeholder($value)
+    public function placeholder(string $value): self
     {
         $this->attributes['placeholder'] = $value;
 
@@ -60,7 +60,7 @@ class Select extends Field
      * @param  bool  $value
      * @return $this
      */
-    public function placeholderDisabled(bool $value)
+    public function placeholderDisabled(bool $value): self
     {
         $this->attributes['placeholderDisabled'] = $value;
 
@@ -73,7 +73,7 @@ class Select extends Field
      * @param  string  $value
      * @return $this
      */
-    public function placeholderValue($value)
+    public function placeholderValue(string $value): self
     {
         $this->attributes['placeholderValue'] = $value;
 

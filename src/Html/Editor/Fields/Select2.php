@@ -10,10 +10,10 @@ class Select2 extends Select
     protected $type = 'select2';
 
     /**
-     * @param bool $state
+     * @param  bool  $state
      * @return $this
      */
-    public function allowClear($state = true)
+    public function allowClear(bool $state = true): self
     {
         $this->attributes['opts']['allowClear'] = $state;
 
@@ -21,15 +21,15 @@ class Select2 extends Select
     }
 
     /**
-     * @param string $text
-     * @param string|null $id
+     * @param  string  $value
+     * @param  string  $id
      * @return $this
      */
-    public function placeholder($text = '', $id = null)
+    public function optsPlaceholder(string $value = '', string $id = 'id'): self
     {
         $this->attributes['opts']['placeholder'] = [
-            'id'   => $id,
-            'text' => $text,
+            'id' => $id,
+            'text' => $value,
         ];
 
         return $this;
@@ -38,10 +38,10 @@ class Select2 extends Select
     /**
      * Set select2 ajax option.
      *
-     * @param mixed $value
+     * @param  array|string  $value
      * @return $this
      */
-    public function ajax($value)
+    public function ajax(array|string $value): self
     {
         if (is_array($value)) {
             $this->attributes['opts']['ajax'] = $value;
@@ -55,10 +55,10 @@ class Select2 extends Select
     /**
      * Set select2 ajax url option.
      *
-     * @param mixed $value
+     * @param  string  $value
      * @return $this
      */
-    public function ajaxUrl($value)
+    public function ajaxUrl(string $value): self
     {
         $this->attributes['opts']['ajax']['url'] = $value;
 
@@ -68,10 +68,10 @@ class Select2 extends Select
     /**
      * Set select2 ajaxDelay option.
      *
-     * @param mixed $value
+     * @param  int  $value
      * @return $this
      */
-    public function ajaxDelay($value = 250)
+    public function ajaxDelay(int $value = 250): self
     {
         $this->attributes['opts']['ajax']['delay'] = $value;
 
@@ -81,15 +81,15 @@ class Select2 extends Select
     /**
      * Set select2 ajax data option.
      *
-     * @param mixed $data
+     * @param  array|string  $data
      * @return $this
      */
-    public function ajaxData($data)
+    public function ajaxData(array|string $data): self
     {
         if (is_array($data)) {
             $script = 'function(params) {';
             foreach ($data as $key => $value) {
-                $value  = json_encode($value);
+                $value = json_encode($value);
                 $script .= " params.{$key} = {$value}; ";
             }
             $script .= 'return params; }';
@@ -105,11 +105,11 @@ class Select2 extends Select
     /**
      * Set select2 ajax processResults option to process a paginated results.
      *
-     * @param string $display
-     * @param string $id
+     * @param  string  $display
+     * @param  string  $id
      * @return $this
      */
-    public function processPaginatedResults($display = 'text', $id = 'id')
+    public function processPaginatedResults(string $display = 'text', string $id = 'id'): self
     {
         $script = 'function(data, params) { ';
         $script .= 'params.page = params.page || 1; ';
@@ -123,10 +123,10 @@ class Select2 extends Select
     /**
      * Set select2 ajax processResults option.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function processResults($value)
+    public function processResults(string $value): self
     {
         $this->attributes['opts']['ajax']['processResults'] = $value;
 
