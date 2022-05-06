@@ -1,0 +1,18 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src
+
+    level: max
+
+    ignoreErrors:
+        - "#Cannot access offset '[a-zA-Z]+' on mixed.#"
+
+    excludePaths:
+
+    checkMissingIterableValueType: false
+
+    checkGenericClassInNonGenericObjectType: false
