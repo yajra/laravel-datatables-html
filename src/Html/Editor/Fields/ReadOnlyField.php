@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-class ReadOnly extends Field
+class ReadOnlyField extends Field
 {
     protected $type = 'readonly';
 }
