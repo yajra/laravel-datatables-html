@@ -9,7 +9,7 @@ parameters:
     level: max
 
     ignoreErrors:
-        - "#Cannot access offset '[a-zA-Z]+' on mixed.#"
+        - '#Unsafe usage of new static\(\).#'
 
     excludePaths:
 

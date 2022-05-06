@@ -7,112 +7,96 @@ trait AutoFill
     /**
      * Set language autoFill option value.
      *
-     * @param array $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill
      */
     public function languageAutoFill(array $value)
     {
-        $this->attributes['language']['autoFill'] = $value;
-
-        return $this;
+        return $this->language(['autoFill' => $value]);
     }
 
     /**
      * Set language autoFill button option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.button
      */
-    public function languageAutoFillButton($value)
+    public function languageAutoFillButton(string $value)
     {
-        $this->attributes['language']['autoFill']['button'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['button' => $value]);
     }
 
     /**
      * Set language autoFill cancel option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.cancel
      */
-    public function languageAutoFillCancel($value)
+    public function languageAutoFillCancel(string $value)
     {
-        $this->attributes['language']['autoFill']['cancel'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['cancel' => $value]);
     }
 
     /**
      * Set language autoFill fill option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fill
      */
-    public function languageAutoFillFill($value)
+    public function languageAutoFillFill(string $value)
     {
-        $this->attributes['language']['autoFill']['fill'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['fill' => $value]);
     }
 
     /**
      * Set language autoFill fillHorizontal option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fillHorizontal
      */
-    public function languageAutoFillFillHorizontal($value)
+    public function languageAutoFillFillHorizontal(string $value)
     {
-        $this->attributes['language']['autoFill']['fillHorizontal'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['fillHorizontal' => $value]);
     }
 
     /**
      * Set language autoFill fillVertical option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fillVertical
      */
-    public function languageAutoFillFillVertical($value)
+    public function languageAutoFillFillVertical(string $value)
     {
-        $this->attributes['language']['autoFill']['fillVertical'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['fillVertical' => $value]);
     }
 
     /**
      * Set language autoFill increment option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.increment
      */
-    public function languageAutoFillIncrement($value)
+    public function languageAutoFillIncrement(string $value)
     {
-        $this->attributes['language']['autoFill']['increment'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['increment' => $value]);
     }
 
     /**
      * Set language autoFill info option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.info
      */
-    public function languageAutoFillInfo($value)
+    public function languageAutoFillInfo(string $value)
     {
-        $this->attributes['language']['autoFill']['info'] = $value;
-
-        return $this;
+        return $this->languageAutoFill(['info' => $value]);
     }
 }

@@ -16,7 +16,7 @@ trait HasCallbacks
      * @return $this
      * @see https://datatables.net/reference/option/createdRow
      */
-    public function createdRow($script)
+    public function createdRow(mixed $script): static
     {
         $this->attributes['createdRow'] = $script;
 

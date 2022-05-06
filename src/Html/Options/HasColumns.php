@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Column;
 /**
  * DataTables - Columns option builder.
  *
- * @property Collection $collection
+ * @property Collection<array-key, Column> $collection
  * @see https://datatables.net/reference/option/
  */
 trait HasColumns
@@ -125,7 +125,7 @@ trait HasColumns
     }
 
     /**
-     * Add a column in collection usingsl attributes.
+     * Add a column in collection using attributes.
      *
      * @param  array  $attributes
      * @return $this
@@ -195,6 +195,7 @@ trait HasColumns
     public function removeColumn(...$names): static
     {
         foreach ($names as $name) {
+            // @phpstan-ignore-next-line
             $this->collection = $this->collection->filter(function (Column $column) use ($name) {
                 return $column->name !== $name;
             })->flatten();

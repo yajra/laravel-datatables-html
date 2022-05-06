@@ -8,14 +8,14 @@ use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 
 /**
- * @property string data
- * @property string name
- * @property string orderable
- * @property string searchable
- * @property string printable
- * @property string exportable
- * @property string footer
- * @property array attributes
+ * @property string $data
+ * @property string $name
+ * @property string $orderable
+ * @property string $searchable
+ * @property string $printable
+ * @property string $exportable
+ * @property string $footer
+ * @property array $attributes
  * @see https://datatables.net/reference/option/#columns
  */
 class Column extends Fluent
@@ -27,23 +27,23 @@ class Column extends Fluent
      */
     public function __construct($attributes = [])
     {
-        $attributes['title'] = isset($attributes['title']) ? $attributes['title'] : self::titleFormat($attributes['data']);
-        $attributes['orderable'] = isset($attributes['orderable']) ? $attributes['orderable'] : true;
-        $attributes['searchable'] = isset($attributes['searchable']) ? $attributes['searchable'] : true;
-        $attributes['exportable'] = isset($attributes['exportable']) ? $attributes['exportable'] : true;
-        $attributes['printable'] = isset($attributes['printable']) ? $attributes['printable'] : true;
-        $attributes['footer'] = isset($attributes['footer']) ? $attributes['footer'] : '';
-        $attributes['attributes'] = isset($attributes['attributes']) ? $attributes['attributes'] : [];
+        $attributes['title'] ??= self::titleFormat($attributes['data']);
+        $attributes['orderable'] ??= true;
+        $attributes['searchable'] ??= true;
+        $attributes['exportable'] ??= true;
+        $attributes['printable'] ??= true;
+        $attributes['footer'] ??= '';
+        $attributes['attributes'] ??= [];
 
         // Allow methods override attribute value
         foreach ($attributes as $attribute => $value) {
-            $method = 'parse' . ucfirst(strtolower($attribute));
-            if (!is_null($value) && method_exists($this, $method)) {
+            $method = 'parse'.ucfirst(strtolower($attribute));
+            if (! is_null($value) && method_exists($this, $method)) {
                 $attributes[$attribute] = $this->$method($value);
             }
         }
 
-        if (!isset($attributes['name']) && isset($attributes['data'])) {
+        if (! isset($attributes['name']) && isset($attributes['data'])) {
             $attributes['name'] = $attributes['data'];
         }
 
@@ -56,7 +56,7 @@ class Column extends Fluent
      * @param  string  $value
      * @return string
      */
-    public static function titleFormat($value)
+    public static function titleFormat(string $value): string
     {
         return Str::title(str_replace('_', ' ', $value));
     }
@@ -68,7 +68,7 @@ class Column extends Fluent
      * @param  string|null  $title
      * @return Column
      */
-    public static function computed($data, $title = null)
+    public static function computed(string $data, string $title = null): Column
     {
         if (is_null($title)) {
             $title = self::titleFormat($data);
@@ -84,7 +84,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.searchable
      */
-    public function searchable(bool $flag = true)
+    public function searchable(bool $flag = true): static
     {
         $this->attributes['searchable'] = $flag;
 
@@ -98,7 +98,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderable
      */
-    public function orderable(bool $flag = true)
+    public function orderable(bool $flag = true): static
     {
         $this->attributes['orderable'] = $flag;
 
@@ -112,7 +112,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.title
      */
-    public function title($value)
+    public function title($value): static
     {
         $this->attributes['title'] = $value;
 
@@ -124,9 +124,9 @@ class Column extends Fluent
      *
      * @param  string  $data
      * @param  string  $name
-     * @return Column
+     * @return static
      */
-    public static function make($data, $name = '')
+    public static function make(string $data, string $name = ''): static
     {
         $attr = [
             'data' => $data,
@@ -140,15 +140,15 @@ class Column extends Fluent
      * Make a new formatted column instance.
      *
      * @param  string  $name
-     * @return Column
+     * @return static
      */
-    public static function formatted($name)
+    public static function formatted(string $name): static
     {
         $attr = [
             'data' => $name,
             'name' => $name,
             'title' => self::titleFormat($name),
-            'render' => 'full.' . $name . '_formatted',
+            'render' => 'full.'.$name.'_formatted',
         ];
 
         return new static($attr);
@@ -158,17 +158,17 @@ class Column extends Fluent
      * Create a checkbox column.
      *
      * @param  string  $title
-     * @return Column
+     * @return static
      */
-    public static function checkbox($title = '')
+    public static function checkbox(string $title = ''): static
     {
         return static::make('')
-            ->content('')
-            ->title($title)
-            ->className('select-checkbox')
-            ->orderable(false)
-            ->exportable(false)
-            ->searchable(false);
+                     ->content('')
+                     ->title($title)
+                     ->className('select-checkbox')
+                     ->orderable(false)
+                     ->exportable(false)
+                     ->searchable(false);
     }
 
     /**
@@ -177,7 +177,7 @@ class Column extends Fluent
      * @param  bool  $flag
      * @return $this
      */
-    public function exportable(bool $flag = true)
+    public function exportable(bool $flag = true): static
     {
         $this->attributes['exportable'] = $flag;
 
@@ -191,7 +191,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.className
      */
-    public function className($class)
+    public function className($class): static
     {
         $this->attributes['className'] = $class;
 
@@ -205,7 +205,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.defaultContent
      */
-    public function content($value)
+    public function content(string $value): static
     {
         $this->attributes['defaultContent'] = $value;
 
@@ -219,7 +219,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.responsivePriority
      */
-    public function responsivePriority($value)
+    public function responsivePriority(int|string $value): static
     {
         $this->attributes['responsivePriority'] = $value;
 
@@ -232,7 +232,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.visible
      */
-    public function hidden()
+    public function hidden(): static
     {
         return $this->visible(false);
     }
@@ -244,7 +244,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.visible
      */
-    public function visible(bool $flag = true)
+    public function visible(bool $flag = true): static
     {
         $this->attributes['visible'] = $flag;
 
@@ -257,9 +257,9 @@ class Column extends Fluent
      * @param  string  $class
      * @return $this
      */
-    public function addClass($class)
+    public function addClass($class): static
     {
-        if (!isset($this->attributes['className'])) {
+        if (! isset($this->attributes['className'])) {
             $this->attributes['className'] = $class;
         } else {
             $this->attributes['className'] .= " $class";
@@ -274,7 +274,7 @@ class Column extends Fluent
      * @param  bool  $flag
      * @return $this
      */
-    public function printable(bool $flag = true)
+    public function printable(bool $flag = true): static
     {
         $this->attributes['printable'] = $flag;
 
@@ -288,7 +288,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.width
      */
-    public function width($value)
+    public function width(int|string $value): static
     {
         $this->attributes['width'] = $value;
 
@@ -302,7 +302,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.data
      */
-    public function data($value)
+    public function data(string $value): static
     {
         $this->attributes['data'] = $value;
 
@@ -316,7 +316,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.name
      */
-    public function name($value)
+    public function name(string $value): static
     {
         $this->attributes['name'] = $value;
 
@@ -326,11 +326,11 @@ class Column extends Fluent
     /**
      * Set column edit field option value.
      *
-     * @param  string|array  $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.editField
      */
-    public function editField($value)
+    public function editField(array|string $value): static
     {
         $this->attributes['editField'] = $value;
 
@@ -344,7 +344,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderData
      */
-    public function orderData($value)
+    public function orderData(mixed $value): static
     {
         $this->attributes['orderData'] = $value;
 
@@ -358,7 +358,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderDataType
      */
-    public function orderDataType($value)
+    public function orderDataType(mixed $value): static
     {
         $this->attributes['orderDataType'] = $value;
 
@@ -372,7 +372,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderSequence
      */
-    public function orderSequence($value)
+    public function orderSequence(mixed $value): static
     {
         $this->attributes['orderSequence'] = $value;
 
@@ -386,7 +386,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.cellType
      */
-    public function cellType($value)
+    public function cellType(mixed $value): static
     {
         $this->attributes['cellType'] = $value;
 
@@ -400,7 +400,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.type
      */
-    public function type($value)
+    public function type(mixed $value): static
     {
         $this->attributes['type'] = $value;
 
@@ -414,7 +414,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.contentPadding
      */
-    public function contentPadding($value)
+    public function contentPadding(mixed $value): static
     {
         $this->attributes['contentPadding'] = $value;
 
@@ -428,7 +428,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.createdCell
      */
-    public function createdCell($value)
+    public function createdCell(mixed $value): static
     {
         $this->attributes['createdCell'] = $value;
 
@@ -443,7 +443,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
-    public function renderJs($value, ...$params)
+    public function renderJs(mixed $value, ...$params): static
     {
         if ($params) {
             $value .= '(';
@@ -454,7 +454,7 @@ class Column extends Fluent
             $value .= ')';
         }
 
-        $renderer = '$.fn.dataTable.render.' . $value;
+        $renderer = '$.fn.dataTable.render.'.$value;
 
         return $this->render($renderer);
     }
@@ -466,7 +466,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
-    public function render($value)
+    public function render(mixed $value): static
     {
         $this->attributes['render'] = $this->parseRender($value);
 
@@ -479,7 +479,7 @@ class Column extends Fluent
      * @param  mixed  $value
      * @return string|null
      */
-    public function parseRender($value)
+    public function parseRender(mixed $value): ?string
     {
         /** @var \Illuminate\Contracts\View\Factory $view */
         $view = app('view');
@@ -507,7 +507,7 @@ class Column extends Fluent
      * @param  string  $value
      * @return bool
      */
-    private function isBuiltInRenderFunction($value)
+    private function isBuiltInRenderFunction(string $value): bool
     {
         if (empty($value)) {
             return false;
@@ -522,7 +522,7 @@ class Column extends Fluent
      * @param  mixed  $value
      * @return string
      */
-    private function parseRenderAsString($value)
+    private function parseRenderAsString(mixed $value): string
     {
         return "function(data,type,full,meta){return $value;}";
     }
@@ -534,7 +534,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
-    public function renderRaw($value)
+    public function renderRaw(mixed $value): static
     {
         $this->attributes['render'] = $value;
 
@@ -547,7 +547,7 @@ class Column extends Fluent
      * @param  mixed  $value
      * @return $this
      */
-    public function footer($value)
+    public function footer(mixed $value): static
     {
         $this->attributes['footer'] = $value;
 
@@ -555,12 +555,12 @@ class Column extends Fluent
     }
 
     /**
-     * Set custom html title instead defult label.
+     * Set custom html title instead default label.
      *
      * @param  mixed  $value
      * @return $this
      */
-    public function titleAttr($value)
+    public function titleAttr(mixed $value): static
     {
         $this->attributes['titleAttr'] = $value;
 
@@ -570,11 +570,11 @@ class Column extends Fluent
     /**
      * Set excel column format when exporting.
      *
-     * @param string $format
+     * @param  string  $format
      * @return $this
      * @see https://github.com/yajra/laravel-datatables-export
      */
-    public function exportFormat($format)
+    public function exportFormat(string $format): static
     {
         $this->attributes['exportFormat'] = $format;
 
@@ -584,7 +584,7 @@ class Column extends Fluent
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return Arr::except($this->attributes, [
             'printable',

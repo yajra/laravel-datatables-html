@@ -7,70 +7,60 @@ trait Paginate
     /**
      * Set language aria paginate option value.
      *
-     * @param array $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate
      */
     public function languagePaginate(array $value)
     {
-        $this->attributes['language']['paginate'] = $value;
-
-        return $this;
+        return $this->language(['paginate' => $value]);
     }
 
     /**
      * Set language aria paginate first option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.first
      */
-    public function languagePaginateFirst($value)
+    public function languagePaginateFirst(string $value)
     {
-        $this->attributes['language']['paginate']['first'] = $value;
-
-        return $this;
+        return $this->languagePaginate(['first' => $value]);
     }
 
     /**
      * Set language aria paginate last option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.last
      */
-    public function languagePaginateLast($value)
+    public function languagePaginateLast(string $value)
     {
-        $this->attributes['language']['paginate']['last'] = $value;
-
-        return $this;
+        return $this->languagePaginate(['last' => $value]);
     }
 
     /**
      * Set language aria paginate next option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.next
      */
-    public function languagePaginateNext($value)
+    public function languagePaginateNext(string $value)
     {
-        $this->attributes['language']['paginate']['next'] = $value;
-
-        return $this;
+        return $this->languagePaginate(['next' => $value]);
     }
 
     /**
      * Set language aria paginate previous option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.previous
      */
-    public function languagePaginatePrevious($value)
+    public function languagePaginatePrevious(string $value)
     {
-        $this->attributes['language']['paginate']['previous'] = $value;
-
-        return $this;
+        return $this->languagePaginate(['previous' => $value]);
     }
 }

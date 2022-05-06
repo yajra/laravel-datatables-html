@@ -7,56 +7,48 @@ trait Select
     /**
      * Set language select option value.
      *
-     * @param array $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select
      */
-    public function languageSelect($value)
+    public function languageSelect(array $value)
     {
-        $this->attributes['language']['select'] = $value;
-
-        return $this;
+        return $this->language(['select' => $value]);
     }
 
     /**
      * Set language select cells option value.
      *
-     * @param string|array $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.cells
      */
-    public function languageSelectCells($value)
+    public function languageSelectCells(array|string $value)
     {
-        $this->attributes['language']['select']['cells'] = $value;
-
-        return $this;
+        return $this->languageSelect(['cells' => $value]);
     }
 
     /**
      * Set language select columns option value.
      *
-     * @param string|array $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.columns
      */
-    public function languageSelectColumns($value)
+    public function languageSelectColumns(array|string $value)
     {
-        $this->attributes['language']['select']['columns'] = $value;
-
-        return $this;
+        return $this->languageSelect(['columns' => $value]);
     }
 
     /**
      * Set language select rows option value.
      *
-     * @param string|array $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.select.rows
      */
-    public function languageSelectRows($value)
+    public function languageSelectRows(array|string $value)
     {
-        $this->attributes['language']['select']['rows'] = $value;
-
-        return $this;
+        return $this->languageSelect(['rows' => $value]);
     }
 }
