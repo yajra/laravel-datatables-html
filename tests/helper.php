@@ -1,5 +1,7 @@
 <?php
 
+namespace Yajra\DataTables\Html\Tests;
+
 use Illuminate\Support\Arr;
 use Mockery as m;
 use Yajra\DataTables\Factory;

@@ -129,12 +129,19 @@ trait HasTable
         $th = [];
 
         $this->collection->each(function (Column $column) use (&$th) {
-            $thAttr = $this->html->attributes(array_merge(
-                Arr::only($column->toArray(), ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']),
-                $column->getAttributes(),
+            $only = Arr::only(
+                $column->toArray(),
+                ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']
+            );
+
+            $attributes = array_merge(
+                $only,
+                $column->attributes,
                 isset($column['titleAttr']) ? ['title' => $column['titleAttr']] : []
-            ));
-            $th[] = '<th '.$thAttr.'>'.$column['title'].'</th>';
+            );
+
+            $thAttr = $this->html->attributes($attributes);
+            $th[] = '<th'.$thAttr.'>'.$column['title'].'</th>';
         });
 
         return $th;

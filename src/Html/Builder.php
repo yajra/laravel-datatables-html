@@ -55,7 +55,7 @@ class Builder
      * @param  Factory  $view
      * @param  HtmlBuilder  $html
      */
-    public function __construct(protected Repository $config, protected Factory $view, protected HtmlBuilder $html)
+    public function __construct(public Repository $config, public Factory $view, public HtmlBuilder $html)
     {
         /** @var array $defaults */
         $defaults = $this->config->get('datatables-html.table', []);
@@ -74,28 +74,26 @@ class Builder
      * @param  string|null  $script
      * @param  array  $attributes
      * @return \Illuminate\Support\HtmlString
-     * @throws \Exception
      */
     public function scripts(string $script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
 
-        return new HtmlString("<script{$attributes}>{$script}</script>\n");
+        return new HtmlString("<script{$attributes}>$script</script>");
     }
 
     /**
      * Get generated raw scripts.
      *
      * @return \Illuminate\Support\HtmlString
-     * @throws \Exception
      */
     public function generateScripts(): HtmlString
     {
         $parameters = $this->generateJson();
 
         return new HtmlString(
-            sprintf($this->template(), $this->getTableAttribute('id'), $parameters)
+            trim(sprintf($this->template(), $this->getTableAttribute('id'), $parameters))
         );
     }
 
@@ -172,7 +170,7 @@ class Builder
         $th = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
-        $tableHtml = '<table '.$htmlAttr.'>';
+        $tableHtml = '<table'.$htmlAttr.'>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">'.implode('',
                 $this->compileTableSearchHeaders()).'</tr>' : '';
         $tableHtml .= '<thead><tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';

@@ -32,7 +32,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Yajra\\DataTables\\Tests\\": "tests/"
+      "Yajra\\DataTables\\Html\\Tests\\": "tests/"
     }
   },
   "extra": {
