@@ -29,6 +29,18 @@ class HtmlBuilderTest extends TestCase
     }
 
     /** @test */
+    public function it_can_change_namespace()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $this->assertStringContainsString('LaravelDataTables', $builder->scripts()->toHtml());
+
+        config()->set('datatables-html.namespace', 'TestDataTables');
+
+        $this->assertStringContainsString('TestDataTables', $builder->scripts()->toHtml());
+    }
+
+    /** @test */
     public function it_can_generate_table_html_and_scripts()
     {
         $builder = $this->getHtmlBuilder();
