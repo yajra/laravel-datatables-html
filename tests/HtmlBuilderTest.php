@@ -19,6 +19,16 @@ class HtmlBuilderTest extends TestCase
     }
 
     /** @test */
+    public function it_can_read_table_id_from_config()
+    {
+        $this->assertEquals('dataTableBuilder', $this->getHtmlBuilder()->getTableId());
+
+        config()->set('datatables-html.table.id', 'test');
+
+        $this->assertEquals('test', $this->getHtmlBuilder()->getTableId());
+    }
+
+    /** @test */
     public function it_can_generate_table_html_and_scripts()
     {
         $builder = $this->getHtmlBuilder();

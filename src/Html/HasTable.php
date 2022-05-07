@@ -42,7 +42,6 @@ trait HasTable
      * Get HTML table "id" attribute.
      *
      * @return string
-     * @throws \Exception
      */
     public function getTableId(): string
     {
