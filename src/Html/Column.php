@@ -18,6 +18,17 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
  * @property string $exportable
  * @property array|string $footer
  * @property array $attributes
+ * @property string $render
+ * @property string $className
+ * @property string $editField
+ * @property int|array $orderData
+ * @property string $orderDataType
+ * @property string $orderSequence
+ * @property string $cellType
+ * @property string $type
+ * @property string $contentPadding
+ * @property string $createdCell
+ * @property string $exportFormat
  * @see https://datatables.net/reference/option/#columns
  */
 class Column extends Fluent
