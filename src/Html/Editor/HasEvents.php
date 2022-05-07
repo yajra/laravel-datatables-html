@@ -45,8 +45,8 @@ trait HasEvents
     /**
      * Magic method handler for editor events.
      *
-     * @param string $name
-     * @param mixed $arguments
+     * @param  string  $name
+     * @param  mixed  $arguments
      * @return $this
      */
     public function __call($name, $arguments)
@@ -63,12 +63,12 @@ trait HasEvents
     /**
      * Add Editor event listener scripts.
      *
-     * @param string $event
-     * @param string $script
+     * @param  string  $event
+     * @param  string  $script
      * @return $this
      * @see https://editor.datatables.net/reference/event
      */
-    public function on($event, $script)
+    public function on(string $event, string $script): static
     {
         $this->attributes['events'][] = [
             'event' => $event,

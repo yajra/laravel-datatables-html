@@ -15,11 +15,11 @@ trait AutoFill
      * Set autoFill option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param bool|array $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill
      */
-    public function autoFill($value = true)
+    public function autoFill(bool|array $value = true): static
     {
         $this->attributes['autoFill'] = $value;
 
@@ -29,112 +29,96 @@ trait AutoFill
     /**
      * Set autoFill alwaysAsk option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.alwaysAsk
      */
-    public function autoFillAlwaysAsk(bool $value = true)
+    public function autoFillAlwaysAsk(bool $value = true): static
     {
-        $this->attributes['autoFill']['alwaysAsk'] = $value;
-
-        return $this;
+        return $this->autoFill(['alwaysAsk' => $value]);
     }
 
     /**
      * Set autoFill columns option value.
      *
-     * @param mixed $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.columns
      */
-    public function autoFillColumns($value)
+    public function autoFillColumns(array|string $value): static
     {
-        $this->attributes['autoFill']['columns'] = $value;
-
-        return $this;
+        return $this->autoFill(['columns' => $value]);
     }
 
     /**
      * Set autoFill editor option value.
      *
-     * @param mixed $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.editor
      */
-    public function autoFillEditor($value)
+    public function autoFillEditor(string $value): static
     {
-        $this->attributes['autoFill']['editor'] = $value;
-
-        return $this;
+        return $this->autoFill(['editor' => $value]);
     }
 
     /**
      * Set autoFill enable option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.enable
      */
-    public function autoFillEnable(bool $value = true)
+    public function autoFillEnable(bool $value = true): static
     {
-        $this->attributes['autoFill']['enable'] = $value;
-
-        return $this;
+        return $this->autoFill(['enable' => $value]);
     }
 
     /**
      * Set autoFill focus option value.
      *
-     * @param mixed $value
+     * @param  string|null  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.focus
      */
-    public function autoFillFocus($value = null)
+    public function autoFillFocus(string $value = null): static
     {
-        $this->attributes['autoFill']['focus'] = $value;
-
-        return $this;
+        return $this->autoFill(['focus' => $value]);
     }
 
     /**
      * Set autoFill horizontal option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.horizontal
      */
-    public function autoFillHorizontal(bool $value = true)
+    public function autoFillHorizontal(bool $value = true): static
     {
-        $this->attributes['autoFill']['horizontal'] = $value;
-
-        return $this;
+        return $this->autoFill(['horizontal' => $value]);
     }
 
     /**
      * Set autoFill update option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.update
      */
-    public function autoFillUpdate(bool $value = true)
+    public function autoFillUpdate(bool $value = true): static
     {
-        $this->attributes['autoFill']['update'] = $value;
-
-        return $this;
+        return $this->autoFill(['update' => $value]);
     }
 
     /**
      * Set autoFill vertical option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill.vertical
      */
-    public function autoFillVertical(bool $value = true)
+    public function autoFillVertical(bool $value = true): static
     {
-        $this->attributes['autoFill']['vertical'] = $value;
-
-        return $this;
+        return $this->autoFill(['vertical' => $value]);
     }
 }

@@ -112,7 +112,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.title
      */
-    public function title($value): static
+    public function title(string $value): static
     {
         $this->attributes['title'] = $value;
 
@@ -191,7 +191,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.className
      */
-    public function className($class): static
+    public function className(string $class): static
     {
         $this->attributes['className'] = $class;
 
@@ -257,7 +257,7 @@ class Column extends Fluent
      * @param  string  $class
      * @return $this
      */
-    public function addClass($class): static
+    public function addClass(string $class): static
     {
         if (! isset($this->attributes['className'])) {
             $this->attributes['className'] = $class;
@@ -340,11 +340,11 @@ class Column extends Fluent
     /**
      * Set column orderData option value.
      *
-     * @param  mixed  $value
+     * @param  array|int  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderData
      */
-    public function orderData(mixed $value): static
+    public function orderData(array|int $value): static
     {
         $this->attributes['orderData'] = $value;
 
@@ -354,11 +354,11 @@ class Column extends Fluent
     /**
      * Set column orderDataType option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderDataType
      */
-    public function orderDataType(mixed $value): static
+    public function orderDataType(string $value): static
     {
         $this->attributes['orderDataType'] = $value;
 
@@ -368,11 +368,11 @@ class Column extends Fluent
     /**
      * Set column orderSequence option value.
      *
-     * @param  mixed  $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.orderSequence
      */
-    public function orderSequence(mixed $value): static
+    public function orderSequence(array $value): static
     {
         $this->attributes['orderSequence'] = $value;
 
@@ -382,11 +382,11 @@ class Column extends Fluent
     /**
      * Set column cellType option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.cellType
      */
-    public function cellType(mixed $value): static
+    public function cellType(string $value): static
     {
         $this->attributes['cellType'] = $value;
 
@@ -396,11 +396,11 @@ class Column extends Fluent
     /**
      * Set column type option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.type
      */
-    public function type(mixed $value): static
+    public function type(string $value): static
     {
         $this->attributes['type'] = $value;
 
@@ -410,11 +410,11 @@ class Column extends Fluent
     /**
      * Set column contentPadding option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.contentPadding
      */
-    public function contentPadding(mixed $value): static
+    public function contentPadding(string $value): static
     {
         $this->attributes['contentPadding'] = $value;
 
@@ -424,11 +424,11 @@ class Column extends Fluent
     /**
      * Set column createdCell option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.createdCell
      */
-    public function createdCell(mixed $value): static
+    public function createdCell(string $value): static
     {
         $this->attributes['createdCell'] = $value;
 
@@ -438,12 +438,12 @@ class Column extends Fluent
     /**
      * Use the js renderer "$.fn.dataTable.render.".
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @param  mixed  ...$params
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
-    public function renderJs(mixed $value, ...$params): static
+    public function renderJs(string $value, ...$params): static
     {
         if ($params) {
             $value .= '(';

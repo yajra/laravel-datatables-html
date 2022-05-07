@@ -7,11 +7,11 @@ class Time extends DateTime
     /**
      * Make a new instance of a field.
      *
-     * @param string $name
-     * @param string $label
-     * @return static|\Yajra\DataTables\Html\Editor\Fields\File
+     * @param  array|string  $name
+     * @param  string  $label
+     * @return static
      */
-    public static function make($name, $label = '')
+    public static function make(array|string $name, string $label = ''): static
     {
         /** @var \Yajra\DataTables\Html\Editor\Fields\Time $field */
         $field = parent::make($name, $label);
@@ -24,7 +24,7 @@ class Time extends DateTime
      *
      * @return $this
      */
-    public function military()
+    public function military(): static
     {
         return $this->format('HH:mm');
     }

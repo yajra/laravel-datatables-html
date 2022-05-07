@@ -9,10 +9,10 @@ trait Index
     /**
      * Add a index column.
      *
-     * @param  array $attributes
+     * @param  array  $attributes
      * @return $this
      */
-    public function addIndex(array $attributes = [])
+    public function addIndex(array $attributes = []): static
     {
         $indexColumn = $this->config->get('datatables.index_column', 'DT_RowIndex');
 

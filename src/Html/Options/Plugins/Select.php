@@ -29,7 +29,7 @@ trait Select
     /**
      * Set select blurable option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/select.blurable
      */
@@ -57,23 +57,24 @@ trait Select
     /**
      * Append a class name to className option value.
      *
-     * @param string $class
+     * @param  string  $class
      * @return $this
      */
-    public function selectAddClassName($class): static
+    public function selectAddClassName(string $class): static
     {
         if (! isset($this->attributes['select']['className'])) {
             $this->attributes['select']['className'] = $class;
         } else {
             $this->attributes['select']['className'] .= " $class";
         }
+
         return $this;
     }
 
     /**
      * Set select info option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/select.info
      */

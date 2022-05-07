@@ -11,7 +11,7 @@ trait Paginate
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate
      */
-    public function languagePaginate(array $value)
+    public function languagePaginate(array $value): static
     {
         return $this->language(['paginate' => $value]);
     }
@@ -23,7 +23,7 @@ trait Paginate
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.first
      */
-    public function languagePaginateFirst(string $value)
+    public function languagePaginateFirst(string $value): static
     {
         return $this->languagePaginate(['first' => $value]);
     }
@@ -35,7 +35,7 @@ trait Paginate
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.last
      */
-    public function languagePaginateLast(string $value)
+    public function languagePaginateLast(string $value): static
     {
         return $this->languagePaginate(['last' => $value]);
     }
@@ -47,7 +47,7 @@ trait Paginate
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.next
      */
-    public function languagePaginateNext(string $value)
+    public function languagePaginateNext(string $value): static
     {
         return $this->languagePaginate(['next' => $value]);
     }
@@ -59,7 +59,7 @@ trait Paginate
      * @return $this
      * @see https://datatables.net/reference/option/language.paginate.previous
      */
-    public function languagePaginatePrevious(string $value)
+    public function languagePaginatePrevious(string $value): static
     {
         return $this->languagePaginate(['previous' => $value]);
     }

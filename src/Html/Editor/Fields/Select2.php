@@ -7,13 +7,13 @@ namespace Yajra\DataTables\Html\Editor\Fields;
  */
 class Select2 extends Select
 {
-    protected $type = 'select2';
+    protected string $type = 'select2';
 
     /**
      * @param  bool  $state
      * @return $this
      */
-    public function allowClear(bool $state = true): self
+    public function allowClear(bool $state = true): static
     {
         $this->attributes['opts']['allowClear'] = $state;
 
@@ -25,7 +25,7 @@ class Select2 extends Select
      * @param  string  $id
      * @return $this
      */
-    public function optsPlaceholder(string $value = '', string $id = 'id'): self
+    public function optsPlaceholder(string $value = '', string $id = 'id'): static
     {
         $this->attributes['opts']['placeholder'] = [
             'id' => $id,
@@ -41,7 +41,7 @@ class Select2 extends Select
      * @param  array|string  $value
      * @return $this
      */
-    public function ajax(array|string $value): self
+    public function ajax(array|string $value): static
     {
         if (is_array($value)) {
             $this->attributes['opts']['ajax'] = $value;
@@ -58,7 +58,7 @@ class Select2 extends Select
      * @param  string  $value
      * @return $this
      */
-    public function ajaxUrl(string $value): self
+    public function ajaxUrl(string $value): static
     {
         $this->attributes['opts']['ajax']['url'] = $value;
 
@@ -71,7 +71,7 @@ class Select2 extends Select
      * @param  int  $value
      * @return $this
      */
-    public function ajaxDelay(int $value = 250): self
+    public function ajaxDelay(int $value = 250): static
     {
         $this->attributes['opts']['ajax']['delay'] = $value;
 
@@ -84,7 +84,7 @@ class Select2 extends Select
      * @param  array|string  $data
      * @return $this
      */
-    public function ajaxData(array|string $data): self
+    public function ajaxData(array|string $data): static
     {
         if (is_array($data)) {
             $script = 'function(params) {';
@@ -109,7 +109,7 @@ class Select2 extends Select
      * @param  string  $id
      * @return $this
      */
-    public function processPaginatedResults(string $display = 'text', string $id = 'id'): self
+    public function processPaginatedResults(string $display = 'text', string $id = 'id'): static
     {
         $script = 'function(data, params) { ';
         $script .= 'params.page = params.page || 1; ';
@@ -126,7 +126,7 @@ class Select2 extends Select
      * @param  string  $value
      * @return $this
      */
-    public function processResults(string $value): self
+    public function processResults(string $value): static
     {
         $this->attributes['opts']['ajax']['processResults'] = $value;
 

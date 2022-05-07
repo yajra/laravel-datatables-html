@@ -10,19 +10,19 @@ use Illuminate\Support\Fluent;
 class FormOptions extends Fluent
 {
     /**
-     * @param array $attributes
-     * @return \Yajra\DataTables\Html\Editor\FormOptions
+     * @param  array  $attributes
+     * @return static
      */
-    public static function make($attributes = [])
+    public static function make(array $attributes = []): static
     {
         return new static($attributes);
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      * @return $this
      */
-    public function focus($value = 0)
+    public function focus(int $value = 0): static
     {
         $this->attributes['focus'] = $value;
 
@@ -30,10 +30,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      */
-    public function message($value = false)
+    public function message(bool $value = false): static
     {
         $this->attributes['message'] = $value;
 
@@ -41,10 +41,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onBackground($value = 'blur')
+    public function onBackground(string $value = 'blur'): static
     {
         $this->attributes['onBackground'] = $value;
 
@@ -52,10 +52,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onBlur($value = 'close')
+    public function onBlur(string $value = 'close'): static
     {
         $this->attributes['onBlur'] = $value;
 
@@ -63,10 +63,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onComplete($value = 'close')
+    public function onComplete(string $value = 'close'): static
     {
         $this->attributes['onComplete'] = $value;
 
@@ -74,10 +74,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onEsc($value = 'close')
+    public function onEsc(string $value = 'close'): static
     {
         $this->attributes['onEsc'] = $value;
 
@@ -85,10 +85,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onFieldError($value = 'focus')
+    public function onFieldError(string $value = 'focus'): static
     {
         $this->attributes['onFieldError'] = $value;
 
@@ -96,10 +96,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function onReturn($value = 'submit')
+    public function onReturn(string $value = 'submit'): static
     {
         $this->attributes['onReturn'] = $value;
 
@@ -107,10 +107,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function submit($value = 'changed')
+    public function submit(string $value = 'changed'): static
     {
         $this->attributes['submit'] = $value;
 
@@ -118,10 +118,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      */
-    public function title($value = false)
+    public function title(bool $value = false): static
     {
         $this->attributes['title'] = $value;
 
@@ -129,10 +129,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      */
-    public function drawType($value = false)
+    public function drawType(bool $value = false): static
     {
         $this->attributes['drawType'] = $value;
 
@@ -140,10 +140,10 @@ class FormOptions extends Fluent
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function scope($value = 'row')
+    public function scope(string $value = 'row'): static
     {
         $this->attributes['scope'] = $value;
 

@@ -19,11 +19,11 @@ trait HasInternationalisation
     /**
      * Set language option value.
      *
-     * @param string|array $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language
      */
-    public function language($value)
+    public function language(array|string $value): static
     {
         if (is_array($value)) {
             $this->attributes['language'] = $value;
@@ -37,196 +37,168 @@ trait HasInternationalisation
     /**
      * Set language decimal option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.decimal
      */
-    public function languageDecimal($value)
+    public function languageDecimal(string $value): static
     {
-        $this->attributes['language']['decimal'] = $value;
-
-        return $this;
+        return $this->language(['decimal' => $value]);
     }
 
     /**
      * Set language emptyTable option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.emptyTable
      */
-    public function languageEmptyTable($value)
+    public function languageEmptyTable(string $value): static
     {
-        $this->attributes['language']['emptyTable'] = $value;
-
-        return $this;
+        return $this->language(['emptyTable' => $value]);
     }
 
     /**
      * Set language info option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.info
      */
-    public function languageInfo($value)
+    public function languageInfo(string $value): static
     {
-        $this->attributes['language']['info'] = $value;
-
-        return $this;
+        return $this->language(['info' => $value]);
     }
 
     /**
      * Set language infoEmpty option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoEmpty
      */
-    public function languageInfoEmpty($value)
+    public function languageInfoEmpty(string $value): static
     {
-        $this->attributes['language']['infoEmpty'] = $value;
-
-        return $this;
+        return $this->language(['infoEmpty' => $value]);
     }
 
     /**
      * Set language infoFiltered option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoFiltered
      */
-    public function languageInfoFiltered($value)
+    public function languageInfoFiltered(string $value): static
     {
-        $this->attributes['language']['infoFiltered'] = $value;
-
-        return $this;
+        return $this->language(['infoFiltered' => $value]);
     }
 
     /**
      * Set language infoPostFix option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.infoPostFix
      */
-    public function languageInfoPostFix($value)
+    public function languageInfoPostFix(string $value): static
     {
-        $this->attributes['language']['infoPostFix'] = $value;
-
-        return $this;
+        return $this->language(['infoPostFix' => $value]);
     }
 
     /**
      * Set language lengthMenu option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.lengthMenu
      */
-    public function languageLengthMenu($value)
+    public function languageLengthMenu(string $value): static
     {
-        $this->attributes['language']['lengthMenu'] = $value;
-
-        return $this;
+        return $this->language(['lengthMenu' => $value]);
     }
 
     /**
      * Set language loadingRecords option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.loadingRecords
      */
-    public function languageLoadingRecords($value)
+    public function languageLoadingRecords(string $value): static
     {
-        $this->attributes['language']['loadingRecords'] = $value;
-
-        return $this;
+        return $this->language(['loadingRecords' => $value]);
     }
 
     /**
      * Set language processing option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.processing
      */
-    public function languageProcessing($value)
+    public function languageProcessing(string $value): static
     {
-        $this->attributes['language']['processing'] = $value;
-
-        return $this;
+        return $this->language(['processing' => $value]);
     }
 
     /**
      * Set language search option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.search
      */
-    public function languageSearch($value)
+    public function languageSearch(string $value): static
     {
-        $this->attributes['language']['search'] = $value;
-
-        return $this;
+        return $this->language(['search' => $value]);
     }
 
     /**
      * Set language searchPlaceholder option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.searchPlaceholder
      */
-    public function languageSearchPlaceholder($value)
+    public function languageSearchPlaceholder(string $value): static
     {
-        $this->attributes['language']['searchPlaceholder'] = $value;
-
-        return $this;
+        return $this->language(['searchPlaceholder' => $value]);
     }
 
     /**
      * Set language thousands option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.thousands
      */
-    public function languageThousands($value)
+    public function languageThousands(string $value): static
     {
-        $this->attributes['language']['thousands'] = $value;
-
-        return $this;
+        return $this->language(['thousands' => $value]);
     }
 
     /**
      * Set language url option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.url
      */
-    public function languageUrl($value)
+    public function languageUrl(string $value): static
     {
-        $this->attributes['language']['url'] = $value;
-
-        return $this;
+        return $this->language(['url' => $value]);
     }
 
     /**
      * Set language zeroRecords option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/language.zeroRecords
      */
-    public function languageZeroRecords($value)
+    public function languageZeroRecords(string $value): static
     {
-        $this->attributes['language']['zeroRecords'] = $value;
-
-        return $this;
+        return $this->language(['zeroRecords' => $value]);
     }
 }

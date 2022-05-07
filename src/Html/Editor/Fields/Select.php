@@ -7,7 +7,7 @@ namespace Yajra\DataTables\Html\Editor\Fields;
  */
 class Select extends Field
 {
-    protected $type = 'select';
+    protected string $type = 'select';
 
     /**
      * Set field multiple value.
@@ -15,7 +15,7 @@ class Select extends Field
      * @param  bool  $value
      * @return $this
      */
-    public function multiple(bool $value = true): self
+    public function multiple(bool $value = true): static
     {
         $this->attributes['multiple'] = $value;
 
@@ -29,7 +29,7 @@ class Select extends Field
      * @param  string  $value
      * @return $this
      */
-    public function optionsPair(array|string $label = 'label', string $value = 'value'): self
+    public function optionsPair(array|string $label = 'label', string $value = 'value'): static
     {
         if (is_array($label)) {
             $this->attributes['optionsPair'] = $label;
@@ -47,7 +47,7 @@ class Select extends Field
      * @param  string  $value
      * @return $this
      */
-    public function placeholder(string $value): self
+    public function placeholder(string $value): static
     {
         $this->attributes['placeholder'] = $value;
 
@@ -60,7 +60,7 @@ class Select extends Field
      * @param  bool  $value
      * @return $this
      */
-    public function placeholderDisabled(bool $value): self
+    public function placeholderDisabled(bool $value): static
     {
         $this->attributes['placeholderDisabled'] = $value;
 
@@ -73,7 +73,7 @@ class Select extends Field
      * @param  string  $value
      * @return $this
      */
-    public function placeholderValue(string $value): self
+    public function placeholderValue(string $value): static
     {
         $this->attributes['placeholderValue'] = $value;
 

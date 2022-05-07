@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class BelongsTo extends Select
@@ -14,7 +14,7 @@ class BelongsTo extends Select
      * @param  string|null  $foreign
      * @return static
      */
-    public static function model(Builder|string $class, string $text, string $id = 'id', string $foreign = null): self
+    public static function model(Builder|string $class, string $text, string $id = 'id', string $foreign = null): static
     {
         if ($class instanceof Builder) {
             $table = $class->getModel()->getTable();

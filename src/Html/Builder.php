@@ -91,7 +91,7 @@ class Builder
      * @return \Illuminate\Support\HtmlString
      * @throws \Exception
      */
-    public function scripts($script = null, array $attributes = ['type' => 'text/javascript'])
+    public function scripts($script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
@@ -105,7 +105,7 @@ class Builder
      * @return \Illuminate\Support\HtmlString
      * @throws \Exception
      */
-    public function generateScripts()
+    public function generateScripts(): HtmlString
     {
         $parameters = $this->generateJson();
 
@@ -119,7 +119,7 @@ class Builder
      *
      * @return string
      */
-    public function generateJson()
+    public function generateJson(): string
     {
         return $this->parameterize($this->getOptions());
     }
@@ -129,7 +129,7 @@ class Builder
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return array_merge(
             $this->attributes, [
@@ -150,7 +150,7 @@ class Builder
      * @param  array  $attributes
      * @return string
      */
-    public function parameterize($attributes = [])
+    public function parameterize(array $attributes = []): string
     {
         $parameters = (new Parameters($attributes))->toArray();
 
@@ -172,9 +172,7 @@ class Builder
 
         $json = json_encode($new);
 
-        $json = str_replace($replacements, $values, $json);
-
-        return $json;
+        return str_replace($replacements, $values, $json);
     }
 
     /**
@@ -182,7 +180,7 @@ class Builder
      *
      * @return string
      */
-    protected function template()
+    protected function template(): string
     {
         $template = $this->template ?: $this->config->get('datatables-html.script', 'datatables::script');
 
@@ -197,7 +195,7 @@ class Builder
      * @param  bool  $drawSearch
      * @return \Illuminate\Support\HtmlString
      */
-    public function table(array $attributes = [], $drawFooter = false, $drawSearch = false)
+    public function table(array $attributes = [], bool $drawFooter = false, bool $drawSearch = false): HtmlString
     {
         $this->setTableAttributes($attributes);
 
@@ -223,7 +221,7 @@ class Builder
      * @param  array  $attributes
      * @return $this
      */
-    public function parameters(array $attributes = [])
+    public function parameters(array $attributes = []): static
     {
         $this->attributes = array_merge($this->attributes, $attributes);
 
@@ -236,7 +234,7 @@ class Builder
      * @param  string  $template
      * @return $this
      */
-    public function setTemplate($template)
+    public function setTemplate(string $template): static
     {
         $this->template = $template;
 
@@ -258,7 +256,7 @@ class Builder
      *
      * @return $this
      */
-    public function asFunction()
+    public function asFunction(): static
     {
         return $this->setTemplate('datatables::function');
     }

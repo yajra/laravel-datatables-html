@@ -15,11 +15,11 @@ trait ColReorder
      * Set colReorder option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param bool|array $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder
      */
-    public function colReorder($value = true)
+    public function colReorder(bool|array $value = true): static
     {
         $this->attributes['colReorder'] = $value;
 
@@ -29,70 +29,60 @@ trait ColReorder
     /**
      * Set colReorder enable option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder.enable
      */
-    public function colReorderEnable(bool $value = true)
+    public function colReorderEnable(bool $value = true): static
     {
-        $this->attributes['colReorder']['enable'] = $value;
-
-        return $this;
+        return $this->colReorder(['enable' => $value]);
     }
 
     /**
      * Set colReorder fixedColumnsLeft option value.
      *
-     * @param int $value
+     * @param  int  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder.fixedColumnsLeft
      */
-    public function colReorderFixedColumnsLeft(int $value = 0)
+    public function colReorderFixedColumnsLeft(int $value = 0): static
     {
-        $this->attributes['colReorder']['fixedColumnsLeft'] = $value;
-
-        return $this;
+        return $this->colReorder(['fixedColumnsLeft' => $value]);
     }
 
     /**
      * Set colReorder fixedColumnsRight option value.
      *
-     * @param int $value
+     * @param  int  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder.fixedColumnsRight
      */
-    public function colReorderFixedColumnsRight(int $value = 0)
+    public function colReorderFixedColumnsRight(int $value = 0): static
     {
-        $this->attributes['colReorder']['fixedColumnsRight'] = $value;
-
-        return $this;
+        return $this->colReorder(['fixedColumnsRight' => $value]);
     }
 
     /**
      * Set colReorder order option value.
      *
-     * @param array $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder.order
      */
-    public function colReorderOrder(array $value = [])
+    public function colReorderOrder(array $value = []): static
     {
-        $this->attributes['colReorder']['order'] = $value;
-
-        return $this;
+        return $this->colReorder(['order' => $value]);
     }
 
     /**
      * Set colReorder realtime option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder.realtime
      */
-    public function colReorderRealtime(bool $value = true)
+    public function colReorderRealtime(bool $value = true): static
     {
-        $this->attributes['colReorder']['realtime'] = $value;
-
-        return $this;
+        return $this->colReorder(['realtime' => $value]);
     }
 }

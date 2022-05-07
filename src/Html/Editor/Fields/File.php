@@ -9,21 +9,21 @@ namespace Yajra\DataTables\Html\Editor\Fields;
  */
 class File extends Field
 {
-    protected $type = 'upload';
+    protected string $type = 'upload';
 
     /**
-     * Editor instance.
+     * Editor instance variable name.
      *
      * @var string
      */
-    protected $editor = 'editor';
+    protected string $editor = 'editor';
 
     /**
-     * @param string $name
-     * @param string $label
-     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
+     * @param  array|string  $name
+     * @param  string  $label
+     * @return static
      */
-    public static function make($name, $label = '')
+    public static function make(array|string $name, string $label = ''): static
     {
         /** @var \Yajra\DataTables\Html\Editor\Fields\File $field */
         $field = parent::make($name, $label);
@@ -32,10 +32,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function ajax($value)
+    public function ajax(string $value): static
     {
         $this->attributes['ajax'] = $value;
 
@@ -43,10 +43,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function ajaxData($value)
+    public function ajaxData(string $value): static
     {
         $this->attributes['ajaxData'] = $value;
 
@@ -54,10 +54,10 @@ class File extends Field
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      */
-    public function dragDrop($value = true)
+    public function dragDrop(bool $value = true): static
     {
         $this->attributes['dragDrop'] = $value;
 
@@ -65,10 +65,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function dragDropText($value)
+    public function dragDropText(string $value): static
     {
         $this->attributes['dragDropText'] = $value;
 
@@ -76,10 +76,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function fileReadText($value)
+    public function fileReadText(string $value): static
     {
         $this->attributes['fileReadText'] = $value;
 
@@ -87,10 +87,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function noFileText($value)
+    public function noFileText(string $value): static
     {
         $this->attributes['noFileText'] = $value;
 
@@ -98,10 +98,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function processingText($value)
+    public function processingText(string $value): static
     {
         $this->attributes['processingText'] = $value;
 
@@ -109,10 +109,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function uploadText($value)
+    public function uploadText(string $value): static
     {
         $this->attributes['uploadText'] = $value;
 
@@ -122,10 +122,10 @@ class File extends Field
     /**
      * Set editor instance for file upload.
      *
-     * @param string $editor
+     * @param  string  $editor
      * @return $this
      */
-    public function editor($editor)
+    public function editor(string $editor): static
     {
         $this->editor = $editor;
 
@@ -137,16 +137,22 @@ class File extends Field
      *
      * @return $this
      */
-    public function displayImage()
+    public function displayImage(): static
     {
-        return $this->display("function (file_id) { return file_id ? '<img src=\"storage/' + file_id + '\"/>' : null; }");
+        // TODO: Use Laravel filesystem instead of hard coded storage path
+        return $this->display(<<<SCRIPT
+            function (file_id) { 
+                return file_id ? '<img src="storage/' + file_id + '" alt=""/>' : null; 
+            }
+SCRIPT
+        );
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function display($value)
+    public function display(string $value): static
     {
         $this->attributes['display'] = $value;
 
@@ -158,16 +164,16 @@ class File extends Field
      *
      * @return $this
      */
-    public function displayFile()
+    public function displayFile(): static
     {
         return $this->display("function (file_id) { return file_id; }");
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function clearText($value = 'Clear')
+    public function clearText(string $value = 'Clear'): static
     {
         $this->attributes['clearText'] = $value;
 
@@ -175,10 +181,10 @@ class File extends Field
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
-    public function noImageText($value = 'No image')
+    public function noImageText(string $value = 'No image'): static
     {
         $this->attributes['noImageText'] = $value;
 
@@ -186,10 +192,10 @@ class File extends Field
     }
 
     /**
-     * @param bool $state
+     * @param  bool  $state
      * @return $this
      */
-    public function multiple($state = true)
+    public function multiple(bool $state = true): static
     {
         if ($state) {
             $this->type('uploadMany');

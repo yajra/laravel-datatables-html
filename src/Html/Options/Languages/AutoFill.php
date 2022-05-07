@@ -11,7 +11,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill
      */
-    public function languageAutoFill(array $value)
+    public function languageAutoFill(array $value): static
     {
         return $this->language(['autoFill' => $value]);
     }
@@ -23,7 +23,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.button
      */
-    public function languageAutoFillButton(string $value)
+    public function languageAutoFillButton(string $value): static
     {
         return $this->languageAutoFill(['button' => $value]);
     }
@@ -35,7 +35,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.cancel
      */
-    public function languageAutoFillCancel(string $value)
+    public function languageAutoFillCancel(string $value): static
     {
         return $this->languageAutoFill(['cancel' => $value]);
     }
@@ -47,7 +47,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fill
      */
-    public function languageAutoFillFill(string $value)
+    public function languageAutoFillFill(string $value): static
     {
         return $this->languageAutoFill(['fill' => $value]);
     }
@@ -59,7 +59,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fillHorizontal
      */
-    public function languageAutoFillFillHorizontal(string $value)
+    public function languageAutoFillFillHorizontal(string $value): static
     {
         return $this->languageAutoFill(['fillHorizontal' => $value]);
     }
@@ -71,7 +71,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.fillVertical
      */
-    public function languageAutoFillFillVertical(string $value)
+    public function languageAutoFillFillVertical(string $value): static
     {
         return $this->languageAutoFill(['fillVertical' => $value]);
     }
@@ -83,7 +83,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.increment
      */
-    public function languageAutoFillIncrement(string $value)
+    public function languageAutoFillIncrement(string $value): static
     {
         return $this->languageAutoFill(['increment' => $value]);
     }
@@ -95,7 +95,7 @@ trait AutoFill
      * @return $this
      * @see https://datatables.net/reference/option/language.autoFill.info
      */
-    public function languageAutoFillInfo(string $value)
+    public function languageAutoFillInfo(string $value): static
     {
         return $this->languageAutoFill(['info' => $value]);
     }

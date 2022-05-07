@@ -28,11 +28,11 @@ trait Responsive
     /**
      * Set responsive breakpoints option value.
      *
-     * @param  mixed  $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.breakpoints
      */
-    public function responsiveBreakpoints(mixed $value): static
+    public function responsiveBreakpoints(array $value): static
     {
         return $this->responsive(['breakpoints' => $value]);
     }
@@ -40,11 +40,11 @@ trait Responsive
     /**
      * Set responsive details option value.
      *
-     * @param  mixed  $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.details
      */
-    public function responsiveDetails(mixed $value): static
+    public function responsiveDetails(bool|array $value): static
     {
         return $this->responsive(['details' => $value]);
     }
@@ -52,11 +52,11 @@ trait Responsive
     /**
      * Set responsive details display option value.
      *
-     * @param  mixed  $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.details.display
      */
-    public function responsiveDetailsDisplay(mixed $value): static
+    public function responsiveDetailsDisplay(array|string $value): static
     {
         return $this->responsiveDetails(['display' => $value]);
     }
@@ -64,11 +64,11 @@ trait Responsive
     /**
      * Set responsive details renderer option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.details.renderer
      */
-    public function responsiveDetailsRenderer(mixed $value): static
+    public function responsiveDetailsRenderer(string $value): static
     {
         return $this->responsiveDetails(['renderer' => $value]);
     }
@@ -76,11 +76,11 @@ trait Responsive
     /**
      * Set responsive details target option value.
      *
-     * @param  mixed  $value
+     * @param  int|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.details.target
      */
-    public function responsiveDetailsTarget(mixed $value): static
+    public function responsiveDetailsTarget(int|string $value): static
     {
         return $this->responsiveDetails(['target' => $value]);
     }
@@ -88,11 +88,11 @@ trait Responsive
     /**
      * Set responsive details type option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.details.type
      */
-    public function responsiveDetailsType(mixed $value): static
+    public function responsiveDetailsType(string $value): static
     {
         return $this->responsiveDetails(['type' => $value]);
     }
@@ -100,11 +100,11 @@ trait Responsive
     /**
      * Set responsive orthogonal option value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive.orthogonal
      */
-    public function responsiveOrthogonal(mixed $value): static
+    public function responsiveOrthogonal(string $value): static
     {
         return $this->responsive(['orthogonal' => $value]);
     }

@@ -3,11 +3,11 @@
 namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Html\Editor\Fields\Field;
 use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
-use Yajra\DataTables\Html\Editor\Fields\Field;
 
 /**
  * @property string|null $table
@@ -18,16 +18,16 @@ class Editor extends Fluent
     use HasEvents;
     use HasAuthorizations;
 
-    const DISPLAY_LIGHTBOX   = 'lightbox';
-    const DISPLAY_ENVELOPE   = 'envelope';
-    const DISPLAY_BOOTSTRAP  = 'bootstrap';
+    const DISPLAY_LIGHTBOX = 'lightbox';
+    const DISPLAY_ENVELOPE = 'envelope';
+    const DISPLAY_BOOTSTRAP = 'bootstrap';
     const DISPLAY_FOUNDATION = 'foundation';
-    const DISPLAY_JQUERYUI   = 'jqueryui';
+    const DISPLAY_JQUERYUI = 'jqueryui';
 
     /**
      * Editor constructor.
      *
-     * @param string|array $instance
+     * @param  string|array  $instance
      */
     public function __construct($instance = 'editor')
     {
@@ -39,10 +39,10 @@ class Editor extends Fluent
     /**
      * Make new Editor instance.
      *
-     * @param string $instance
-     * @return Editor
+     * @param  string  $instance
+     * @return static
      */
-    public static function make($instance = 'editor')
+    public static function make(string $instance = 'editor'): static
     {
         if (is_array($instance)) {
             $instance = $instance['editor'] ?? 'editor';
@@ -54,10 +54,10 @@ class Editor extends Fluent
     /**
      * Append raw scripts.
      *
-     * @param string $scripts
+     * @param  string  $scripts
      * @return Editor
      */
-    public function scripts($scripts)
+    public function scripts(string $scripts): static
     {
         $this->attributes['scripts'] = $scripts;
 
@@ -67,10 +67,10 @@ class Editor extends Fluent
     /**
      * Set Editor's variable name / instance.
      *
-     * @param $instance
+     * @param  string  $instance
      * @return $this
      */
-    public function instance($instance)
+    public function instance(string $instance): static
     {
         $this->attributes['instance'] = $instance;
 
@@ -80,11 +80,11 @@ class Editor extends Fluent
     /**
      * Set Editor's ajax parameter.
      *
-     * @param string|array $ajax
+     * @param  array|string  $ajax
      * @return $this
      * @see https://editor.datatables.net/reference/option/ajax
      */
-    public function ajax($ajax)
+    public function ajax(array|string $ajax): static
     {
         $this->attributes['ajax'] = $ajax;
 
@@ -94,11 +94,11 @@ class Editor extends Fluent
     /**
      * Set Editor's table source.
      *
-     * @param string $table
+     * @param  string  $table
      * @return $this
      * @see https://editor.datatables.net/reference/option/table
      */
-    public function table($table)
+    public function table(string $table): static
     {
         $this->attributes['table'] = $table;
 
@@ -108,11 +108,11 @@ class Editor extends Fluent
     /**
      * Set Editor's idSrc option.
      *
-     * @param string $idSrc
+     * @param  string  $idSrc
      * @return $this
      * @see https://editor.datatables.net/reference/option/idSrc
      */
-    public function idSrc($idSrc = 'DT_RowId')
+    public function idSrc(string $idSrc = 'DT_RowId'): static
     {
         $this->attributes['idSrc'] = $idSrc;
 
@@ -122,11 +122,11 @@ class Editor extends Fluent
     /**
      * Set Editor's display option.
      *
-     * @param string $display
+     * @param  string  $display
      * @return $this
      * @see https://editor.datatables.net/reference/option/display
      */
-    public function display($display)
+    public function display(string $display): static
     {
         $this->attributes['display'] = $display;
 
@@ -136,11 +136,11 @@ class Editor extends Fluent
     /**
      * Set Editor's fields.
      *
-     * @param array $fields
+     * @param  array  $fields
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields
      */
-    public function fields(array $fields)
+    public function fields(array $fields): static
     {
         $this->attributes['fields'] = $fields;
 
@@ -150,12 +150,12 @@ class Editor extends Fluent
     /**
      * Set Editor's formOptions.
      *
-     * @param mixed $formOptions
+     * @param  array  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions
      * @see https://editor.datatables.net/reference/type/form-options
      */
-    public function formOptions(array $formOptions)
+    public function formOptions(array $formOptions): static
     {
         $this->attributes['formOptions'] = $formOptions;
 
@@ -165,11 +165,12 @@ class Editor extends Fluent
     /**
      * Set Editor's bubble formOptions.
      *
-     * @param mixed $formOptions
+     * @param  mixed  $formOptions
      * @return $this
+     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.bubble
      */
-    public function formOptionsBubble(array $formOptions)
+    public function formOptionsBubble(array $formOptions): static
     {
         $this->attributes['formOptions']['bubble'] = Helper::castToArray($formOptions);;
 
@@ -179,11 +180,12 @@ class Editor extends Fluent
     /**
      * Set Editor's inline formOptions.
      *
-     * @param mixed $formOptions
+     * @param  array  $formOptions
      * @return $this
+     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.inline
      */
-    public function formOptionsInline($formOptions)
+    public function formOptionsInline(array $formOptions): static
     {
         $this->attributes['formOptions']['inline'] = Helper::castToArray($formOptions);
 
@@ -193,11 +195,12 @@ class Editor extends Fluent
     /**
      * Set Editor's main formOptions.
      *
-     * @param mixed $formOptions
+     * @param  array  $formOptions
      * @return $this
+     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.main
      */
-    public function formOptionsMain($formOptions)
+    public function formOptionsMain(array $formOptions): static
     {
         $this->attributes['formOptions']['main'] = Helper::castToArray($formOptions);
 
@@ -207,11 +210,11 @@ class Editor extends Fluent
     /**
      * Set Editor's language.
      *
-     * @param array $language
+     * @param  array  $language
      * @return $this
      * @see https://editor.datatables.net/reference/option/i18n
      */
-    public function language(array $language)
+    public function language(array $language): static
     {
         $this->attributes['i18n'] = $language;
 
@@ -221,11 +224,11 @@ class Editor extends Fluent
     /**
      * Set Editor's template.
      *
-     * @param string $template
+     * @param  string  $template
      * @return $this
      * @see https://editor.datatables.net/reference/option/template
      */
-    public function template($template)
+    public function template(string $template): static
     {
         $this->attributes['template'] = $template;
 
@@ -237,7 +240,7 @@ class Editor extends Fluent
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $array = parent::toArray();
 
@@ -255,23 +258,23 @@ class Editor extends Fluent
     /**
      * Convert the fluent instance to JSON.
      *
-     * @param int $options
+     * @param  int  $options
      * @return string
      */
-    public function toJson($options = 0)
+    public function toJson($options = 0): string
     {
         $parameters = $this->jsonSerialize();
 
         unset($parameters['events']);
 
-        $values       = [];
+        $values = [];
         $replacements = [];
 
         foreach (Arr::dot($parameters) as $key => $value) {
             if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
-                Arr::set($parameters, $key, '%' . $key . '%');
-                $replacements[] = '"%' . $key . '%"';
+                Arr::set($parameters, $key, '%'.$key.'%');
+                $replacements[] = '"%'.$key.'%"';
             }
         }
 
@@ -282,16 +285,14 @@ class Editor extends Fluent
 
         $json = json_encode($new, $options);
 
-        $json = str_replace($replacements, $values, $json);
-
-        return $json;
+        return str_replace($replacements, $values, $json);
     }
 
     /**
      * Check if given key & value is a valid callback js function.
      *
-     * @param string $value
-     * @param string $key
+     * @param  string  $value
+     * @param  string  $key
      * @return bool
      */
     protected function isCallbackFunction($value, $key)

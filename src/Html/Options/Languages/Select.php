@@ -11,7 +11,7 @@ trait Select
      * @return $this
      * @see https://datatables.net/reference/option/language.select
      */
-    public function languageSelect(array $value)
+    public function languageSelect(array $value): static
     {
         return $this->language(['select' => $value]);
     }
@@ -23,7 +23,7 @@ trait Select
      * @return $this
      * @see https://datatables.net/reference/option/language.select.cells
      */
-    public function languageSelectCells(array|string $value)
+    public function languageSelectCells(array|string $value): static
     {
         return $this->languageSelect(['cells' => $value]);
     }
@@ -35,7 +35,7 @@ trait Select
      * @return $this
      * @see https://datatables.net/reference/option/language.select.columns
      */
-    public function languageSelectColumns(array|string $value)
+    public function languageSelectColumns(array|string $value): static
     {
         return $this->languageSelect(['columns' => $value]);
     }
@@ -47,7 +47,7 @@ trait Select
      * @return $this
      * @see https://datatables.net/reference/option/language.select.rows
      */
-    public function languageSelectRows(array|string $value)
+    public function languageSelectRows(array|string $value): static
     {
         return $this->languageSelect(['rows' => $value]);
     }

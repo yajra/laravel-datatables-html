@@ -218,7 +218,7 @@ class SearchPane extends Fluent
      * @param  string  $key
      * @return $this
      */
-    public function modelOptions(Model|EloquentBuilder $model, string $value, string $key = 'id')
+    public function modelOptions(Model|EloquentBuilder $model, string $value, string $key = 'id'): static
     {
         return $this->options(
             Options::model($model, $value, $key)
@@ -226,11 +226,11 @@ class SearchPane extends Fluent
     }
 
     /**
-     * @param  mixed  $value
+     * @param  array|Arrayable  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.searchPanes.options
      */
-    public function options($value)
+    public function options(array|Arrayable $value): static
     {
         if ($value instanceof Arrayable) {
             $value = $value->toArray();

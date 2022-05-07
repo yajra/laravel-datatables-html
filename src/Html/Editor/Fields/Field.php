@@ -2,9 +2,13 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Fluent;
+use Closure;
+use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Html\HasAuthorizations;
 
 /**
@@ -19,12 +23,12 @@ class Field extends Fluent
      *
      * @var string
      */
-    protected $type = 'text';
+    protected string $type = 'text';
 
     /**
      * Password constructor.
      *
-     * @param array $attributes
+     * @param  array  $attributes
      */
     public function __construct($attributes = [])
     {
@@ -36,18 +40,18 @@ class Field extends Fluent
     /**
      * Make a new instance of a field.
      *
-     * @param string $name
-     * @param string $label
-     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
+     * @param  array|string  $name
+     * @param  string  $label
+     * @return static
      */
-    public static function make($name, $label = '')
+    public static function make(array|string $name, string $label = ''): static
     {
         if (is_array($name)) {
             return new static($name);
         }
 
         $data = [
-            'name'  => $name,
+            'name' => $name,
             'label' => $label ?: Str::title(str_replace('_', ' ', $name)),
         ];
 
@@ -55,11 +59,11 @@ class Field extends Fluent
     }
 
     /**
-     * @param string $label
+     * @param  string  $label
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.label
      */
-    public function label($label)
+    public function label(string $label): static
     {
         $this->attributes['label'] = $label;
 
@@ -67,11 +71,11 @@ class Field extends Fluent
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.name
      */
-    public function name($name)
+    public function name(string $name): static
     {
         $this->attributes['name'] = $name;
 
@@ -79,11 +83,11 @@ class Field extends Fluent
     }
 
     /**
-     * @param string $data
+     * @param  string  $data
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.data
      */
-    public function data($data)
+    public function data(string $data): static
     {
         $this->attributes['data'] = $data;
 
@@ -91,11 +95,11 @@ class Field extends Fluent
     }
 
     /**
-     * @param string $type
+     * @param  string  $type
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.type
      */
-    public function type($type)
+    public function type(string $type): static
     {
         $this->attributes['type'] = $type;
 
@@ -105,12 +109,12 @@ class Field extends Fluent
     /**
      * Get options from a model.
      *
-     * @param mixed $model
-     * @param string $value
-     * @param string $key
+     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Database\Eloquent\Builder  $model
+     * @param  string  $value
+     * @param  string  $key
      * @return $this
      */
-    public function modelOptions($model, $value, $key = 'id')
+    public function modelOptions(Model|EloquentBuilder $model, string $value, string $key = 'id'): static
     {
         return $this->options(
             Options::model($model, $value, $key)
@@ -120,10 +124,10 @@ class Field extends Fluent
     /**
      * Set select options.
      *
-     * @param array|mixed $options
+     * @param  array|Arrayable  $options
      * @return $this
      */
-    public function options($options)
+    public function options(array|Arrayable $options): static
     {
         if ($options instanceof Arrayable) {
             $options = $options->toArray();
@@ -137,15 +141,20 @@ class Field extends Fluent
     /**
      * Get options from a table.
      *
-     * @param mixed $table
-     * @param string $value
-     * @param string $key
-     * @param \Closure $whereCallback
-     * @param string|null $key
+     * @param  QueryBuilder|\Closure|string  $table
+     * @param  string  $value
+     * @param  string  $key
+     * @param  \Closure|null  $whereCallback
+     * @param  string|null  $connection
      * @return $this
      */
-    public function tableOptions($table, $value, $key = 'id', \Closure $whereCallback = null, $connection = null)
-    {
+    public function tableOptions(
+        QueryBuilder|Closure|string $table,
+        string $value,
+        string $key = 'id',
+        Closure $whereCallback = null,
+        string $connection = null
+    ): static {
         return $this->options(
             Options::table($table, $value, $key, $whereCallback, $connection)
         );
@@ -154,10 +163,10 @@ class Field extends Fluent
     /**
      * Set checkbox separator.
      *
-     * @param string $separator
+     * @param  string  $separator
      * @return $this
      */
-    public function separator($separator = ',')
+    public function separator(string $separator = ','): static
     {
         $this->attributes['separator'] = $separator;
 
@@ -167,11 +176,11 @@ class Field extends Fluent
     /**
      * Set dateTime format.
      *
-     * @param string $format
+     * @param  string  $format
      * @return $this
      * @see https://editor.datatables.net/reference/field/datetime
      */
-    public function format($format)
+    public function format(string $format): static
     {
         $this->attributes['format'] = $format;
 
@@ -181,11 +190,11 @@ class Field extends Fluent
     /**
      * Set field default value.
      *
-     * @param mixed $value
+     * @param  string  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.def
      */
-    public function default($value)
+    public function default(string $value): static
     {
         $this->attributes['def'] = $value;
 
@@ -195,11 +204,11 @@ class Field extends Fluent
     /**
      * Set field message value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.message
      */
-    public function message($value)
+    public function message(string $value): static
     {
         $this->attributes['message'] = $value;
 
@@ -209,11 +218,11 @@ class Field extends Fluent
     /**
      * Set field fieldInfo value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.fieldInfo
      */
-    public function fieldInfo($value)
+    public function fieldInfo(string $value): static
     {
         $this->attributes['fieldInfo'] = $value;
 
@@ -223,11 +232,11 @@ class Field extends Fluent
     /**
      * Set field labelInfo value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.labelInfo
      */
-    public function labelInfo($value)
+    public function labelInfo(string $value): static
     {
         $this->attributes['labelInfo'] = $value;
 
@@ -237,11 +246,11 @@ class Field extends Fluent
     /**
      * Set field entityDecode value.
      *
-     * @param mixed|bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.entityDecode
      */
-    public function entityDecode($value)
+    public function entityDecode(bool $value): static
     {
         $this->attributes['entityDecode'] = $value;
 
@@ -251,11 +260,11 @@ class Field extends Fluent
     /**
      * Set field multiEditable value.
      *
-     * @param mixed|bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.multiEditable
      */
-    public function multiEditable($value)
+    public function multiEditable(bool $value): static
     {
         $this->attributes['multiEditable'] = $value;
 
@@ -265,11 +274,11 @@ class Field extends Fluent
     /**
      * Set field id value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.id
      */
-    public function id($value)
+    public function id(string $value): static
     {
         $this->attributes['id'] = $value;
 
@@ -279,11 +288,11 @@ class Field extends Fluent
     /**
      * Set field submit value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.submit
      */
-    public function submit($value)
+    public function submit(bool $value): static
     {
         $this->attributes['submit'] = $value;
 
@@ -293,11 +302,11 @@ class Field extends Fluent
     /**
      * Set field compare value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.compare
      */
-    public function compare($value)
+    public function compare(bool $value): static
     {
         $this->attributes['compare'] = $value;
 
@@ -307,10 +316,11 @@ class Field extends Fluent
     /**
      * Set field opts value.
      *
-     * @param bool $value
+     * @param  array  $value
      * @return $this
+     * @see https://datatables.net/forums/discussion/comment/156581/#Comment_156581
      */
-    public function opts(array $value)
+    public function opts(array $value): static
     {
         $this->attributes['opts'] = $value;
 
@@ -318,13 +328,14 @@ class Field extends Fluent
     }
 
     /**
-     * Set field attr option.
+     * Set field element html attributes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  string  $value
      * @return $this
+     * @see https://datatables.net/forums/discussion/comment/156581/#Comment_156581
      */
-    public function attr($attribute, $value)
+    public function attr(string $attribute, string $value): static
     {
         $this->attributes['attr'][$attribute] = $value;
 

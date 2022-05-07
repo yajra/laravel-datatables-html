@@ -10,10 +10,10 @@ trait Checkbox
      * Add a checkbox column.
      *
      * @param  array $attributes
-     * @param  bool|int $position true to prepend, false to append or a zero-based index for positioning
+     * @param  bool|int  $position true to prepend, false to append or a zero-based index for positioning
      * @return $this
      */
-    public function addCheckbox(array $attributes = [], $position = false)
+    public function addCheckbox(array $attributes = [], bool|int $position = false): static
     {
         $attributes = array_merge([
             'defaultContent' => '<input type="checkbox" ' . $this->html->attributes($attributes) . '/>',

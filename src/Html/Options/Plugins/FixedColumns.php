@@ -14,11 +14,11 @@ trait FixedColumns
     /**
      * Set fixedColumns option value.
      *
-     * @param bool|array $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns
      */
-    public function fixedColumns($value = true)
+    public function fixedColumns(bool|array $value = true): static
     {
         $this->attributes['fixedColumns'] = $value;
 
@@ -28,42 +28,36 @@ trait FixedColumns
     /**
      * Set fixedColumns heightMatch option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns.heightMatch
      */
-    public function fixedColumnsHeightMatch($value = 'semiauto')
+    public function fixedColumnsHeightMatch(string $value = 'semiauto'): static
     {
-        $this->attributes['fixedColumns']['heightMatch'] = $value;
-
-        return $this;
+        return $this->fixedColumns(['heightMatch' => $value]);
     }
 
     /**
      * Set fixedColumns leftColumns option value.
      *
-     * @param int $value
+     * @param  int  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns.leftColumns
      */
-    public function fixedColumnsLeftColumns(int $value = 1)
+    public function fixedColumnsLeftColumns(int $value = 1): static
     {
-        $this->attributes['fixedColumns']['leftColumns'] = $value;
-
-        return $this;
+        return $this->fixedColumns(['leftColumns' => $value]);
     }
 
     /**
      * Set fixedColumns rightColumns option value.
      *
-     * @param int $value
+     * @param  int  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns.rightColumns
      */
-    public function fixedColumnsRightColumns(int $value = 0)
+    public function fixedColumnsRightColumns(int $value = 0): static
     {
-        $this->attributes['fixedColumns']['rightColumns'] = $value;
-
-        return $this;
+        return $this->fixedColumns(['rightColumns' => $value]);
     }
 }

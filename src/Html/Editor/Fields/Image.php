@@ -9,14 +9,14 @@ namespace Yajra\DataTables\Html\Editor\Fields;
  */
 class Image extends File
 {
-    protected $type = 'upload';
+    protected string $type = 'upload';
 
     /**
-     * @param string $name
-     * @param string $label
-     * @return \Yajra\DataTables\Html\Editor\Fields\File
+     * @param  array|string  $name
+     * @param  string  $label
+     * @return static
      */
-    public static function make($name, $label = '')
+    public static function make(array|string $name, string $label = ''): static
     {
         return parent::make($name, $label)->displayImage();
     }

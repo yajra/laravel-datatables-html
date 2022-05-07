@@ -2,8 +2,8 @@
 
 namespace Yajra\DataTables;
 
-use Illuminate\Support\ServiceProvider;
 use Collective\Html\HtmlServiceProvider as CollectiveHtml;
+use Illuminate\Support\ServiceProvider;
 
 class HtmlServiceProvider extends ServiceProvider
 {
@@ -12,9 +12,9 @@ class HtmlServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'datatables');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'datatables');
 
         if ($this->app->runningInConsole()) {
             $this->publishAssets();
@@ -27,8 +27,8 @@ class HtmlServiceProvider extends ServiceProvider
     protected function publishAssets(): void
     {
         $this->publishes([
-            __DIR__ . '/resources/views'             => base_path('/resources/views/vendor/datatables'),
-            __DIR__ . '/resources/config/config.php' => config_path('datatables-html.php'),
+            __DIR__.'/resources/views' => base_path('/resources/views/vendor/datatables'),
+            __DIR__.'/resources/config/config.php' => config_path('datatables-html.php'),
         ], 'datatables-html');
     }
 
@@ -37,9 +37,9 @@ class HtmlServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/resources/config/config.php', 'datatables-html');
+        $this->mergeConfigFrom(__DIR__.'/resources/config/config.php', 'datatables-html');
 
         $this->app->register(CollectiveHtml::class);
 

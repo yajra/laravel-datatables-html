@@ -4,22 +4,22 @@ namespace Yajra\DataTables\Html\Editor\Fields;
 
 class TextArea extends Field
 {
-    protected $type = 'textarea';
+    protected string $type = 'textarea';
 
     /**
-     * @param int $value
+     * @param  int  $value
      * @return static
      */
-    public function rows($value)
+    public function rows(int $value): static
     {
         return $this->attr('rows', $value);
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      * @return static
      */
-    public function cols($value)
+    public function cols(int $value): static
     {
         return $this->attr('cols', $value);
     }

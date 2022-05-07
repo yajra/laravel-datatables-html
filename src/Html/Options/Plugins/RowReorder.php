@@ -14,11 +14,11 @@ trait RowReorder
     /**
      * Set rowReorder option value.
      *
-     * @param bool|array $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder
      */
-    public function rowReorder($value = true)
+    public function rowReorder(bool|array $value = true): static
     {
         $this->attributes['rowReorder'] = $value;
 
@@ -28,98 +28,84 @@ trait RowReorder
     /**
      * Set rowReorder dataSrc option value.
      *
-     * @param mixed $value
+     * @param  array|int  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.dataSrc
      */
-    public function rowReorderDataSrc($value = 0)
+    public function rowReorderDataSrc(array|int $value = 0): static
     {
-        $this->attributes['rowReorder']['dataSrc'] = $value;
-
-        return $this;
+        return $this->rowReorder(['dataSrc' => $value]);
     }
 
     /**
      * Set rowReorder editor option value.
      *
-     * @param mixed $value
+     * @param  string|null  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.editor
      */
-    public function rowReorderEditor($value = null)
+    public function rowReorderEditor(string $value = null): static
     {
-        $this->attributes['rowReorder']['editor'] = $value;
-
-        return $this;
+        return $this->rowReorder(['editor' => $value]);
     }
 
     /**
      * Set rowReorder enable option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.enable
      */
-    public function rowReorderEnable(bool $value = true)
+    public function rowReorderEnable(bool $value = true): static
     {
-        $this->attributes['rowReorder']['enable'] = $value;
-
-        return $this;
+        return $this->rowReorder(['enable' => $value]);
     }
 
     /**
      * Set rowReorder formOptions option value.
      *
-     * @param mixed $value
+     * @param  array  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.formOptions
      */
-    public function rowReorderFormOptions($value)
+    public function rowReorderFormOptions(array $value): static
     {
-        $this->attributes['rowReorder']['formOptions'] = $value;
-
-        return $this;
+        return $this->rowReorder(['formOptions' => $value]);
     }
 
     /**
      * Set rowReorder selector option value.
      *
-     * @param string $value
+     * @param  string  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.selector
      */
-    public function rowReorderSelector($value = 'td:first-child')
+    public function rowReorderSelector(string $value = 'td:first-child'): static
     {
-        $this->attributes['rowReorder']['selector'] = $value;
-
-        return $this;
+        return $this->rowReorder(['selector' => $value]);
     }
 
     /**
      * Set rowReorder snapX option value.
      *
-     * @param mixed $value
+     * @param  bool|int  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.snapX
      */
-    public function rowReorderSnapX($value = true)
+    public function rowReorderSnapX(bool|int $value = true): static
     {
-        $this->attributes['rowReorder']['snapX'] = $value;
-
-        return $this;
+        return $this->rowReorder(['snapX' => $value]);
     }
 
     /**
      * Set rowReorder update option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder.update
      */
-    public function rowReorderUpdate(bool $value = true)
+    public function rowReorderUpdate(bool $value = true): static
     {
-        $this->attributes['rowReorder']['update'] = $value;
-
-        return $this;
+        return $this->rowReorder(['update' => $value]);
     }
 }

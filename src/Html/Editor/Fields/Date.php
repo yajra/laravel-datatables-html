@@ -7,11 +7,11 @@ class Date extends DateTime
     /**
      * Make a new instance of a field.
      *
-     * @param string $name
-     * @param string $label
-     * @return static|\Yajra\DataTables\Html\Editor\Fields\Field
+     * @param  array|string  $name
+     * @param  string  $label
+     * @return static
      */
-    public static function make($name, $label = '')
+    public static function make(array|string $name, string $label = ''): static
     {
         return parent::make($name, $label)->format('YYYY-MM-DD');
     }

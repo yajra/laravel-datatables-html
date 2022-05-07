@@ -11,7 +11,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria
      */
-    public function languageAria(array $value)
+    public function languageAria(array $value): static
     {
         return $this->language(['aria' => $value]);
     }
@@ -23,7 +23,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate
      */
-    public function languageAriaPaginate(array $value)
+    public function languageAriaPaginate(array $value): static
     {
         return $this->languageAria(['paginate' => $value]);
     }
@@ -35,7 +35,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.first
      */
-    public function languageAriaPaginateFirst(string $value)
+    public function languageAriaPaginateFirst(string $value): static
     {
         return $this->languageAriaPaginate(['first' => $value]);
     }
@@ -47,7 +47,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.last
      */
-    public function languageAriaPaginateLast(string $value)
+    public function languageAriaPaginateLast(string $value): static
     {
         return $this->languageAriaPaginate(['last' => $value]);
     }
@@ -59,7 +59,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.next
      */
-    public function languageAriaPaginateNext(string $value)
+    public function languageAriaPaginateNext(string $value): static
     {
         return $this->languageAriaPaginate(['next' => $value]);
     }
@@ -71,7 +71,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.paginate.previous
      */
-    public function languageAriaPaginatePrevious(string $value)
+    public function languageAriaPaginatePrevious(string $value): static
     {
         return $this->languageAriaPaginate(['previous' => $value]);
     }
@@ -83,7 +83,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.sortAscending
      */
-    public function languageAriaSortAscending($value)
+    public function languageAriaSortAscending(string $value): static
     {
         return $this->languageAria(['sortAscending' => $value]);
     }
@@ -95,7 +95,7 @@ trait Aria
      * @return $this
      * @see https://datatables.net/reference/option/language.aria.sortDescending
      */
-    public function languageAriaSortDescending($value)
+    public function languageAriaSortDescending(string $value): static
     {
         return $this->languageAria(['sortDescending' => $value]);
     }

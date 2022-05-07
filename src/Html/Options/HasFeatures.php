@@ -12,11 +12,11 @@ trait HasFeatures
     /**
      * Set autoWidth option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoWidth
      */
-    public function autoWidth(bool $value = true)
+    public function autoWidth(bool $value = true): static
     {
         $this->attributes['autoWidth'] = $value;
 
@@ -26,11 +26,11 @@ trait HasFeatures
     /**
      * Set deferRender option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/deferRender
      */
-    public function deferRender(bool $value = true)
+    public function deferRender(bool $value = true): static
     {
         $this->attributes['deferRender'] = $value;
 
@@ -40,11 +40,11 @@ trait HasFeatures
     /**
      * Set info option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/info
      */
-    public function info(bool $value = true)
+    public function info(bool $value = true): static
     {
         $this->attributes['info'] = $value;
 
@@ -54,11 +54,11 @@ trait HasFeatures
     /**
      * Set lengthChange option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/lengthChange
      */
-    public function lengthChange(bool $value = true)
+    public function lengthChange(bool $value = true): static
     {
         $this->attributes['lengthChange'] = $value;
 
@@ -68,11 +68,11 @@ trait HasFeatures
     /**
      * Set ordering option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/ordering
      */
-    public function ordering(bool $value = true)
+    public function ordering(bool $value = true): static
     {
         $this->attributes['ordering'] = $value;
 
@@ -82,11 +82,11 @@ trait HasFeatures
     /**
      * Set processing option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/processing
      */
-    public function processing(bool $value = true)
+    public function processing(bool $value = true): static
     {
         $this->attributes['processing'] = $value;
 
@@ -96,11 +96,11 @@ trait HasFeatures
     /**
      * Set scrollX option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/scrollX
      */
-    public function scrollX(bool $value = true)
+    public function scrollX(bool $value = true): static
     {
         $this->attributes['scrollX'] = $value;
 
@@ -110,11 +110,11 @@ trait HasFeatures
     /**
      * Set scrollY option value.
      *
-     * @param bool|mixed $value
+     * @param  bool|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/scrollY
      */
-    public function scrollY($value = true)
+    public function scrollY(bool|string $value = true): static
     {
         $this->attributes['scrollY'] = $value;
 
@@ -124,11 +124,11 @@ trait HasFeatures
     /**
      * Set paging option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/paging
      */
-    public function paging(bool $value = true)
+    public function paging(bool $value = true): static
     {
         $this->attributes['paging'] = $value;
 
@@ -138,11 +138,11 @@ trait HasFeatures
     /**
      * Set searching option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/searching
      */
-    public function searching(bool $value = true)
+    public function searching(bool $value = true): static
     {
         $this->attributes['searching'] = $value;
 
@@ -152,11 +152,11 @@ trait HasFeatures
     /**
      * Set serverSide option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/serverSide
      */
-    public function serverSide(bool $value = true)
+    public function serverSide(bool $value = true): static
     {
         $this->attributes['serverSide'] = $value;
 
@@ -166,11 +166,11 @@ trait HasFeatures
     /**
      * Set stateSave option value.
      *
-     * @param bool $value
+     * @param  bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/stateSave
      */
-    public function stateSave(bool $value = true)
+    public function stateSave(bool $value = true): static
     {
         $this->attributes['stateSave'] = $value;
 

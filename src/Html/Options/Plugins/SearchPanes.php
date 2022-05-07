@@ -2,8 +2,8 @@
 
 namespace Yajra\DataTables\Html\Options\Plugins;
 
-use Yajra\DataTables\Html\SearchPane;
 use Illuminate\Contracts\Support\Arrayable;
+use Yajra\DataTables\Html\SearchPane;
 
 /**
  * DataTables - Search panes plugin option builder.
@@ -16,11 +16,11 @@ trait SearchPanes
     /**
      * Set searchPane option value.
      *
-     * @param bool|array $value
+     * @param  bool|array  $value
      * @return $this
      * @see https://datatables.net/reference/option/searchPanes
      */
-    public function searchPanes($value = true)
+    public function searchPanes(bool|array $value = true): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);

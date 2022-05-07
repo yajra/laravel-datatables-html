@@ -4,7 +4,6 @@ namespace Yajra\DataTables\Html\Options;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Exceptions\Exception;
 
 /**
  * DataTables - Data option builder.
@@ -61,9 +60,7 @@ trait HasData
      */
     public function pipeline(string $url, string $pages): static
     {
-        $this->ajax = "$.fn.dataTable.pipeline({ url: '{$url}', pages: {$pages} })";
-
-        return $this;
+        return $this->ajax("$.fn.dataTable.pipeline({ url: '$url', pages: $pages })");
     }
 
     /**
