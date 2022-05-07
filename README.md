@@ -24,11 +24,11 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 | Laravel       | Package |
 |:--------------|:--------|
 | 8.x and below | 4.x     |
-| 9.x           | 5.x     |
+| 9.x           | 9.x     |
 
 ## Quick Installation
 
-`composer require yajra/laravel-datatables-html:^5.0`
+`composer require yajra/laravel-datatables-html:^9.0`
 
 #### Service Provider (Optional on Laravel 5.5+)
 
