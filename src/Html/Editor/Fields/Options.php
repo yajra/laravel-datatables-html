@@ -33,12 +33,12 @@ class Options extends Collection
     /**
      * Get options from a model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder  $model
+     * @param  class-string|\Illuminate\Database\Eloquent\Builder  $model
      * @param  string  $value
      * @param  string  $key
      * @return Collection
      */
-    public static function model(Model|EloquentBuilder $model, string $value, string $key = 'id'): Collection
+    public static function model(string|EloquentBuilder $model, string $value, string $key = 'id'): Collection
     {
         if (! $model instanceof EloquentBuilder) {
             $model = $model::query();

@@ -109,12 +109,12 @@ class Field extends Fluent
     /**
      * Get options from a model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder  $model
+     * @param  class-string|\Illuminate\Database\Eloquent\Builder  $model
      * @param  string  $value
      * @param  string  $key
      * @return $this
      */
-    public function modelOptions(Model|EloquentBuilder $model, string $value, string $key = 'id'): static
+    public function modelOptions($model, string $value, string $key = 'id'): static
     {
         return $this->options(
             Options::model($model, $value, $key)
@@ -331,16 +331,13 @@ class Field extends Fluent
      * Set field element html attributes.
      *
      * @param  string  $attribute
-     * @param  int|string  $value
+     * @param  int|bool|string  $value
      * @return $this
      * @see https://datatables.net/forums/discussion/comment/156581/#Comment_156581
      */
-    public function attr(string $attribute, int|string $value): static
+    public function attr(string $attribute, int|bool|string $value): static
     {
-        if (! is_array($this->attributes['attr'])) {
-            $this->attributes['attr'] = [];
-        }
-
+        // @phpstan-ignore-next-line
         $this->attributes['attr'][$attribute] = $value;
 
         return $this;

@@ -19,8 +19,7 @@ class BelongsTo extends Select
         if ($class instanceof Builder) {
             $table = $class->getModel()->getTable();
         } else {
-            $class = new $class;
-            $table = $class->getTable();
+            $table = (new $class)->getTable();
         }
 
         $table = Str::singular($table);
