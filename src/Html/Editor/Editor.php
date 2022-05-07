@@ -9,14 +9,18 @@ use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
 
 /**
+ * @property string $instance
  * @property string|null $table
  * @property string|array|null $ajax
- * @property array $events
+ * @property array $fields
+ * @property string|null $template
  */
 class Editor extends Fluent
 {
     use HasEvents;
     use HasAuthorizations;
+
+    public array $events = [];
 
     const DISPLAY_LIGHTBOX = 'lightbox';
     const DISPLAY_ENVELOPE = 'envelope';
@@ -167,7 +171,6 @@ class Editor extends Fluent
      *
      * @param  array  $formOptions
      * @return $this
-     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.bubble
      */
     public function formOptionsBubble(array $formOptions): static
@@ -180,7 +183,6 @@ class Editor extends Fluent
      *
      * @param  array  $formOptions
      * @return $this
-     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.inline
      */
     public function formOptionsInline(array $formOptions): static
@@ -193,7 +195,6 @@ class Editor extends Fluent
      *
      * @param  array  $formOptions
      * @return $this
-     * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.main
      */
     public function formOptionsMain(array $formOptions): static
