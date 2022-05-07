@@ -10,6 +10,8 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 /**
  * @property string $data
  * @property string $name
+ * @property string $title
+ * @property string $titleAttr
  * @property string $orderable
  * @property string $searchable
  * @property string $printable
