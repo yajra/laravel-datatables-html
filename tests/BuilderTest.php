@@ -5,7 +5,7 @@ namespace Yajra\DataTables\Html\Tests;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
 
-class HtmlBuilderTest extends TestCase
+class BuilderTest extends TestCase
 {
     /** @test */
     public function it_can_resolved_builder_class()
