@@ -110,11 +110,60 @@ class FieldTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_text_field()
+    public function it_can_create_file_field()
     {
-        $field = Fields\Text::make('name');
-        $this->assertInstanceOf(Fields\Text::class, $field);
+        $field = Fields\File::make('name');
+        $this->assertInstanceOf(Fields\File::class, $field);
+        $this->assertEquals('upload', $field->getType());
+        // TODO: add more file field test
+    }
+
+    /** @test */
+    public function it_can_create_hidden_field()
+    {
+        $field = Fields\Hidden::make('name');
+        $this->assertInstanceOf(Fields\Hidden::class, $field);
+        $this->assertEquals('hidden', $field->getType());
+    }
+
+    /** @test */
+    public function it_can_create_image_field()
+    {
+        $field = Fields\Image::make('name');
+        $this->assertInstanceOf(Fields\Image::class, $field);
+        $this->assertEquals('upload', $field->getType());
+    }
+
+    /** @test */
+    public function it_can_create_number_field()
+    {
+        $field = Fields\Number::make('name');
+        $this->assertInstanceOf(Fields\Number::class, $field);
         $this->assertEquals('text', $field->getType());
+    }
+
+    /** @test */
+    public function it_can_create_password_field()
+    {
+        $field = Fields\Password::make('name');
+        $this->assertInstanceOf(Fields\Password::class, $field);
+        $this->assertEquals('password', $field->getType());
+    }
+
+    /** @test */
+    public function it_can_create_radio_field()
+    {
+        $field = Fields\Radio::make('name');
+        $this->assertInstanceOf(Fields\Radio::class, $field);
+        $this->assertEquals('radio', $field->getType());
+    }
+
+    /** @test */
+    public function it_can_create_read_only_field()
+    {
+        $field = Fields\ReadOnlyField::make('name');
+        $this->assertInstanceOf(Fields\ReadOnlyField::class, $field);
+        $this->assertEquals('readonly', $field->getType());
     }
 
     /** @test */
@@ -133,5 +182,36 @@ class FieldTest extends TestCase
         $this->assertEquals('select2', $field->getType());
     }
 
+    /** @test */
+    public function it_can_create_text_field()
+    {
+        $field = Fields\Text::make('name');
+        $this->assertInstanceOf(Fields\Text::class, $field);
+        $this->assertEquals('text', $field->getType());
+    }
 
+    /** @test */
+    public function it_can_create_textarea_field()
+    {
+        $field = Fields\TextArea::make('name');
+        $this->assertInstanceOf(Fields\TextArea::class, $field);
+        $this->assertEquals('textarea', $field->getType());
+
+        $field->rows(5);
+        $this->assertEquals('5', $field->attr['rows']);
+
+        $field->cols(5);
+        $this->assertEquals('5', $field->attr['cols']);
+    }
+
+    /** @test */
+    public function it_can_create_time_field()
+    {
+        $field = Fields\Time::make('name');
+        $this->assertInstanceOf(Fields\Time::class, $field);
+        $this->assertEquals('datetime', $field->getType());
+        $this->assertEquals('name', $field->name);
+        $this->assertEquals('Name', $field->label);
+        $this->assertEquals('hh:mm a', $field->format);
+    }
 }
