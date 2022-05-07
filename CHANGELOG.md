@@ -8,7 +8,7 @@
 
 ## CHANGELOG
 
-### v9.0.0 - UNRELEASED
+### v9.0.0 - 2022-05-08
 
 - Add Laravel 9 support
 - Remove Laravel 8 and below support
