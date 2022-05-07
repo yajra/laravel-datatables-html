@@ -86,12 +86,12 @@ class Builder
     /**
      * Generate DataTable javascript.
      *
-     * @param  null  $script
+     * @param  string|null  $script
      * @param  array  $attributes
      * @return \Illuminate\Support\HtmlString
      * @throws \Exception
      */
-    public function scripts($script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
+    public function scripts(string $script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes($attributes);
@@ -170,7 +170,7 @@ class Builder
             Arr::set($new, $key, $value);
         }
 
-        $json = json_encode($new);
+        $json = (string) json_encode($new);
 
         return str_replace($replacements, $values, $json);
     }

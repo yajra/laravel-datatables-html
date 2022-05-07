@@ -3,10 +3,10 @@
 namespace Yajra\DataTables\Html\Editor\Fields;
 
 use Closure;
-use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\HasAuthorizations;
@@ -109,7 +109,7 @@ class Field extends Fluent
     /**
      * Get options from a model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Database\Eloquent\Builder  $model
+     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder  $model
      * @param  string  $value
      * @param  string  $key
      * @return $this
@@ -331,11 +331,11 @@ class Field extends Fluent
      * Set field element html attributes.
      *
      * @param  string  $attribute
-     * @param  string  $value
+     * @param  int|string  $value
      * @return $this
      * @see https://datatables.net/forums/discussion/comment/156581/#Comment_156581
      */
-    public function attr(string $attribute, string $value): static
+    public function attr(string $attribute, int|string $value): static
     {
         $this->attributes['attr'][$attribute] = $value;
 

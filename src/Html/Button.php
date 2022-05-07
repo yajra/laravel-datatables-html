@@ -27,10 +27,10 @@ class Button extends Fluent implements Arrayable
     /**
      * Make a raw button that does not extend anything.
      *
-     * @param  array  $options
+     * @param  array|string  $options
      * @return static
      */
-    public static function raw(array $options = []): static
+    public static function raw(array|string $options = []): static
     {
         if (is_string($options)) {
             return new static(['text' => $options]);
@@ -385,7 +385,7 @@ class Button extends Fluent implements Arrayable
     /**
      * Set action to submit the form.
      *
-     * @return \Yajra\DataTables\Html\Button
+     * @return $this
      */
     public function actionSubmit(): static
     {
@@ -413,7 +413,7 @@ class Button extends Fluent implements Arrayable
      * Set editor class action handler.
      *
      * @param  string  $action
-     * @return \Yajra\DataTables\Html\Button
+     * @return $this
      */
     public function actionHandler(string $action): static
     {
@@ -423,7 +423,7 @@ class Button extends Fluent implements Arrayable
     /**
      * Set action to close the form.
      *
-     * @return \Yajra\DataTables\Html\Button
+     * @return $this
      */
     public function actionClose(): static
     {
@@ -434,7 +434,7 @@ class Button extends Fluent implements Arrayable
      * Set button alignment.
      *
      * @param  string  $align
-     * @return \Yajra\DataTables\Html\Button
+     * @return $this
      */
     public function align(string $align = 'button-left'): static
     {

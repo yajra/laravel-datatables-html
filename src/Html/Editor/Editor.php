@@ -39,10 +39,10 @@ class Editor extends Fluent
     /**
      * Make new Editor instance.
      *
-     * @param  string  $instance
+     * @param  array|string  $instance
      * @return static
      */
-    public static function make(string $instance = 'editor'): static
+    public static function make(array|string $instance = 'editor'): static
     {
         if (is_array($instance)) {
             $instance = $instance['editor'] ?? 'editor';
@@ -55,7 +55,7 @@ class Editor extends Fluent
      * Append raw scripts.
      *
      * @param  string  $scripts
-     * @return Editor
+     * @return $this
      */
     public function scripts(string $scripts): static
     {
@@ -165,7 +165,7 @@ class Editor extends Fluent
     /**
      * Set Editor's bubble formOptions.
      *
-     * @param  mixed  $formOptions
+     * @param  array  $formOptions
      * @return $this
      * @throws \Yajra\DataTables\Exceptions\Exception
      * @see https://editor.datatables.net/reference/option/formOptions.bubble
@@ -283,7 +283,7 @@ class Editor extends Fluent
             Arr::set($new, $key, $value);
         }
 
-        $json = json_encode($new, $options);
+        $json = (string) json_encode($new, $options);
 
         return str_replace($replacements, $values, $json);
     }
@@ -295,9 +295,9 @@ class Editor extends Fluent
      * @param  string  $key
      * @return bool
      */
-    protected function isCallbackFunction($value, $key)
+    protected function isCallbackFunction(string $value, string $key): bool
     {
-        if (empty($value) || is_object($value) || is_array($value)) {
+        if (empty($value)) {
             return false;
         }
 

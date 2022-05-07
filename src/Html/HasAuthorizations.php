@@ -22,7 +22,11 @@ trait HasAuthorizations
      */
     public static function makeIf(callable|bool $condition, array|string $options = []): static
     {
-        if (value($condition)) {
+        if (is_callable($condition)) {
+            $condition = value($condition);
+        }
+
+        if ($condition === true) {
             return static::make($options);
         }
 
@@ -43,7 +47,7 @@ trait HasAuthorizations
             $user = auth()->user();
         }
 
-        if ($user->can($permission)) {
+        if ($user instanceof Authorizable && $user->can($permission)) {
             return static::make($options);
         }
 
@@ -67,7 +71,7 @@ trait HasAuthorizations
             $user = auth()->user();
         }
 
-        if (! $user->can($permission)) {
+        if ($user instanceof Authorizable && ! $user->can($permission)) {
             return static::make($options);
         }
 
@@ -82,7 +86,7 @@ trait HasAuthorizations
      */
     public function authorized(callable|bool $bool): static
     {
-        $this->authorized = value($bool);
+        $this->authorized = (bool) value($bool);
 
         return $this;
     }

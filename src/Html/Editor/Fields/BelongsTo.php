@@ -2,13 +2,13 @@
 
 namespace Yajra\DataTables\Html\Editor\Fields;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class BelongsTo extends Select
 {
     /**
-     * @param  string|Builder  $class
+     * @param  class-string<\Illuminate\Database\Eloquent\Model>|Builder  $class
      * @param  string  $text
      * @param  string  $id
      * @param  string|null  $foreign
@@ -19,7 +19,8 @@ class BelongsTo extends Select
         if ($class instanceof Builder) {
             $table = $class->getModel()->getTable();
         } else {
-            $table = app($class)->getTable();
+            $class = new $class;
+            $table = $class->getTable();
         }
 
         $table = Str::singular($table);

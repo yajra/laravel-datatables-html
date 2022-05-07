@@ -4,7 +4,6 @@ namespace Yajra\DataTables\Html;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Fluent;
@@ -248,7 +247,7 @@ class SearchPane extends Fluent
      * @param  string  $value
      * @param  string  $key
      * @param  \Closure|null  $callback
-     * @param  \Illuminate\Database\Connection|null  $connection
+     * @param  string|null  $connection
      * @return $this
      */
     public function tableOptions(
@@ -256,7 +255,7 @@ class SearchPane extends Fluent
         string $value,
         string $key = 'id',
         Closure $callback = null,
-        ?Connection $connection = null
+        string $connection = null
     ): static {
         return $this->options(
             Options::table($table, $value, $key, $callback, $connection)

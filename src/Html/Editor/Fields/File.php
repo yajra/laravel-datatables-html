@@ -25,7 +25,6 @@ class File extends Field
      */
     public static function make(array|string $name, string $label = ''): static
     {
-        /** @var \Yajra\DataTables\Html\Editor\Fields\File $field */
         $field = parent::make($name, $label);
 
         return $field->displayFile()->clearText()->noImageText();

@@ -4,8 +4,8 @@ namespace Yajra\DataTables\Html\Editor\Fields;
 
 use Closure;
 use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +33,7 @@ class Options extends Collection
     /**
      * Get options from a model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Contracts\Database\Eloquent\Builder  $model
+     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder  $model
      * @param  string  $value
      * @param  string  $key
      * @return Collection
@@ -55,7 +55,7 @@ class Options extends Collection
     /**
      * Get options from a table.
      *
-     * @param  string|\Closure|\Illuminate\Contracts\Database\Query\Builder  $table
+     * @param  \Closure|\Illuminate\Database\Query\Builder|string  $table
      * @param  string  $value
      * @param  string  $key
      * @param  \Closure|null  $callback
@@ -63,7 +63,7 @@ class Options extends Collection
      * @return Collection
      */
     public static function table(
-        string|Closure|QueryBuilder $table,
+        Closure|Builder|string $table,
         string $value,
         string $key = 'id',
         Closure $callback = null,
@@ -99,10 +99,10 @@ class Options extends Collection
      * Push an item onto the end of the collection.
      *
      * @param  string  $value
-     * @param  string  $key
+     * @param  int|string  $key
      * @return static
      */
-    public function append(string $value, string $key): static
+    public function append(string $value, int|string $key): static
     {
         return $this->push(['label' => $value, 'value' => $key]);
     }
