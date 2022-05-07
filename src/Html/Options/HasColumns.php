@@ -18,11 +18,11 @@ trait HasColumns
     /**
      * Set columnDefs option value.
      *
-     * @param  mixed  $value
+     * @param  array|\Illuminate\Contracts\Support\Arrayable|callable  $value
      * @return $this
      * @see https://datatables.net/reference/option/columnDefs
      */
-    public function columnDefs(mixed $value): static
+    public function columnDefs(array|Arrayable|callable $value): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);
@@ -40,11 +40,11 @@ trait HasColumns
     /**
      * Add a columnDef option.
      *
-     * @param  mixed  $value
+     * @param  array|\Illuminate\Contracts\Support\Arrayable|callable  $value
      * @return $this
      * @see https://datatables.net/reference/option/columnDefs
      */
-    public function addColumnDef(mixed $value): static
+    public function addColumnDef(array|Arrayable|callable $value): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);

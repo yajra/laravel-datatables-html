@@ -5,10 +5,10 @@ namespace Yajra\DataTables\Html;
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Traits\Macroable;
+use Yajra\DataTables\Utilities\Helper;
 
 class Builder
 {
@@ -31,29 +31,14 @@ class Builder
     const SELECT_ITEMS_CELL = 'cell';
 
     /**
-     * @var Collection
+     * @var Collection<array-key, \Yajra\DataTables\Html\Column>
      */
-    public $collection;
-
-    /**
-     * @var Repository
-     */
-    public $config;
-
-    /**
-     * @var Factory
-     */
-    public $view;
-
-    /**
-     * @var HtmlBuilder
-     */
-    public $html;
+    public Collection $collection;
 
     /**
      * @var array<string, string|null>
      */
-    protected $tableAttributes = [];
+    protected array $tableAttributes = [];
 
     /**
      * @var string
@@ -63,20 +48,20 @@ class Builder
     /**
      * @var array
      */
-    protected $attributes = [];
+    protected array $attributes = [];
 
     /**
      * @param  Repository  $config
      * @param  Factory  $view
      * @param  HtmlBuilder  $html
      */
-    public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
+    public function __construct(protected Repository $config, protected Factory $view, protected HtmlBuilder $html)
     {
-        $this->config = $config;
-        $this->view = $view;
-        $this->html = $html;
+        /** @var array $defaults */
+        $defaults = $this->config->get('datatables-html.table', []);
+
         $this->collection = new Collection;
-        $this->tableAttributes = $this->config->get('datatables-html.table', []);
+        $this->tableAttributes = $defaults;
         $this->attributes = [
             'serverSide' => true,
             'processing' => true,
@@ -154,25 +139,7 @@ class Builder
     {
         $parameters = (new Parameters($attributes))->toArray();
 
-        $values = [];
-        $replacements = [];
-
-        foreach (Arr::dot($parameters) as $key => $value) {
-            if ($this->isCallbackFunction($value, $key)) {
-                $values[] = trim($value);
-                Arr::set($parameters, $key, '%'.$key.'%');
-                $replacements[] = '"%'.$key.'%"';
-            }
-        }
-
-        $new = [];
-        foreach ($parameters as $key => $value) {
-            Arr::set($new, $key, $value);
-        }
-
-        $json = (string) json_encode($new);
-
-        return str_replace($replacements, $values, $json);
+        return Helper::toJsonScript($parameters);
     }
 
     /**
@@ -182,7 +149,10 @@ class Builder
      */
     protected function template(): string
     {
-        $template = $this->template ?: $this->config->get('datatables-html.script', 'datatables::script');
+        /** @var view-string $configTemplate */
+        $configTemplate = $this->config->get('datatables-html.script', 'datatables::script');
+
+        $template = $this->template ?: $configTemplate;
 
         return $this->view->make($template, ['editors' => $this->editors])->render();
     }

@@ -15,9 +15,7 @@ class Select2 extends Select
      */
     public function allowClear(bool $state = true): static
     {
-        $this->attributes['opts']['allowClear'] = $state;
-
-        return $this;
+        return $this->opts(['allowClear' => $state]);
     }
 
     /**
@@ -27,12 +25,12 @@ class Select2 extends Select
      */
     public function optsPlaceholder(string $value = '', string $id = 'id'): static
     {
-        $this->attributes['opts']['placeholder'] = [
-            'id' => $id,
-            'text' => $value,
-        ];
-
-        return $this;
+        return $this->opts([
+            'placeholder' => [
+                'id' => $id,
+                'text' => $value,
+            ],
+        ]);
     }
 
     /**
@@ -44,12 +42,10 @@ class Select2 extends Select
     public function ajax(array|string $value): static
     {
         if (is_array($value)) {
-            $this->attributes['opts']['ajax'] = $value;
-        } else {
-            $this->attributes['opts']['ajax']['url'] = $value;
+            return $this->opts(['ajax' => $value]);
         }
 
-        return $this;
+        return $this->opts(['ajax' => ['url' => $value]]);
     }
 
     /**
@@ -60,9 +56,7 @@ class Select2 extends Select
      */
     public function ajaxUrl(string $value): static
     {
-        $this->attributes['opts']['ajax']['url'] = $value;
-
-        return $this;
+        return $this->ajax(['url' => $value]);
     }
 
     /**
@@ -73,9 +67,7 @@ class Select2 extends Select
      */
     public function ajaxDelay(int $value = 250): static
     {
-        $this->attributes['opts']['ajax']['delay'] = $value;
-
-        return $this;
+        return $this->ajax(['delay' => $value]);
     }
 
     /**
@@ -97,9 +89,7 @@ class Select2 extends Select
             $data = $script;
         }
 
-        $this->attributes['opts']['ajax']['data'] = $data;
-
-        return $this;
+        return $this->ajax(['data' => $data]);
     }
 
     /**
@@ -128,8 +118,6 @@ class Select2 extends Select
      */
     public function processResults(string $value): static
     {
-        $this->attributes['opts']['ajax']['processResults'] = $value;
-
-        return $this;
+        return $this->ajax(['processResults' => $value]);
     }
 }

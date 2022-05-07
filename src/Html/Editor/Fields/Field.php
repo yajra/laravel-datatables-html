@@ -337,6 +337,10 @@ class Field extends Fluent
      */
     public function attr(string $attribute, int|string $value): static
     {
+        if (! is_array($this->attributes['attr'])) {
+            $this->attributes['attr'] = [];
+        }
+
         $this->attributes['attr'][$attribute] = $value;
 
         return $this;

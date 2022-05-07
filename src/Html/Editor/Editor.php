@@ -4,7 +4,6 @@ namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
@@ -12,6 +11,7 @@ use Yajra\DataTables\Utilities\Helper;
 /**
  * @property string|null $table
  * @property string|array|null $ajax
+ * @property array $events
  */
 class Editor extends Fluent
 {
@@ -172,9 +172,7 @@ class Editor extends Fluent
      */
     public function formOptionsBubble(array $formOptions): static
     {
-        $this->attributes['formOptions']['bubble'] = Helper::castToArray($formOptions);;
-
-        return $this;
+        return $this->formOptions(['bubble' => Helper::castToArray($formOptions)]);
     }
 
     /**
@@ -187,9 +185,7 @@ class Editor extends Fluent
      */
     public function formOptionsInline(array $formOptions): static
     {
-        $this->attributes['formOptions']['inline'] = Helper::castToArray($formOptions);
-
-        return $this;
+        return $this->formOptions(['inline' => Helper::castToArray($formOptions)]);
     }
 
     /**
@@ -202,9 +198,7 @@ class Editor extends Fluent
      */
     public function formOptionsMain(array $formOptions): static
     {
-        $this->attributes['formOptions']['main'] = Helper::castToArray($formOptions);
-
-        return $this;
+        return $this->formOptions(['main' => Helper::castToArray($formOptions)]);
     }
 
     /**
@@ -246,7 +240,7 @@ class Editor extends Fluent
 
         unset($array['events']);
 
-        foreach (Arr::get($array, 'fields', []) as $key => &$field) {
+        foreach ((array) Arr::get($array, 'fields', []) as $key => &$field) {
             if ($field instanceof Field) {
                 Arr::set($array['fields'], $key, $field->toArray());
             }
@@ -267,42 +261,6 @@ class Editor extends Fluent
 
         unset($parameters['events']);
 
-        $values = [];
-        $replacements = [];
-
-        foreach (Arr::dot($parameters) as $key => $value) {
-            if ($this->isCallbackFunction($value, $key)) {
-                $values[] = trim($value);
-                Arr::set($parameters, $key, '%'.$key.'%');
-                $replacements[] = '"%'.$key.'%"';
-            }
-        }
-
-        $new = [];
-        foreach ($parameters as $key => $value) {
-            Arr::set($new, $key, $value);
-        }
-
-        $json = (string) json_encode($new, $options);
-
-        return str_replace($replacements, $values, $json);
-    }
-
-    /**
-     * Check if given key & value is a valid callback js function.
-     *
-     * @param  string  $value
-     * @param  string  $key
-     * @return bool
-     */
-    protected function isCallbackFunction(string $value, string $key): bool
-    {
-        if (empty($value)) {
-            return false;
-        }
-
-        $callbacks = config('datatables-html.callback', ['$', '$.', 'function']);
-
-        return Str::startsWith(trim($value), $callbacks) || Str::contains($key, ['editor', 'minDate', 'maxDate']);
+        return Helper::toJsonScript($parameters, $options);
     }
 }

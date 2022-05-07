@@ -44,7 +44,10 @@ trait HasEditor
      */
     public function editor(Editor $fields): static
     {
-        $this->setTemplate($this->config->get('datatables-html.editor', 'datatables::editor'));
+        /** @var string $template */
+        $template = $this->config->get('datatables-html.editor', 'datatables::editor');
+
+        $this->setTemplate($template);
 
         $editor = $this->newEditor($fields);
 

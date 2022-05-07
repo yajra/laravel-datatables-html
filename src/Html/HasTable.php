@@ -2,7 +2,6 @@
 
 namespace Yajra\DataTables\Html;
 
-use Exception;
 use Illuminate\Support\Arr;
 
 trait HasTable
@@ -12,14 +11,9 @@ trait HasTable
      *
      * @param  string  $attribute
      * @return string
-     * @throws \Exception
      */
     public function getTableAttribute(string $attribute): string
     {
-        if (! array_key_exists($attribute, $this->tableAttributes)) {
-            throw new Exception("Table attribute '$attribute' does not exist.");
-        }
-
         return $this->tableAttributes[$attribute] ?? '';
     }
 
@@ -114,7 +108,7 @@ trait HasTable
     public function removeTableClass(array|string $class): static
     {
         $class = is_array($class) ? implode(' ', $class) : $class;
-        $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
+        $currentClass = $this->getTableAttribute('class');
 
         $classes = array_diff(
             (array) preg_split('#\s+#', $currentClass, -1, PREG_SPLIT_NO_EMPTY),
@@ -133,14 +127,15 @@ trait HasTable
     protected function compileTableHeaders(): array
     {
         $th = [];
-        foreach ($this->collection->toArray() as $row) {
+
+        $this->collection->each(function (Column $column) use (&$th) {
             $thAttr = $this->html->attributes(array_merge(
-                Arr::only($row, ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']),
-                $row['attributes'],
-                isset($row['titleAttr']) ? ['title' => $row['titleAttr']] : []
+                Arr::only($column->toArray(), ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']),
+                $column->getAttributes(),
+                isset($column['titleAttr']) ? ['title' => $column['titleAttr']] : []
             ));
-            $th[] = '<th '.$thAttr.'>'.$row['title'].'</th>';
-        }
+            $th[] = '<th '.$thAttr.'>'.$column['title'].'</th>';
+        });
 
         return $th;
     }
@@ -153,9 +148,10 @@ trait HasTable
     protected function compileTableSearchHeaders(): array
     {
         $search = [];
-        foreach ($this->collection->all() as $key => $row) {
-            $search[] = $row['searchable'] ? '<th>'.($row->search ?? '').'</th>' : '<th></th>';
-        }
+
+        $this->collection->each(function (Column $column) use (&$search) {
+            $search[] = $column['searchable'] ? '<th>'.($column['search'] ?? '').'</th>' : '<th></th>';
+        });
 
         return $search;
     }
@@ -168,16 +164,20 @@ trait HasTable
     protected function compileTableFooter(): array
     {
         $footer = [];
-        foreach ($this->collection->all() as $row) {
-            if (is_array($row->footer)) {
-                $footerAttr = $this->html->attributes(Arr::only($row->footer,
-                    ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']));
-                $title = $row->footer['title'] ?? '';
+
+        $this->collection->each(function (Column $column) use (&$footer) {
+            if (is_array($column->footer)) {
+                $footerAttr = $this->html->attributes(
+                    Arr::only($column->footer, ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide'])
+                );
+
+                $title = $column->footer['title'] ?? '';
+
                 $footer[] = '<th '.$footerAttr.'>'.$title.'</th>';
             } else {
-                $footer[] = '<th>'.$row->footer.'</th>';
+                $footer[] = '<th>'.$column->footer.'</th>';
             }
-        }
+        });
 
         return $footer;
     }

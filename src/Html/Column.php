@@ -14,7 +14,7 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
  * @property string $searchable
  * @property string $printable
  * @property string $exportable
- * @property string $footer
+ * @property array|string $footer
  * @property array $attributes
  * @see https://datatables.net/reference/option/#columns
  */
@@ -439,7 +439,7 @@ class Column extends Fluent
      * Use the js renderer "$.fn.dataTable.render.".
      *
      * @param  string  $value
-     * @param  mixed  ...$params
+     * @param  int|string|null  ...$params
      * @return $this
      * @see https://datatables.net/reference/option/columns.render
      */
@@ -448,7 +448,7 @@ class Column extends Fluent
         if ($params) {
             $value .= '(';
             foreach ($params as $param) {
-                $value .= "'{$param}',";
+                $value .= sprintf("'%s',", $param);
             }
             $value = mb_substr($value, 0, -1);
             $value .= ')';
@@ -519,10 +519,10 @@ class Column extends Fluent
     /**
      * Display render value as is.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @return string
      */
-    private function parseRenderAsString(mixed $value): string
+    private function parseRenderAsString(string $value): string
     {
         return "function(data,type,full,meta){return $value;}";
     }

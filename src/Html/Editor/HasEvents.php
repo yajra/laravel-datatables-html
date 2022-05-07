@@ -45,19 +45,19 @@ trait HasEvents
     /**
      * Magic method handler for editor events.
      *
-     * @param  string  $name
-     * @param  mixed  $arguments
+     * @param  string  $method
+     * @param  array{0: string}  $parameters
      * @return $this
      */
-    public function __call($name, $arguments)
+    public function __call($method, $parameters)
     {
-        if (Str::startsWith($name, 'on')) {
-            $event = Str::camel(substr($name, 2, strlen($name) - 2));
+        if (Str::startsWith($method, 'on')) {
+            $event = Str::camel(substr($method, 2, strlen($method) - 2));
 
-            return $this->on($event, $arguments[0]);
+            return $this->on($event, $parameters[0]);
         }
 
-        return parent::__call($name, $arguments);
+        return parent::__call($method, $parameters);
     }
 
     /**
@@ -70,7 +70,7 @@ trait HasEvents
      */
     public function on(string $event, string $script): static
     {
-        $this->attributes['events'][] = [
+        $this->events[] = [
             'event' => $event,
             'script' => value($script),
         ];

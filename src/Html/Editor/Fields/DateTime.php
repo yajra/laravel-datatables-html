@@ -36,9 +36,7 @@ class DateTime extends Field
      */
     public function minDate(\DateTime $dateTime, string $format = 'Y-m-d'): static
     {
-        $this->attributes['opts']['minDate'] = "new Date('".$dateTime->format($format)."')";
-
-        return $this;
+        return $this->opts(['minDate' => "new Date('".$dateTime->format($format)."')"]);
     }
 
     /**
@@ -49,9 +47,7 @@ class DateTime extends Field
      */
     public function maxDate(\DateTime $dateTime, string $format = 'Y-m-d'): static
     {
-        $this->attributes['opts']['maxDate'] = "new Date('".$dateTime->format($format)."')";
-
-        return $this;
+        return $this->opts(['maxDate' => "new Date('".$dateTime->format($format)."')"]);
     }
 
     /**
@@ -61,9 +57,7 @@ class DateTime extends Field
      */
     public function showWeekNumber(bool $state = true): static
     {
-        $this->attributes['opts']['showWeekNumber'] = $state;
-
-        return $this;
+        return $this->opts(['showWeekNumber' => $state]);
     }
 
     /**
@@ -73,9 +67,7 @@ class DateTime extends Field
      */
     public function disableDays(array $days): static
     {
-        $this->attributes['opts']['disableDays'] = $days;
-
-        return $this;
+        return $this->opts(['disableDays' => $days]);
     }
 
     /**
@@ -85,9 +77,7 @@ class DateTime extends Field
      */
     public function minutesIncrement(int $minutes): static
     {
-        $this->attributes['opts']['minutesIncrement'] = $minutes;
-
-        return $this;
+        return $this->opts(['minutesIncrement' => $minutes]);
     }
 
     /**
@@ -97,9 +87,7 @@ class DateTime extends Field
      */
     public function secondsIncrement(int $seconds): static
     {
-        $this->attributes['opts']['secondsIncrement'] = $seconds;
-
-        return $this;
+        return $this->opts(['secondsIncrement' => $seconds]);
     }
 
     /**
@@ -109,9 +97,7 @@ class DateTime extends Field
      */
     public function hoursAvailable(array $hours): static
     {
-        $this->attributes['opts']['hoursAvailable'] = $hours;
-
-        return $this;
+        return $this->opts(['hoursAvailable' => $hours]);
     }
 
     /**
@@ -121,8 +107,6 @@ class DateTime extends Field
      */
     public function minutesAvailable(array $minutes): static
     {
-        $this->attributes['opts']['minutesAvailable'] = $minutes;
-
-        return $this;
+        return $this->opts(['minutesAvailable' => $minutes]);
     }
 }

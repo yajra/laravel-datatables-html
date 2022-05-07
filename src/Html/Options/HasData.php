@@ -3,7 +3,7 @@
 namespace Yajra\DataTables\Html\Options;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Yajra\DataTables\Utilities\Helper;
 
 /**
  * DataTables - Data option builder.
@@ -155,32 +155,10 @@ CDATA;
     {
         $script = '';
         foreach ($data as $key => $value) {
-            $dataValue = $this->isCallbackFunction($value, $key) ? $value : "'{$value}'";
+            $dataValue = Helper::isJavascript($value, $key) ? $value : "'{$value}'";
             $script .= PHP_EOL."data.{$key} = {$dataValue};";
         }
 
         return $script;
-    }
-
-    /**
-     * Check if given key & value is a valid callback js function.
-     *
-     * @param  string  $value
-     * @param  string  $key
-     * @return bool
-     */
-    protected function isCallbackFunction(string $value, string $key): bool
-    {
-        if (empty($value)) {
-            return false;
-        }
-
-        $callbacks = $this->config->get('datatables-html.callback', ['$', '$.', 'function']);
-
-        if (! is_array($callbacks)) {
-            return false;
-        }
-
-        return Str::startsWith(trim($value), $callbacks) || Str::contains($key, 'editor');
     }
 }

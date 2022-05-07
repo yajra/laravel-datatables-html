@@ -34,8 +34,10 @@ class Select extends Field
         if (is_array($label)) {
             $this->attributes['optionsPair'] = $label;
         } else {
-            $this->attributes['optionsPair']['label'] = $label;
-            $this->attributes['optionsPair']['value'] = $value;
+            $this->attributes['optionsPair'] = [
+                'label' => $label,
+                'value' => $value,
+            ];
         }
 
         return $this;
