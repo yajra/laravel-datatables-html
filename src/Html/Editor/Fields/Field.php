@@ -102,6 +102,7 @@ class Field extends Fluent
     public function type(string $type): static
     {
         $this->attributes['type'] = $type;
+        $this->type = $type;
 
         return $this;
     }
@@ -341,5 +342,13 @@ class Field extends Fluent
         $this->attributes['attr'][$attribute] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
     }
 }
