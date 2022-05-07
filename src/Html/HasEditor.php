@@ -9,19 +9,19 @@ trait HasEditor
     /**
      * Collection of Editors.
      *
-     * @var null|Editor
+     * @var array
      */
-    protected $editors = [];
+    protected array $editors = [];
 
     /**
      * Attach multiple editors to builder.
      *
-     * @param array|mixed ...$editors
+     * @param  array|mixed  ...$editors
      * @return $this
-     * @see https://editor.datatables.net/
      * @throws \Exception
+     * @see https://editor.datatables.net/
      */
-    public function editors(...$editors)
+    public function editors(...$editors): static
     {
         if (is_array($editors[0])) {
             $editors = $editors[0];
@@ -37,12 +37,12 @@ trait HasEditor
     /**
      * Integrate with DataTables Editor.
      *
-     * @param array|Editor $fields
+     * @param  Editor  $fields
      * @return $this
-     * @see https://editor.datatables.net/
      * @throws \Exception
+     * @see https://editor.datatables.net/
      */
-    public function editor($fields)
+    public function editor(Editor $fields): static
     {
         $this->setTemplate($this->config->get('datatables-html.editor', 'datatables::editor'));
 
@@ -54,11 +54,11 @@ trait HasEditor
     }
 
     /**
-     * @param array|Editor $fields
-     * @return array|Editor
+     * @param  array|Editor  $fields
+     * @return Editor
      * @throws \Exception
      */
-    protected function newEditor($fields)
+    protected function newEditor(Editor|array $fields): Editor
     {
         if ($fields instanceof Editor) {
             $editor = $fields;
@@ -68,7 +68,7 @@ trait HasEditor
         }
 
         if (! $editor->table) {
-            $editor->table('#' . $this->getTableAttribute('id'));
+            $editor->table('#'.$this->getTableAttribute('id'));
         }
 
         if (! $editor->ajax) {
@@ -79,9 +79,9 @@ trait HasEditor
     }
 
     /**
-     * @return array|null
+     * @return array
      */
-    public function getEditors()
+    public function getEditors(): array
     {
         return $this->editors;
     }

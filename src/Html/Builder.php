@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
 class Builder
@@ -22,14 +21,14 @@ class Builder
     use Columns\Checkbox;
 
     // Select plugin constants.
-    const SELECT_STYLE_API         = 'api';
-    const SELECT_STYLE_SINGLE      = 'single';
-    const SELECT_STYLE_MULTI       = 'multi';
-    const SELECT_STYLE_OS          = 'os';
+    const SELECT_STYLE_API = 'api';
+    const SELECT_STYLE_SINGLE = 'single';
+    const SELECT_STYLE_MULTI = 'multi';
+    const SELECT_STYLE_OS = 'os';
     const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
-    const SELECT_ITEMS_ROW         = 'row';
-    const SELECT_ITEMS_COLUMN      = 'column';
-    const SELECT_ITEMS_CELL        = 'cell';
+    const SELECT_ITEMS_ROW = 'row';
+    const SELECT_ITEMS_COLUMN = 'column';
+    const SELECT_ITEMS_CELL = 'cell';
 
     /**
      * @var Collection
@@ -52,14 +51,14 @@ class Builder
     public $html;
 
     /**
-     * @var array
+     * @var array<string, string|null>
      */
     protected $tableAttributes = [];
 
     /**
      * @var string
      */
-    protected $template = '';
+    protected string $template = '';
 
     /**
      * @var array
@@ -67,9 +66,9 @@ class Builder
     protected $attributes = [];
 
     /**
-     * @param Repository $config
-     * @param Factory $view
-     * @param HtmlBuilder $html
+     * @param  Repository  $config
+     * @param  Factory  $view
+     * @param  HtmlBuilder  $html
      */
     public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
     {
@@ -87,8 +86,8 @@ class Builder
     /**
      * Generate DataTable javascript.
      *
-     * @param  null $script
-     * @param  array $attributes
+     * @param  null  $script
+     * @param  array  $attributes
      * @return \Illuminate\Support\HtmlString
      * @throws \Exception
      */
@@ -148,7 +147,7 @@ class Builder
     /**
      * Generate DataTables js parameters.
      *
-     * @param  array $attributes
+     * @param  array  $attributes
      * @return string
      */
     public function parameterize($attributes = [])
@@ -161,8 +160,8 @@ class Builder
         foreach (Arr::dot($parameters) as $key => $value) {
             if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
-                Arr::set($parameters, $key, '%' . $key . '%');
-                $replacements[] = '"%' . $key . '%"';
+                Arr::set($parameters, $key, '%'.$key.'%');
+                $replacements[] = '"%'.$key.'%"';
             }
         }
 
@@ -193,9 +192,9 @@ class Builder
     /**
      * Generate DataTable's table html.
      *
-     * @param array $attributes
-     * @param bool $drawFooter
-     * @param bool $drawSearch
+     * @param  array  $attributes
+     * @param  bool  $drawFooter
+     * @param  bool  $drawSearch
      * @return \Illuminate\Support\HtmlString
      */
     public function table(array $attributes = [], $drawFooter = false, $drawSearch = false)
@@ -205,13 +204,13 @@ class Builder
         $th = $this->compileTableHeaders();
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
-        $tableHtml = '<table ' . $htmlAttr . '>';
-        $searchHtml = $drawSearch ? '<tr class="search-filter">' . implode('',
-                $this->compileTableSearchHeaders()) . '</tr>' : '';
-        $tableHtml .= '<thead><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
+        $tableHtml = '<table '.$htmlAttr.'>';
+        $searchHtml = $drawSearch ? '<tr class="search-filter">'.implode('',
+                $this->compileTableSearchHeaders()).'</tr>' : '';
+        $tableHtml .= '<thead><tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
         if ($drawFooter) {
             $tf = $this->compileTableFooter();
-            $tableHtml .= '<tfoot><tr>' . implode('', $tf) . '</tr></tfoot>';
+            $tableHtml .= '<tfoot><tr>'.implode('', $tf).'</tr></tfoot>';
         }
         $tableHtml .= '</table>';
 
@@ -221,7 +220,7 @@ class Builder
     /**
      * Configure DataTable's parameters.
      *
-     * @param  array $attributes
+     * @param  array  $attributes
      * @return $this
      */
     public function parameters(array $attributes = [])
@@ -234,7 +233,7 @@ class Builder
     /**
      * Set custom javascript template.
      *
-     * @param string $template
+     * @param  string  $template
      * @return $this
      */
     public function setTemplate($template)

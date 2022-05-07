@@ -12,11 +12,11 @@ trait HasCallbacks
     /**
      * Set createdRow option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/createdRow
      */
-    public function createdRow(mixed $script): static
+    public function createdRow(string $script): static
     {
         $this->attributes['createdRow'] = $script;
 
@@ -26,11 +26,11 @@ trait HasCallbacks
     /**
      * Set drawCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/drawCallback
      */
-    public function drawCallback($script)
+    public function drawCallback(string $script): static
     {
         $this->attributes['drawCallback'] = $script;
 
@@ -41,11 +41,11 @@ trait HasCallbacks
      * Set drawCallback option value with Livewire integration.
      * Solution as per issue https://github.com/yajra/laravel-datatables/issues/2401.
      *
-     * @param mixed|null $script
+     * @param  string|null  $script
      * @return $this
      * @see https://datatables.net/reference/option/drawCallback
      */
-    public function drawCallbackWithLivewire($script = null)
+    public function drawCallbackWithLivewire(string $script = null): static
     {
         $js = "function(settings) {
             if (window.livewire) {
@@ -63,11 +63,11 @@ trait HasCallbacks
     /**
      * Set footerCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/footerCallback
      */
-    public function footerCallback($script)
+    public function footerCallback(string $script): static
     {
         $this->attributes['footerCallback'] = $script;
 
@@ -77,11 +77,11 @@ trait HasCallbacks
     /**
      * Set formatNumber option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/formatNumber
      */
-    public function formatNumber($script)
+    public function formatNumber(string $script): static
     {
         $this->attributes['formatNumber'] = $script;
 
@@ -91,11 +91,11 @@ trait HasCallbacks
     /**
      * Set headerCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/headerCallback
      */
-    public function headerCallback($script)
+    public function headerCallback(string $script): static
     {
         $this->attributes['headerCallback'] = $script;
 
@@ -105,11 +105,11 @@ trait HasCallbacks
     /**
      * Set infoCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/infoCallback
      */
-    public function infoCallback($script)
+    public function infoCallback(string $script): static
     {
         $this->attributes['infoCallback'] = $script;
 
@@ -119,11 +119,11 @@ trait HasCallbacks
     /**
      * Set initComplete option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/initComplete
      */
-    public function initComplete($script)
+    public function initComplete(string $script): static
     {
         $this->attributes['initComplete'] = $script;
 
@@ -133,11 +133,11 @@ trait HasCallbacks
     /**
      * Set preDrawCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/preDrawCallback
      */
-    public function preDrawCallback($script)
+    public function preDrawCallback(string $script): static
     {
         $this->attributes['preDrawCallback'] = $script;
 
@@ -147,11 +147,11 @@ trait HasCallbacks
     /**
      * Set rowCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/rowCallback
      */
-    public function rowCallback($script)
+    public function rowCallback(string $script): static
     {
         $this->attributes['rowCallback'] = $script;
 
@@ -161,11 +161,11 @@ trait HasCallbacks
     /**
      * Set stateLoadCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/stateLoadCallback
      */
-    public function stateLoadCallback($script)
+    public function stateLoadCallback(string $script): static
     {
         $this->attributes['stateLoadCallback'] = $script;
 
@@ -175,11 +175,11 @@ trait HasCallbacks
     /**
      * Set stateLoaded option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/stateLoaded
      */
-    public function stateLoaded($script)
+    public function stateLoaded(string $script): static
     {
         $this->attributes['stateLoaded'] = $script;
 
@@ -189,11 +189,11 @@ trait HasCallbacks
     /**
      * Set stateLoadParams option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/stateLoadParams
      */
-    public function stateLoadParams($script)
+    public function stateLoadParams(string $script): static
     {
         $this->attributes['stateLoadParams'] = $script;
 
@@ -203,11 +203,11 @@ trait HasCallbacks
     /**
      * Set stateSaveCallback option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/stateSaveCallback
      */
-    public function stateSaveCallback($script)
+    public function stateSaveCallback(string $script): static
     {
         $this->attributes['stateSaveCallback'] = $script;
 
@@ -217,11 +217,11 @@ trait HasCallbacks
     /**
      * Set stateSaveParams option value.
      *
-     * @param mixed $script
+     * @param  string  $script
      * @return $this
      * @see https://datatables.net/reference/option/stateSaveParams
      */
-    public function stateSaveParams($script)
+    public function stateSaveParams(string $script): static
     {
         $this->attributes['stateSaveParams'] = $script;
 

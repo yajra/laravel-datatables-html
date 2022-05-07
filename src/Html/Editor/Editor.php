@@ -9,6 +9,10 @@ use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 
+/**
+ * @property string|null $table
+ * @property string|array|null $ajax
+ */
 class Editor extends Fluent
 {
     use HasEvents;

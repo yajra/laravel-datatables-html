@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html;
 
+use Exception;
 use Illuminate\Support\Arr;
 
 trait HasTable
@@ -9,17 +10,17 @@ trait HasTable
     /**
      * Retrieves HTML table attribute value.
      *
-     * @param string $attribute
-     * @return mixed
+     * @param  string  $attribute
+     * @return string
      * @throws \Exception
      */
-    public function getTableAttribute($attribute)
+    public function getTableAttribute(string $attribute): string
     {
         if (! array_key_exists($attribute, $this->tableAttributes)) {
-            throw new \Exception("Table attribute '{$attribute}' does not exist.");
+            throw new Exception("Table attribute '$attribute' does not exist.");
         }
 
-        return $this->tableAttributes[$attribute];
+        return $this->tableAttributes[$attribute] ?? '';
     }
 
     /**
@@ -27,7 +28,7 @@ trait HasTable
      *
      * @return array
      */
-    public function getTableAttributes()
+    public function getTableAttributes(): array
     {
         return $this->tableAttributes;
     }
@@ -35,10 +36,10 @@ trait HasTable
     /**
      * Sets HTML table "id" attribute.
      *
-     * @param string $id
+     * @param  string  $id
      * @return $this
      */
-    public function setTableId($id)
+    public function setTableId(string $id): static
     {
         return $this->setTableAttribute('id', $id);
     }
@@ -47,8 +48,9 @@ trait HasTable
      * Get HTML table "id" attribute.
      *
      * @return string
+     * @throws \Exception
      */
-    public function getTableId()
+    public function getTableId(): string
     {
         return $this->getTableAttribute('id');
     }
@@ -56,11 +58,11 @@ trait HasTable
     /**
      * Sets HTML table attribute(s).
      *
-     * @param string|array $attribute
-     * @param mixed $value
+     * @param  array|string  $attribute
+     * @param  string|null  $value
      * @return $this
      */
-    public function setTableAttribute($attribute, $value = null)
+    public function setTableAttribute(array|string $attribute, string $value = null): static
     {
         if (is_array($attribute)) {
             return $this->setTableAttributes($attribute);
@@ -74,10 +76,10 @@ trait HasTable
     /**
      * Sets multiple HTML table attributes at once.
      *
-     * @param array $attributes
+     * @param  array  $attributes
      * @return $this
      */
-    public function setTableAttributes(array $attributes)
+    public function setTableAttributes(array $attributes): static
     {
         foreach ($attributes as $attribute => $value) {
             $this->tableAttributes[$attribute] = $value;
@@ -89,16 +91,16 @@ trait HasTable
     /**
      * Add class names to the "class" attribute of HTML table.
      *
-     * @param string|array $class
+     * @param  array|string  $class
      * @return $this
      */
-    public function addTableClass($class)
+    public function addTableClass(array|string $class): static
     {
         $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
-        $classes = preg_split('#\s+#', $currentClass . ' ' . $class, null, PREG_SPLIT_NO_EMPTY);
-        $class = implode(' ', array_unique($classes));
+        $classes = preg_split('#\s+#', $currentClass.' '.$class, -1, PREG_SPLIT_NO_EMPTY);
+        $class = implode(' ', array_unique((array) $classes));
 
         return $this->setTableAttribute('class', $class);
     }
@@ -106,17 +108,17 @@ trait HasTable
     /**
      * Remove class names from the "class" attribute of HTML table.
      *
-     * @param string|array $class
+     * @param  array|string  $class
      * @return $this
      */
-    public function removeTableClass($class)
+    public function removeTableClass(array|string $class): static
     {
         $class = is_array($class) ? implode(' ', $class) : $class;
         $currentClass = Arr::get(array_change_key_case($this->tableAttributes), 'class');
 
         $classes = array_diff(
-            preg_split('#\s+#', $currentClass, null, PREG_SPLIT_NO_EMPTY),
-            preg_split('#\s+#', $class, null, PREG_SPLIT_NO_EMPTY)
+            (array) preg_split('#\s+#', $currentClass, -1, PREG_SPLIT_NO_EMPTY),
+            (array) preg_split('#\s+#', $class, -1, PREG_SPLIT_NO_EMPTY)
         );
         $class = implode(' ', array_unique($classes));
 
@@ -128,7 +130,7 @@ trait HasTable
      *
      * @return array
      */
-    protected function compileTableHeaders()
+    protected function compileTableHeaders(): array
     {
         $th = [];
         foreach ($this->collection->toArray() as $row) {
@@ -137,7 +139,7 @@ trait HasTable
                 $row['attributes'],
                 isset($row['titleAttr']) ? ['title' => $row['titleAttr']] : []
             ));
-            $th[] = '<th ' . $thAttr . '>' . $row['title'] . '</th>';
+            $th[] = '<th '.$thAttr.'>'.$row['title'].'</th>';
         }
 
         return $th;
@@ -148,11 +150,11 @@ trait HasTable
      *
      * @return array
      */
-    protected function compileTableSearchHeaders()
+    protected function compileTableSearchHeaders(): array
     {
         $search = [];
         foreach ($this->collection->all() as $key => $row) {
-            $search[] = $row['searchable'] ? '<th>' . (isset($row->search) ? $row->search : '') . '</th>' : '<th></th>';
+            $search[] = $row['searchable'] ? '<th>'.($row->search ?? '').'</th>' : '<th></th>';
         }
 
         return $search;
@@ -163,17 +165,17 @@ trait HasTable
      *
      * @return array
      */
-    protected function compileTableFooter()
+    protected function compileTableFooter(): array
     {
         $footer = [];
         foreach ($this->collection->all() as $row) {
             if (is_array($row->footer)) {
                 $footerAttr = $this->html->attributes(Arr::only($row->footer,
                     ['class', 'id', 'title', 'width', 'style', 'data-class', 'data-hide']));
-                $title = isset($row->footer['title']) ? $row->footer['title'] : '';
-                $footer[] = '<th ' . $footerAttr . '>' . $title . '</th>';
+                $title = $row->footer['title'] ?? '';
+                $footer[] = '<th '.$footerAttr.'>'.$title.'</th>';
             } else {
-                $footer[] = '<th>' . $row->footer . '</th>';
+                $footer[] = '<th>'.$row->footer.'</th>';
             }
         }
 
