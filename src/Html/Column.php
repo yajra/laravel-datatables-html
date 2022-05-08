@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 
 /**
- * @property string $data
+ * @property array|string $data
  * @property string $name
  * @property string $title
  * @property string $titleAttr
@@ -311,11 +311,12 @@ class Column extends Fluent
     /**
      * Set column data option value.
      *
-     * @param  string  $value
+     * @param  array|string  $value
      * @return $this
      * @see https://datatables.net/reference/option/columns.data
+     * @see https://datatables.net/manual/data/orthogonal-data
      */
-    public function data(string $value): static
+    public function data(array|string $value): static
     {
         $this->attributes['data'] = $value;
 

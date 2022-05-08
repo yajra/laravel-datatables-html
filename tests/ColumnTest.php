@@ -155,4 +155,18 @@ class ColumnTest extends TestCase
         $column->renderRaw('test');
         $this->assertEquals('test', $column->render);
     }
+
+    /** @test */
+    public function it_allows_orthogonal_data()
+    {
+        $expected = [
+            '_' => 'test',
+            'sort' => 'test',
+            'filter' => 'test',
+            'type' => 'test',
+        ];
+        $column = Column::make('name')->data($expected);
+
+        $this->assertEquals($expected, $column->data);
+    }
 }
