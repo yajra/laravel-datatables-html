@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v9.0.1 - 2022-05-08
+
+- Allow array for orthogonal column data
+- REF: https://github.com/yajra/laravel-datatables/pull/2380
+
 ### v9.0.0 - 2022-05-08
 
 - Add Laravel 9 support
