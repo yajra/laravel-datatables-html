@@ -4,8 +4,6 @@ namespace Yajra\DataTables\Html\Editor\Fields;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
@@ -323,7 +321,11 @@ class Field extends Fluent
      */
     public function opts(array $value): static
     {
-        $this->attributes['opts'] = $value;
+        if (! isset($this->attributes['opts'])) {
+            $this->attributes['opts'] = $value;
+        } else {
+            $this->attributes['opts'] = array_merge_recursive((array) $this->attributes['opts'], $value);
+        }
 
         return $this;
     }
@@ -338,8 +340,10 @@ class Field extends Fluent
      */
     public function attr(string $attribute, int|bool|string $value): static
     {
-        // @phpstan-ignore-next-line
-        $this->attributes['attr'][$attribute] = $value;
+        $attributes = (array) $this->attributes['attr'];
+        $attributes[$attribute] = $value;
+
+        $this->attributes['attr'] = $attributes;
 
         return $this;
     }
