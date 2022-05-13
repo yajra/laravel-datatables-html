@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.0.2 - 2022-05-13
+
+- Fix opts and attr setter
+
 ### v9.0.1 - 2022-05-08
 
 - Allow array for orthogonal column data
