@@ -189,5 +189,37 @@ class ColumnTest extends TestCase
         $this->assertEquals('text-sm font-bold', $column->className);
     }
 
+    /** @test */
+    public function it_has_authorizations()
+    {
+        $column = Column::makeIf(true, 'name');
+        $this->assertEquals([
+            'name' => 'name',
+            'data' => 'name',
+            'title' => 'Name',
+            'orderable' => true,
+            'searchable' => true,
+            'attributes' => [],
+        ], $column->toArray());
 
+        $column = Column::makeIf(false, 'name');
+        $this->assertEquals([], $column->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_serialized()
+    {
+        $column = Column::make('name');
+        $this->assertEquals([
+            'name' => 'name',
+            'data' => 'name',
+            'title' => 'Name',
+            'orderable' => true,
+            'searchable' => true,
+            'attributes' => [],
+        ], $column->toArray());
+
+        $expected = '{"data":"name","name":"name","title":"Name","orderable":true,"searchable":true,"attributes":[]}';
+        $this->assertEquals($expected, $column->toJson());
+    }
 }

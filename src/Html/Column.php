@@ -34,13 +34,14 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 class Column extends Fluent
 {
     use SearchPanes;
+    use HasAuthorizations;
 
     /**
      * @param  array  $attributes
      */
     public function __construct($attributes = [])
     {
-        $attributes['title'] ??= self::titleFormat($attributes['data']);
+        $attributes['title'] ??= self::titleFormat($attributes['data'] ?? '');
         $attributes['orderable'] ??= true;
         $attributes['searchable'] ??= true;
         $attributes['exportable'] ??= true;
@@ -72,6 +73,20 @@ class Column extends Fluent
     public static function titleFormat(string $value): string
     {
         return Str::title(str_replace(['.', '_'], ' ', Str::snake($value)));
+    }
+
+    /**
+     * Set column title.
+     *
+     * @param  string  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.title
+     */
+    public function title(string $value): static
+    {
+        $this->attributes['title'] = $value;
+
+        return $this;
     }
 
     /**
@@ -119,32 +134,21 @@ class Column extends Fluent
     }
 
     /**
-     * Set column title.
-     *
-     * @param  string  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/columns.title
-     */
-    public function title(string $value): static
-    {
-        $this->attributes['title'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Make a new column instance.
      *
-     * @param  string  $data
+     * @param  array|string  $data
      * @param  string  $name
      * @return static
      */
-    public static function make(string $data, string $name = ''): static
+    public static function make(array|string $data, string $name = ''): static
     {
-        $attr = [
-            'data' => $data,
-            'name' => $name ?: $data,
-        ];
+        $attr = $data;
+        if (is_string($data)) {
+            $attr = [
+                'data' => $data,
+                'name' => $name ?: $data,
+            ];
+        }
 
         return new static($attr);
     }
@@ -600,6 +604,10 @@ class Column extends Fluent
      */
     public function toArray(): array
     {
+        if (! $this->isAuthorized()) {
+            return [];
+        }
+
         return Arr::except($this->attributes, [
             'printable',
             'exportable',

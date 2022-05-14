@@ -88,7 +88,7 @@ trait HasAuthorizations
             return static::make($options);
         }
 
-        return static::make([])->authorized(false);
+        return app(static::class)->authorized(false);
     }
 
     /**
