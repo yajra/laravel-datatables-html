@@ -38,7 +38,7 @@ trait HasInternationalisation
     public function language(array|string $value): static
     {
         if (is_array($value)) {
-            $this->attributes['language'] = array_merge((array) $this->attributes['language'], $value);
+            $this->attributes['language'] = array_merge((array) ($this->attributes['language'] ?? []), $value);
         } else {
             $this->attributes['language']['url'] = $value;
         }
