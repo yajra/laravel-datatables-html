@@ -158,5 +158,26 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(1, $builder->getKeys('tabIndex'));
     }
 
+    /** @test */
+    public function it_has_responsive_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->responsive();
 
+        $this->assertTrue($builder->getAttribute('responsive'));
+        $this->assertTrue($builder->getResponsive());
+
+        $builder->responsiveBreakpoints([1])
+                ->responsiveDetailsDisplay('display')
+                ->responsiveDetailsRenderer('renderer')
+                ->responsiveDetailsTarget('target')
+                ->responsiveDetailsType('type')
+                ->responsiveOrthogonal('orthogonal');
+        $this->assertEquals([1], $builder->getResponsive('breakpoints'));
+        $this->assertEquals('display', $builder->getResponsive('details')['display']);
+        $this->assertEquals('renderer', $builder->getResponsive('details')['renderer']);
+        $this->assertEquals('target', $builder->getResponsive('details')['target']);
+        $this->assertEquals('type', $builder->getResponsive('details')['type']);
+        $this->assertEquals('orthogonal', $builder->getResponsive('orthogonal'));
+    }
 }
