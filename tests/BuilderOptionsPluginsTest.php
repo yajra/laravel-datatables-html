@@ -101,5 +101,25 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(0, $builder->getFixedColumns('rightColumns'));
     }
 
+    /** @test */
+    public function it_has_fixed_header_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->fixedHeader();
+
+        $this->assertTrue($builder->getAttribute('fixedHeader'));
+        $this->assertTrue($builder->getFixedHeader());
+
+        $builder->fixedHeaderFooter()
+                ->fixedHeaderFooterOffset()
+                ->fixedHeaderHeader()
+                ->fixedHeaderHeaderOffset();
+
+        $this->assertEquals(true, $builder->getFixedHeader('footer'));
+        $this->assertEquals(0, $builder->getFixedHeader('offset'));
+        $this->assertEquals(true, $builder->getFixedHeader('header'));
+        $this->assertEquals(0, $builder->getFixedHeader('headerOffset'));
+    }
+
 
 }
