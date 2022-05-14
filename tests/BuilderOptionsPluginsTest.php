@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\SearchPane;
 
@@ -279,4 +280,56 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->searchPanes(SearchPane::make()->show()->cascadePanes());
         $this->assertEquals(['show' => true, 'cascadePanes' => true], $builder->getAttribute('searchPanes'));
     }
+
+    /** @test */
+    public function it_has_select_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->select();
+
+        $this->assertTrue($builder->getAttribute('select'));
+        $this->assertTrue($builder->getSelect());
+
+        $builder->selectBlurable()
+                ->selectClassName()
+                ->selectInfo()
+                ->selectItems()
+                ->selectSelector()
+                ->selectStyle();
+
+        $this->assertEquals(true, $builder->getSelect('blurable'));
+        $this->assertEquals('selected', $builder->getSelect('className'));
+        $this->assertEquals(true, $builder->getSelect('info'));
+        $this->assertEquals('row', $builder->getSelect('items'));
+        $this->assertEquals('td', $builder->getSelect('selector'));
+        $this->assertEquals('os', $builder->getSelect('style'));
+
+        $builder->selectAddClassName('test');
+        $this->assertEquals('selected test', $builder->getSelect('className'));
+
+        $builder->selectItemsRow();
+        $this->assertEquals(Builder::SELECT_ITEMS_ROW, $builder->getSelect('items'));
+
+        $builder->selectItemsColumn();
+        $this->assertEquals(Builder::SELECT_ITEMS_COLUMN, $builder->getSelect('items'));
+
+        $builder->selectItemsCell();
+        $this->assertEquals(Builder::SELECT_ITEMS_CELL, $builder->getSelect('items'));
+
+        $builder->selectStyleSingle();
+        $this->assertEquals(Builder::SELECT_STYLE_SINGLE, $builder->getSelect('style'));
+
+        $builder->selectStyleMulti();
+        $this->assertEquals(Builder::SELECT_STYLE_MULTI, $builder->getSelect('style'));
+
+        $builder->selectStyleOS();
+        $this->assertEquals(Builder::SELECT_STYLE_OS, $builder->getSelect('style'));
+
+        $builder->selectStyleMultiShift();
+        $this->assertEquals(Builder::SELECT_STYLE_MULTI_SHIFT, $builder->getSelect('style'));
+
+        $builder->selectStyleApi();
+        $this->assertEquals(Builder::SELECT_STYLE_API, $builder->getSelect('style'));
+    }
+
 }
