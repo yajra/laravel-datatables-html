@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v9.1.1 - 2022-05-14
+
+- Fix Undefined array key "{plugin_name}"
+- More tests
+
 ### v9.1.0 - 2022-05-14
 
 - A lot of tests and fixes
