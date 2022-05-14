@@ -71,7 +71,7 @@ class Column extends Fluent
      */
     public static function titleFormat(string $value): string
     {
-        return Str::title(str_replace('_', ' ', $value));
+        return Str::title(str_replace(['.', '_'], ' ', Str::snake($value)));
     }
 
     /**

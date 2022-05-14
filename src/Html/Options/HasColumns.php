@@ -4,13 +4,11 @@ namespace Yajra\DataTables\Html\Options;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Column;
 
 /**
  * DataTables - Columns option builder.
  *
- * @property Collection<array-key, Column> $collection
  * @see https://datatables.net/reference/option/
  */
 trait HasColumns
@@ -73,18 +71,14 @@ trait HasColumns
         foreach ($columns as $key => $value) {
             if (! is_a($value, Column::class)) {
                 if (is_array($value)) {
-                    $attributes = array_merge(
-                        [
-                            'name' => $value['name'] ?? $value['data'] ?? $key,
-                            'data' => $value['data'] ?? $key,
-                        ],
-                        $this->setTitle($key, $value)
-                    );
+                    $attributes = array_merge($value, [
+                        'name' => $value['name'] ?? $value['data'] ?? $key,
+                        'data' => $value['data'] ?? $key,
+                    ]);
                 } else {
                     $attributes = [
                         'name' => $value,
                         'data' => $value,
-                        'title' => $this->getQualifiedTitle($value),
                     ];
                 }
 
@@ -98,41 +92,31 @@ trait HasColumns
     }
 
     /**
-     * Set title attribute of an array if not set.
-     *
-     * @param  string  $title
-     * @param  array  $attributes
-     * @return array
-     */
-    public function setTitle(string $title, array $attributes): array
-    {
-        if (! isset($attributes['title'])) {
-            $attributes['title'] = $this->getQualifiedTitle($title);
-        }
-
-        return $attributes;
-    }
-
-    /**
-     * Convert string into a readable title.
-     *
-     * @param  string  $title
-     * @return string
-     */
-    public function getQualifiedTitle(string $title): string
-    {
-        return Str::title(str_replace(['.', '_'], ' ', Str::snake($title)));
-    }
-
-    /**
      * Add a column in collection using attributes.
      *
-     * @param  array  $attributes
+     * @param  array|\Yajra\DataTables\Html\Column  $attributes
      * @return $this
      */
-    public function addColumn(array $attributes): static
+    public function addColumn(array|Column $attributes): static
     {
-        $this->collection->push(new Column($attributes));
+        if (is_array($attributes)) {
+            $this->collection->push(new Column($attributes));
+        } else {
+            $this->add($attributes);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add a Column object in collection.
+     *
+     * @param  \Yajra\DataTables\Html\Column  $column
+     * @return $this
+     */
+    public function add(Column $column): static
+    {
+        $this->collection->push($column);
 
         return $this;
     }
@@ -153,25 +137,16 @@ trait HasColumns
     /**
      * Add a column at the beginning of collection using attributes.
      *
-     * @param  array  $attributes
+     * @param  array|\Yajra\DataTables\Html\Column  $attributes
      * @return $this
      */
-    public function addColumnBefore(array $attributes): static
+    public function addColumnBefore(array|Column $attributes): static
     {
-        $this->collection->prepend(new Column($attributes));
-
-        return $this;
-    }
-
-    /**
-     * Add a Column object in collection.
-     *
-     * @param  \Yajra\DataTables\Html\Column  $column
-     * @return $this
-     */
-    public function add(Column $column): static
-    {
-        $this->collection->push($column);
+        if (is_array($attributes)) {
+            $this->collection->prepend(new Column($attributes));
+        } else {
+            $this->addBefore($attributes);
+        }
 
         return $this;
     }

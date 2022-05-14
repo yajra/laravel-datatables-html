@@ -31,7 +31,7 @@ class Builder
     const SELECT_ITEMS_CELL = 'cell';
 
     /**
-     * @var Collection<array-key, \Yajra\DataTables\Html\Column>
+     * @var Collection<int, \Yajra\DataTables\Html\Column>
      */
     public Collection $collection;
 
