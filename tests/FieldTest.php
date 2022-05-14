@@ -177,9 +177,18 @@ class FieldTest extends TestCase
     /** @test */
     public function it_can_create_select2_field()
     {
-        $field = Fields\Select2::make('name');
+        $field = Fields\Select2::make('name')
+                               ->allowClear()
+                               ->optsPlaceholder('Test')
+                               ->modelOptions(User::class, 'name')
+                               ->ajax('/url');
+
         $this->assertInstanceOf(Fields\Select2::class, $field);
         $this->assertEquals('select2', $field->getType());
+        $this->assertEquals('/url', $field->opts['ajax']['url']);
+        $this->assertEquals('Test', $field->opts['placeholder']['text']);
+        $this->assertEquals('id', $field->opts['placeholder']['id']);
+        $this->assertCount(20, $field->options);
     }
 
     /** @test */
