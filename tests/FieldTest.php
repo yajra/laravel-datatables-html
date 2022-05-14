@@ -226,4 +226,33 @@ class FieldTest extends TestCase
         $this->assertEquals('Name', $field->label);
         $this->assertEquals('hh:mm a', $field->format);
     }
+
+    /** @test */
+    public function it_has_authorizations()
+    {
+        $field = Fields\Text::makeIf(true, 'name');
+        $this->assertEquals([
+            'name' => 'name',
+            'label' => 'Name',
+            'type' => 'text',
+        ], $field->toArray());
+
+        $field = Fields\Text::makeIf(false, 'name');
+        $this->assertEquals([], $field->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_serialized()
+    {
+        $field = Fields\Text::make('name')->data('user.name');
+
+        $this->assertEquals([
+            'name' => 'name',
+            'data' => 'user.name',
+            'label' => 'Name',
+            'type' => 'text',
+        ], $field->toArray());
+
+        $this->assertEquals('{"name":"name","label":"Name","type":"text","data":"user.name"}', $field->toJson());
+    }
 }
