@@ -51,6 +51,11 @@ class Builder
     protected array $attributes = [];
 
     /**
+     * @var string|array
+     */
+    protected string|array $ajax = '';
+
+    /**
      * @param  Repository  $config
      * @param  Factory  $view
      * @param  HtmlBuilder  $html
@@ -245,5 +250,18 @@ class Builder
     public function getAttribute(string $key, mixed $default = ''): mixed
     {
         return $this->attributes[$key] ?? $default;
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return array|string
+     */
+    public function getAjax(string $key = null): array|string
+    {
+        if (! is_null($key)) {
+            return $this->ajax[$key] ?? '';
+        }
+
+        return $this->ajax;
     }
 }

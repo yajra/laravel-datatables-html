@@ -110,4 +110,44 @@ class BuilderOptionsTest extends TestCase
         $builder->removeColumn('created_at', 'updated_at');
         $this->assertCount(4, $builder->getColumns());
     }
+
+    /** @test */
+    public function it_has_ajax_options()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->postAjax('/test');
+
+        $this->assertEquals('/test', $builder->getAjaxUrl());
+        $this->assertEquals([
+            "url" => "/test",
+            "type" => "POST",
+            "headers" => [
+                "X-HTTP-Method-Override" => "GET",
+            ],
+        ], $builder->getAjax());
+
+        $builder->ajax('/test');
+        $this->assertEquals('/test', $builder->getAjaxUrl());
+
+        $builder->ajax(['url' => '/test']);
+        $this->assertEquals('/test', $builder->getAjax('url'));
+
+        $builder->pipeline('/test');
+        $this->assertEquals("$.fn.dataTable.pipeline({ url: '/test', pages: 5 })", $builder->getAjaxUrl());
+
+        $builder->pipeline('/test', 6);
+        $this->assertEquals("$.fn.dataTable.pipeline({ url: '/test', pages: 6 })", $builder->getAjaxUrl());
+
+        $builder->ajaxWithForm('/test', '#formId');
+        $this->assertStringContainsString('data.columns.length', $builder->getAjax()['data']);
+        $this->assertStringContainsString('delete data.columns[i].search;', $builder->getAjax('data'));
+        $this->assertStringContainsString('#formId', $builder->getAjax('data'));
+
+        $builder->minifiedAjax('/test', 'custom_script', ['id' => 123, 'name' => 'yajra']);
+        $this->assertEquals('/test', $builder->getAjax('url'));
+        $this->assertStringContainsString('custom_script', $builder->getAjax('data'));
+        $this->assertStringContainsString("data.id = 123", $builder->getAjax('data'));
+        $this->assertStringContainsString("data.name = 'yajra'", $builder->getAjax('data'));
+    }
 }

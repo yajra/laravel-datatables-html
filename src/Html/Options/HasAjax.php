@@ -8,17 +8,10 @@ use Yajra\DataTables\Utilities\Helper;
 /**
  * DataTables - Data option builder.
  *
- * @property \Illuminate\Contracts\Config\Repository $config
- *
  * @see https://datatables.net/reference/option/
  */
-trait HasData
+trait HasAjax
 {
-    /**
-     * @var string|array
-     */
-    protected string|array $ajax = '';
-
     /**
      * Setup "ajax" parameter with POST method.
      *
@@ -28,7 +21,7 @@ trait HasData
     public function postAjax(array|string $attributes = ''): static
     {
         if (! is_array($attributes)) {
-            $attributes = ['url' => (string) $attributes];
+            $attributes = ['url' => $attributes];
         }
 
         unset($attributes['method']);
@@ -55,10 +48,11 @@ trait HasData
      * Setup ajax parameter for datatables pipeline plugin.
      *
      * @param  string  $url
-     * @param  string  $pages
+     * @param  int  $pages
      * @return $this
+     * @see https://datatables.net/examples/server_side/pipeline.html
      */
-    public function pipeline(string $url, string $pages): static
+    public function pipeline(string $url, int $pages = 5): static
     {
         return $this->ajax("$.fn.dataTable.pipeline({ url: '$url', pages: $pages })");
     }
@@ -87,7 +81,7 @@ trait HasData
     public function ajaxWithForm(string $url, string $formSelector): static
     {
         $script = <<<CDATA
-var formData = $("{$formSelector}").find("input, select").serializeArray();
+var formData = $("$formSelector").find("input, select").serializeArray();
 $.each(formData, function(i, obj){
     data[obj.name] = obj.value;
 });
@@ -155,8 +149,8 @@ CDATA;
     {
         $script = '';
         foreach ($data as $key => $value) {
-            $dataValue = Helper::isJavascript($value, $key) ? $value : "'{$value}'";
-            $script .= PHP_EOL."data.{$key} = {$dataValue};";
+            $dataValue = Helper::isJavascript($value, $key) ? $value : (is_string($value) ? "'$value'" : $value);
+            $script .= PHP_EOL."data.$key = $dataValue;";
         }
 
         return $script;

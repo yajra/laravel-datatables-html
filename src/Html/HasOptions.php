@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Options;
 trait HasOptions
 {
     use Options\HasFeatures;
-    use Options\HasData;
+    use Options\HasAjax;
     use Options\HasCallbacks;
     use Options\HasColumns;
     use Options\HasInternationalisation;
