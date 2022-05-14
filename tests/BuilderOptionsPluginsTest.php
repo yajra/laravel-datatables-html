@@ -83,4 +83,23 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(true, $builder->getColReorder('realtime'));
     }
 
+    /** @test */
+    public function it_has_fixed_columns_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->fixedColumns();
+
+        $this->assertTrue($builder->getAttribute('fixedColumns'));
+        $this->assertTrue($builder->getFixedColumns());
+
+        $builder->fixedColumnsHeightMatch()
+                ->fixedColumnsLeftColumns()
+                ->fixedColumnsRightColumns();
+
+        $this->assertEquals('semiauto', $builder->getFixedColumns('heightMatch'));
+        $this->assertEquals(1, $builder->getFixedColumns('leftColumns'));
+        $this->assertEquals(0, $builder->getFixedColumns('rightColumns'));
+    }
+
+
 }

@@ -12,20 +12,6 @@ namespace Yajra\DataTables\Html\Options\Plugins;
 trait FixedColumns
 {
     /**
-     * Set fixedColumns option value.
-     *
-     * @param  bool|array  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/fixedColumns
-     */
-    public function fixedColumns(bool|array $value = true): static
-    {
-        $this->attributes['fixedColumns'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set fixedColumns heightMatch option value.
      *
      * @param  string  $value
@@ -35,6 +21,24 @@ trait FixedColumns
     public function fixedColumnsHeightMatch(string $value = 'semiauto'): static
     {
         return $this->fixedColumns(['heightMatch' => $value]);
+    }
+
+    /**
+     * Set fixedColumns option value.
+     *
+     * @param  bool|array  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/fixedColumns
+     */
+    public function fixedColumns(bool|array $value = true): static
+    {
+        if (is_array($value)) {
+            $this->attributes['fixedColumns'] = array_merge((array) $this->attributes['fixedColumns'], $value);
+        } else {
+            $this->attributes['fixedColumns'] = $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -59,5 +63,18 @@ trait FixedColumns
     public function fixedColumnsRightColumns(int $value = 0): static
     {
         return $this->fixedColumns(['rightColumns' => $value]);
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getFixedColumns(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['fixedColumns'] ?? true;
+        }
+
+        return $this->attributes['fixedColumns'][$key] ?? false;
     }
 }
