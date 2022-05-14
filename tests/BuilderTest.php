@@ -2,6 +2,7 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use Illuminate\Support\HtmlString;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\ColumnDefinition;
@@ -208,5 +209,27 @@ class BuilderTest extends TestCase
         $builder->columnDefs(ColumnDefinitions::make()->push(ColumnDefinition::make()->targets(1)));
         $this->assertEquals([['targets' => 1]], $builder->getAttribute('columnDefs'));
         $this->assertCount(1, $builder->getAttribute('columnDefs'));
+    }
+
+    /** @test */
+    public function it_has_table_options()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->setTableId('my-table');
+
+        $this->assertEquals('my-table', $builder->getTableId());
+        $this->assertEquals(['id' => 'my-table', 'class' => 'table'], $builder->getTableAttributes());
+
+        $builder->setTableAttribute('class', 'dTable');
+        $this->assertEquals(['id' => 'my-table', 'class' => 'dTable'], $builder->getTableAttributes());
+
+        $builder->addTableClass('table');
+        $this->assertEquals(['id' => 'my-table', 'class' => 'dTable table'], $builder->getTableAttributes());
+
+        $builder->removeTableClass('dTable');
+        $this->assertEquals(['id' => 'my-table', 'class' => 'table'], $builder->getTableAttributes());
+
+        $this->assertInstanceOf(HtmlString::class, $builder->table());
+        $this->assertEquals('<table class="table" id="my-table"><thead><tr></tr></thead></table>', $builder->table()->toHtml());
     }
 }
