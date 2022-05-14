@@ -34,6 +34,19 @@ trait HasAuthorizations
     }
 
     /**
+     * Set authorization status of the button.
+     *
+     * @param  callable|bool  $bool
+     * @return static
+     */
+    public function authorized(callable|bool $bool): static
+    {
+        $this->authorized = (bool) value($bool);
+
+        return $this;
+    }
+
+    /**
      * Make a button if the user is authorized.
      *
      * @param  string  $permission
@@ -79,29 +92,26 @@ trait HasAuthorizations
     }
 
     /**
-     * Set authorization status of the button.
-     *
-     * @param  callable|bool  $bool
-     * @return static
-     */
-    public function authorized(callable|bool $bool): static
-    {
-        $this->authorized = (bool) value($bool);
-
-        return $this;
-    }
-
-    /**
      * Convert the Fluent instance to an array.
      *
      * @return array
      */
     public function toArray(): array
     {
-        if ($this->authorized) {
+        if ($this->isAuthorized()) {
             return parent::toArray();
         }
 
         return [];
+    }
+
+    /**
+     * Check if instance is authorized
+     *
+     * @return bool
+     */
+    public function isAuthorized(): bool
+    {
+        return $this->authorized;
     }
 }

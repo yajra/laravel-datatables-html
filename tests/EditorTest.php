@@ -48,6 +48,26 @@ class EditorTest extends TestCase
         $this->assertEquals($event, $editor->events[0]);
     }
 
+    /** @test */
+    public function it_has_authorizations()
+    {
+        $editor = Editor::makeIf(true, 'editor');
+        $this->assertInstanceOf(Editor::class, $editor);
+        $this->assertEquals(true, $editor->isAuthorized());
+
+        $editor = Editor::makeIf(false, 'editor');
+        $this->assertInstanceOf(Editor::class, $editor);
+        $this->assertEquals(false, $editor->isAuthorized());
+
+        $editor = Editor::makeIfCan('ability', 'editor');
+        $this->assertInstanceOf(Editor::class, $editor);
+        $this->assertEquals(false, $editor->isAuthorized());
+
+        $editor = Editor::makeIfCannot('ability', 'editor');
+        $this->assertInstanceOf(Editor::class, $editor);
+        $this->assertEquals(false, $editor->isAuthorized());
+    }
+
     /**
      * @param  string  $instance
      * @return \Yajra\DataTables\Html\Editor\Editor
