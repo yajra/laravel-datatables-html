@@ -207,5 +207,33 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(null, $builder->getRowGroup('startRender'));
     }
 
+    /** @test */
+    public function it_has_row_reorder_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->rowReorder();
+
+        $this->assertTrue($builder->getAttribute('rowReorder'));
+        $this->assertTrue($builder->getRowReorder());
+
+        $builder->rowReorderDataSrc([1])
+                ->rowReorderEditor('editor')
+                ->rowReorderEnable()
+                ->rowReorderFormOptions(['main' => []])
+                ->rowReorderSelector()
+                ->rowReorderSnapX()
+                ->rowReorderUpdate();
+
+        $this->assertEquals([1], $builder->getRowReorder('dataSrc'));
+        $this->assertEquals('editor', $builder->getRowReorder('editor'));
+        $this->assertEquals(true, $builder->getRowReorder('enable'));
+        $this->assertEquals(['main' => []], $builder->getRowReorder('formOptions'));
+        $this->assertEquals('td:first-child', $builder->getRowReorder('selector'));
+        $this->assertEquals(true, $builder->getRowReorder('snapX'));
+        $this->assertEquals(true, $builder->getRowReorder('update'));
+
+
+    }
+
 
 }

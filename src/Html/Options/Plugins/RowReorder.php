@@ -12,20 +12,6 @@ namespace Yajra\DataTables\Html\Options\Plugins;
 trait RowReorder
 {
     /**
-     * Set rowReorder option value.
-     *
-     * @param  bool|array  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/rowReorder
-     */
-    public function rowReorder(bool|array $value = true): static
-    {
-        $this->attributes['rowReorder'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set rowReorder dataSrc option value.
      *
      * @param  array|int  $value
@@ -35,6 +21,24 @@ trait RowReorder
     public function rowReorderDataSrc(array|int $value = 0): static
     {
         return $this->rowReorder(['dataSrc' => $value]);
+    }
+
+    /**
+     * Set rowReorder option value.
+     *
+     * @param  bool|array  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/rowReorder
+     */
+    public function rowReorder(bool|array $value = true): static
+    {
+        if (is_array($value)) {
+            $this->attributes['rowReorder'] = array_merge((array) $this->attributes['rowReorder'], $value);
+        } else {
+            $this->attributes['rowReorder'] = $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -107,5 +111,18 @@ trait RowReorder
     public function rowReorderUpdate(bool $value = true): static
     {
         return $this->rowReorder(['update' => $value]);
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getRowReorder(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['rowReorder'] ?? true;
+        }
+
+        return $this->attributes['rowReorder'][$key] ?? false;
     }
 }
