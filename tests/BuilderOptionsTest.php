@@ -150,4 +150,77 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString("data.id = 123", $builder->getAjax('data'));
         $this->assertStringContainsString("data.name = 'yajra'", $builder->getAjax('data'));
     }
+
+    /** @test */
+    public function it_has_features_options()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->autoWidth()
+                ->deferRender()
+                ->info()
+                ->lengthChange()
+                ->ordering()
+                ->processing()
+                ->scrollX()
+                ->scrollY()
+                ->paging()
+                ->searching()
+                ->serverSide()
+                ->stateSave();
+
+        $this->assertEquals(true, $builder->getAttribute('autoWidth'));
+        $this->assertEquals(true, $builder->getAttribute('deferRender'));
+        $this->assertEquals(true, $builder->getAttribute('info'));
+        $this->assertEquals(true, $builder->getAttribute('lengthChange'));
+        $this->assertEquals(true, $builder->getAttribute('ordering'));
+        $this->assertEquals(true, $builder->getAttribute('processing'));
+        $this->assertEquals(true, $builder->getAttribute('scrollX'));
+        $this->assertEquals(true, $builder->getAttribute('scrollY'));
+        $this->assertEquals(true, $builder->getAttribute('paging'));
+        $this->assertEquals(true, $builder->getAttribute('searching'));
+        $this->assertEquals(true, $builder->getAttribute('serverSide'));
+        $this->assertEquals(true, $builder->getAttribute('stateSave'));
+
+        $builder->scrollY('50vh');
+        $this->assertEquals('50vh', $builder->getAttribute('scrollY'));
+    }
+
+    /** @test */
+    public function it_has_internationalisation_options()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->language('/language-url')
+                ->languageDecimal(',')
+                ->languageEmptyTable('languageEmptyTable')
+                ->languageInfo('languageInfo')
+                ->languageInfoEmpty('languageInfoEmpty')
+                ->languageInfoFiltered('languageInfoFiltered')
+                ->languageInfoPostFix('languageInfoPostFix')
+                ->languageLengthMenu('languageLengthMenu')
+                ->languageLoadingRecords('languageLoadingRecords')
+                ->languageProcessing('languageProcessing')
+                ->languageSearch('languageSearch')
+                ->languageSearchPlaceholder('languageSearchPlaceholder')
+                ->languageThousands('languageThousands')
+                ->languageZeroRecords('languageZeroRecords');
+
+        $this->assertEquals('/language-url', $builder->getAttribute('language')['url']);
+        $this->assertEquals(',', $builder->getLanguage('decimal'));
+        $this->assertEquals('languageEmptyTable', $builder->getLanguage('emptyTable'));
+        $this->assertEquals('languageInfo', $builder->getLanguage('info'));
+        $this->assertEquals('languageInfoEmpty', $builder->getLanguage('infoEmpty'));
+        $this->assertEquals('languageInfoFiltered', $builder->getLanguage('infoFiltered'));
+        $this->assertEquals('languageInfoPostFix', $builder->getLanguage('infoPostFix'));
+        $this->assertEquals('languageLengthMenu', $builder->getLanguage('lengthMenu'));
+        $this->assertEquals('languageLoadingRecords', $builder->getLanguage('loadingRecords'));
+        $this->assertEquals('languageProcessing', $builder->getLanguage('processing'));
+        $this->assertEquals('languageSearch', $builder->getLanguage('search'));
+        $this->assertEquals('languageSearchPlaceholder', $builder->getLanguage('searchPlaceholder'));
+        $this->assertEquals('languageThousands', $builder->getLanguage('thousands'));
+        $this->assertEquals('languageZeroRecords', $builder->getLanguage('zeroRecords'));
+
+        $builder->languageUrl('languageUrl');
+        $this->assertEquals('languageUrl', $builder->getLanguage('url'));
+    }
 }

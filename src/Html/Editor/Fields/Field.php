@@ -324,7 +324,7 @@ class Field extends Fluent
         if (! isset($this->attributes['opts'])) {
             $this->attributes['opts'] = $value;
         } else {
-            $this->attributes['opts'] = array_merge_recursive((array) $this->attributes['opts'], $value);
+            $this->attributes['opts'] = array_merge((array) $this->attributes['opts'], $value);
         }
 
         return $this;

@@ -17,24 +17,6 @@ trait HasInternationalisation
     use Languages\Select;
 
     /**
-     * Set language option value.
-     *
-     * @param  array|string  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/language
-     */
-    public function language(array|string $value): static
-    {
-        if (is_array($value)) {
-            $this->attributes['language'] = $value;
-        } else {
-            $this->attributes['language']['url'] = $value;
-        }
-
-        return $this;
-    }
-
-    /**
      * Set language decimal option value.
      *
      * @param  string  $value
@@ -44,6 +26,28 @@ trait HasInternationalisation
     public function languageDecimal(string $value): static
     {
         return $this->language(['decimal' => $value]);
+    }
+
+    /**
+     * Set language option value.
+     *
+     * @param  array|string  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/language
+     */
+    public function language(array|string $value): static
+    {
+        if (! isset($this->attributes['language'])) {
+            $this->attributes['language'] = [];
+        }
+
+        if (is_array($value)) {
+            $this->attributes['language'] = array_merge($this->attributes['language'], $value);
+        } else {
+            $this->attributes['language']['url'] = $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -200,5 +204,18 @@ trait HasInternationalisation
     public function languageZeroRecords(string $value): static
     {
         return $this->language(['zeroRecords' => $value]);
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getLanguage(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['language'] ?? [];
+        }
+
+        return $this->attributes['language'][$key] ?? '';
     }
 }
