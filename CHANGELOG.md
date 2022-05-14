@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.1.2 - 2022-05-14
+
+- Fix Undefined property: Yajra\DataTables\Html\Builder::$instance
+
 ### v9.1.1 - 2022-05-14
 
 - Fix Undefined array key "{plugin_name}"
