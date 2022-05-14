@@ -12,20 +12,6 @@ namespace Yajra\DataTables\Html\Options\Plugins;
 trait KeyTable
 {
     /**
-     * Set keys option value.
-     *
-     * @param  bool|array  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/keys
-     */
-    public function keys(bool|array $value = true): static
-    {
-        $this->attributes['keys'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set keys blurable option value.
      *
      * @param  bool  $value
@@ -35,6 +21,24 @@ trait KeyTable
     public function keysBlurable(bool $value = true): static
     {
         return $this->keys(['blurable' => $value]);
+    }
+
+    /**
+     * Set keys option value.
+     *
+     * @param  bool|array  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/keys
+     */
+    public function keys(bool|array $value = true): static
+    {
+        if (is_array($value)) {
+            $this->attributes['keys'] = array_merge((array) $this->attributes['keys'], $value);
+        } else {
+            $this->attributes['keys'] = $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -148,11 +152,11 @@ trait KeyTable
     /**
      * Set key's keys option value.
      *
-     * @param  array|string  $value
+     * @param  array|null  $value
      * @return $this
      * @see https://datatables.net/reference/option/keys.keys
      */
-    public function keysKeys(array|string $value): static
+    public function keysKeys(array $value = null): static
     {
         return $this->keys(['keys' => $value]);
     }
@@ -167,5 +171,18 @@ trait KeyTable
     public function keysTabIndex(int $value): static
     {
         return $this->keys(['tabIndex' => $value]);
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getKeys(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['keys'] ?? true;
+        }
+
+        return $this->attributes['keys'][$key] ?? false;
     }
 }

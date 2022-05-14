@@ -38,7 +38,6 @@ trait FixedHeader
             $this->attributes['fixedHeader'] = $value;
         }
 
-
         return $this;
     }
 

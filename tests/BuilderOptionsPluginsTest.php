@@ -121,5 +121,42 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(0, $builder->getFixedHeader('headerOffset'));
     }
 
+    /** @test */
+    public function it_has_keys_plugin()
+    {
+
+        $builder = $this->getHtmlBuilder();
+        $builder->keys();
+
+        $this->assertTrue($builder->getAttribute('keys'));
+        $this->assertTrue($builder->getKeys());
+
+        $builder->keysBlurable()
+                ->keysClassName()
+                ->keysClipboard()
+                ->keysClipboardOrthogonal()
+                ->keysColumns('name')
+                ->keysEditAutoSelect()
+                ->keysEditOnFocus()
+                ->keysEditor('editor')
+                ->keysEditorKeys()
+                ->keysFocus(':eq(0)')
+                ->keysKeys(["charCodeAt(0)"])
+                ->keysTabIndex(1);
+
+        $this->assertEquals(true, $builder->getKeys('blurable'));
+        $this->assertEquals('focus', $builder->getKeys('className'));
+        $this->assertEquals(true, $builder->getKeys('clipboard'));
+        $this->assertEquals('display', $builder->getKeys('clipboardOrthogonal'));
+        $this->assertEquals('name', $builder->getKeys('columns'));
+        $this->assertEquals(true, $builder->getKeys('editAutoSelect'));
+        $this->assertEquals(true, $builder->getKeys('editOnFocus'));
+        $this->assertEquals('editor', $builder->getKeys('editor'));
+        $this->assertEquals('navigation-only', $builder->getKeys('editorKeys'));
+        $this->assertEquals(':eq(0)', $builder->getKeys('focus'));
+        $this->assertEquals(["charCodeAt(0)"], $builder->getKeys('keys'));
+        $this->assertEquals(1, $builder->getKeys('tabIndex'));
+    }
+
 
 }
