@@ -169,4 +169,25 @@ class ColumnTest extends TestCase
 
         $this->assertEquals($expected, $column->data);
     }
+
+    /** @test */
+    public function it_has_responsive_priority()
+    {
+        $column = Column::make('name');
+        $column->responsivePriority(1);
+
+        $this->assertEquals(1, $column->responsivePriority);
+    }
+
+    /** @test */
+    public function it_can_add_class()
+    {
+        $column = Column::make('name')->className('text-sm');
+        $this->assertEquals('text-sm', $column->className);
+
+        $column->addClass('font-bold');
+        $this->assertEquals('text-sm font-bold', $column->className);
+    }
+
+
 }
