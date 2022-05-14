@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v9.1.0 - 2022-05-14
+
+- A lot of tests and fixes
+- Fix #https://github.com/yajra/laravel-datatables-html/issues/162
+- Added Column authorization
+
 ### v9.0.3 - 2022-05-13
 
 - Fix attr setter
