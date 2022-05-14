@@ -231,8 +231,28 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals('td:first-child', $builder->getRowReorder('selector'));
         $this->assertEquals(true, $builder->getRowReorder('snapX'));
         $this->assertEquals(true, $builder->getRowReorder('update'));
+    }
 
+    /** @test */
+    public function it_has_scroller_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->scroller();
 
+        $this->assertTrue($builder->getAttribute('scroller'));
+        $this->assertTrue($builder->getScroller());
+
+        $builder->scrollerBoundaryScale()
+                ->scrollerDisplayBuffer()
+                ->scrollerLoadingIndicator()
+                ->scrollerRowHeight()
+                ->scrollerServerWait();
+
+        $this->assertEquals(0.5, $builder->getScroller('boundaryScale'));
+        $this->assertEquals(9, $builder->getScroller('displayBuffer'));
+        $this->assertEquals(true, $builder->getScroller('loadingIndicator'));
+        $this->assertEquals('auto', $builder->getScroller('rowHeight'));
+        $this->assertEquals(200, $builder->getScroller('serverWait'));
     }
 
 

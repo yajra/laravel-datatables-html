@@ -12,20 +12,6 @@ namespace Yajra\DataTables\Html\Options\Plugins;
 trait Scroller
 {
     /**
-     * Set scroller option value.
-     *
-     * @param  bool|array  $value
-     * @return $this
-     * @see https://datatables.net/reference/option/scroller
-     */
-    public function scroller(bool|array $value = true): static
-    {
-        $this->attributes['scroller'] = $value;
-
-        return $this;
-    }
-
-    /**
      * Set scroller boundaryScale option value.
      *
      * @param  float  $value
@@ -35,6 +21,24 @@ trait Scroller
     public function scrollerBoundaryScale(float $value = 0.5): static
     {
         return $this->scroller(['boundaryScale' => $value]);
+    }
+
+    /**
+     * Set scroller option value.
+     *
+     * @param  bool|array  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/scroller
+     */
+    public function scroller(bool|array $value = true): static
+    {
+        if (is_array($value)) {
+            $this->attributes['scroller'] = array_merge((array) $this->attributes['scroller'], $value);
+        } else {
+            $this->attributes['scroller'] = $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -83,5 +87,18 @@ trait Scroller
     public function scrollerServerWait(int $value = 200): static
     {
         return $this->scroller(['serverWait' => $value]);
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getScroller(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['scroller'] ?? true;
+        }
+
+        return $this->attributes['scroller'][$key] ?? false;
     }
 }
