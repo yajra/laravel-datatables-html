@@ -4,6 +4,7 @@ namespace Yajra\DataTables\Html\Editor\Fields;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
@@ -108,12 +109,12 @@ class Field extends Fluent
     /**
      * Get options from a model.
      *
-     * @param  class-string|\Illuminate\Database\Eloquent\Builder  $model
+     * @param  \Illuminate\Database\Eloquent\Builder|class-string<\Illuminate\Database\Eloquent\Model>  $model
      * @param  string  $value
      * @param  string  $key
      * @return $this
      */
-    public function modelOptions($model, string $value, string $key = 'id'): static
+    public function modelOptions(Builder|string $model, string $value, string $key = 'id'): static
     {
         return $this->options(
             Options::model($model, $value, $key)

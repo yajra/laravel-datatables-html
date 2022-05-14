@@ -77,11 +77,8 @@ class Options extends Collection
             $callback($query);
         }
 
-        return $query->get()->map(function ($row) use ($value, $key) {
-            return [
-                'value' => $row->value,
-                'label' => $row->label,
-            ];
+        return $query->get()->map(function ($row) {
+            return (array) $row;
         });
     }
 
