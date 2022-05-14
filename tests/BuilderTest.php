@@ -7,6 +7,7 @@ use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\ColumnDefinition;
 use Yajra\DataTables\Html\ColumnDefinitions;
+use Yajra\DataTables\Html\Editor\Editor;
 
 class BuilderTest extends TestCase
 {
@@ -232,4 +233,21 @@ class BuilderTest extends TestCase
         $this->assertInstanceOf(HtmlString::class, $builder->table());
         $this->assertEquals('<table class="table" id="my-table"><thead><tr></tr></thead></table>', $builder->table()->toHtml());
     }
+
+    /** @test */
+    public function it_has_editors()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->editor(Editor::make());
+        $this->assertCount(1, $builder->getEditors());
+
+        $builder->editors([
+            Editor::make(),
+            Editor::make('edit'),
+        ]);
+        $this->assertCount(2, $builder->getEditors());
+    }
+
+
 }
