@@ -30,6 +30,14 @@ trait HasColumns
             $value = $value->toArray();
         }
 
+        if (is_array($value)) {
+            foreach ($value as $key => $def) {
+                if ($def instanceof Arrayable) {
+                    $value[$key] = $def->toArray();
+                }
+            }
+        }
+
         $this->attributes['columnDefs'] = $value;
 
         return $this;

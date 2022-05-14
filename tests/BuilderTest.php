@@ -4,6 +4,8 @@ namespace Yajra\DataTables\Html\Tests;
 
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\ColumnDefinition;
+use Yajra\DataTables\Html\ColumnDefinitions;
 
 class BuilderTest extends TestCase
 {
@@ -183,5 +185,28 @@ class BuilderTest extends TestCase
         $this->assertEquals(false, $column->searchable);
         $this->assertEquals(false, $column->exportable);
         $this->assertEquals(true, $column->printable);
+    }
+
+    /** @test */
+    public function it_has_column_defs()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->columnDefs([['targets' => '_all']]);
+
+        $this->assertEquals([['targets' => '_all']], $builder->getAttribute('columnDefs'));
+        $this->assertCount(1, $builder->getAttribute('columnDefs'));
+
+        $builder->columnDefs([ColumnDefinition::make()->targets('_all')->visible()]);
+
+        $this->assertEquals([['targets' => '_all', 'visible' => true]], $builder->getAttribute('columnDefs'));
+        $this->assertCount(1, $builder->getAttribute('columnDefs'));
+
+        $builder->addColumnDef(ColumnDefinition::make()->targets([1]));
+        $this->assertEquals(['targets' => [1]], $builder->getAttribute('columnDefs')[1]);
+        $this->assertCount(2, $builder->getAttribute('columnDefs'));
+
+        $builder->columnDefs(ColumnDefinitions::make()->push(ColumnDefinition::make()->targets(1)));
+        $this->assertEquals([['targets' => 1]], $builder->getAttribute('columnDefs'));
+        $this->assertCount(1, $builder->getAttribute('columnDefs'));
     }
 }

@@ -140,7 +140,7 @@ class Column extends Fluent
      * @param  string  $name
      * @return static
      */
-    public static function make(array|string $data, string $name = ''): static
+    public static function make(array|string $data = [], string $name = ''): static
     {
         $attr = $data;
         if (is_string($data)) {
@@ -404,7 +404,7 @@ class Column extends Fluent
      * @return $this
      * @see https://datatables.net/reference/option/columns.cellType
      */
-    public function cellType(string $value): static
+    public function cellType(string $value = 'th'): static
     {
         $this->attributes['cellType'] = $value;
 
