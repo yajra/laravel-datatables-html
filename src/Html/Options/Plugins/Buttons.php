@@ -7,10 +7,6 @@ use Illuminate\Contracts\Support\Arrayable;
 /**
  * DataTables - Buttons plugin option builder.
  *
- * @template TKey of array-key
- * @template TValue
- * @property array<TKey, TValue> $attributes
- *
  * @see https://datatables.net/extensions/buttons/
  * @see https://datatables.net/reference/option/buttons
  */
@@ -34,5 +30,15 @@ trait Buttons
         }
 
         return $this;
+    }
+
+    /**
+     * Get builder buttons.
+     *
+     * @return array
+     */
+    public function getButtons(): array
+    {
+        return $this->attributes['buttons'] ?? [];
     }
 }

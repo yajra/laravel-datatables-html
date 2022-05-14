@@ -2,6 +2,8 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use Yajra\DataTables\Html\Button;
+
 class BuilderOptionsPluginsTest extends TestCase
 {
     /** @test */
@@ -38,5 +40,26 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->autoFillColumns([1, 2]);
         $this->assertEquals([1, 2], $builder->getAutoFill('columns'));
     }
+
+    /** @test */
+    public function it_has_buttons_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->buttons(
+            Button::make('create'),
+            Button::make('edit'),
+        );
+
+        $this->assertCount(2, $builder->getAttribute('buttons'));
+        $this->assertCount(2, $builder->getButtons());
+        $this->assertIsArray($builder->getButtons()[0]);
+
+        $builder->buttons([
+            Button::make('remove'),
+        ]);
+
+        $this->assertCount(3, $builder->getButtons());
+    }
+
 
 }
