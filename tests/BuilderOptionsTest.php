@@ -225,4 +225,59 @@ class BuilderOptionsTest extends TestCase
 
         $this->assertEquals(Builder::SELECT_STYLE_SINGLE, $builder->getPluginAttribute('select', 'style'));
     }
+
+    /** @test */
+    public function it_has_options()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->deferLoading(10)
+                ->destroy(true)
+                ->displayStart(1)
+                ->dom('Bf')
+                ->lengthMenu()
+                ->orders([[1, 'asc']])
+                ->orderCellsTop()
+                ->orderClasses()
+                ->orderBy(2)
+                ->orderBy(3, 'asc')
+                ->orderByFixed(3, 'asc')
+                ->orderMulti()
+                ->pageLength()
+                ->pagingType()
+                ->renderer()
+                ->retrieve()
+                ->rowId()
+                ->scrollCollapse()
+                ->search([])
+                ->searchCols([])
+                ->searchDelay(10)
+                ->stateDuration(10)
+                ->stripeClasses(['stripeClasses'])
+                ->tabIndex(2);
+
+        $this->assertEquals(10, $builder->getAttribute('deferLoading'));
+        $this->assertEquals(true, $builder->getAttribute('destroy'));
+        $this->assertEquals(1, $builder->getAttribute('displayStart'));
+        $this->assertEquals('Bf', $builder->getAttribute('dom'));
+        $this->assertEquals([10, 25, 50, 100], $builder->getAttribute('lengthMenu'));
+        $this->assertEquals([1, 'asc'], $builder->getAttribute('order')[0]);
+        $this->assertEquals([2, 'desc'], $builder->getAttribute('order')[1]);
+        $this->assertEquals([3, 'asc'], $builder->getAttribute('order')[2]);
+        $this->assertEquals(false, $builder->getAttribute('orderCellsTop'));
+        $this->assertEquals(true, $builder->getAttribute('orderClasses'));
+        $this->assertEquals([[3, 'asc']], $builder->getAttribute('orderFixed'));
+        $this->assertEquals(true, $builder->getAttribute('orderMulti'));
+        $this->assertEquals(10, $builder->getAttribute('pageLength'));
+        $this->assertEquals('simple_numbers', $builder->getAttribute('pagingType'));
+        $this->assertEquals('bootstrap', $builder->getAttribute('renderer'));
+        $this->assertEquals(false, $builder->getAttribute('scrollCollapse'));
+        $this->assertEquals([], $builder->getAttribute('search'));
+        $this->assertEquals([], $builder->getAttribute('searchCols'));
+        $this->assertEquals(10, $builder->getAttribute('searchDelay'));
+        $this->assertEquals(10, $builder->getAttribute('stateDuration'));
+        $this->assertEquals(['stripeClasses'], $builder->getAttribute('stripeClasses'));
+        $this->assertEquals(2, $builder->getAttribute('tabIndex'));
+    }
+
+
 }
