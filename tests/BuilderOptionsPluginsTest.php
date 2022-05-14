@@ -3,6 +3,7 @@
 namespace Yajra\DataTables\Html\Tests;
 
 use Yajra\DataTables\Html\Button;
+use Yajra\DataTables\Html\SearchPane;
 
 class BuilderOptionsPluginsTest extends TestCase
 {
@@ -255,5 +256,27 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(200, $builder->getScroller('serverWait'));
     }
 
+    /** @test */
+    public function it_has_search_panes_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->searchPanes();
 
+        $this->assertEquals(['show' => true], $builder->getAttribute('searchPanes'));
+        $this->assertIsArray($builder->getSearchPanes());
+
+        $builder->searchPanes(false);
+        $this->assertEquals(['show' => false], $builder->getAttribute('searchPanes'));
+
+        $builder->searchPanes(['hide' => true]);
+        $this->assertEquals(['hide' => true], $builder->getAttribute('searchPanes'));
+
+        $builder->searchPanes(function () {
+            return ['show' => true];
+        });
+        $this->assertEquals(['show' => true], $builder->getAttribute('searchPanes'));
+
+        $builder->searchPanes(SearchPane::make()->show()->cascadePanes());
+        $this->assertEquals(['show' => true, 'cascadePanes' => true], $builder->getAttribute('searchPanes'));
+    }
 }

@@ -16,11 +16,11 @@ trait SearchPanes
     /**
      * Set searchPane option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool|callable  $value
      * @return $this
      * @see https://datatables.net/reference/option/searchPanes
      */
-    public function searchPanes(bool|array $value = true): static
+    public function searchPanes(array|Arrayable|bool|callable $value = true): static
     {
         if (is_callable($value)) {
             $value = app()->call($value);
@@ -37,5 +37,18 @@ trait SearchPanes
         $this->attributes['searchPanes'] = $value;
 
         return $this;
+    }
+
+    /**
+     * @param  string|null  $key
+     * @return mixed
+     */
+    public function getSearchPanes(string $key = null): mixed
+    {
+        if (is_null($key)) {
+            return $this->attributes['searchPanes'] ?? true;
+        }
+
+        return $this->attributes['searchPanes'][$key] ?? false;
     }
 }
