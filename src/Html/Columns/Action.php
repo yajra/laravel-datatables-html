@@ -7,7 +7,7 @@ use Yajra\DataTables\Html\Column;
 trait Action
 {
     /**
-     * Add a action column.
+     * Add an action column.
      *
      * @param  array  $attributes
      * @param  bool  $prepend

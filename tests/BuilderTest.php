@@ -136,4 +136,52 @@ class BuilderTest extends TestCase
         $builder->removeTableClass(['a' => ' b ', ' foo  bar ']);
         $this->assertEquals('a', $builder->getTableAttribute('class'));
     }
+
+    /** @test */
+    public function it_can_add_checkbox()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->addCheckbox();
+
+        $column = $builder->getColumns()[0];
+
+        $this->assertCount(1, $builder->getColumns());
+        $this->assertInstanceOf(Column::class, $column);
+        $this->assertEquals(false, $column->orderable);
+        $this->assertEquals(false, $column->searchable);
+        $this->assertEquals(false, $column->exportable);
+        $this->assertEquals(true, $column->printable);
+    }
+
+    /** @test */
+    public function it_can_add_index_column()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->addIndex();
+
+        $column = $builder->getColumns()[0];
+
+        $this->assertCount(1, $builder->getColumns());
+        $this->assertInstanceOf(Column::class, $column);
+        $this->assertEquals(false, $column->orderable);
+        $this->assertEquals(false, $column->searchable);
+        $this->assertEquals(false, $column->exportable);
+        $this->assertEquals(true, $column->printable);
+    }
+
+    /** @test */
+    public function it_can_add_action_column()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->addAction();
+
+        $column = $builder->getColumns()[0];
+
+        $this->assertCount(1, $builder->getColumns());
+        $this->assertInstanceOf(Column::class, $column);
+        $this->assertEquals(false, $column->orderable);
+        $this->assertEquals(false, $column->searchable);
+        $this->assertEquals(false, $column->exportable);
+        $this->assertEquals(true, $column->printable);
+    }
 }
