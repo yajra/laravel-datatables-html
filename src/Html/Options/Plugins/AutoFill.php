@@ -27,19 +27,13 @@ trait AutoFill
      * Set autoFill option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/autoFill
      */
-    public function autoFill(bool|array $value = true): static
+    public function autoFill(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['autoFill'] = array_merge((array) $this->attributes['autoFill'], $value);
-        } else {
-            $this->attributes['autoFill'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('autoFill', $value);
     }
 
     /**

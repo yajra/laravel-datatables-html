@@ -26,19 +26,13 @@ trait KeyTable
     /**
      * Set keys option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/keys
      */
-    public function keys(bool|array $value = true): static
+    public function keys(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['keys'] = array_merge((array) $this->attributes['keys'], $value);
-        } else {
-            $this->attributes['keys'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('keys', $value);
     }
 
     /**

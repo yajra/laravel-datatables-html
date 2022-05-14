@@ -159,19 +159,13 @@ trait Select
     /**
      * Set select option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/select
      */
     public function select(bool|array $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['select'] = array_merge((array) $this->attributes['select'], $value);
-        } else {
-            $this->attributes['select'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('select', $value);
     }
 
     /**

@@ -26,19 +26,13 @@ trait FixedHeader
     /**
      * Set fixedHeader option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedHeader
      */
-    public function fixedHeader(bool|array $value = true): static
+    public function fixedHeader(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['fixedHeader'] = array_merge((array) $this->attributes['fixedHeader'], $value);
-        } else {
-            $this->attributes['fixedHeader'] = $value;
-        }
-
-        return $this;
+        return  $this->setPluginAttribute('fixedHeader', $value);
     }
 
     /**

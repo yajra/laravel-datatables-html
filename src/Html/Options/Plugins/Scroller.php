@@ -26,19 +26,13 @@ trait Scroller
     /**
      * Set scroller option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/scroller
      */
-    public function scroller(bool|array $value = true): static
+    public function scroller(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['scroller'] = array_merge((array) $this->attributes['scroller'], $value);
-        } else {
-            $this->attributes['scroller'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('scroller', $value);
     }
 
     /**

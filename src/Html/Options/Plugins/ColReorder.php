@@ -27,19 +27,13 @@ trait ColReorder
      * Set colReorder option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/colReorder
      */
-    public function colReorder(bool|array $value = true): static
+    public function colReorder(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['colReorder'] = array_merge((array) $this->attributes['colReorder'], $value);
-        } else {
-            $this->attributes['colReorder'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('colReorder', $value);
     }
 
     /**

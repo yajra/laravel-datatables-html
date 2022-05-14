@@ -26,19 +26,13 @@ trait RowGroup
     /**
      * Set rowGroup option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowGroup
      */
-    public function rowGroup(bool|array $value = true): static
+    public function rowGroup(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['rowGroup'] = array_merge((array) $this->attributes['rowGroup'], $value);
-        } else {
-            $this->attributes['rowGroup'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('rowGroup', $value);
     }
 
     /**

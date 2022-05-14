@@ -26,19 +26,13 @@ trait Responsive
     /**
      * Set responsive option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/responsive
      */
-    public function responsive(bool|array $value = true): static
+    public function responsive(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['responsive'] = array_merge((array) $this->attributes['responsive'], $value);
-        } else {
-            $this->attributes['responsive'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('responsive', $value);
     }
 
     /**

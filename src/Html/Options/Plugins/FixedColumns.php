@@ -26,19 +26,13 @@ trait FixedColumns
     /**
      * Set fixedColumns option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/fixedColumns
      */
-    public function fixedColumns(bool|array $value = true): static
+    public function fixedColumns(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['fixedColumns'] = array_merge((array) $this->attributes['fixedColumns'], $value);
-        } else {
-            $this->attributes['fixedColumns'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('fixedColumns', $value);
     }
 
     /**

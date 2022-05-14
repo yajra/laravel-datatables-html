@@ -26,19 +26,13 @@ trait RowReorder
     /**
      * Set rowReorder option value.
      *
-     * @param  bool|array  $value
+     * @param  array|bool  $value
      * @return $this
      * @see https://datatables.net/reference/option/rowReorder
      */
-    public function rowReorder(bool|array $value = true): static
+    public function rowReorder(array|bool $value = true): static
     {
-        if (is_array($value)) {
-            $this->attributes['rowReorder'] = array_merge((array) $this->attributes['rowReorder'], $value);
-        } else {
-            $this->attributes['rowReorder'] = $value;
-        }
-
-        return $this;
+        return $this->setPluginAttribute('rowReorder', $value);
     }
 
     /**

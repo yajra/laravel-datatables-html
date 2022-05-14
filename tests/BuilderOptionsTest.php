@@ -215,4 +215,14 @@ class BuilderOptionsTest extends TestCase
         $builder->languageUrl('languageUrl');
         $this->assertEquals('languageUrl', $builder->getLanguage('url'));
     }
+
+    /** @test */
+    public function it_has_plugin_attribute_getter()
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->selectStyleSingle();
+
+        $this->assertEquals(Builder::SELECT_STYLE_SINGLE, $builder->getPluginAttribute('select', 'style'));
+    }
 }
