@@ -136,12 +136,4 @@ class BuilderTest extends TestCase
         $builder->removeTableClass(['a' => ' b ', ' foo  bar ']);
         $this->assertEquals('a', $builder->getTableAttribute('class'));
     }
-
-    /**
-     * @return \Yajra\DataTables\Html\Builder
-     */
-    protected function getHtmlBuilder(): Builder
-    {
-        return app(Builder::class);
-    }
 }

@@ -4,8 +4,11 @@ namespace Yajra\DataTables\Html\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Yajra\DataTables\DataTablesServiceProvider;
+use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Tests\Models\Role;
 use Yajra\DataTables\Html\Tests\Models\User;
+use Yajra\DataTables\HtmlServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -101,8 +104,16 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            \Yajra\DataTables\DataTablesServiceProvider::class,
-            \Yajra\DataTables\HtmlServiceProvider::class,
+            DataTablesServiceProvider::class,
+            HtmlServiceProvider::class,
         ];
+    }
+
+    /**
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    protected function getHtmlBuilder(): Builder
+    {
+        return app(Builder::class);
     }
 }

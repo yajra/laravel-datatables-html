@@ -45,14 +45,6 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('test livewire', $builder->getAttribute('drawCallback'));
     }
 
-    /**
-     * @return \Yajra\DataTables\Html\Builder
-     */
-    protected function getHtmlBuilder(): Builder
-    {
-        return app(Builder::class);
-    }
-
     /** @test */
     public function it_has_columns_options()
     {
