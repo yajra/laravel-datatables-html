@@ -194,9 +194,12 @@ class FieldTest extends TestCase
     /** @test */
     public function it_can_create_text_field()
     {
-        $field = Fields\Text::make('name');
+        $field = Fields\Text::make('name')
+                            ->attr('style', 'display: none;');
+
         $this->assertInstanceOf(Fields\Text::class, $field);
         $this->assertEquals('text', $field->getType());
+        $this->assertEquals('display: none;', $field->attr['style']);
     }
 
     /** @test */

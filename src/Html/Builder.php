@@ -108,6 +108,19 @@ class Builder
     }
 
     /**
+     * Generate DataTables js parameters.
+     *
+     * @param  array  $attributes
+     * @return string
+     */
+    public function parameterize(array $attributes = []): string
+    {
+        $parameters = (new Parameters($attributes))->toArray();
+
+        return Helper::toJsonScript($parameters);
+    }
+
+    /**
      * Get DataTable options array.
      *
      * @return array
@@ -125,19 +138,6 @@ class Builder
                 })->toArray(),
             ]
         );
-    }
-
-    /**
-     * Generate DataTables js parameters.
-     *
-     * @param  array  $attributes
-     * @return string
-     */
-    public function parameterize(array $attributes = []): string
-    {
-        $parameters = (new Parameters($attributes))->toArray();
-
-        return Helper::toJsonScript($parameters);
     }
 
     /**
@@ -197,6 +197,16 @@ class Builder
     }
 
     /**
+     * Generate scripts that set the dataTables options into a variable.
+     *
+     * @return $this
+     */
+    public function asOptions(): static
+    {
+        return $this->setTemplate('datatables::options');
+    }
+
+    /**
      * Set custom javascript template.
      *
      * @param  string  $template
@@ -210,16 +220,6 @@ class Builder
     }
 
     /**
-     * Generate scripts that sets the dataTables options into a variable.
-     *
-     * @return $this
-     */
-    public function asOptions(): static
-    {
-        return $this->setTemplate('datatables::options');
-    }
-
-    /**
      * Wrap dataTable scripts with a function.
      *
      * @return $this
@@ -227,5 +227,23 @@ class Builder
     public function asFunction(): static
     {
         return $this->setTemplate('datatables::function');
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function getAttribute(string $key, mixed $default = ''): mixed
+    {
+        return $this->attributes[$key] ?? $default;
     }
 }
