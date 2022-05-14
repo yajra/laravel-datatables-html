@@ -26,12 +26,15 @@ trait HasEditor
             $editors = $editors[0];
         }
 
-        $collection = [];
-        foreach ($editors as $editor) {
-            $collection[] = $this->editor($editor);
-        }
+        $this->editors = [];
 
-        $this->editors = $collection;
+        foreach ($editors as $editor) {
+            if ($editor instanceof Editor) {
+                $this->editor($editor);
+            } else {
+                $this->editor(new Editor($editor));
+            }
+        }
 
         return $this;
     }
