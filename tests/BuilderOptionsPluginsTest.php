@@ -61,5 +61,26 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertCount(3, $builder->getButtons());
     }
 
+    /** @test */
+    public function it_has_col_reorder_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->colReorder();
+
+        $this->assertTrue($builder->getAttribute('colReorder'));
+        $this->assertTrue($builder->getColReorder());
+
+        $builder->colReorderEnable()
+                ->colReorderFixedColumnsLeft(1)
+                ->colReorderFixedColumnsRight(1)
+                ->colReorderOrder([1])
+                ->colReorderRealtime();
+
+        $this->assertTrue($builder->getColReorder('enable'));
+        $this->assertEquals(1, $builder->getColReorder('fixedColumnsLeft'));
+        $this->assertEquals(1, $builder->getColReorder('fixedColumnsRight'));
+        $this->assertEquals([1], $builder->getColReorder('order'));
+        $this->assertEquals(true, $builder->getColReorder('realtime'));
+    }
 
 }
