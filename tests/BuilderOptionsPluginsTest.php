@@ -180,4 +180,32 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals('type', $builder->getResponsive('details')['type']);
         $this->assertEquals('orthogonal', $builder->getResponsive('orthogonal'));
     }
+
+    /** @test */
+    public function it_has_row_group_plugin()
+    {
+        $builder = $this->getHtmlBuilder();
+        $builder->rowGroup();
+
+        $this->assertTrue($builder->getAttribute('rowGroup'));
+        $this->assertTrue($builder->getRowGroup());
+
+        $builder->rowGroupDataSrc([1])
+                ->rowGroupEmptyDataGroup()
+                ->rowGroupEnable()
+                ->rowGroupEndClassName()
+                ->rowGroupEndRender('fn')
+                ->rowGroupStartClassName()
+                ->rowGroupStartRender();
+
+        $this->assertEquals([1], $builder->getRowGroup('dataSrc'));
+        $this->assertEquals('No Group', $builder->getRowGroup('emptyDataGroup'));
+        $this->assertEquals(true, $builder->getRowGroup('enable'));
+        $this->assertEquals('group-end', $builder->getRowGroup('endClassName'));
+        $this->assertEquals('fn', $builder->getRowGroup('endRender'));
+        $this->assertEquals('group-start', $builder->getRowGroup('startClassName'));
+        $this->assertEquals(null, $builder->getRowGroup('startRender'));
+    }
+
+
 }
