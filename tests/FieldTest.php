@@ -196,6 +196,9 @@ class FieldTest extends TestCase
         $field->processPaginatedResults('username', 'user_id');
         $this->assertStringContainsString('e.text = e.username', $field->opts['ajax']['processResults']);
         $this->assertStringContainsString('e.id = e.user_id', $field->opts['ajax']['processResults']);
+
+        $field->placeholder('New Placeholder');
+        $this->assertEquals('New Placeholder', $field->opts['placeholder']['text']);
     }
 
     /** @test */

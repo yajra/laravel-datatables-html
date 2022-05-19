@@ -19,6 +19,15 @@ class Select2 extends Select
     }
 
     /**
+     * @param  string  $value
+     * @return $this
+     */
+    public function placeholder(string $value): static
+    {
+        return $this->optsPlaceholder($value);
+    }
+
+    /**
      * @param  string  $text
      * @param  string  $id
      * @return $this
