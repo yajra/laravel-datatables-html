@@ -19,16 +19,16 @@ class Select2 extends Select
     }
 
     /**
-     * @param  string  $value
+     * @param  string  $text
      * @param  string  $id
      * @return $this
      */
-    public function optsPlaceholder(string $value = '', string $id = 'id'): static
+    public function optsPlaceholder(string $text = '', string $id = ''): static
     {
         return $this->opts([
             'placeholder' => [
                 'id' => $id,
-                'text' => $value,
+                'text' => $text,
             ],
         ]);
     }
