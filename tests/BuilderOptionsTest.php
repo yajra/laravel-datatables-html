@@ -141,6 +141,10 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('custom_script', $builder->getAjax('data'));
         $this->assertStringContainsString("data.id = 123", $builder->getAjax('data'));
         $this->assertStringContainsString("data.name = 'yajra'", $builder->getAjax('data'));
+
+        $builder->postAjaxWithForm('/test', '#formId');
+        $this->assertStringContainsString('find("input, select").serializeArray()', $builder->getAjax()['data']);
+        $this->assertStringContainsString('#formId', $builder->getAjax('data'));
     }
 
     /** @test */
