@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v9.2.0 - 2022-05-19
+
+- Add postAjaxWithForm
+- Fix multiple form values for select and checkbox #163
+
 ### v9.1.2 - 2022-05-14
 
 - Fix Undefined property: Yajra\DataTables\Html\Builder::$instance
