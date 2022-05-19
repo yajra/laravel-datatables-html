@@ -103,7 +103,7 @@ class Select2 extends Select
     {
         $script = 'function(data, params) { ';
         $script .= 'params.page = params.page || 1; ';
-        $script .= "data.data.map(function(e) { e.text = e.{$display}; e.id = e.{$id}; return e; }); ";
+        $script .= "data.data.map(function(e) { e.text = e.$display; e.id = e.$id; return e; }); ";
         $script .= 'return { results: data.data, pagination: { more: data.current_page < data.last_page } };';
         $script .= '}';
 

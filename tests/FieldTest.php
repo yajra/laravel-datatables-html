@@ -187,8 +187,15 @@ class FieldTest extends TestCase
         $this->assertEquals('select2', $field->getType());
         $this->assertEquals('/url', $field->opts['ajax']['url']);
         $this->assertEquals('Test', $field->opts['placeholder']['text']);
-        $this->assertEquals('id', $field->opts['placeholder']['id']);
+        $this->assertEquals('', $field->opts['placeholder']['id']);
         $this->assertCount(20, $field->options);
+
+        $field->processResults('fn');
+        $this->assertEquals('fn', $field->opts['ajax']['processResults']);
+
+        $field->processPaginatedResults('username', 'user_id');
+        $this->assertStringContainsString('e.text = e.username', $field->opts['ajax']['processResults']);
+        $this->assertStringContainsString('e.id = e.user_id', $field->opts['ajax']['processResults']);
     }
 
     /** @test */
