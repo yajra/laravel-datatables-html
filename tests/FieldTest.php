@@ -199,6 +199,18 @@ class FieldTest extends TestCase
 
         $field->placeholder('New Placeholder');
         $this->assertEquals('New Placeholder', $field->opts['placeholder']['text']);
+
+        $field->ajaxData('fn');
+        $this->assertEquals('fn', $field->opts['ajax']['data']);
+
+        $field->ajaxData(['foo' => 'bar']);
+        $this->assertStringContainsString('params.foo = "bar"', $field->opts['ajax']['data']);;
+
+        $field->ajaxDelay(200);
+        $this->assertEquals(200, $field->opts['ajax']['delay']);;
+
+        $field->ajaxUrl('/test');
+        $this->assertEquals('/test', $field->opts['ajax']['url']);;
     }
 
     /** @test */

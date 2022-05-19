@@ -91,7 +91,7 @@ class Select2 extends Select
             $script = 'function(params) {';
             foreach ($data as $key => $value) {
                 $value = json_encode($value);
-                $script .= " params.{$key} = {$value}; ";
+                $script .= " params.$key = $value; ";
             }
             $script .= 'return params; }';
 
