@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v9.2.1 - 2022-05-19
+
+- Fix select2 placeholder default id value
+- Add select2 tests
+- Fix select2 placeholder compatibility
+
 ### v9.2.0 - 2022-05-19
 
 - Add postAjaxWithForm
