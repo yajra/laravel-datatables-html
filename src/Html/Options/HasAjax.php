@@ -45,6 +45,46 @@ trait HasAjax
     }
 
     /**
+     * @param  string  $url
+     * @param  string  $formSelector
+     * @return $this
+     */
+    public function postAjaxWithForm(string $url, string $formSelector): static
+    {
+        $attributes = ['url' => $url];
+
+        Arr::set($attributes, 'type', 'POST');
+        Arr::set($attributes, 'headers.X-HTTP-Method-Override', 'GET');
+
+        $script = $this->getScriptWithFormSelector($formSelector);
+
+        $attributes['data'] = "function(data) { $script }";
+
+        return $this->ajax($attributes);
+    }
+
+    /**
+     * @param  string  $formSelector
+     * @return string
+     */
+    protected function getScriptWithFormSelector(string $formSelector): string
+    {
+        return <<<CDATA
+var formData = _.groupBy($("$formSelector").find("input, select").serializeArray(), function(d) { return d.name; } );
+$.each(formData, function(i, group){
+    if (group.length > 1) {
+        data[group[0].name] = [];
+        $.each(group, function(i, obj) {
+            data[obj.name].push(obj.value)
+        })
+    } else {
+        data[group[0].name] = group[0].value;
+    }
+});
+CDATA;
+    }
+
+    /**
      * Setup ajax parameter for datatables pipeline plugin.
      *
      * @param  string  $url
@@ -80,14 +120,7 @@ trait HasAjax
      */
     public function ajaxWithForm(string $url, string $formSelector): static
     {
-        $script = <<<CDATA
-var formData = $("$formSelector").find("input, select").serializeArray();
-$.each(formData, function(i, obj){
-    data[obj.name] = obj.value;
-});
-CDATA;
-
-        return $this->minifiedAjax($url, $script);
+        return $this->minifiedAjax($url, $this->getScriptWithFormSelector($formSelector));
     }
 
     /**
