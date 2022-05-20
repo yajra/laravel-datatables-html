@@ -50,11 +50,13 @@ class Select2 extends Select
      */
     public function ajax(array|string $value): static
     {
+        $ajax = $this->opts['ajax'] ?? [];
+
         if (is_array($value)) {
-            return $this->opts(['ajax' => $value]);
+            return $this->opts(['ajax' => array_merge($ajax, $value)]);
         }
 
-        return $this->opts(['ajax' => ['url' => $value]]);
+        return $this->opts(['ajax' => array_merge($ajax, ['url' => $value])]);
     }
 
     /**
@@ -113,7 +115,7 @@ class Select2 extends Select
         $script = 'function(data, params) { ';
         $script .= 'params.page = params.page || 1; ';
         $script .= "data.data.map(function(e) { e.text = e.$display; e.id = e.$id; return e; }); ";
-        $script .= 'return { results: data.data, pagination: { more: data.current_page < data.last_page } };';
+        $script .= 'return { results: data.data, pagination: { more: data.meta.current_page < data.meta.last_page } };';
         $script .= '}';
 
         return $this->processResults($script);

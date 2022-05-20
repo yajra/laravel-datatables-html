@@ -194,8 +194,10 @@ class FieldTest extends TestCase
         $this->assertEquals('fn', $field->opts['ajax']['processResults']);
 
         $field->processPaginatedResults('username', 'user_id');
+        $this->assertEquals('/url', $field->opts['ajax']['url']);
         $this->assertStringContainsString('e.text = e.username', $field->opts['ajax']['processResults']);
         $this->assertStringContainsString('e.id = e.user_id', $field->opts['ajax']['processResults']);
+        $this->assertStringContainsString('data.meta.current_page < data.meta.last_page', $field->opts['ajax']['processResults']);
 
         $field->placeholder('New Placeholder');
         $this->assertEquals('New Placeholder', $field->opts['placeholder']['text']);
