@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.2.2 - 2022-05-20
+
+- Fix select2 paginated results and ajax setter
+
 ### v9.2.1 - 2022-05-19
 
 - Fix select2 placeholder default id value
