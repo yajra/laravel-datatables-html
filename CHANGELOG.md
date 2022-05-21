@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.2.3 - 2022-05-21
+
+- Add option to override results wrap key
+
 ### v9.2.2 - 2022-05-20
 
 - Fix select2 paginated results and ajax setter
