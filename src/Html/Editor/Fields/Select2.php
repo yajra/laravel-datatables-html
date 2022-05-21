@@ -108,14 +108,15 @@ class Select2 extends Select
      *
      * @param  string  $display
      * @param  string  $id
+     * @param  string  $wrap
      * @return $this
      */
-    public function processPaginatedResults(string $display = 'text', string $id = 'id'): static
+    public function processPaginatedResults(string $display = 'text', string $id = 'id', string $wrap = 'results'): static
     {
         $script = 'function(data, params) { ';
         $script .= 'params.page = params.page || 1; ';
-        $script .= "data.data.map(function(e) { e.text = e.$display; e.id = e.$id; return e; }); ";
-        $script .= 'return { results: data.data, pagination: { more: data.meta.current_page < data.meta.last_page } };';
+        $script .= "data.$wrap.map(function(e) { e.text = e.$display; e.id = e.$id; return e; }); ";
+        $script .= "return { results: data.$wrap, pagination: { more: data.meta.current_page < data.meta.last_page } };";
         $script .= '}';
 
         return $this->processResults($script);
