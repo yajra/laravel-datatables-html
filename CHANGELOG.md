@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.2.4 - 2022-05-21
+
+- Use $this in Editor events magic method #164
+
 ### v9.2.3 - 2022-05-21
 
 - Add option to override results wrap key
