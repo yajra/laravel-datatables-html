@@ -60,7 +60,7 @@ class BuilderOptionsPluginsTest extends TestCase
             Button::make('remove'),
         ]);
 
-        $this->assertCount(3, $builder->getButtons());
+        $this->assertCount(1, $builder->getButtons());
     }
 
     /** @test */

@@ -21,6 +21,8 @@ trait Buttons
      */
     public function buttons(...$buttons): static
     {
+        $this->attributes['buttons'] = [];
+
         if (is_array($buttons[0])) {
             $buttons = $buttons[0];
         }
