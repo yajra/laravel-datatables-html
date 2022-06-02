@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v9.2.5 - 2022-06-02
+
+- Added: Builder addButton method
+- Changed: Builder buttons method will reset existing buttons
+
 ### v9.2.4 - 2022-05-21
 
 - Use $this in Editor events magic method #164
