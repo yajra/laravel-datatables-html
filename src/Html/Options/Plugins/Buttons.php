@@ -3,6 +3,7 @@
 namespace Yajra\DataTables\Html\Options\Plugins;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Yajra\DataTables\Html\Button;
 
 /**
  * DataTables - Buttons plugin option builder.
@@ -30,6 +31,17 @@ trait Buttons
         foreach ($buttons as $button) {
             $this->attributes['buttons'][] = $button instanceof Arrayable ? $button->toArray() : $button;
         }
+
+        return $this;
+    }
+
+    /**
+     * @param  \Yajra\DataTables\Html\Button  $button
+     * @return $this
+     */
+    public function addButton(Button $button): static
+    {
+        $this->attributes['buttons'][] = $button->toArray();
 
         return $this;
     }

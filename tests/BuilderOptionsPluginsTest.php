@@ -56,11 +56,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertCount(2, $builder->getButtons());
         $this->assertIsArray($builder->getButtons()[0]);
 
-        $builder->buttons([
-            Button::make('remove'),
-        ]);
-
+        $builder->buttons([Button::make('remove')]);
         $this->assertCount(1, $builder->getButtons());
+
+        $builder->addButton(Button::make('edit'));
+        $this->assertCount(2, $builder->getButtons());
     }
 
     /** @test */
