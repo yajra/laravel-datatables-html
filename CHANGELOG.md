@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.2.6 - 2022-06-30
+
+- Allow array on default() method #165
+
 ### v9.2.5 - 2022-06-02
 
 - Added: Builder addButton method
