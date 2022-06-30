@@ -190,11 +190,11 @@ class Field extends Fluent
     /**
      * Set field default value.
      *
-     * @param  float|bool|int|string  $value
+     * @param  float|bool|int|string|array  $value
      * @return $this
      * @see https://editor.datatables.net/reference/option/fields.def
      */
-    public function default(float|bool|int|string $value): static
+    public function default(float|bool|int|string|array $value): static
     {
         $this->attributes['def'] = $value;
 
