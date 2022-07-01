@@ -360,4 +360,18 @@ class Field extends Fluent
     {
         return $this->type;
     }
+
+    /**
+     * Replace null values with the field's default on edit.
+     *
+     * @param  bool  $value
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/fields.nullDefault
+     */
+    public function nullDefault(bool $value = true): static
+    {
+        $this->attributes['nullDefault'] = $value;
+
+        return $this;
+    }
 }
