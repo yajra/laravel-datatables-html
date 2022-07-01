@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.3.0 - 2022-07-01
+
+- Add nullDefault() method #166
+
 ### v9.2.6 - 2022-06-30
 
 - Allow array on default() method #165
