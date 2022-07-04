@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.3.1 - 2022-07-04
+
+- Fix magic property type
+
 ### v9.3.0 - 2022-07-01
 
 - Add nullDefault() method #166
