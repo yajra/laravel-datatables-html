@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.3.2 - 2022-07-04
+
+- Fix collection key - value
+
 ### v9.3.1 - 2022-07-04
 
 - Fix magic property type
