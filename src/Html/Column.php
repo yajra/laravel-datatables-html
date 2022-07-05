@@ -588,11 +588,11 @@ class Column extends Fluent
     /**
      * Set excel column format when exporting.
      *
-     * @param  string  $format
+     * @param  string|callable $format
      * @return $this
      * @see https://github.com/yajra/laravel-datatables-export
      */
-    public function exportFormat(string $format): static
+    public function exportFormat(string|callable $format): static
     {
         $this->attributes['exportFormat'] = $format;
 
