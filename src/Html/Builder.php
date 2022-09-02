@@ -56,6 +56,18 @@ class Builder
     protected string|array $ajax = '';
 
     /**
+     * @var string
+     */
+    protected $theadClass = '';
+
+    public function theadClass($class)
+    {
+        $this->theadClass = $class;
+
+        return $this;
+    }
+   
+    /**
      * @param  Repository  $config
      * @param  Factory  $view
      * @param  HtmlBuilder  $html
@@ -178,7 +190,7 @@ class Builder
         $tableHtml = '<table'.$htmlAttr.'>';
         $searchHtml = $drawSearch ? '<tr class="search-filter">'.implode('',
                 $this->compileTableSearchHeaders()).'</tr>' : '';
-        $tableHtml .= '<thead><tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
+        $tableHtml .= '<thead class="' . $this->theadClass . '"><tr>' . implode('', $th) . '</tr>' . $searchHtml . '</thead>';
         if ($drawFooter) {
             $tf = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>'.implode('', $tf).'</tr></tfoot>';
