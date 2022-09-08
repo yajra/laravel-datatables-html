@@ -60,7 +60,7 @@ class Builder
      */
     protected $theadClass = '';
 
-    public function theadClass($class)
+    public function theadClass(string $class):string
     {
         $this->theadClass = $class;
 
