@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.3.3 - 2022-10-05
+
+- Fix ajax form search with textarea #171
+
 ### v9.3.2 - 2022-07-04
 
 - Fix collection key - value
