@@ -70,7 +70,7 @@ trait HasAjax
     protected function getScriptWithFormSelector(string $formSelector): string
     {
         return <<<CDATA
-var formData = _.groupBy($("$formSelector").find("input, select").serializeArray(), function(d) { return d.name; } );
+var formData = _.groupBy($("$formSelector").find("input, select, textarea").serializeArray(), function(d) { return d.name; } );
 $.each(formData, function(i, group){
     if (group.length > 1) {
         data[group[0].name] = [];
