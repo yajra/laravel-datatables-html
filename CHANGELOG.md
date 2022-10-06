@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.3.4 - 2022-10-06
+
+- fix(editor): Fix typehint to match value helper #172
+
 ### v9.3.3 - 2022-10-05
 
 - Fix ajax form search with textarea #171
