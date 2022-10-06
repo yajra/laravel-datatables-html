@@ -64,11 +64,11 @@ trait HasEvents
      * Add Editor event listener scripts.
      *
      * @param  string  $event
-     * @param  string  $script
+     * @param  mixed  $script
      * @return $this
      * @see https://editor.datatables.net/reference/event
      */
-    public function on(string $event, string $script): static
+    public function on(string $event, mixed $script): static
     {
         $this->events[] = [
             'event' => $event,
