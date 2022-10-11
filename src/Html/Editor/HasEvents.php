@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
  * @method $this onEdit($script)
  * @method $this onInitCreate($script)
  * @method $this onInitEdit($script)
+ * @method $this onInitEditor($script)
  * @method $this onInitRemove($script)
  * @method $this onInitSubmit($script)
  * @method $this onOpen($script)
