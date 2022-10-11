@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 
 /**
  * @method $this onClose($script)
+ * @method $this onClosed($script)
  * @method $this onCreate($script)
  * @method $this onDisplayOrder($script)
  * @method $this onEdit($script)
