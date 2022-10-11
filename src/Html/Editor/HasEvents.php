@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @method $this onPostUpload($script)
  * @method $this onPreBlur($script)
  * @method $this onPreBlurCancelled($script)
+ * @method $this onPreClose($script)
  * @method $this onPreCreate($script)
  * @method $this onPreEdit($script)
  * @method $this onPreOpen($script)
