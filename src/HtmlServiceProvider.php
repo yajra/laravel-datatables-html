@@ -2,7 +2,6 @@
 
 namespace Yajra\DataTables;
 
-use Collective\Html\HtmlServiceProvider as CollectiveHtml;
 use Illuminate\Support\ServiceProvider;
 
 class HtmlServiceProvider extends ServiceProvider
@@ -40,8 +39,6 @@ class HtmlServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/resources/config/config.php', 'datatables-html');
-
-        $this->app->register(CollectiveHtml::class);
 
         $this->app->bind('datatables.html', function () {
             return $this->app->make(Html\Builder::class);
