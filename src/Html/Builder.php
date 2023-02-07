@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html;
 
-use Collective\Html\HtmlBuilder;
+use Yajra\DataTables\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
