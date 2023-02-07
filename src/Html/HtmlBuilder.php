@@ -63,10 +63,10 @@ class HtmlBuilder
     /**
      * Transform the string to an Html serializable object
      *
-     * @param $html
+     * @param  string  $html
      * @return \Illuminate\Support\HtmlString
      */
-    protected function toHtmlString($html): HtmlString
+    protected function toHtmlString(string $html): HtmlString
     {
         return new HtmlString($html);
     }
@@ -97,9 +97,9 @@ class HtmlBuilder
      *
      * @param  string  $key
      * @param  mixed  $value
-     * @return string
+     * @return mixed
      */
-    protected function attributeElement(string $key, mixed $value): string
+    protected function attributeElement(string $key, mixed $value): mixed
     {
         // For numeric keys we will assume that the value is a boolean attribute
         // where the presence of the attribute represents a true value and the
@@ -120,10 +120,10 @@ class HtmlBuilder
         }
 
         if (! is_null($value)) {
-            return $key.'="'.e($value, false).'"';
+            return $key.'="'.e(strval($value), false).'"';
         }
 
-        return '';
+        return null;
     }
 
     /**
@@ -458,7 +458,7 @@ class HtmlBuilder
         if (is_array($value)) {
             return $this->nestedListing($key, $type, $value);
         } else {
-            return '<li>'.e($value, false).'</li>';
+            return '<li>'.e(strval($value), false).'</li>';
         }
     }
 
@@ -467,10 +467,10 @@ class HtmlBuilder
      *
      * @param  mixed  $key
      * @param  string  $type
-     * @param  mixed  $value
+     * @param  array  $value
      * @return \Illuminate\Support\HtmlString|string
      */
-    protected function nestedListing(mixed $key, string $type, mixed $value): HtmlString|string
+    protected function nestedListing(mixed $key, string $type, array $value): HtmlString|string
     {
         if (is_int($key)) {
             return $this->listing($type, $value);
@@ -548,6 +548,6 @@ class HtmlBuilder
     {
         $content = is_array($content) ? implode('', $content) : $content;
 
-        return $this->toHtmlString('<'.$tag.$this->attributes($attributes).'>'.$this->toHtmlString($content).'</'.$tag.'>');
+        return $this->toHtmlString('<'.$tag.$this->attributes($attributes).'>'.$this->toHtmlString(strval($content)).'</'.$tag.'>');
     }
 }
