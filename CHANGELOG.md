@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v10.1.0 - 2023-02-07
+
+- Drop Collective\Html dependency #183
+- Copy Collective HtmlBuilder class and implemented php-stan
+
 ### v10.0.0 - 2023-02-07
 
 - Add Laravel 10 specific support
