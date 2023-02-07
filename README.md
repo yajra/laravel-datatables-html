@@ -1,6 +1,6 @@
 # Laravel DataTables Html Plugin.
 
-[![Laravel 9.x](https://img.shields.io/badge/Laravel-9.x-orange.svg)](http://laravel.com)
+[![Laravel 10.x](https://img.shields.io/badge/Laravel-10.x-orange.svg)](http://laravel.com)
 [![Latest Stable Version](https://img.shields.io/packagist/v/yajra/laravel-datatables-html.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 ![Build Status](https://github.com/yajra/laravel-datatables-html/workflows/tests/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/?branch=master)
@@ -25,10 +25,11 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 |:--------------|:--------|
 | 8.x and below | 4.x     |
 | 9.x           | 9.x     |
+| 10.x          | 10.x    |
 
 ## Quick Installation
 
-`composer require yajra/laravel-datatables-html:^9.0`
+`composer require yajra/laravel-datatables-html:^10`
 
 #### Service Provider (Optional on Laravel 5.5+)
 
