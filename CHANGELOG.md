@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.2.0 - 2023-02-20
+
+- feat: allow callable exportFormat parameter #167
+
 ### v10.1.0 - 2023-02-07
 
 - Drop Collective\Html dependency #183
