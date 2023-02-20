@@ -12,6 +12,16 @@ use Yajra\DataTables\Html\Editor\Editor;
 class BuilderTest extends TestCase
 {
     /** @test */
+    public function it_can_use_vitejs_module_script()
+    {
+        Builder::useVite();
+
+        $this->assertStringContainsString('type="module"', $this->getHtmlBuilder()->scripts()->toHtml());
+
+        Builder::useWebpack();
+    }
+
+    /** @test */
     public function it_can_resolved_builder_class()
     {
         $builder = $this->getHtmlBuilder();

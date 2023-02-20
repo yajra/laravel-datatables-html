@@ -2,7 +2,6 @@
 
 namespace Yajra\DataTables\Html;
 
-use Yajra\DataTables\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
@@ -29,6 +28,11 @@ class Builder
     const SELECT_ITEMS_ROW = 'row';
     const SELECT_ITEMS_COLUMN = 'column';
     const SELECT_ITEMS_CELL = 'cell';
+
+    /**
+     * The default type to use for the DataTables javascript.
+     */
+    protected static string $jsType = 'text/javascript';
 
     /**
      * @var Collection<int, \Yajra\DataTables\Html\Column>
@@ -74,6 +78,22 @@ class Builder
     }
 
     /**
+     * Set the default type to module for the DataTables javascript.
+     */
+    public static function useVite(): void
+    {
+        static::$jsType = 'module';
+    }
+
+    /**
+     * Set the default type to text/javascript for the DataTables javascript.
+     */
+    public static function useWebpack(): void
+    {
+        static::$jsType = 'text/javascript';
+    }
+
+    /**
      * Generate DataTable javascript.
      *
      * @param  string|null  $script
@@ -83,7 +103,9 @@ class Builder
     public function scripts(string $script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
     {
         $script = $script ?: $this->generateScripts();
-        $attributes = $this->html->attributes($attributes);
+        $attributes = $this->html->attributes(
+            array_merge($attributes, ['type' => static::$jsType])
+        );
 
         return new HtmlString("<script{$attributes}>$script</script>");
     }
