@@ -8,6 +8,14 @@
 
 ## CHANGELOG
 
+### v9.4.0 - 2023-02-20
+
+- feat: allow callable exportFormat parameter #167
+- feat: Add onPreClose Event #179
+- feat: Add onOpened Event  #177
+- feat: Add initEditor Event #176
+- feat: Add onClosed Event #175
+
 ### v9.3.4 - 2022-10-06
 
 - fix(editor): Fix typehint to match value helper #172
