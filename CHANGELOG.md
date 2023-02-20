@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.3.0 - 2023-02-20
+
+- feat: add builder ability to use viteJs by default #184
+
 ### v10.2.0 - 2023-02-20
 
 - feat: allow callable exportFormat parameter #167
