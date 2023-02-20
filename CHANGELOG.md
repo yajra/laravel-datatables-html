@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.3.1 - 2023-02-20
+
+- fix: too long file name check for column render #185
+
 ### v10.3.0 - 2023-02-20
 
 - feat: add builder ability to use viteJs by default #184
