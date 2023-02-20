@@ -38,18 +38,22 @@ class Builder
      * @var Collection<int, \Yajra\DataTables\Html\Column>
      */
     public Collection $collection;
+
     /**
      * @var array<string, string|null>
      */
     protected array $tableAttributes = [];
+
     /**
      * @var string
      */
     protected string $template = '';
+
     /**
      * @var array
      */
     protected array $attributes = [];
+
     /**
      * @var string|array
      */
