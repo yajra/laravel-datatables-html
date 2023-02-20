@@ -17,6 +17,8 @@ class BuilderTest extends TestCase
         Builder::useVite();
 
         $this->assertStringContainsString('type="module"', $this->getHtmlBuilder()->scripts()->toHtml());
+
+        Builder::useWebpack();
     }
 
     /** @test */

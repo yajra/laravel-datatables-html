@@ -74,11 +74,19 @@ class Builder
     }
 
     /**
-     * Set the default type to module or the DataTables javascript.
+     * Set the default type to module for the DataTables javascript.
      */
     public static function useVite(): void
     {
         static::$jsType = 'module';
+    }
+
+    /**
+     * Set the default type to text/javascript for the DataTables javascript.
+     */
+    public static function useWebpack(): void
+    {
+        static::$jsType = 'text/javascript';
     }
 
     /**
