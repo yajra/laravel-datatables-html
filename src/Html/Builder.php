@@ -78,6 +78,10 @@ class Builder
         $this->html = $html;
         $this->collection = new Collection;
         $this->tableAttributes = $this->config->get('datatables-html.table', []);
+        $this->attributes = [
+            'serverSide' => true,
+            'processing' => true,
+        ];
     }
 
     /**
@@ -118,9 +122,18 @@ class Builder
      */
     public function generateJson()
     {
-        $args = array_merge(
-            $this->attributes,
-            [
+        return $this->parameterize($this->getOptions());
+    }
+
+    /**
+     * Get DataTable options array.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return array_merge(
+            $this->attributes, [
                 'ajax' => $this->ajax,
                 'columns' => $this->collection->map(function (Column $column) {
                     $column = $column->toArray();
@@ -130,8 +143,6 @@ class Builder
                 })->toArray(),
             ]
         );
-
-        return $this->parameterize($args);
     }
 
     /**

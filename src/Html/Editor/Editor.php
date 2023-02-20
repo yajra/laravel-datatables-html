@@ -5,12 +5,15 @@ namespace Yajra\DataTables\Html\Editor;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Fluent;
+use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 
 class Editor extends Fluent
 {
     use HasEvents;
+    use HasAuthorizations;
+
     const DISPLAY_LIGHTBOX   = 'lightbox';
     const DISPLAY_ENVELOPE   = 'envelope';
     const DISPLAY_BOOTSTRAP  = 'bootstrap';
@@ -20,7 +23,7 @@ class Editor extends Fluent
     /**
      * Editor constructor.
      *
-     * @param string $instance
+     * @param string|array $instance
      */
     public function __construct($instance = 'editor')
     {
@@ -37,6 +40,10 @@ class Editor extends Fluent
      */
     public static function make($instance = 'editor')
     {
+        if (is_array($instance)) {
+            $instance = $instance['editor'] ?? 'editor';
+        }
+
         return new static($instance);
     }
 
@@ -257,10 +264,6 @@ class Editor extends Fluent
         $replacements = [];
 
         foreach (Arr::dot($parameters) as $key => $value) {
-            if ($key === 'table') {
-                Arr::set($parameters, $key, '#' . $value);
-            }
-
             if ($this->isCallbackFunction($value, $key)) {
                 $values[] = trim($value);
                 Arr::set($parameters, $key, '%' . $key . '%');

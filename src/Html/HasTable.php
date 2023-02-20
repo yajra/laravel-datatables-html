@@ -44,6 +44,16 @@ trait HasTable
     }
 
     /**
+     * Get HTML table "id" attribute.
+     *
+     * @return string
+     */
+    public function getTableId()
+    {
+        return $this->getTableAttribute('id');
+    }
+
+    /**
      * Sets HTML table attribute(s).
      *
      * @param string|array $attribute
