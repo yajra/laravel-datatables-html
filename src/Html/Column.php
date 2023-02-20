@@ -512,7 +512,7 @@ class Column extends Fluent
             return $value($parameters);
         } elseif ($this->isBuiltInRenderFunction($value)) {
             return $value;
-        } elseif ($view->exists($value)) {
+        } elseif (strlen($value) < 256 && $view->exists($value)) {
             return $view->make($value)->with($parameters)->render();
         }
 
