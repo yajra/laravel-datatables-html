@@ -31,9 +31,29 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 
 `composer require yajra/laravel-datatables-html:^10`
 
-#### Service Provider (Optional on Laravel 5.5+)
+#### Setup scripts with ViteJS
 
-`Yajra\DataTables\HtmlServiceProvider::class`
+Set the default javascript type to `module` by setting `Builder::useVite()` in the `AppServiceProvider`.
+
+```php
+namespace App\Providers;
+
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
+use Yajra\DataTables\Html\Builder;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        Paginator::useBootstrapFive();
+        Builder::useVite();
+    }
+}
+```
 
 #### Publish Assets (Optional)
 
