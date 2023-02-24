@@ -142,7 +142,7 @@ CDATA;
         $this->ajax = [];
         $appendData = $this->makeDataScript($data);
 
-        $this->ajax['url'] = empty($url) ? url()->full() : $url;
+        $this->ajax['url'] = empty($url) ? url()->current() : $url;
         $this->ajax['type'] = 'GET';
         if (! isset($this->attributes['serverSide']) || $this->attributes['serverSide']) {
             $this->ajax['data'] = 'function(data) {
