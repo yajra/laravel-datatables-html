@@ -107,6 +107,15 @@ class FieldTest extends TestCase
 
         $field->minutesAvailable([1, 2]);
         $this->assertEquals([1, 2], $field->opts['minutesAvailable']);
+
+        $field->keyInput(false);
+        $this->assertEquals(false, $field->getAttributes()['keyInput']);
+
+        $field->displayFormat('LLL');
+        $this->assertEquals('LLL', $field->getAttributes()['displayFormat']);
+
+        $field->wireFormat('LLL');
+        $this->assertEquals('LLL', $field->getAttributes()['wireFormat']);
     }
 
     /** @test */

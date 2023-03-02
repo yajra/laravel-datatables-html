@@ -109,4 +109,58 @@ class DateTime extends Field
     {
         return $this->opts(['minutesAvailable' => $minutes]);
     }
+
+    /**
+     * The format of the date string loaded from the server for the field's
+     * value and also for sending to the server on form submission.
+     * The formatting options are defined by Moment.js.
+     *
+     * @param  string  $format
+     * @return $this
+     * @see https://editor.datatables.net/reference/field/datetime#Options
+     * @see https://momentjs.com/docs/#/displaying/format/
+     */
+    public function wireFormat(string $format = 'YYYY-MM-DDTHH:mm:ss.000000Z'): static
+    {
+        $this->attributes['wireFormat'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Allow (default), or disallow, the end user to type into the date / time input element.
+     * If disallowed, they must use the calendar picker to enter data. This can be useful
+     * if you are using a more complex date format and wish to disallow the user from
+     * potentially making typing mistakes, although note that it does also disallow
+     * pasting of data.
+     *
+     * @param  bool  $state
+     * @return $this
+     * @see https://editor.datatables.net/reference/field/datetime#Options
+     */
+    public function keyInput(bool $state = true): static
+    {
+        $this->attributes['keyInput'] = $state;
+
+        return $this;
+    }
+
+    /**
+     * The format of the date string that will be shown to the end user in the input element.
+     * The formatting options are defined by Moment.js. If a format is used that is not
+     * ISO8061 (i.e. YYYY-MM-DD) and Moment.js has not been included, Editor will
+     * throw an error stating that Moment.js must be included for custom
+     * formatting to be used.
+     *
+     * @param  string  $format
+     * @return $this
+     * @see https://editor.datatables.net/reference/field/datetime#Options
+     * @see https://momentjs.com/docs/#/displaying/format/
+     */
+    public function displayFormat(string $format = 'YYYY-MM-DD hh:mm a'): static
+    {
+        $this->attributes['displayFormat'] = $format;
+
+        return $this;
+    }
 }
