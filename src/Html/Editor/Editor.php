@@ -293,18 +293,18 @@ class Editor extends Fluent
      */
     public function hiddenOn(string $action, array $fields): static
     {
-        $script = 'function(e, mode, action) {'.PHP_EOL;
-        $script .= "if (action === '{$action}') {".PHP_EOL;
+        $script = 'function(e, mode, action) {';
+        $script .= "if (action === '{$action}') {";
         foreach ($fields as $field) {
-            $script .= "this.hide('{$field}');".PHP_EOL;
+            $script .= "this.hide('{$field}');";
         }
-        $script .= '} else {'.PHP_EOL;
+        $script .= '} else {';
         foreach ($fields as $field) {
-            $script .= "this.show('{$field}');".PHP_EOL;
+            $script .= "this.show('{$field}');";
         }
-        $script .= '}'.PHP_EOL;
-        $script .= 'return true;'.PHP_EOL;
-        $script .= '}'.PHP_EOL;
+        $script .= '}';
+        $script .= 'return true;';
+        $script .= '}';
 
         $this->onPreOpen($script);
 
