@@ -294,13 +294,13 @@ class Editor extends Fluent
     public function hiddenOn(string $action, array $fields): static
     {
         $script = 'function(e, mode, action) {';
-        $script .= "if (action === '{$action}') {";
+        $script .= "if (action === '$action') {";
         foreach ($fields as $field) {
-            $script .= "this.hide('{$field}');";
+            $script .= "this.hide('$field');";
         }
         $script .= '} else {';
         foreach ($fields as $field) {
-            $script .= "this.show('{$field}');";
+            $script .= "this.show('$field');";
         }
         $script .= '}';
         $script .= 'return true;';
