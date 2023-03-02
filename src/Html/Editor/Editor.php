@@ -321,15 +321,4 @@ class Editor extends Fluent
     {
         return $this->hiddenOn('edit', $fields);
     }
-
-    /**
-     * Hide fields on remove action.
-     *
-     * @param  array  $fields
-     * @return $this
-     */
-    public function hiddenOnRemove(array $fields): static
-    {
-        return $this->hiddenOn('remove', $fields);
-    }
 }
