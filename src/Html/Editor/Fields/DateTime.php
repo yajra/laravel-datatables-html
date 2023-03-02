@@ -137,7 +137,6 @@ class DateTime extends Field
      * @param  bool  $state
      * @return $this
      * @see https://editor.datatables.net/reference/field/datetime#Options
-     * @see https://momentjs.com/docs/#/displaying/format/
      */
     public function keyInput(bool $state = true): static
     {
