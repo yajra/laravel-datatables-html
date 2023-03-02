@@ -8,6 +8,13 @@
 
 ## CHANGELOG
 
+### v10.4.0 - 2023-03-02
+
+- feat: add datetime field options #187
+  - wireFormat
+  - keyInput
+  - displayFormat
+
 ### v10.3.1 - 2023-02-20
 
 - fix: too long file name check for column render #185
