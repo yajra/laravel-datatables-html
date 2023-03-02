@@ -8,6 +8,13 @@
 
 ## CHANGELOG
 
+### v10.5.0 - 2023-03-02
+
+- feat: hide/show fields based on editor action #188
+  - hiddenOnCreate
+  - hiddenOnEdit
+  - hiddenOn
+
 ### v10.4.0 - 2023-03-02
 
 - feat: add datetime field options #187
