@@ -24,13 +24,13 @@ class Editor extends Fluent
     use HasEvents;
     use HasAuthorizations;
 
-    public array $events = [];
-
     const DISPLAY_LIGHTBOX = 'lightbox';
     const DISPLAY_ENVELOPE = 'envelope';
     const DISPLAY_BOOTSTRAP = 'bootstrap';
     const DISPLAY_FOUNDATION = 'foundation';
     const DISPLAY_JQUERYUI = 'jqueryui';
+
+    public array $events = [];
 
     /**
      * Editor constructor.
@@ -156,6 +156,18 @@ class Editor extends Fluent
     }
 
     /**
+     * Set Editor's bubble formOptions.
+     *
+     * @param  array  $formOptions
+     * @return $this
+     * @see https://editor.datatables.net/reference/option/formOptions.bubble
+     */
+    public function formOptionsBubble(array $formOptions): static
+    {
+        return $this->formOptions(['bubble' => Helper::castToArray($formOptions)]);
+    }
+
+    /**
      * Set Editor's formOptions.
      *
      * @param  array  $formOptions
@@ -168,18 +180,6 @@ class Editor extends Fluent
         $this->attributes['formOptions'] = $formOptions;
 
         return $this;
-    }
-
-    /**
-     * Set Editor's bubble formOptions.
-     *
-     * @param  array  $formOptions
-     * @return $this
-     * @see https://editor.datatables.net/reference/option/formOptions.bubble
-     */
-    public function formOptionsBubble(array $formOptions): static
-    {
-        return $this->formOptions(['bubble' => Helper::castToArray($formOptions)]);
     }
 
     /**
@@ -271,5 +271,54 @@ class Editor extends Fluent
         unset($parameters['events']);
 
         return Helper::toJsonScript($parameters, $options);
+    }
+
+    /**
+     * Hide fields on create action.
+     *
+     * @param  array  $fields
+     * @return $this
+     */
+    public function hiddenOnCreate(array $fields): static
+    {
+        return $this->hiddenOn('create', $fields);
+    }
+
+    /**
+     * Hide fields on specific action.
+     *
+     * @param  string  $action
+     * @param  array  $fields
+     * @return $this
+     */
+    public function hiddenOn(string $action, array $fields): static
+    {
+        $script = 'function(e, mode, action) {';
+        $script .= "if (action === '$action') {";
+        foreach ($fields as $field) {
+            $script .= "this.hide('$field');";
+        }
+        $script .= '} else {';
+        foreach ($fields as $field) {
+            $script .= "this.show('$field');";
+        }
+        $script .= '}';
+        $script .= 'return true;';
+        $script .= '}';
+
+        $this->onPreOpen($script);
+
+        return $this;
+    }
+
+    /**
+     * Hide fields on edit action.
+     *
+     * @param  array  $fields
+     * @return $this
+     */
+    public function hiddenOnEdit(array $fields): static
+    {
+        return $this->hiddenOn('edit', $fields);
     }
 }

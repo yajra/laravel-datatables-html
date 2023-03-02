@@ -60,6 +60,25 @@ class EditorTest extends TestCase
     }
 
     /** @test */
+    public function it_can_show_hide_fields()
+    {
+        $editor = $this->getEditor();
+
+        $editor->hiddenOnCreate(['name']);
+        $editor->hiddenOnEdit(['email']);
+
+        $this->assertCount(2, $editor->events);
+
+        $this->assertEquals('preOpen', $editor->events[0]['event']);
+        $this->assertStringContainsString("action === 'create'", $editor->events[0]['script']);
+        $this->assertStringContainsString("this.hide('name')", $editor->events[0]['script']);
+
+        $this->assertEquals('preOpen', $editor->events[1]['event']);
+        $this->assertStringContainsString("action === 'edit'", $editor->events[1]['script']);
+        $this->assertStringContainsString("this.hide('email')", $editor->events[1]['script']);
+    }
+
+    /** @test */
     public function it_has_authorizations()
     {
         $editor = Editor::makeIf(true, 'editor')
