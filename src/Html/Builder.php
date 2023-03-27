@@ -104,7 +104,7 @@ class Builder
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes(
-            array_merge($attributes, ['type' => static::$jsType])
+            array_merge($attributes, ['type' => $attributes['type'] ?? static::$jsType])
         );
 
         return new HtmlString("<script{$attributes}>$script</script>");
