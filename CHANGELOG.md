@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.5.1 - 2023-03-28
+
+- fix: scripts attributes not working #189
+
 ### v10.5.0 - 2023-03-02
 
 - feat: hide/show fields based on editor action #188
