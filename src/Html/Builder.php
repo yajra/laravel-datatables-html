@@ -100,11 +100,11 @@ class Builder
      * @param  array  $attributes
      * @return \Illuminate\Support\HtmlString
      */
-    public function scripts(string $script = null, array $attributes = ['type' => 'text/javascript']): HtmlString
+    public function scripts(string $script = null, array $attributes = []): HtmlString
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes(
-            array_merge($attributes, ['type' => static::$jsType])
+            array_merge($attributes, ['type' => $attributes['type'] ?? static::$jsType])
         );
 
         return new HtmlString("<script{$attributes}>$script</script>");
