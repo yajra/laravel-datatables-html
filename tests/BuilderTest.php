@@ -11,6 +11,31 @@ use Yajra\DataTables\Html\Editor\Editor;
 
 class BuilderTest extends TestCase
 {
+     /** @test */
+     public function it_can_get_script_default_type_attribute()
+     {
+         $html = $this->getHtmlBuilder()->scripts()->toHtml();
+ 
+         $this->assertStringContainsString('type="text/javascript"', $html);
+     }
+
+    /** @test */
+     public function it_can_set_script_type_attribute()
+     {
+        $html = $this->getHtmlBuilder()->scripts(attributes: ['type' => 'module'])->toHtml();
+ 
+        $this->assertStringContainsString('type="module"', $html);
+     }
+
+     /** @test */
+    public function it_can_set_multiple_script_attributes()
+    {
+        $html = $this->getHtmlBuilder()->scripts(attributes: ['prop1' => 'val1', 'prop2' => 'val2'])->toHtml();
+
+        $this->assertStringContainsString('prop1="val1"', $html);
+        $this->assertStringContainsString('prop2="val2"', $html);
+    }
+
     /** @test */
     public function it_can_use_vitejs_module_script()
     {
