@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.5.2 - 2023-03-31
+
+- fix: backward compatibility with FormOptions class #190
+
 ### v10.5.1 - 2023-03-28
 
 - fix: scripts attributes not working #189
