@@ -198,13 +198,18 @@ class Builder
         $htmlAttr = $this->html->attributes($this->tableAttributes);
 
         $tableHtml = '<table'.$htmlAttr.'>';
-        $searchHtml = $drawSearch ? '<tr class="search-filter">'.implode('',
-                $this->compileTableSearchHeaders()).'</tr>' : '';
-        $tableHtml .= '<thead><tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
+        $searchHtml = $drawSearch
+                ? '<tr class="search-filter">'.implode('', $this->compileTableSearchHeaders()).'</tr>'
+                : '';
+
+        $tableHtml .= '<thead'.($this->theadClass ?? '').'>';
+        $tableHtml .= '<tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
+
         if ($drawFooter) {
             $tf = $this->compileTableFooter();
             $tableHtml .= '<tfoot><tr>'.implode('', $tf).'</tr></tfoot>';
         }
+
         $tableHtml .= '</table>';
 
         return new HtmlString($tableHtml);
