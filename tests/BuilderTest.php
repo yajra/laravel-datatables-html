@@ -15,7 +15,7 @@ class BuilderTest extends TestCase
      public function it_can_get_script_default_type_attribute()
      {
          $html = $this->getHtmlBuilder()->scripts()->toHtml();
- 
+
          $this->assertStringContainsString('type="text/javascript"', $html);
      }
 
@@ -23,7 +23,7 @@ class BuilderTest extends TestCase
      public function it_can_set_script_type_attribute()
      {
         $html = $this->getHtmlBuilder()->scripts(attributes: ['type' => 'module'])->toHtml();
- 
+
         $this->assertStringContainsString('type="module"', $html);
      }
 
@@ -267,6 +267,9 @@ class BuilderTest extends TestCase
 
         $this->assertInstanceOf(HtmlString::class, $builder->table());
         $this->assertEquals('<table class="table" id="my-table"><thead><tr></tr></thead></table>', $builder->table()->toHtml());
+
+        $builder->setTableHeadClass('thead-dark');
+        $this->assertEquals('<table class="table" id="my-table"><thead class="thead-dark"><tr></tr></thead></table>', $builder->table()->toHtml());
     }
 
     /** @test */
