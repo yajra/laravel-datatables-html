@@ -158,11 +158,11 @@ class Editor extends Fluent
     /**
      * Set Editor's bubble formOptions.
      *
-     * @param  array  $formOptions
+     * @param  array|FormOptions  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.bubble
      */
-    public function formOptionsBubble(array $formOptions): static
+    public function formOptionsBubble(array|FormOptions $formOptions): static
     {
         return $this->formOptions(['bubble' => Helper::castToArray($formOptions)]);
     }
@@ -170,7 +170,7 @@ class Editor extends Fluent
     /**
      * Set Editor's formOptions.
      *
-     * @param  array  $formOptions
+     * @param  array<array|\Yajra\DataTables\Html\Editor\FormOptions>  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions
      * @see https://editor.datatables.net/reference/type/form-options
@@ -185,11 +185,11 @@ class Editor extends Fluent
     /**
      * Set Editor's inline formOptions.
      *
-     * @param  array  $formOptions
+     * @param  array|FormOptions  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.inline
      */
-    public function formOptionsInline(array $formOptions): static
+    public function formOptionsInline(array|FormOptions $formOptions): static
     {
         return $this->formOptions(['inline' => Helper::castToArray($formOptions)]);
     }
@@ -197,11 +197,11 @@ class Editor extends Fluent
     /**
      * Set Editor's main formOptions.
      *
-     * @param  array  $formOptions
+     * @param  array|FormOptions  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions.main
      */
-    public function formOptionsMain(array $formOptions): static
+    public function formOptionsMain(array|FormOptions $formOptions): static
     {
         return $this->formOptions(['main' => Helper::castToArray($formOptions)]);
     }
