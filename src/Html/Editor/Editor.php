@@ -170,7 +170,7 @@ class Editor extends Fluent
     /**
      * Set Editor's formOptions.
      *
-     * @param  array<array|\Yajra\DataTables\Html\Editor\FormOptions>  $formOptions
+     * @param  array  $formOptions
      * @return $this
      * @see https://editor.datatables.net/reference/option/formOptions
      * @see https://editor.datatables.net/reference/type/form-options
