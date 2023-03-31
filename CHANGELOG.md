@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v10.6.0 - 2023-03-31
+
+- feat: thead class builder #191
+- fix: #169 
+- fix: [yajra/laravel-datatables#2706](https://github.com/yajra/laravel-datatables/issues/2706)
+
 ### v10.5.2 - 2023-03-31
 
 - fix: backward compatibility with FormOptions class #190
