@@ -149,7 +149,7 @@ class Button extends Fluent implements Arrayable
      * @return $this
      * @see https://editor.datatables.net/reference/button
      */
-    public function editor(string $value): static
+    public function editor(string $value = 'editor'): static
     {
         $this->attributes['editor'] = $value;
 
