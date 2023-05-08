@@ -494,7 +494,7 @@ class Column extends Fluent
     /**
      * Set Callback function to render column for Print + Export
      *
-     * @param  function  $callback
+     * @param  callable  $callback
      * @return $this
 
      */
