@@ -124,7 +124,7 @@ class Field extends Fluent
     /**
      * Get options from a Enum::cases().
      *
-     * @param  array|Arrayable  $options
+     * @param array|Arrayable $cases
      * @return $this
      */
     public function enumOptions(array|Arrayable $cases): static
