@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.7.0 - 2023-06-08
+
+- feat: new method for enum options #196
+
 ### v10.6.0 - 2023-03-31
 
 - feat: thead class builder #191
