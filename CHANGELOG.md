@@ -8,6 +8,12 @@
 
 ## CHANGELOG
 
+### v10.8.0 - 2023-07-31
+
+- fix: Mixed Content problem with updating minifiedAjax method and get current url based on http or https scheme #186
+- fix: #194
+- feat: add exportRender method #195
+
 ### v10.7.0 - 2023-06-08
 
 - feat: new method for enum options #196
