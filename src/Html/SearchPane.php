@@ -10,6 +10,11 @@ use Yajra\DataTables\Html\Editor\Fields\Options;
 
 class SearchPane extends Fluent
 {
+    public function __construct($attributes = [])
+    {
+        parent::__construct(['show' => true] + $attributes);
+    }
+
     /**
      * @param  array  $options
      * @return static
