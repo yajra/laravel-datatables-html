@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.8.2 - 2023-10-02
+
+- fix: show searchPanes by default #205
+
 ### v10.8.1 - 2023-08-16
 
 - Revert "fix: Mixed Content problem with updating minifiedAjax method and get current url based on http or https scheme" #202
