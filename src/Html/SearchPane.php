@@ -333,4 +333,16 @@ class SearchPane extends Fluent
 
         return $this;
     }
+
+    /**
+     * @param  boolean  $value
+     * @return $this
+     * @see https://datatables.net/reference/option/searchPanes.initCollapsed
+     */
+    public function initCollapsed(bool $value = false): static
+    {
+        $this->attributes['initCollapsed'] = $value;
+
+        return $this;
+    }
 }
