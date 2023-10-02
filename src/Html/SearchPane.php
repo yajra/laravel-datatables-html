@@ -223,9 +223,7 @@ class SearchPane extends Fluent
      */
     public function modelOptions(EloquentBuilder|string $model, string $value, string $key = 'id'): SearchPane
     {
-        return $this->options(
-            Options::model($model, $value, $key)
-        );
+        return $this->options(Options::model($model, $value, $key));
     }
 
     /**
@@ -261,9 +259,7 @@ class SearchPane extends Fluent
         Closure $callback = null,
         string $connection = null
     ): static {
-        return $this->options(
-            Options::table($table, $value, $key, $callback, $connection)
-        );
+        return $this->options(Options::table($table, $value, $key, $callback, $connection));
     }
 
     /**
