@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v10.9.0 - 2023-10-02
+
+- feat: add dtsp collapse option setter #206
+- feat: add initCollapsed option setter #207
+
 ### v10.8.2 - 2023-10-02
 
 - fix: show searchPanes by default #205
