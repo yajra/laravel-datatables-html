@@ -89,7 +89,7 @@ class HtmlBuilder
             }
         }
 
-        return count($html) > 0 ? ' '.implode(' ', $html) : '';
+        return ! empty($html) ? ' '.implode(' ', $html) : '';
     }
 
     /**
@@ -119,7 +119,7 @@ class HtmlBuilder
             return 'class="'.implode(' ', $value).'"';
         }
 
-        if (! is_null($value)) {
+        if (is_bool($value) || is_float($value) || is_int($value) || is_resource($value) || is_string($value)) {
             return $key.'="'.e(strval($value), false).'"';
         }
 
@@ -226,7 +226,9 @@ class HtmlBuilder
             $title = $this->entities($title);
         }
 
-        return $this->toHtmlString('<a href="'.$this->entities($url).'"'.$this->attributes($attributes).'>'.$title.'</a>');
+        return $this->toHtmlString(
+            '<a href="'.$this->entities($url).'"'.$this->attributes($attributes).'>'.$title.'</a>'
+        );
     }
 
     /**
@@ -430,7 +432,7 @@ class HtmlBuilder
     {
         $html = '';
 
-        if (count($list) === 0) {
+        if (empty($list)) {
             return $html;
         }
 
@@ -459,8 +461,18 @@ class HtmlBuilder
         if (is_array($value)) {
             return $this->nestedListing($key, $type, $value);
         } else {
-            return '<li>'.e(strval($value), false).'</li>';
+            if (is_bool($value)
+                || is_float($value)
+                || is_int($value)
+                || is_resource($value)
+                || is_string($value)
+                || is_null($value)
+            ) {
+                return '<li>'.e(strval($value), false).'</li>';
+            }
         }
+
+        return '<li>'.$value.'</li>';
     }
 
     /**
@@ -510,7 +522,7 @@ class HtmlBuilder
 
             $html .= "<dt>$key</dt>";
 
-            foreach ($value as $v_key => $v_value) {
+            foreach ($value as $v_value) {
                 $html .= "<dd>$v_value</dd>";
             }
         }
@@ -549,6 +561,18 @@ class HtmlBuilder
     {
         $content = is_array($content) ? implode('', $content) : $content;
 
-        return $this->toHtmlString('<'.$tag.$this->attributes($attributes).'>'.$this->toHtmlString(strval($content)).'</'.$tag.'>');
+        if (is_bool($content)
+            || is_float($content)
+            || is_int($content)
+            || is_resource($content)
+            || is_string($content)
+            || is_null($content)
+        ) {
+            return $this->toHtmlString(
+                '<'.$tag.$this->attributes($attributes).'>'.$this->toHtmlString(strval($content)).'</'.$tag.'>'
+            );
+        }
+
+        return $this->toHtmlString('<'.$tag.$this->attributes($attributes).'>'.$content.'</'.$tag.'>');
     }
 }
