@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v10.9.1 - 2023-10-04
+
+- fix: add missing Arrayable param #208
+- fix phpstan error: Parameter #1 $value of method Yajra\DataTables\Html\Builder::searchPanes() expects array|bool|(callable(): mixed), Yajra\DataTables\Html\SearchPane given.
+
 ### v10.9.0 - 2023-10-02
 
 - feat: add dtsp collapse option setter #206
