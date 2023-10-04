@@ -89,7 +89,7 @@ class HtmlBuilder
             }
         }
 
-        return count($html) > 0 ? ' '.implode(' ', $html) : '';
+        return ! empty($html) ? ' '.implode(' ', $html) : '';
     }
 
     /**
@@ -226,7 +226,9 @@ class HtmlBuilder
             $title = $this->entities($title);
         }
 
-        return $this->toHtmlString('<a href="'.$this->entities($url).'"'.$this->attributes($attributes).'>'.$title.'</a>');
+        return $this->toHtmlString(
+            '<a href="'.$this->entities($url).'"'.$this->attributes($attributes).'>'.$title.'</a>'
+        );
     }
 
     /**
@@ -430,7 +432,7 @@ class HtmlBuilder
     {
         $html = '';
 
-        if (count($list) === 0) {
+        if (empty($list)) {
             return $html;
         }
 
@@ -520,7 +522,7 @@ class HtmlBuilder
 
             $html .= "<dt>$key</dt>";
 
-            foreach ($value as $v_key => $v_value) {
+            foreach ($value as $v_value) {
                 $html .= "<dd>$v_value</dd>";
             }
         }
