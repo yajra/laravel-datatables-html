@@ -16,7 +16,7 @@ trait SearchPanes
     /**
      * Set searchPane option value.
      *
-     * @param  array|bool|callable  $value
+     * @param  array|Arrayable|bool|callable  $value
      * @return $this
      * @see https://datatables.net/reference/option/searchPanes
      */
