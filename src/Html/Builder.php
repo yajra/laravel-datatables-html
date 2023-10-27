@@ -60,6 +60,11 @@ class Builder
     protected string|array $ajax = '';
 
     /**
+     * @var array
+     */
+    protected array $additionalScripts = [];
+
+    /**
      * @param  Repository  $config
      * @param  Factory  $view
      * @param  HtmlBuilder  $html
@@ -179,7 +184,7 @@ class Builder
 
         $template = $this->template ?: $configTemplate;
 
-        return $this->view->make($template, ['editors' => $this->editors])->render();
+        return $this->view->make($template, ['editors' => $this->editors, 'scripts' => $this->additionalScripts])->render();
     }
 
     /**
@@ -290,5 +295,18 @@ class Builder
         }
 
         return $this->ajax;
+    }
+
+    /**
+     * Add additional scripts to the DataTables JS initialization.
+     *
+     * @param  string  $view
+     * @return $this
+     */
+    public function addScript(string $view): static
+    {
+        $this->additionalScripts[] = $view;
+
+        return $this;
     }
 }
