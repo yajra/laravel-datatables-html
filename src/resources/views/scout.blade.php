@@ -2,7 +2,7 @@ $(function(){
     $('#%1$s').on('xhr.dt', function (e, settings, json, xhr) {
         if (json == null || !('disableOrdering' in json)) return;
 
-        let table = LaravelDataTables[$(this).attr('id')];
+        let table = {{ config('datatables-html.namespace', 'LaravelDataTables') }}[$(this).attr('id')];
         if (json.disableOrdering) {
             table.settings()[0].aoColumns.forEach(function(column) {
                 column.bSortable = false;
