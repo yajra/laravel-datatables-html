@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v10.10.0 - 2023-11-04
+
+- feat: Add optional scout js script #210
+- feat: add script support when using editor #211
+
 ### v10.9.1 - 2023-10-04
 
 - fix: add missing Arrayable param #208
