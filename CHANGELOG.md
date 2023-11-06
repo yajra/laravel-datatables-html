@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.11.0 - 2023-11-06
+
+- feat: add batch remove optimization script (optional) #212
+
 ### v10.10.0 - 2023-11-04
 
 - feat: Add optional scout js script #210
