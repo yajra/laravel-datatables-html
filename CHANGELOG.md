@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v10.12.0 - 2023-12-15
+
+- feat: allow macro on Field #213
+
 ### v10.11.0 - 2023-11-06
 
 - feat: add batch remove optimization script (optional) #212
