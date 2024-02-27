@@ -39,5 +39,9 @@ class HtmlServiceProvider extends ServiceProvider
         $this->app->bind('datatables.html', function () {
             return $this->app->make(Html\Builder::class);
         });
+
+        DataTables::macro('getHtmlBuilder', function (): Html\Builder {
+            return app('datatables.html');
+        });
     }
 }
