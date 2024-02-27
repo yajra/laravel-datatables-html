@@ -131,7 +131,7 @@ class FormOptions extends Fluent
      * @return $this
      * @see https://editor.datatables.net/reference/type/form-options#scope
      */
-    public function scope(string $value = 'row'): static
+    public function formScope(string $value = 'row'): static
     {
         $this->attributes['scope'] = $value;
 

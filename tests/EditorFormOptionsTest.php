@@ -24,7 +24,7 @@ class EditorFormOptionsTest extends TestCase
                 ->submit('submit')
                 ->title('title')
                 ->drawType('drawType')
-                ->scope('scope')
+                ->formScope('scope')
                 ->nest(false)
                 ->buttons([])
                 ->submitTrigger(1)
