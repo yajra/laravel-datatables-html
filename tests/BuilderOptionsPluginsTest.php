@@ -2,13 +2,14 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\SearchPane;
 
 class BuilderOptionsPluginsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_autofill_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -22,13 +23,13 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertFalse($builder->getAttribute('autoFill'));
 
         $builder->autoFillAlwaysAsk()
-                ->autoFillColumns('autoFillColumns')
-                ->autoFillEditor('autoFillEditor')
-                ->autoFillEnable()
-                ->autoFillFocus('autoFillFocus')
-                ->autoFillHorizontal()
-                ->autoFillUpdate()
-                ->autoFillVertical();
+            ->autoFillColumns('autoFillColumns')
+            ->autoFillEditor('autoFillEditor')
+            ->autoFillEnable()
+            ->autoFillFocus('autoFillFocus')
+            ->autoFillHorizontal()
+            ->autoFillUpdate()
+            ->autoFillVertical();
 
         $this->assertTrue($builder->getAutoFill('alwaysAsk'));
         $this->assertEquals('autoFillColumns', $builder->getAutoFill('columns'));
@@ -43,7 +44,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals([1, 2], $builder->getAutoFill('columns'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_buttons_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -63,7 +64,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertCount(2, $builder->getButtons());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_col_reorder_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -73,10 +74,10 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getColReorder());
 
         $builder->colReorderEnable()
-                ->colReorderFixedColumnsLeft(1)
-                ->colReorderFixedColumnsRight(1)
-                ->colReorderOrder([1])
-                ->colReorderRealtime();
+            ->colReorderFixedColumnsLeft(1)
+            ->colReorderFixedColumnsRight(1)
+            ->colReorderOrder([1])
+            ->colReorderRealtime();
 
         $this->assertTrue($builder->getColReorder('enable'));
         $this->assertEquals(1, $builder->getColReorder('fixedColumnsLeft'));
@@ -85,7 +86,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(true, $builder->getColReorder('realtime'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_fixed_columns_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -95,15 +96,15 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getFixedColumns());
 
         $builder->fixedColumnsHeightMatch()
-                ->fixedColumnsLeftColumns()
-                ->fixedColumnsRightColumns();
+            ->fixedColumnsLeftColumns()
+            ->fixedColumnsRightColumns();
 
         $this->assertEquals('semiauto', $builder->getFixedColumns('heightMatch'));
         $this->assertEquals(1, $builder->getFixedColumns('leftColumns'));
         $this->assertEquals(0, $builder->getFixedColumns('rightColumns'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_fixed_header_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -113,9 +114,9 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getFixedHeader());
 
         $builder->fixedHeaderFooter()
-                ->fixedHeaderFooterOffset()
-                ->fixedHeaderHeader()
-                ->fixedHeaderHeaderOffset();
+            ->fixedHeaderFooterOffset()
+            ->fixedHeaderHeader()
+            ->fixedHeaderHeaderOffset();
 
         $this->assertEquals(true, $builder->getFixedHeader('footer'));
         $this->assertEquals(0, $builder->getFixedHeader('offset'));
@@ -123,7 +124,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(0, $builder->getFixedHeader('headerOffset'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_keys_plugin()
     {
 
@@ -134,17 +135,17 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getKeys());
 
         $builder->keysBlurable()
-                ->keysClassName()
-                ->keysClipboard()
-                ->keysClipboardOrthogonal()
-                ->keysColumns('name')
-                ->keysEditAutoSelect()
-                ->keysEditOnFocus()
-                ->keysEditor('editor')
-                ->keysEditorKeys()
-                ->keysFocus(':eq(0)')
-                ->keysKeys(["charCodeAt(0)"])
-                ->keysTabIndex(1);
+            ->keysClassName()
+            ->keysClipboard()
+            ->keysClipboardOrthogonal()
+            ->keysColumns('name')
+            ->keysEditAutoSelect()
+            ->keysEditOnFocus()
+            ->keysEditor('editor')
+            ->keysEditorKeys()
+            ->keysFocus(':eq(0)')
+            ->keysKeys(['charCodeAt(0)'])
+            ->keysTabIndex(1);
 
         $this->assertEquals(true, $builder->getKeys('blurable'));
         $this->assertEquals('focus', $builder->getKeys('className'));
@@ -156,11 +157,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals('editor', $builder->getKeys('editor'));
         $this->assertEquals('navigation-only', $builder->getKeys('editorKeys'));
         $this->assertEquals(':eq(0)', $builder->getKeys('focus'));
-        $this->assertEquals(["charCodeAt(0)"], $builder->getKeys('keys'));
+        $this->assertEquals(['charCodeAt(0)'], $builder->getKeys('keys'));
         $this->assertEquals(1, $builder->getKeys('tabIndex'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_responsive_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -170,11 +171,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getResponsive());
 
         $builder->responsiveBreakpoints([1])
-                ->responsiveDetailsDisplay('display')
-                ->responsiveDetailsRenderer('renderer')
-                ->responsiveDetailsTarget('target')
-                ->responsiveDetailsType('type')
-                ->responsiveOrthogonal('orthogonal');
+            ->responsiveDetailsDisplay('display')
+            ->responsiveDetailsRenderer('renderer')
+            ->responsiveDetailsTarget('target')
+            ->responsiveDetailsType('type')
+            ->responsiveOrthogonal('orthogonal');
         $this->assertEquals([1], $builder->getResponsive('breakpoints'));
         $this->assertEquals('display', $builder->getResponsive('details')['display']);
         $this->assertEquals('renderer', $builder->getResponsive('details')['renderer']);
@@ -183,7 +184,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals('orthogonal', $builder->getResponsive('orthogonal'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_row_group_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -193,12 +194,12 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getRowGroup());
 
         $builder->rowGroupDataSrc([1])
-                ->rowGroupEmptyDataGroup()
-                ->rowGroupEnable()
-                ->rowGroupEndClassName()
-                ->rowGroupEndRender('fn')
-                ->rowGroupStartClassName()
-                ->rowGroupStartRender();
+            ->rowGroupEmptyDataGroup()
+            ->rowGroupEnable()
+            ->rowGroupEndClassName()
+            ->rowGroupEndRender('fn')
+            ->rowGroupStartClassName()
+            ->rowGroupStartRender();
 
         $this->assertEquals([1], $builder->getRowGroup('dataSrc'));
         $this->assertEquals('No Group', $builder->getRowGroup('emptyDataGroup'));
@@ -209,7 +210,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(null, $builder->getRowGroup('startRender'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_row_reorder_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -219,12 +220,12 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getRowReorder());
 
         $builder->rowReorderDataSrc([1])
-                ->rowReorderEditor('editor')
-                ->rowReorderEnable()
-                ->rowReorderFormOptions(['main' => []])
-                ->rowReorderSelector()
-                ->rowReorderSnapX()
-                ->rowReorderUpdate();
+            ->rowReorderEditor('editor')
+            ->rowReorderEnable()
+            ->rowReorderFormOptions(['main' => []])
+            ->rowReorderSelector()
+            ->rowReorderSnapX()
+            ->rowReorderUpdate();
 
         $this->assertEquals([1], $builder->getRowReorder('dataSrc'));
         $this->assertEquals('editor', $builder->getRowReorder('editor'));
@@ -235,7 +236,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(true, $builder->getRowReorder('update'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_scroller_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -245,10 +246,10 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getScroller());
 
         $builder->scrollerBoundaryScale()
-                ->scrollerDisplayBuffer()
-                ->scrollerLoadingIndicator()
-                ->scrollerRowHeight()
-                ->scrollerServerWait();
+            ->scrollerDisplayBuffer()
+            ->scrollerLoadingIndicator()
+            ->scrollerRowHeight()
+            ->scrollerServerWait();
 
         $this->assertEquals(0.5, $builder->getScroller('boundaryScale'));
         $this->assertEquals(9, $builder->getScroller('displayBuffer'));
@@ -257,7 +258,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals(200, $builder->getScroller('serverWait'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_search_panes_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -272,16 +273,14 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->searchPanes(['hide' => true]);
         $this->assertEquals(['hide' => true], $builder->getAttribute('searchPanes'));
 
-        $builder->searchPanes(function () {
-            return ['show' => true];
-        });
+        $builder->searchPanes(fn () => ['show' => true]);
         $this->assertEquals(['show' => true], $builder->getAttribute('searchPanes'));
 
         $builder->searchPanes(SearchPane::make()->show()->cascadePanes());
         $this->assertEquals(['show' => true, 'cascadePanes' => true], $builder->getAttribute('searchPanes'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_select_plugin()
     {
         $builder = $this->getHtmlBuilder();
@@ -291,11 +290,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getSelect());
 
         $builder->selectBlurable()
-                ->selectClassName()
-                ->selectInfo()
-                ->selectItems()
-                ->selectSelector()
-                ->selectStyle();
+            ->selectClassName()
+            ->selectInfo()
+            ->selectItems()
+            ->selectSelector()
+            ->selectStyle();
 
         $this->assertEquals(true, $builder->getSelect('blurable'));
         $this->assertEquals('selected', $builder->getSelect('className'));
@@ -331,5 +330,4 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->selectStyleApi();
         $this->assertEquals(Builder::SELECT_STYLE_API, $builder->getSelect('style'));
     }
-
 }

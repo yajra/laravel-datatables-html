@@ -17,8 +17,6 @@ class Options extends Collection
 {
     /**
      * Return a Yes/No options.
-     *
-     * @return static
      */
     public static function yesNo(): static
     {
@@ -34,9 +32,6 @@ class Options extends Collection
      * Get options from a model.
      *
      * @param  class-string<Model>|\Illuminate\Database\Eloquent\Builder  $model
-     * @param  string  $value
-     * @param  string  $key
-     * @return Collection
      */
     public static function model(string|EloquentBuilder $model, string $value, string $key = 'id'): Collection
     {
@@ -44,48 +39,35 @@ class Options extends Collection
             $model = $model::query();
         }
 
-        return $model->get()->map(function ($model) use ($value, $key) {
-            return [
-                'value' => $model->{$key},
-                'label' => $model->{$value},
-            ];
-        });
+        return $model->get()->map(fn ($model) => [
+            'value' => $model->{$key},
+            'label' => $model->{$value},
+        ]);
     }
 
     /**
      * Get options from a table.
-     *
-     * @param  \Closure|\Illuminate\Database\Query\Builder|string  $table
-     * @param  string  $value
-     * @param  string  $key
-     * @param  \Closure|null  $callback
-     * @param  string|null  $connection
-     * @return Collection
      */
     public static function table(
         Closure|Builder|string $table,
         string $value,
         string $key = 'id',
-        Closure $callback = null,
-        string $connection = null
+        ?Closure $callback = null,
+        ?string $connection = null
     ): Collection {
         $query = DB::connection($connection)
-                   ->table($table)
-                   ->select("$value as label", "$key as value");
+            ->table($table)
+            ->select("$value as label", "$key as value");
 
         if (is_callable($callback)) {
             $callback($query);
         }
 
-        return $query->get()->map(function ($row) {
-            return (array) $row;
-        });
+        return $query->get()->map(fn ($row) => (array) $row);
     }
 
     /**
      * Return a True/False options.
-     *
-     * @return static
      */
     public static function trueFalse(): static
     {
@@ -99,10 +81,6 @@ class Options extends Collection
 
     /**
      * Push an item onto the end of the collection.
-     *
-     * @param  string  $value
-     * @param  int|string  $key
-     * @return static
      */
     public function append(string $value, int|string $key): static
     {
@@ -114,7 +92,6 @@ class Options extends Collection
      *
      * @param  TValue  $value
      * @param  TKey  $key
-     * @return static
      */
     public function prepend($value, $key = null): static
     {

@@ -8,8 +8,6 @@ class HtmlServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -33,15 +31,13 @@ class HtmlServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/resources/config/config.php', 'datatables-html');
 
-        $this->app->bind('datatables.html', function () {
-            return $this->app->make(Html\Builder::class);
-        });
+        $this->app->bind('datatables.html', fn () => $this->app->make(Html\Builder::class));
+
+        DataTables::macro('getHtmlBuilder', fn (): Html\Builder => app('datatables.html'));
     }
 }

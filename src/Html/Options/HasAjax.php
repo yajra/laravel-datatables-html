@@ -15,7 +15,6 @@ trait HasAjax
     /**
      * Setup "ajax" parameter with POST method.
      *
-     * @param  array|string  $attributes
      * @return $this
      */
     public function postAjax(array|string $attributes = ''): static
@@ -34,7 +33,6 @@ trait HasAjax
     /**
      * Setup ajax parameter.
      *
-     * @param  array|string  $attributes
      * @return $this
      */
     public function ajax(array|string $attributes = ''): static
@@ -45,8 +43,6 @@ trait HasAjax
     }
 
     /**
-     * @param  string  $url
-     * @param  string  $formSelector
      * @return $this
      */
     public function postAjaxWithForm(string $url, string $formSelector): static
@@ -63,10 +59,6 @@ trait HasAjax
         return $this->ajax($attributes);
     }
 
-    /**
-     * @param  string  $formSelector
-     * @return string
-     */
     protected function getScriptWithFormSelector(string $formSelector): string
     {
         return <<<CDATA
@@ -87,9 +79,8 @@ CDATA;
     /**
      * Setup ajax parameter for datatables pipeline plugin.
      *
-     * @param  string  $url
-     * @param  int  $pages
      * @return $this
+     *
      * @see https://datatables.net/examples/server_side/pipeline.html
      */
     public function pipeline(string $url, int $pages = 5): static
@@ -99,8 +90,6 @@ CDATA;
 
     /**
      * Get ajax url.
-     *
-     * @return string
      */
     public function getAjaxUrl(): string
     {
@@ -114,8 +103,6 @@ CDATA;
     /**
      * Set ajax url with data added from form.
      *
-     * @param  string  $url
-     * @param  string  $formSelector
      * @return $this
      */
     public function ajaxWithForm(string $url, string $formSelector): static
@@ -127,15 +114,11 @@ CDATA;
      * Minify ajax url generated when using get request
      * by deleting unnecessary url params.
      *
-     * @param  string  $url
-     * @param  string|null  $script
-     * @param  array  $data
-     * @param  array  $ajaxParameters
      * @return $this
      */
     public function minifiedAjax(
         string $url = '',
-        string $script = null,
+        ?string $script = null,
         array $data = [],
         array $ajaxParameters = []
     ): static {
@@ -174,9 +157,6 @@ CDATA;
 
     /**
      * Make a data script to be appended on ajax request of dataTables.
-     *
-     * @param  array  $data
-     * @return string
      */
     protected function makeDataScript(array $data): string
     {

@@ -11,9 +11,6 @@ class Button extends Fluent implements Arrayable
 
     /**
      * Make a new button instance.
-     *
-     * @param  array|string  $options
-     * @return static
      */
     public static function make(array|string $options = []): static
     {
@@ -26,9 +23,6 @@ class Button extends Fluent implements Arrayable
 
     /**
      * Make a raw button that does not extend anything.
-     *
-     * @param  array|string  $options
-     * @return static
      */
     public static function raw(array|string $options = []): static
     {
@@ -42,8 +36,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set attr option value.
      *
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.attr
      */
     public function attr(array $value): static
@@ -56,8 +50,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set available option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.available
      */
     public function available(string $value): static
@@ -73,9 +67,6 @@ class Button extends Fluent implements Arrayable
 
     /**
      * Check if a given value is a function.
-     *
-     * @param  string  $value
-     * @return bool
      */
     protected function isFunction(string $value): bool
     {
@@ -85,8 +76,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set enabled option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.enabled
      */
     public function enabled(bool $value = true): static
@@ -99,8 +90,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set init option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.init
      */
     public function init(string $value): static
@@ -117,8 +108,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set key option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.key
      */
     public function key(array|string $value): static
@@ -131,8 +122,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set extend option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.extend
      */
     public function extend(string $value): static
@@ -145,8 +136,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set editor option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://editor.datatables.net/reference/button
      */
     public function editor(string $value): static
@@ -159,8 +150,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set buttons option value.
      *
-     * @param  array  $buttons
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons
      */
     public function buttons(array $buttons): static
@@ -177,8 +168,8 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * @param  array  $buttons
      * @return $this
+     *
      * @see https://editor.datatables.net/examples/api/cancelButton
      */
     public function formButtons(array $buttons): static
@@ -195,8 +186,8 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * @param  string  $message
      * @return $this
+     *
      * @see https://editor.datatables.net/examples/api/removeMessage
      * @see https://editor.datatables.net/reference/button/create
      * @see https://editor.datatables.net/reference/button/edit
@@ -210,8 +201,8 @@ class Button extends Fluent implements Arrayable
     }
 
     /**
-     * @param  string  $title
      * @return $this
+     *
      * @see https://editor.datatables.net/reference/button/create
      * @see https://editor.datatables.net/reference/button/edit
      * @see https://editor.datatables.net/reference/button/remove
@@ -226,8 +217,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set className option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.className
      */
     public function className(string $value): static
@@ -240,8 +231,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set destroy option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.destroy
      */
     public function destroy(string $value): static
@@ -258,8 +249,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set customize option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/button/excelHtml5
      */
     public function customize(string $value): static
@@ -272,7 +263,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Append a class name to column.
      *
-     * @param  string  $class
      * @return $this
      */
     public function addClass(string $class): static
@@ -289,8 +279,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set text option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.text
      */
     public function text(string $value): static
@@ -303,8 +293,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set titleAttr option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.titleAttr
      */
     public function titleAttr(string $value): static
@@ -317,8 +307,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set name option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.name
      */
     public function name(string $value): static
@@ -331,8 +321,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set namespace option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.namespace
      */
     public function namespace(string $value): static
@@ -345,8 +335,8 @@ class Button extends Fluent implements Arrayable
     /**
      * Set tag option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/buttons.buttons.tag
      */
     public function tag(string $value): static
@@ -359,7 +349,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Set columns option value.
      *
-     * @param  array|string  $value
      * @return $this
      */
     public function columns(array|string $value): static
@@ -372,7 +361,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Set exportOptions option value.
      *
-     * @param  array|string  $value
      * @return $this
      */
     public function exportOptions(array|string $value): static
@@ -395,7 +383,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Set action option value.
      *
-     * @param  string  $value
      * @return $this
      */
     public function action(string $value): static
@@ -412,7 +399,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Set editor class action handler.
      *
-     * @param  string  $action
      * @return $this
      */
     public function actionHandler(string $action): static
@@ -433,7 +419,6 @@ class Button extends Fluent implements Arrayable
     /**
      * Set button alignment.
      *
-     * @param  string  $align
      * @return $this
      */
     public function align(string $align = 'button-left'): static

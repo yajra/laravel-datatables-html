@@ -2,12 +2,13 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields\Text;
 
 class EditorTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_create_an_editor()
     {
         $editor = $this->getEditor();
@@ -32,16 +33,12 @@ class EditorTest extends TestCase
         $this->assertEquals('DT_RowId', $editor->idSrc);
     }
 
-    /**
-     * @param  string  $instance
-     * @return \Yajra\DataTables\Html\Editor\Editor
-     */
     protected function getEditor(string $instance = 'editor'): Editor
     {
         return Editor::make($instance);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_have_events()
     {
         $editor = $this->getEditor();
@@ -59,7 +56,7 @@ class EditorTest extends TestCase
         $this->assertEquals($event, $editor->events[0]);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_show_hide_fields()
     {
         $editor = $this->getEditor();
@@ -78,13 +75,13 @@ class EditorTest extends TestCase
         $this->assertStringContainsString("this.hide('email')", $editor->events[1]['script']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_authorizations()
     {
         $editor = Editor::makeIf(true, 'editor')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->fields([
+                Text::make('name'),
+            ]);
         $this->assertInstanceOf(Editor::class, $editor);
         $this->assertEquals(true, $editor->isAuthorized());
         $this->assertEquals([
@@ -95,9 +92,9 @@ class EditorTest extends TestCase
         ], $editor->toArray());
 
         $editor = Editor::makeIf(false, 'editor')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->fields([
+                Text::make('name'),
+            ]);
         $this->assertInstanceOf(Editor::class, $editor);
         $this->assertEquals(false, $editor->isAuthorized());
         $this->assertCount(1, $editor->fields);
@@ -114,14 +111,14 @@ class EditorTest extends TestCase
         $this->assertEquals([], $editor->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_serialized_to_array()
     {
         $editor = Editor::make()
-                        ->ajax('')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->ajax('')
+            ->fields([
+                Text::make('name'),
+            ]);
 
         $this->assertEquals([
             'instance' => 'editor',
@@ -132,28 +129,28 @@ class EditorTest extends TestCase
         ], $editor->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_serialized_to_json_string()
     {
         $editor = Editor::make()
-                        ->ajax('')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->ajax('')
+            ->fields([
+                Text::make('name'),
+            ]);
 
         $expected = '{"instance":"editor","ajax":"","fields":[{"name":"name","label":"Name","type":"text"}]}';
         $this->assertEquals($expected, $editor->toJson());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_form_options()
     {
         $editor = Editor::make()
-                        ->formOptions([
-                            'main' => [
-                                'esc' => true,
-                            ],
-                        ]);
+            ->formOptions([
+                'main' => [
+                    'esc' => true,
+                ],
+            ]);
 
         $this->assertEquals([
             'main' => [
@@ -171,7 +168,7 @@ class EditorTest extends TestCase
         $this->assertEquals(['esc' => true], $editor->formOptions['inline']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_display_constants()
     {
         $editor = Editor::make()->display(Editor::DISPLAY_BOOTSTRAP);
@@ -190,7 +187,7 @@ class EditorTest extends TestCase
         $this->assertEquals('lightbox', $editor->display);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_scripts()
     {
         $editor = Editor::make()->scripts('fn');

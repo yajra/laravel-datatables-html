@@ -14,8 +14,8 @@ trait KeyTable
     /**
      * Set keys blurable option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.blurable
      */
     public function keysBlurable(bool $value = true): static
@@ -26,8 +26,8 @@ trait KeyTable
     /**
      * Set keys option value.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys
      */
     public function keys(array|bool $value = true): static
@@ -38,8 +38,8 @@ trait KeyTable
     /**
      * Set keys className option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.className
      */
     public function keysClassName(string $value = 'focus'): static
@@ -50,8 +50,8 @@ trait KeyTable
     /**
      * Set keys clipboard option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.clipboard
      */
     public function keysClipboard(bool $value = true): static
@@ -62,8 +62,8 @@ trait KeyTable
     /**
      * Set keys clipboardOrthogonal option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.clipboardOrthogonal
      */
     public function keysClipboardOrthogonal(string $value = 'display'): static
@@ -74,8 +74,8 @@ trait KeyTable
     /**
      * Set keys columns option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.columns
      */
     public function keysColumns(array|string $value): static
@@ -86,8 +86,8 @@ trait KeyTable
     /**
      * Set keys editAutoSelect option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.editAutoSelect
      */
     public function keysEditAutoSelect(bool $value = true): static
@@ -98,8 +98,8 @@ trait KeyTable
     /**
      * Set keys editOnFocus option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.editOnFocus
      */
     public function keysEditOnFocus(bool $value = true): static
@@ -110,8 +110,8 @@ trait KeyTable
     /**
      * Set keys editor option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.editor
      */
     public function keysEditor(string $value): static
@@ -122,8 +122,8 @@ trait KeyTable
     /**
      * Set keys editorKeys option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.editorKeys
      */
     public function keysEditorKeys(string $value = 'navigation-only'): static
@@ -134,8 +134,8 @@ trait KeyTable
     /**
      * Set keys focus option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.focus
      */
     public function keysFocus(string $value): static
@@ -146,11 +146,11 @@ trait KeyTable
     /**
      * Set key's keys option value.
      *
-     * @param  array|null  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.keys
      */
-    public function keysKeys(array $value = null): static
+    public function keysKeys(?array $value = null): static
     {
         return $this->keys(['keys' => $value]);
     }
@@ -158,8 +158,8 @@ trait KeyTable
     /**
      * Set keys tabIndex option value.
      *
-     * @param  int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/keys.tabIndex
      */
     public function keysTabIndex(int $value): static
@@ -167,11 +167,7 @@ trait KeyTable
         return $this->keys(['tabIndex' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getKeys(string $key = null): mixed
+    public function getKeys(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['keys'] ?? true;

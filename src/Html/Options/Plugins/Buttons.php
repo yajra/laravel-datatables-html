@@ -18,6 +18,7 @@ trait Buttons
      *
      * @param  array|mixed  ...$buttons
      * @return $this
+     *
      * @see https://www.datatables.net/extensions/buttons/
      */
     public function buttons(...$buttons): static
@@ -36,7 +37,6 @@ trait Buttons
     }
 
     /**
-     * @param  \Yajra\DataTables\Html\Button  $button
      * @return $this
      */
     public function addButton(Button $button): static
@@ -48,8 +48,6 @@ trait Buttons
 
     /**
      * Get builder buttons.
-     *
-     * @return array
      */
     public function getButtons(): array
     {

@@ -14,8 +14,8 @@ trait Responsive
     /**
      * Set responsive breakpoints option value.
      *
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.breakpoints
      */
     public function responsiveBreakpoints(array $value): static
@@ -26,8 +26,8 @@ trait Responsive
     /**
      * Set responsive option value.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive
      */
     public function responsive(array|bool $value = true): static
@@ -38,8 +38,8 @@ trait Responsive
     /**
      * Set responsive details display option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.details.display
      */
     public function responsiveDetailsDisplay(array|string $value): static
@@ -50,8 +50,8 @@ trait Responsive
     /**
      * Set responsive details option value.
      *
-     * @param  bool|array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.details
      */
     public function responsiveDetails(bool|array $value): static
@@ -69,8 +69,8 @@ trait Responsive
     /**
      * Set responsive details renderer option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.details.renderer
      */
     public function responsiveDetailsRenderer(string $value): static
@@ -81,8 +81,8 @@ trait Responsive
     /**
      * Set responsive details target option value.
      *
-     * @param  int|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.details.target
      */
     public function responsiveDetailsTarget(int|string $value): static
@@ -93,8 +93,8 @@ trait Responsive
     /**
      * Set responsive details type option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.details.type
      */
     public function responsiveDetailsType(string $value): static
@@ -105,8 +105,8 @@ trait Responsive
     /**
      * Set responsive orthogonal option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/responsive.orthogonal
      */
     public function responsiveOrthogonal(string $value): static
@@ -114,11 +114,7 @@ trait Responsive
         return $this->responsive(['orthogonal' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getResponsive(string $key = null): mixed
+    public function getResponsive(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['responsive'] ?? true;

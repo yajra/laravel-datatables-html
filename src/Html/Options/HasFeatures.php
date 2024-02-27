@@ -12,8 +12,8 @@ trait HasFeatures
     /**
      * Set autoWidth option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoWidth
      */
     public function autoWidth(bool $value = true): static
@@ -26,8 +26,8 @@ trait HasFeatures
     /**
      * Set deferRender option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/deferRender
      */
     public function deferRender(bool $value = true): static
@@ -40,8 +40,8 @@ trait HasFeatures
     /**
      * Set info option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/info
      */
     public function info(bool $value = true): static
@@ -54,8 +54,8 @@ trait HasFeatures
     /**
      * Set lengthChange option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/lengthChange
      */
     public function lengthChange(bool $value = true): static
@@ -68,8 +68,8 @@ trait HasFeatures
     /**
      * Set ordering option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/ordering
      */
     public function ordering(bool $value = true): static
@@ -82,8 +82,8 @@ trait HasFeatures
     /**
      * Set processing option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/processing
      */
     public function processing(bool $value = true): static
@@ -96,8 +96,8 @@ trait HasFeatures
     /**
      * Set scrollX option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scrollX
      */
     public function scrollX(bool $value = true): static
@@ -110,8 +110,8 @@ trait HasFeatures
     /**
      * Set scrollY option value.
      *
-     * @param  bool|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scrollY
      */
     public function scrollY(bool|string $value = true): static
@@ -124,8 +124,8 @@ trait HasFeatures
     /**
      * Set paging option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/paging
      */
     public function paging(bool $value = true): static
@@ -138,8 +138,8 @@ trait HasFeatures
     /**
      * Set searching option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/searching
      */
     public function searching(bool $value = true): static
@@ -152,8 +152,8 @@ trait HasFeatures
     /**
      * Set serverSide option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/serverSide
      */
     public function serverSide(bool $value = true): static
@@ -166,8 +166,8 @@ trait HasFeatures
     /**
      * Set stateSave option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/stateSave
      */
     public function stateSave(bool $value = true): static

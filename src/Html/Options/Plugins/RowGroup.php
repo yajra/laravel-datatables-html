@@ -14,8 +14,8 @@ trait RowGroup
     /**
      * Set rowGroup className option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.className
      */
     public function rowGroupUpdate(string $value = 'group'): static
@@ -26,8 +26,8 @@ trait RowGroup
     /**
      * Set rowGroup option value.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup
      */
     public function rowGroup(array|bool $value = true): static
@@ -38,8 +38,8 @@ trait RowGroup
     /**
      * Set rowGroup dataSrc option value.
      *
-     * @param  array|int|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.dataSrc
      */
     public function rowGroupDataSrc(array|int|string $value = 0): static
@@ -50,8 +50,8 @@ trait RowGroup
     /**
      * Set rowGroup emptyDataGroup option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.emptyDataGroup
      */
     public function rowGroupEmptyDataGroup(string $value = 'No Group'): static
@@ -62,8 +62,8 @@ trait RowGroup
     /**
      * Set rowGroup enable option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.enable
      */
     public function rowGroupEnable(bool $value = true): static
@@ -74,8 +74,8 @@ trait RowGroup
     /**
      * Set rowGroup endClassName option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.endClassName
      */
     public function rowGroupEndClassName(string $value = 'group-end'): static
@@ -86,8 +86,8 @@ trait RowGroup
     /**
      * Set rowGroup endRender option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.endRender
      */
     public function rowGroupEndRender(string $value): static
@@ -98,8 +98,8 @@ trait RowGroup
     /**
      * Set rowGroup startClassName option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.startClassName
      */
     public function rowGroupStartClassName(string $value = 'group-start'): static
@@ -110,20 +110,16 @@ trait RowGroup
     /**
      * Set rowGroup startRender option value.
      *
-     * @param  string|null  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/rowGroup.startRender
      */
-    public function rowGroupStartRender(string $value = null): static
+    public function rowGroupStartRender(?string $value = null): static
     {
         return $this->rowGroup(['startRender' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getRowGroup(string $key = null): mixed
+    public function getRowGroup(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['rowGroup'] ?? true;

@@ -7,8 +7,8 @@ trait AutoFill
     /**
      * Set language autoFill option value.
      *
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill
      */
     public function languageAutoFill(array $value): static
@@ -19,8 +19,8 @@ trait AutoFill
     /**
      * Set language autoFill button option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.button
      */
     public function languageAutoFillButton(string $value): static
@@ -31,8 +31,8 @@ trait AutoFill
     /**
      * Set language autoFill cancel option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.cancel
      */
     public function languageAutoFillCancel(string $value): static
@@ -43,8 +43,8 @@ trait AutoFill
     /**
      * Set language autoFill fill option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.fill
      */
     public function languageAutoFillFill(string $value): static
@@ -55,8 +55,8 @@ trait AutoFill
     /**
      * Set language autoFill fillHorizontal option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.fillHorizontal
      */
     public function languageAutoFillFillHorizontal(string $value): static
@@ -67,8 +67,8 @@ trait AutoFill
     /**
      * Set language autoFill fillVertical option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.fillVertical
      */
     public function languageAutoFillFillVertical(string $value): static
@@ -79,8 +79,8 @@ trait AutoFill
     /**
      * Set language autoFill increment option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.increment
      */
     public function languageAutoFillIncrement(string $value): static
@@ -91,8 +91,8 @@ trait AutoFill
     /**
      * Set language autoFill info option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.autoFill.info
      */
     public function languageAutoFillInfo(string $value): static

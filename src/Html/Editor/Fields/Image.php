@@ -11,11 +11,6 @@ class Image extends File
 {
     protected string $type = 'upload';
 
-    /**
-     * @param  array|string  $name
-     * @param  string  $label
-     * @return static
-     */
     public static function make(array|string $name, string $label = ''): static
     {
         return parent::make($name, $label)->displayImage();

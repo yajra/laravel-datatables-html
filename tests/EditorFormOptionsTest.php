@@ -2,11 +2,12 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\FormOptions;
 
 class EditorFormOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_setters()
     {
         $options = FormOptions::make();
@@ -14,21 +15,21 @@ class EditorFormOptionsTest extends TestCase
         $this->assertInstanceOf(FormOptions::class, $options);
 
         $options->focus(1)
-                ->message('message')
-                ->onBackground('onBackground')
-                ->onBlur('onBlur')
-                ->onComplete('onComplete')
-                ->onEsc('onEsc')
-                ->onFieldError('onFieldError')
-                ->onReturn('onReturn')
-                ->submit('submit')
-                ->title('title')
-                ->drawType('drawType')
-                ->scope('scope')
-                ->nest(false)
-                ->buttons([])
-                ->submitTrigger(1)
-                ->submitHtml('submitHtml');
+            ->message('message')
+            ->onBackground('onBackground')
+            ->onBlur('onBlur')
+            ->onComplete('onComplete')
+            ->onEsc('onEsc')
+            ->onFieldError('onFieldError')
+            ->onReturn('onReturn')
+            ->submit('submit')
+            ->title('title')
+            ->drawType('drawType')
+            ->formScope('scope')
+            ->nest(false)
+            ->buttons([])
+            ->submitTrigger(1)
+            ->submitHtml('submitHtml');
 
         $this->assertEquals(1, $options->focus);
         $this->assertEquals('message', $options->message);

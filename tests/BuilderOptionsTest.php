@@ -2,12 +2,13 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
 
 class BuilderOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_callbacks_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -45,18 +46,18 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('test livewire', $builder->getAttribute('drawCallback'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_columns_options()
     {
         $builder = $this->getHtmlBuilder();
 
         $builder->columnDefs(['target' => [1]])
-                ->addColumnDef(['target' => [1]])
-                ->addColumnDef(['target' => [2]])
-                ->columns([
-                    Column::make('id'),
-                    Column::make('name'),
-                ]);
+            ->addColumnDef(['target' => [1]])
+            ->addColumnDef(['target' => [2]])
+            ->columns([
+                Column::make('id'),
+                Column::make('name'),
+            ]);
 
         $this->assertEquals([1], $builder->getAttribute('columnDefs')['target']);
         $this->assertEquals([1], $builder->getAttribute('columnDefs')[0]['target']);
@@ -103,7 +104,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertCount(4, $builder->getColumns());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_ajax_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -112,10 +113,10 @@ class BuilderOptionsTest extends TestCase
 
         $this->assertEquals('/test', $builder->getAjaxUrl());
         $this->assertEquals([
-            "url" => "/test",
-            "type" => "POST",
-            "headers" => [
-                "X-HTTP-Method-Override" => "GET",
+            'url' => '/test',
+            'type' => 'POST',
+            'headers' => [
+                'X-HTTP-Method-Override' => 'GET',
             ],
         ], $builder->getAjax());
 
@@ -139,7 +140,7 @@ class BuilderOptionsTest extends TestCase
         $builder->minifiedAjax('/test', 'custom_script', ['id' => 123, 'name' => 'yajra']);
         $this->assertEquals('/test', $builder->getAjax('url'));
         $this->assertStringContainsString('custom_script', $builder->getAjax('data'));
-        $this->assertStringContainsString("data.id = 123", $builder->getAjax('data'));
+        $this->assertStringContainsString('data.id = 123', $builder->getAjax('data'));
         $this->assertStringContainsString("data.name = 'yajra'", $builder->getAjax('data'));
 
         $builder->postAjaxWithForm('/test', '#formId');
@@ -147,22 +148,22 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('#formId', $builder->getAjax('data'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_features_options()
     {
         $builder = $this->getHtmlBuilder();
         $builder->autoWidth()
-                ->deferRender()
-                ->info()
-                ->lengthChange()
-                ->ordering()
-                ->processing()
-                ->scrollX()
-                ->scrollY()
-                ->paging()
-                ->searching()
-                ->serverSide()
-                ->stateSave();
+            ->deferRender()
+            ->info()
+            ->lengthChange()
+            ->ordering()
+            ->processing()
+            ->scrollX()
+            ->scrollY()
+            ->paging()
+            ->searching()
+            ->serverSide()
+            ->stateSave();
 
         $this->assertEquals(true, $builder->getAttribute('autoWidth'));
         $this->assertEquals(true, $builder->getAttribute('deferRender'));
@@ -181,25 +182,25 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals('50vh', $builder->getAttribute('scrollY'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_internationalisation_options()
     {
         $builder = $this->getHtmlBuilder();
 
         $builder->language('/language-url')
-                ->languageDecimal(',')
-                ->languageEmptyTable('languageEmptyTable')
-                ->languageInfo('languageInfo')
-                ->languageInfoEmpty('languageInfoEmpty')
-                ->languageInfoFiltered('languageInfoFiltered')
-                ->languageInfoPostFix('languageInfoPostFix')
-                ->languageLengthMenu('languageLengthMenu')
-                ->languageLoadingRecords('languageLoadingRecords')
-                ->languageProcessing('languageProcessing')
-                ->languageSearch('languageSearch')
-                ->languageSearchPlaceholder('languageSearchPlaceholder')
-                ->languageThousands('languageThousands')
-                ->languageZeroRecords('languageZeroRecords');
+            ->languageDecimal(',')
+            ->languageEmptyTable('languageEmptyTable')
+            ->languageInfo('languageInfo')
+            ->languageInfoEmpty('languageInfoEmpty')
+            ->languageInfoFiltered('languageInfoFiltered')
+            ->languageInfoPostFix('languageInfoPostFix')
+            ->languageLengthMenu('languageLengthMenu')
+            ->languageLoadingRecords('languageLoadingRecords')
+            ->languageProcessing('languageProcessing')
+            ->languageSearch('languageSearch')
+            ->languageSearchPlaceholder('languageSearchPlaceholder')
+            ->languageThousands('languageThousands')
+            ->languageZeroRecords('languageZeroRecords');
 
         $this->assertEquals('/language-url', $builder->getAttribute('language')['url']);
         $this->assertEquals(',', $builder->getLanguage('decimal'));
@@ -220,7 +221,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals('languageUrl', $builder->getLanguage('url'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_plugin_attribute_getter()
     {
         $builder = $this->getHtmlBuilder();
@@ -230,34 +231,34 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals(Builder::SELECT_STYLE_SINGLE, $builder->getPluginAttribute('select', 'style'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_options()
     {
         $builder = $this->getHtmlBuilder();
         $builder->deferLoading(10)
-                ->destroy(true)
-                ->displayStart(1)
-                ->dom('Bf')
-                ->lengthMenu()
-                ->orders([[1, 'asc']])
-                ->orderCellsTop()
-                ->orderClasses()
-                ->orderBy(2)
-                ->orderBy(3, 'asc')
-                ->orderByFixed(3, 'asc')
-                ->orderMulti()
-                ->pageLength()
-                ->pagingType()
-                ->renderer()
-                ->retrieve()
-                ->rowId()
-                ->scrollCollapse()
-                ->search([])
-                ->searchCols([])
-                ->searchDelay(10)
-                ->stateDuration(10)
-                ->stripeClasses(['stripeClasses'])
-                ->tabIndex(2);
+            ->destroy(true)
+            ->displayStart(1)
+            ->dom('Bf')
+            ->lengthMenu()
+            ->orders([[1, 'asc']])
+            ->orderCellsTop()
+            ->orderClasses()
+            ->orderBy(2)
+            ->orderBy(3, 'asc')
+            ->orderByFixed(3, 'asc')
+            ->orderMulti()
+            ->pageLength()
+            ->pagingType()
+            ->renderer()
+            ->retrieve()
+            ->rowId()
+            ->scrollCollapse()
+            ->search([])
+            ->searchCols([])
+            ->searchDelay(10)
+            ->stateDuration(10)
+            ->stripeClasses(['stripeClasses'])
+            ->tabIndex(2);
 
         $this->assertEquals(10, $builder->getAttribute('deferLoading'));
         $this->assertEquals(true, $builder->getAttribute('destroy'));
@@ -282,6 +283,4 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals(['stripeClasses'], $builder->getAttribute('stripeClasses'));
         $this->assertEquals(2, $builder->getAttribute('tabIndex'));
     }
-
-
 }

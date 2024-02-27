@@ -2,11 +2,12 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Column;
 
 class ColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_create_column()
     {
         $column = Column::make('name');
@@ -14,7 +15,7 @@ class ColumnTest extends TestCase
         $this->assertInstanceOf(Column::class, $column);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_default_properties()
     {
         $column = Column::make('name');
@@ -31,13 +32,13 @@ class ColumnTest extends TestCase
         $this->assertEquals('', $column->footer);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_format_title()
     {
         $this->assertEquals('Title', Column::titleFormat('title'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_computed_column()
     {
         $column = Column::computed('name');
@@ -54,8 +55,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('', $column->footer);
     }
 
-
-    /** @test */
+    #[Test]
     public function it_can_make_formatted_column()
     {
         $column = Column::formatted('name');
@@ -72,7 +72,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('', $column->footer);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_checkbox()
     {
         $column = Column::checkbox('name');
@@ -90,7 +90,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('', $column->footer);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_property_setters()
     {
         $column = Column::checkbox('name');
@@ -138,7 +138,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('test', $column->exportFormat);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_scripts()
     {
         $column = Column::make('name');
@@ -156,7 +156,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('test', $column->render);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_orthogonal_data()
     {
         $expected = [
@@ -170,7 +170,7 @@ class ColumnTest extends TestCase
         $this->assertEquals($expected, $column->data);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_responsive_priority()
     {
         $column = Column::make('name');
@@ -179,7 +179,7 @@ class ColumnTest extends TestCase
         $this->assertEquals(1, $column->responsivePriority);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_class()
     {
         $column = Column::make('name')->className('text-sm');
@@ -189,7 +189,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('text-sm font-bold', $column->className);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_authorizations()
     {
         $column = Column::makeIf(true, 'name');
@@ -206,7 +206,7 @@ class ColumnTest extends TestCase
         $this->assertEquals([], $column->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_serialized()
     {
         $column = Column::make('name');
