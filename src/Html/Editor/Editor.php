@@ -24,15 +24,15 @@ class Editor extends Fluent
     use HasAuthorizations;
     use HasEvents;
 
-    final const DISPLAY_LIGHTBOX = 'lightbox';
+    final public const DISPLAY_LIGHTBOX = 'lightbox';
 
-    final const DISPLAY_ENVELOPE = 'envelope';
+    final public const DISPLAY_ENVELOPE = 'envelope';
 
-    final const DISPLAY_BOOTSTRAP = 'bootstrap';
+    final public const DISPLAY_BOOTSTRAP = 'bootstrap';
 
-    final const DISPLAY_FOUNDATION = 'foundation';
+    final public const DISPLAY_FOUNDATION = 'foundation';
 
-    final const DISPLAY_JQUERYUI = 'jqueryui';
+    final public const DISPLAY_JQUERYUI = 'jqueryui';
 
     public array $events = [];
 

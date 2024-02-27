@@ -20,21 +20,21 @@ class Builder
     use Macroable;
 
     // Select plugin constants.
-    final const SELECT_STYLE_API = 'api';
+    final public const SELECT_STYLE_API = 'api';
 
-    final const SELECT_STYLE_SINGLE = 'single';
+    final public const SELECT_STYLE_SINGLE = 'single';
 
-    final const SELECT_STYLE_MULTI = 'multi';
+    final public const SELECT_STYLE_MULTI = 'multi';
 
-    final const SELECT_STYLE_OS = 'os';
+    final public const SELECT_STYLE_OS = 'os';
 
-    final const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
+    final public const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
 
-    final const SELECT_ITEMS_ROW = 'row';
+    final public const SELECT_ITEMS_ROW = 'row';
 
-    final const SELECT_ITEMS_COLUMN = 'column';
+    final public const SELECT_ITEMS_COLUMN = 'column';
 
-    final const SELECT_ITEMS_CELL = 'cell';
+    final public const SELECT_ITEMS_CELL = 'cell';
 
     /**
      * The default type to use for the DataTables javascript.
