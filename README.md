@@ -20,7 +20,6 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 ## Documentations
 
 - [Laravel DataTables Documentation](http://yajrabox.com/docs/laravel-datatables)
-- [Demo Application](http://datatables.yajrabox.com) is available for artisan's reference.
 
 ## Laravel Version Compatibility
 
