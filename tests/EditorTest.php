@@ -33,10 +33,6 @@ class EditorTest extends TestCase
         $this->assertEquals('DT_RowId', $editor->idSrc);
     }
 
-    /**
-     * @param  string  $instance
-     * @return \Yajra\DataTables\Html\Editor\Editor
-     */
     protected function getEditor(string $instance = 'editor'): Editor
     {
         return Editor::make($instance);
@@ -83,9 +79,9 @@ class EditorTest extends TestCase
     public function it_has_authorizations()
     {
         $editor = Editor::makeIf(true, 'editor')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->fields([
+                Text::make('name'),
+            ]);
         $this->assertInstanceOf(Editor::class, $editor);
         $this->assertEquals(true, $editor->isAuthorized());
         $this->assertEquals([
@@ -96,9 +92,9 @@ class EditorTest extends TestCase
         ], $editor->toArray());
 
         $editor = Editor::makeIf(false, 'editor')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->fields([
+                Text::make('name'),
+            ]);
         $this->assertInstanceOf(Editor::class, $editor);
         $this->assertEquals(false, $editor->isAuthorized());
         $this->assertCount(1, $editor->fields);
@@ -119,10 +115,10 @@ class EditorTest extends TestCase
     public function it_can_be_serialized_to_array()
     {
         $editor = Editor::make()
-                        ->ajax('')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->ajax('')
+            ->fields([
+                Text::make('name'),
+            ]);
 
         $this->assertEquals([
             'instance' => 'editor',
@@ -137,10 +133,10 @@ class EditorTest extends TestCase
     public function it_can_be_serialized_to_json_string()
     {
         $editor = Editor::make()
-                        ->ajax('')
-                        ->fields([
-                            Text::make('name'),
-                        ]);
+            ->ajax('')
+            ->fields([
+                Text::make('name'),
+            ]);
 
         $expected = '{"instance":"editor","ajax":"","fields":[{"name":"name","label":"Name","type":"text"}]}';
         $this->assertEquals($expected, $editor->toJson());
@@ -150,11 +146,11 @@ class EditorTest extends TestCase
     public function it_has_form_options()
     {
         $editor = Editor::make()
-                        ->formOptions([
-                            'main' => [
-                                'esc' => true,
-                            ],
-                        ]);
+            ->formOptions([
+                'main' => [
+                    'esc' => true,
+                ],
+            ]);
 
         $this->assertEquals([
             'main' => [

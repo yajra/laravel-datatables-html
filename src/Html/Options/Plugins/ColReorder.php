@@ -14,8 +14,8 @@ trait ColReorder
     /**
      * Set colReorder enable option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder.enable
      */
     public function colReorderEnable(bool $value = true): static
@@ -27,8 +27,8 @@ trait ColReorder
      * Set colReorder option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder
      */
     public function colReorder(array|bool $value = true): static
@@ -39,8 +39,8 @@ trait ColReorder
     /**
      * Set colReorder fixedColumnsLeft option value.
      *
-     * @param  int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder.fixedColumnsLeft
      */
     public function colReorderFixedColumnsLeft(int $value = 0): static
@@ -51,8 +51,8 @@ trait ColReorder
     /**
      * Set colReorder fixedColumnsRight option value.
      *
-     * @param  int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder.fixedColumnsRight
      */
     public function colReorderFixedColumnsRight(int $value = 0): static
@@ -63,8 +63,8 @@ trait ColReorder
     /**
      * Set colReorder order option value.
      *
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder.order
      */
     public function colReorderOrder(array $value = []): static
@@ -75,8 +75,8 @@ trait ColReorder
     /**
      * Set colReorder realtime option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/colReorder.realtime
      */
     public function colReorderRealtime(bool $value = true): static
@@ -84,11 +84,7 @@ trait ColReorder
         return $this->colReorder(['realtime' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getColReorder(string $key = null): mixed
+    public function getColReorder(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['colReorder'] ?? true;

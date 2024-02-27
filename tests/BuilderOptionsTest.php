@@ -52,12 +52,12 @@ class BuilderOptionsTest extends TestCase
         $builder = $this->getHtmlBuilder();
 
         $builder->columnDefs(['target' => [1]])
-                ->addColumnDef(['target' => [1]])
-                ->addColumnDef(['target' => [2]])
-                ->columns([
-                    Column::make('id'),
-                    Column::make('name'),
-                ]);
+            ->addColumnDef(['target' => [1]])
+            ->addColumnDef(['target' => [2]])
+            ->columns([
+                Column::make('id'),
+                Column::make('name'),
+            ]);
 
         $this->assertEquals([1], $builder->getAttribute('columnDefs')['target']);
         $this->assertEquals([1], $builder->getAttribute('columnDefs')[0]['target']);
@@ -113,10 +113,10 @@ class BuilderOptionsTest extends TestCase
 
         $this->assertEquals('/test', $builder->getAjaxUrl());
         $this->assertEquals([
-            "url" => "/test",
-            "type" => "POST",
-            "headers" => [
-                "X-HTTP-Method-Override" => "GET",
+            'url' => '/test',
+            'type' => 'POST',
+            'headers' => [
+                'X-HTTP-Method-Override' => 'GET',
             ],
         ], $builder->getAjax());
 
@@ -140,7 +140,7 @@ class BuilderOptionsTest extends TestCase
         $builder->minifiedAjax('/test', 'custom_script', ['id' => 123, 'name' => 'yajra']);
         $this->assertEquals('/test', $builder->getAjax('url'));
         $this->assertStringContainsString('custom_script', $builder->getAjax('data'));
-        $this->assertStringContainsString("data.id = 123", $builder->getAjax('data'));
+        $this->assertStringContainsString('data.id = 123', $builder->getAjax('data'));
         $this->assertStringContainsString("data.name = 'yajra'", $builder->getAjax('data'));
 
         $builder->postAjaxWithForm('/test', '#formId');
@@ -153,17 +153,17 @@ class BuilderOptionsTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->autoWidth()
-                ->deferRender()
-                ->info()
-                ->lengthChange()
-                ->ordering()
-                ->processing()
-                ->scrollX()
-                ->scrollY()
-                ->paging()
-                ->searching()
-                ->serverSide()
-                ->stateSave();
+            ->deferRender()
+            ->info()
+            ->lengthChange()
+            ->ordering()
+            ->processing()
+            ->scrollX()
+            ->scrollY()
+            ->paging()
+            ->searching()
+            ->serverSide()
+            ->stateSave();
 
         $this->assertEquals(true, $builder->getAttribute('autoWidth'));
         $this->assertEquals(true, $builder->getAttribute('deferRender'));
@@ -188,19 +188,19 @@ class BuilderOptionsTest extends TestCase
         $builder = $this->getHtmlBuilder();
 
         $builder->language('/language-url')
-                ->languageDecimal(',')
-                ->languageEmptyTable('languageEmptyTable')
-                ->languageInfo('languageInfo')
-                ->languageInfoEmpty('languageInfoEmpty')
-                ->languageInfoFiltered('languageInfoFiltered')
-                ->languageInfoPostFix('languageInfoPostFix')
-                ->languageLengthMenu('languageLengthMenu')
-                ->languageLoadingRecords('languageLoadingRecords')
-                ->languageProcessing('languageProcessing')
-                ->languageSearch('languageSearch')
-                ->languageSearchPlaceholder('languageSearchPlaceholder')
-                ->languageThousands('languageThousands')
-                ->languageZeroRecords('languageZeroRecords');
+            ->languageDecimal(',')
+            ->languageEmptyTable('languageEmptyTable')
+            ->languageInfo('languageInfo')
+            ->languageInfoEmpty('languageInfoEmpty')
+            ->languageInfoFiltered('languageInfoFiltered')
+            ->languageInfoPostFix('languageInfoPostFix')
+            ->languageLengthMenu('languageLengthMenu')
+            ->languageLoadingRecords('languageLoadingRecords')
+            ->languageProcessing('languageProcessing')
+            ->languageSearch('languageSearch')
+            ->languageSearchPlaceholder('languageSearchPlaceholder')
+            ->languageThousands('languageThousands')
+            ->languageZeroRecords('languageZeroRecords');
 
         $this->assertEquals('/language-url', $builder->getAttribute('language')['url']);
         $this->assertEquals(',', $builder->getLanguage('decimal'));
@@ -236,29 +236,29 @@ class BuilderOptionsTest extends TestCase
     {
         $builder = $this->getHtmlBuilder();
         $builder->deferLoading(10)
-                ->destroy(true)
-                ->displayStart(1)
-                ->dom('Bf')
-                ->lengthMenu()
-                ->orders([[1, 'asc']])
-                ->orderCellsTop()
-                ->orderClasses()
-                ->orderBy(2)
-                ->orderBy(3, 'asc')
-                ->orderByFixed(3, 'asc')
-                ->orderMulti()
-                ->pageLength()
-                ->pagingType()
-                ->renderer()
-                ->retrieve()
-                ->rowId()
-                ->scrollCollapse()
-                ->search([])
-                ->searchCols([])
-                ->searchDelay(10)
-                ->stateDuration(10)
-                ->stripeClasses(['stripeClasses'])
-                ->tabIndex(2);
+            ->destroy(true)
+            ->displayStart(1)
+            ->dom('Bf')
+            ->lengthMenu()
+            ->orders([[1, 'asc']])
+            ->orderCellsTop()
+            ->orderClasses()
+            ->orderBy(2)
+            ->orderBy(3, 'asc')
+            ->orderByFixed(3, 'asc')
+            ->orderMulti()
+            ->pageLength()
+            ->pagingType()
+            ->renderer()
+            ->retrieve()
+            ->rowId()
+            ->scrollCollapse()
+            ->search([])
+            ->searchCols([])
+            ->searchDelay(10)
+            ->stateDuration(10)
+            ->stripeClasses(['stripeClasses'])
+            ->tabIndex(2);
 
         $this->assertEquals(10, $builder->getAttribute('deferLoading'));
         $this->assertEquals(true, $builder->getAttribute('destroy'));
@@ -283,6 +283,4 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals(['stripeClasses'], $builder->getAttribute('stripeClasses'));
         $this->assertEquals(2, $builder->getAttribute('tabIndex'));
     }
-
-
 }

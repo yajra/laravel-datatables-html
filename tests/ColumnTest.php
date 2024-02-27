@@ -55,7 +55,6 @@ class ColumnTest extends TestCase
         $this->assertEquals('', $column->footer);
     }
 
-
     #[Test]
     public function it_can_make_formatted_column()
     {

@@ -188,10 +188,10 @@ class FieldTest extends TestCase
     public function it_can_create_select2_field()
     {
         $field = Fields\Select2::make('name')
-                               ->allowClear()
-                               ->optsPlaceholder('Test')
-                               ->modelOptions(User::class, 'name')
-                               ->ajax('/url');
+            ->allowClear()
+            ->optsPlaceholder('Test')
+            ->modelOptions(User::class, 'name')
+            ->ajax('/url');
 
         $this->assertInstanceOf(Fields\Select2::class, $field);
         $this->assertEquals('select2', $field->getType());
@@ -219,20 +219,20 @@ class FieldTest extends TestCase
         $this->assertEquals('fn', $field->opts['ajax']['data']);
 
         $field->ajaxData(['foo' => 'bar']);
-        $this->assertStringContainsString('params.foo = "bar"', $field->opts['ajax']['data']);;
+        $this->assertStringContainsString('params.foo = "bar"', $field->opts['ajax']['data']);
 
         $field->ajaxDelay(200);
-        $this->assertEquals(200, $field->opts['ajax']['delay']);;
+        $this->assertEquals(200, $field->opts['ajax']['delay']);
 
         $field->ajaxUrl('/test');
-        $this->assertEquals('/test', $field->opts['ajax']['url']);;
+        $this->assertEquals('/test', $field->opts['ajax']['url']);
     }
 
     #[Test]
     public function it_can_create_text_field()
     {
         $field = Fields\Text::make('name')
-                            ->attr('style', 'display: none;');
+            ->attr('style', 'display: none;');
 
         $this->assertInstanceOf(Fields\Text::class, $field);
         $this->assertEquals('text', $field->getType());

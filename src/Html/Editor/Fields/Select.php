@@ -12,7 +12,6 @@ class Select extends Field
     /**
      * Set field multiple value.
      *
-     * @param  bool  $value
      * @return $this
      */
     public function multiple(bool $value = true): static
@@ -25,8 +24,6 @@ class Select extends Field
     /**
      * Set field optionsPair value.
      *
-     * @param  array|string  $label
-     * @param  string  $value
      * @return $this
      */
     public function optionsPair(array|string $label = 'label', string $value = 'value'): static
@@ -46,7 +43,6 @@ class Select extends Field
     /**
      * Set field placeholder value.
      *
-     * @param  string  $value
      * @return $this
      */
     public function placeholder(string $value): static
@@ -59,7 +55,6 @@ class Select extends Field
     /**
      * Set field placeholderDisabled value.
      *
-     * @param  bool  $value
      * @return $this
      */
     public function placeholderDisabled(bool $value): static
@@ -72,7 +67,6 @@ class Select extends Field
     /**
      * Set field placeholderValue value.
      *
-     * @param  string  $value
      * @return $this
      */
     public function placeholderValue(string $value): static

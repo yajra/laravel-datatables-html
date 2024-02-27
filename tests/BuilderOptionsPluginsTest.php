@@ -23,13 +23,13 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertFalse($builder->getAttribute('autoFill'));
 
         $builder->autoFillAlwaysAsk()
-                ->autoFillColumns('autoFillColumns')
-                ->autoFillEditor('autoFillEditor')
-                ->autoFillEnable()
-                ->autoFillFocus('autoFillFocus')
-                ->autoFillHorizontal()
-                ->autoFillUpdate()
-                ->autoFillVertical();
+            ->autoFillColumns('autoFillColumns')
+            ->autoFillEditor('autoFillEditor')
+            ->autoFillEnable()
+            ->autoFillFocus('autoFillFocus')
+            ->autoFillHorizontal()
+            ->autoFillUpdate()
+            ->autoFillVertical();
 
         $this->assertTrue($builder->getAutoFill('alwaysAsk'));
         $this->assertEquals('autoFillColumns', $builder->getAutoFill('columns'));
@@ -74,10 +74,10 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getColReorder());
 
         $builder->colReorderEnable()
-                ->colReorderFixedColumnsLeft(1)
-                ->colReorderFixedColumnsRight(1)
-                ->colReorderOrder([1])
-                ->colReorderRealtime();
+            ->colReorderFixedColumnsLeft(1)
+            ->colReorderFixedColumnsRight(1)
+            ->colReorderOrder([1])
+            ->colReorderRealtime();
 
         $this->assertTrue($builder->getColReorder('enable'));
         $this->assertEquals(1, $builder->getColReorder('fixedColumnsLeft'));
@@ -96,8 +96,8 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getFixedColumns());
 
         $builder->fixedColumnsHeightMatch()
-                ->fixedColumnsLeftColumns()
-                ->fixedColumnsRightColumns();
+            ->fixedColumnsLeftColumns()
+            ->fixedColumnsRightColumns();
 
         $this->assertEquals('semiauto', $builder->getFixedColumns('heightMatch'));
         $this->assertEquals(1, $builder->getFixedColumns('leftColumns'));
@@ -114,9 +114,9 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getFixedHeader());
 
         $builder->fixedHeaderFooter()
-                ->fixedHeaderFooterOffset()
-                ->fixedHeaderHeader()
-                ->fixedHeaderHeaderOffset();
+            ->fixedHeaderFooterOffset()
+            ->fixedHeaderHeader()
+            ->fixedHeaderHeaderOffset();
 
         $this->assertEquals(true, $builder->getFixedHeader('footer'));
         $this->assertEquals(0, $builder->getFixedHeader('offset'));
@@ -135,17 +135,17 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getKeys());
 
         $builder->keysBlurable()
-                ->keysClassName()
-                ->keysClipboard()
-                ->keysClipboardOrthogonal()
-                ->keysColumns('name')
-                ->keysEditAutoSelect()
-                ->keysEditOnFocus()
-                ->keysEditor('editor')
-                ->keysEditorKeys()
-                ->keysFocus(':eq(0)')
-                ->keysKeys(["charCodeAt(0)"])
-                ->keysTabIndex(1);
+            ->keysClassName()
+            ->keysClipboard()
+            ->keysClipboardOrthogonal()
+            ->keysColumns('name')
+            ->keysEditAutoSelect()
+            ->keysEditOnFocus()
+            ->keysEditor('editor')
+            ->keysEditorKeys()
+            ->keysFocus(':eq(0)')
+            ->keysKeys(['charCodeAt(0)'])
+            ->keysTabIndex(1);
 
         $this->assertEquals(true, $builder->getKeys('blurable'));
         $this->assertEquals('focus', $builder->getKeys('className'));
@@ -157,7 +157,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertEquals('editor', $builder->getKeys('editor'));
         $this->assertEquals('navigation-only', $builder->getKeys('editorKeys'));
         $this->assertEquals(':eq(0)', $builder->getKeys('focus'));
-        $this->assertEquals(["charCodeAt(0)"], $builder->getKeys('keys'));
+        $this->assertEquals(['charCodeAt(0)'], $builder->getKeys('keys'));
         $this->assertEquals(1, $builder->getKeys('tabIndex'));
     }
 
@@ -171,11 +171,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getResponsive());
 
         $builder->responsiveBreakpoints([1])
-                ->responsiveDetailsDisplay('display')
-                ->responsiveDetailsRenderer('renderer')
-                ->responsiveDetailsTarget('target')
-                ->responsiveDetailsType('type')
-                ->responsiveOrthogonal('orthogonal');
+            ->responsiveDetailsDisplay('display')
+            ->responsiveDetailsRenderer('renderer')
+            ->responsiveDetailsTarget('target')
+            ->responsiveDetailsType('type')
+            ->responsiveOrthogonal('orthogonal');
         $this->assertEquals([1], $builder->getResponsive('breakpoints'));
         $this->assertEquals('display', $builder->getResponsive('details')['display']);
         $this->assertEquals('renderer', $builder->getResponsive('details')['renderer']);
@@ -194,12 +194,12 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getRowGroup());
 
         $builder->rowGroupDataSrc([1])
-                ->rowGroupEmptyDataGroup()
-                ->rowGroupEnable()
-                ->rowGroupEndClassName()
-                ->rowGroupEndRender('fn')
-                ->rowGroupStartClassName()
-                ->rowGroupStartRender();
+            ->rowGroupEmptyDataGroup()
+            ->rowGroupEnable()
+            ->rowGroupEndClassName()
+            ->rowGroupEndRender('fn')
+            ->rowGroupStartClassName()
+            ->rowGroupStartRender();
 
         $this->assertEquals([1], $builder->getRowGroup('dataSrc'));
         $this->assertEquals('No Group', $builder->getRowGroup('emptyDataGroup'));
@@ -220,12 +220,12 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getRowReorder());
 
         $builder->rowReorderDataSrc([1])
-                ->rowReorderEditor('editor')
-                ->rowReorderEnable()
-                ->rowReorderFormOptions(['main' => []])
-                ->rowReorderSelector()
-                ->rowReorderSnapX()
-                ->rowReorderUpdate();
+            ->rowReorderEditor('editor')
+            ->rowReorderEnable()
+            ->rowReorderFormOptions(['main' => []])
+            ->rowReorderSelector()
+            ->rowReorderSnapX()
+            ->rowReorderUpdate();
 
         $this->assertEquals([1], $builder->getRowReorder('dataSrc'));
         $this->assertEquals('editor', $builder->getRowReorder('editor'));
@@ -246,10 +246,10 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getScroller());
 
         $builder->scrollerBoundaryScale()
-                ->scrollerDisplayBuffer()
-                ->scrollerLoadingIndicator()
-                ->scrollerRowHeight()
-                ->scrollerServerWait();
+            ->scrollerDisplayBuffer()
+            ->scrollerLoadingIndicator()
+            ->scrollerRowHeight()
+            ->scrollerServerWait();
 
         $this->assertEquals(0.5, $builder->getScroller('boundaryScale'));
         $this->assertEquals(9, $builder->getScroller('displayBuffer'));
@@ -292,11 +292,11 @@ class BuilderOptionsPluginsTest extends TestCase
         $this->assertTrue($builder->getSelect());
 
         $builder->selectBlurable()
-                ->selectClassName()
-                ->selectInfo()
-                ->selectItems()
-                ->selectSelector()
-                ->selectStyle();
+            ->selectClassName()
+            ->selectInfo()
+            ->selectItems()
+            ->selectSelector()
+            ->selectStyle();
 
         $this->assertEquals(true, $builder->getSelect('blurable'));
         $this->assertEquals('selected', $builder->getSelect('className'));
@@ -332,5 +332,4 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->selectStyleApi();
         $this->assertEquals(Builder::SELECT_STYLE_API, $builder->getSelect('style'));
     }
-
 }

@@ -9,7 +9,6 @@ trait Index
     /**
      * Add a index column.
      *
-     * @param  array  $attributes
      * @return $this
      */
     public function addIndex(array $attributes = []): static

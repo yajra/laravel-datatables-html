@@ -16,8 +16,8 @@ trait HasColumns
     /**
      * Set columnDefs option value.
      *
-     * @param  array|\Illuminate\Contracts\Support\Arrayable|callable  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/columnDefs
      */
     public function columnDefs(array|Arrayable|callable $value): static
@@ -46,8 +46,8 @@ trait HasColumns
     /**
      * Add a columnDef option.
      *
-     * @param  array|\Illuminate\Contracts\Support\Arrayable|callable  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/columnDefs
      */
     public function addColumnDef(array|Arrayable|callable $value): static
@@ -68,8 +68,8 @@ trait HasColumns
     /**
      * Set columns option value.
      *
-     * @param  array  $columns
      * @return $this
+     *
      * @see https://datatables.net/reference/option/columns
      */
     public function columns(array $columns): static
@@ -102,7 +102,6 @@ trait HasColumns
     /**
      * Add a column in collection using attributes.
      *
-     * @param  array|\Yajra\DataTables\Html\Column  $attributes
      * @return $this
      */
     public function addColumn(array|Column $attributes): static
@@ -119,7 +118,6 @@ trait HasColumns
     /**
      * Add a Column object in collection.
      *
-     * @param  \Yajra\DataTables\Html\Column  $column
      * @return $this
      */
     public function add(Column $column): static
@@ -132,7 +130,6 @@ trait HasColumns
     /**
      * Add a Column object at the beginning of collection.
      *
-     * @param  \Yajra\DataTables\Html\Column  $column
      * @return $this
      */
     public function addBefore(Column $column): static
@@ -145,7 +142,6 @@ trait HasColumns
     /**
      * Add a column at the beginning of collection using attributes.
      *
-     * @param  array|\Yajra\DataTables\Html\Column  $attributes
      * @return $this
      */
     public function addColumnBefore(array|Column $attributes): static

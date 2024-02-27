@@ -11,12 +11,12 @@ class ColumnDefinitionTest extends TestCase
     public function it_has_property_setters()
     {
         $def = ColumnDefinition::make()
-                               ->targets([1])
-                               ->columns([])
-                               ->cellType()
-                               ->className('my-class')
-                               ->contentPadding('mmm')
-                               ->createdCell('fn');
+            ->targets([1])
+            ->columns([])
+            ->cellType()
+            ->className('my-class')
+            ->contentPadding('mmm')
+            ->createdCell('fn');
 
         $this->assertEquals([1], $def->targets);
         $this->assertEquals([], $def->columns);
@@ -25,5 +25,4 @@ class ColumnDefinitionTest extends TestCase
         $this->assertEquals('mmm', $def->contentPadding);
         $this->assertEquals('fn', $def->createdCell);
     }
-
 }

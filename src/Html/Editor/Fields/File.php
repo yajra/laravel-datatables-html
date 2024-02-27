@@ -13,16 +13,9 @@ class File extends Field
 
     /**
      * Editor instance variable name.
-     *
-     * @var string
      */
     protected string $editor = 'editor';
 
-    /**
-     * @param  array|string  $name
-     * @param  string  $label
-     * @return static
-     */
     public static function make(array|string $name, string $label = ''): static
     {
         $field = parent::make($name, $label);
@@ -31,7 +24,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function ajax(string $value): static
@@ -42,7 +34,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function ajaxData(string $value): static
@@ -53,7 +44,6 @@ class File extends Field
     }
 
     /**
-     * @param  bool  $value
      * @return $this
      */
     public function dragDrop(bool $value = true): static
@@ -64,7 +54,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function dragDropText(string $value): static
@@ -75,7 +64,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function fileReadText(string $value): static
@@ -86,7 +74,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function noFileText(string $value): static
@@ -97,7 +84,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function processingText(string $value): static
@@ -108,7 +94,6 @@ class File extends Field
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function uploadText(string $value): static
@@ -121,7 +106,6 @@ class File extends Field
     /**
      * Set editor instance for file upload.
      *
-     * @param  string  $editor
      * @return $this
      */
     public function editor(string $editor): static
@@ -139,7 +123,7 @@ class File extends Field
     public function displayImage(): static
     {
         // TODO: Use Laravel filesystem instead of hard coded storage path
-        return $this->display(<<<SCRIPT
+        return $this->display(<<<'SCRIPT'
             function (file_id) { 
                 return file_id ? '<img src="storage/' + file_id + '" alt=""/>' : null; 
             }
@@ -148,7 +132,6 @@ SCRIPT
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function display(string $value): static
@@ -165,11 +148,10 @@ SCRIPT
      */
     public function displayFile(): static
     {
-        return $this->display("function (file_id) { return file_id; }");
+        return $this->display('function (file_id) { return file_id; }');
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function clearText(string $value = 'Clear'): static
@@ -180,7 +162,6 @@ SCRIPT
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function noImageText(string $value = 'No image'): static
@@ -191,7 +172,6 @@ SCRIPT
     }
 
     /**
-     * @param  bool  $state
      * @return $this
      */
     public function multiple(bool $state = true): static

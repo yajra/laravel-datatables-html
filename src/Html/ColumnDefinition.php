@@ -18,8 +18,8 @@ class ColumnDefinition extends Column
     }
 
     /**
-     * @param  array|string|int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/columnDefs.targets
      */
     public function targets(array|string|int $value): static
@@ -30,8 +30,8 @@ class ColumnDefinition extends Column
     }
 
     /**
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/columns
      */
     public function columns(array $value): static
@@ -41,9 +41,6 @@ class ColumnDefinition extends Column
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         $array = parent::toArray();

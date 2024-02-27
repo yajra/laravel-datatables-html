@@ -10,23 +10,16 @@ class HtmlBuilder
 {
     /**
      * The URL generator instance.
-     *
-     * @var \Illuminate\Contracts\Routing\UrlGenerator
      */
     protected UrlGenerator $url;
 
     /**
      * The View Factory instance.
-     *
-     * @var \Illuminate\Contracts\View\Factory
      */
     protected Factory $view;
 
     /**
      * Create a new HTML builder instance.
-     *
-     * @param  \Illuminate\Contracts\Routing\UrlGenerator  $url
-     * @param  \Illuminate\Contracts\View\Factory  $view
      */
     public function __construct(UrlGenerator $url, Factory $view)
     {
@@ -36,9 +29,6 @@ class HtmlBuilder
 
     /**
      * Convert entities to HTML characters.
-     *
-     * @param  string  $value
-     * @return string
      */
     public function decode(string $value): string
     {
@@ -47,13 +37,8 @@ class HtmlBuilder
 
     /**
      * Generate a link to a JavaScript file.
-     *
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @return \Illuminate\Support\HtmlString
      */
-    public function script(string $url, array $attributes = [], bool $secure = null): HtmlString
+    public function script(string $url, array $attributes = [], ?bool $secure = null): HtmlString
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
@@ -62,9 +47,6 @@ class HtmlBuilder
 
     /**
      * Transform the string to an Html serializable object
-     *
-     * @param  string  $html
-     * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html): HtmlString
     {
@@ -73,9 +55,6 @@ class HtmlBuilder
 
     /**
      * Build an HTML attribute string from an array.
-     *
-     * @param  array  $attributes
-     * @return string
      */
     public function attributes(array $attributes): string
     {
@@ -94,10 +73,6 @@ class HtmlBuilder
 
     /**
      * Build a single attribute element.
-     *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return mixed
      */
     protected function attributeElement(string $key, mixed $value): mixed
     {
@@ -128,13 +103,8 @@ class HtmlBuilder
 
     /**
      * Generate a link to a CSS file.
-     *
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @return \Illuminate\Support\HtmlString
      */
-    public function style(string $url, array $attributes = [], bool $secure = null): HtmlString
+    public function style(string $url, array $attributes = [], ?bool $secure = null): HtmlString
     {
         $defaults = ['media' => 'all', 'type' => 'text/css', 'rel' => 'stylesheet'];
 
@@ -147,30 +117,19 @@ class HtmlBuilder
 
     /**
      * Generate an HTML image element.
-     *
-     * @param  string  $url
-     * @param  string|null  $alt
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @return \Illuminate\Support\HtmlString
      */
-    public function image(string $url, string $alt = null, array $attributes = [], bool $secure = null): HtmlString
+    public function image(string $url, ?string $alt = null, array $attributes = [], ?bool $secure = null): HtmlString
     {
         $attributes['alt'] = $alt;
 
         return $this->toHtmlString('<img src="'.$this->url->asset($url,
-                $secure).'"'.$this->attributes($attributes).'>');
+            $secure).'"'.$this->attributes($attributes).'>');
     }
 
     /**
      * Generate a link to a Favicon file.
-     *
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @return \Illuminate\Support\HtmlString
      */
-    public function favicon(string $url, array $attributes = [], bool $secure = null): HtmlString
+    public function favicon(string $url, array $attributes = [], ?bool $secure = null): HtmlString
     {
         $defaults = ['rel' => 'shortcut icon', 'type' => 'image/x-icon'];
 
@@ -183,16 +142,10 @@ class HtmlBuilder
 
     /**
      * Generate a HTTPS HTML link.
-     *
-     * @param  string  $url
-     * @param  string|null  $title
-     * @param  array  $attributes
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function secureLink(
         string $url,
-        string $title = null,
+        ?string $title = null,
         array $attributes = [],
         bool $escape = true
     ): HtmlString {
@@ -201,19 +154,12 @@ class HtmlBuilder
 
     /**
      * Generate a HTML link.
-     *
-     * @param  string  $url
-     * @param  string|null  $title
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function link(
         string $url,
-        string $title = null,
+        ?string $title = null,
         array $attributes = [],
-        bool $secure = null,
+        ?bool $secure = null,
         bool $escape = true
     ): HtmlString {
         $url = $this->url->to($url, [], $secure);
@@ -233,9 +179,6 @@ class HtmlBuilder
 
     /**
      * Convert an HTML string to entities.
-     *
-     * @param  string  $value
-     * @return string
      */
     public function entities(string $value): string
     {
@@ -244,16 +187,10 @@ class HtmlBuilder
 
     /**
      * Generate a HTTPS HTML link to an asset.
-     *
-     * @param  string  $url
-     * @param  string|null  $title
-     * @param  array  $attributes
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function linkSecureAsset(
         string $url,
-        string $title = null,
+        ?string $title = null,
         array $attributes = [],
         bool $escape = true
     ): HtmlString {
@@ -262,19 +199,12 @@ class HtmlBuilder
 
     /**
      * Generate a HTML link to an asset.
-     *
-     * @param  string  $url
-     * @param  string|null  $title
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function linkAsset(
         string $url,
-        string $title = null,
+        ?string $title = null,
         array $attributes = [],
-        bool $secure = null,
+        ?bool $secure = null,
         bool $escape = true
     ): HtmlString {
         $url = $this->url->asset($url, $secure);
@@ -284,21 +214,13 @@ class HtmlBuilder
 
     /**
      * Generate a HTML link to a named route.
-     *
-     * @param  string  $name
-     * @param  string|null  $title
-     * @param  array  $parameters
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function linkRoute(
         string $name,
-        string $title = null,
+        ?string $title = null,
         array $parameters = [],
         array $attributes = [],
-        bool $secure = null,
+        ?bool $secure = null,
         bool $escape = true
     ): HtmlString {
         return $this->link($this->url->route($name, $parameters), $title, $attributes, $secure, $escape);
@@ -306,21 +228,13 @@ class HtmlBuilder
 
     /**
      * Generate a HTML link to a controller action.
-     *
-     * @param  string  $action
-     * @param  string|null  $title
-     * @param  array  $parameters
-     * @param  array  $attributes
-     * @param  bool|null  $secure
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
     public function linkAction(
         string $action,
-        string $title = null,
+        ?string $title = null,
         array $parameters = [],
         array $attributes = [],
-        bool $secure = null,
+        ?bool $secure = null,
         bool $escape = true
     ): HtmlString {
         return $this->link($this->url->action($action, $parameters), $title, $attributes, $secure, $escape);
@@ -328,14 +242,8 @@ class HtmlBuilder
 
     /**
      * Generate a HTML link to an email address.
-     *
-     * @param  string  $email
-     * @param  string|null  $title
-     * @param  array  $attributes
-     * @param  bool  $escape
-     * @return \Illuminate\Support\HtmlString
      */
-    public function mailto(string $email, string $title = null, array $attributes = [], bool $escape = true): HtmlString
+    public function mailto(string $email, ?string $title = null, array $attributes = [], bool $escape = true): HtmlString
     {
         $email = $this->email($email);
 
@@ -352,9 +260,6 @@ class HtmlBuilder
 
     /**
      * Obfuscate an e-mail address to prevent spam-bots from sniffing it.
-     *
-     * @param  string  $email
-     * @return string
      */
     public function email(string $email): string
     {
@@ -364,8 +269,6 @@ class HtmlBuilder
     /**
      * Obfuscate a string to prevent spam-bots from sniffing it.
      *
-     * @param  string  $value
-     * @return string
      * @throws \Exception
      */
     public function obfuscate(string $value): string
@@ -399,9 +302,6 @@ class HtmlBuilder
 
     /**
      * Generates non-breaking space entities based on number supplied.
-     *
-     * @param  int  $num
-     * @return string
      */
     public function nbsp(int $num = 1): string
     {
@@ -410,10 +310,6 @@ class HtmlBuilder
 
     /**
      * Generate an ordered list of items.
-     *
-     * @param  array  $list
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString|string
      */
     public function ol(array $list, array $attributes = []): HtmlString|string
     {
@@ -422,11 +318,6 @@ class HtmlBuilder
 
     /**
      * Create a listing HTML element.
-     *
-     * @param  string  $type
-     * @param  array  $list
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString|string
      */
     protected function listing(string $type, array $list, array $attributes = []): HtmlString|string
     {
@@ -450,11 +341,6 @@ class HtmlBuilder
 
     /**
      * Create the HTML for a listing element.
-     *
-     * @param  mixed  $key
-     * @param  string  $type
-     * @param  mixed  $value
-     * @return \Illuminate\Support\HtmlString|string
      */
     protected function listingElement(mixed $key, string $type, mixed $value): HtmlString|string
     {
@@ -477,11 +363,6 @@ class HtmlBuilder
 
     /**
      * Create the HTML for a nested listing attribute.
-     *
-     * @param  mixed  $key
-     * @param  string  $type
-     * @param  array  $value
-     * @return \Illuminate\Support\HtmlString|string
      */
     protected function nestedListing(mixed $key, string $type, array $value): HtmlString|string
     {
@@ -494,10 +375,6 @@ class HtmlBuilder
 
     /**
      * Generate an un-ordered list of items.
-     *
-     * @param  array  $list
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString|string
      */
     public function ul(array $list, array $attributes = []): HtmlString|string
     {
@@ -506,10 +383,6 @@ class HtmlBuilder
 
     /**
      * Generate a description list of items.
-     *
-     * @param  array  $list
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString
      */
     public function dl(array $list, array $attributes = []): HtmlString
     {
@@ -534,11 +407,6 @@ class HtmlBuilder
 
     /**
      * Generate a meta tag.
-     *
-     * @param  string  $name
-     * @param  string  $content
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString
      */
     public function meta(string $name, string $content, array $attributes = []): HtmlString
     {
@@ -551,11 +419,6 @@ class HtmlBuilder
 
     /**
      * Generate an html tag.
-     *
-     * @param  string  $tag
-     * @param  mixed  $content
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString
      */
     public function tag(string $tag, mixed $content, array $attributes = []): HtmlString
     {

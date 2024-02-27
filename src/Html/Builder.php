@@ -11,22 +11,29 @@ use Yajra\DataTables\Utilities\Helper;
 
 class Builder
 {
-    use Macroable;
-    use HasOptions;
-    use HasTable;
-    use HasEditor;
-    use Columns\Index;
     use Columns\Action;
     use Columns\Checkbox;
+    use Columns\Index;
+    use HasEditor;
+    use HasOptions;
+    use HasTable;
+    use Macroable;
 
     // Select plugin constants.
     const SELECT_STYLE_API = 'api';
+
     const SELECT_STYLE_SINGLE = 'single';
+
     const SELECT_STYLE_MULTI = 'multi';
+
     const SELECT_STYLE_OS = 'os';
+
     const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
+
     const SELECT_ITEMS_ROW = 'row';
+
     const SELECT_ITEMS_COLUMN = 'column';
+
     const SELECT_ITEMS_CELL = 'cell';
 
     /**
@@ -44,31 +51,14 @@ class Builder
      */
     protected array $tableAttributes = [];
 
-    /**
-     * @var string
-     */
     protected string $template = '';
 
-    /**
-     * @var array
-     */
     protected array $attributes = [];
 
-    /**
-     * @var string|array
-     */
     protected string|array $ajax = '';
 
-    /**
-     * @var array
-     */
     protected array $additionalScripts = [];
 
-    /**
-     * @param  Repository  $config
-     * @param  Factory  $view
-     * @param  HtmlBuilder  $html
-     */
     public function __construct(public Repository $config, public Factory $view, public HtmlBuilder $html)
     {
         /** @var array $defaults */
@@ -100,12 +90,8 @@ class Builder
 
     /**
      * Generate DataTable javascript.
-     *
-     * @param  string|null  $script
-     * @param  array  $attributes
-     * @return \Illuminate\Support\HtmlString
      */
-    public function scripts(string $script = null, array $attributes = []): HtmlString
+    public function scripts(?string $script = null, array $attributes = []): HtmlString
     {
         $script = $script ?: $this->generateScripts();
         $attributes = $this->html->attributes(
@@ -117,8 +103,6 @@ class Builder
 
     /**
      * Get generated raw scripts.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
     public function generateScripts(): HtmlString
     {
@@ -131,8 +115,6 @@ class Builder
 
     /**
      * Get generated json configuration.
-     *
-     * @return string
      */
     public function generateJson(): string
     {
@@ -141,9 +123,6 @@ class Builder
 
     /**
      * Generate DataTables js parameters.
-     *
-     * @param  array  $attributes
-     * @return string
      */
     public function parameterize(array $attributes = []): string
     {
@@ -154,8 +133,6 @@ class Builder
 
     /**
      * Get DataTable options array.
-     *
-     * @return array
      */
     public function getOptions(): array
     {
@@ -174,8 +151,6 @@ class Builder
 
     /**
      * Get javascript template to use.
-     *
-     * @return string
      */
     protected function template(): string
     {
@@ -189,11 +164,6 @@ class Builder
 
     /**
      * Generate DataTable's table html.
-     *
-     * @param  array  $attributes
-     * @param  bool  $drawFooter
-     * @param  bool  $drawSearch
-     * @return \Illuminate\Support\HtmlString
      */
     public function table(array $attributes = [], bool $drawFooter = false, bool $drawSearch = false): HtmlString
     {
@@ -223,7 +193,6 @@ class Builder
     /**
      * Configure DataTable's parameters.
      *
-     * @param  array  $attributes
      * @return $this
      */
     public function parameters(array $attributes = []): static
@@ -246,7 +215,6 @@ class Builder
     /**
      * Set custom javascript template.
      *
-     * @param  string  $template
      * @return $this
      */
     public function setTemplate(string $template): static
@@ -266,29 +234,17 @@ class Builder
         return $this->setTemplate('datatables::function');
     }
 
-    /**
-     * @return array
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
-     */
     public function getAttribute(string $key, mixed $default = ''): mixed
     {
         return $this->attributes[$key] ?? $default;
     }
 
-    /**
-     * @param  string|null  $key
-     * @return array|string
-     */
-    public function getAjax(string $key = null): array|string
+    public function getAjax(?string $key = null): array|string
     {
         if (! is_null($key)) {
             return $this->ajax[$key] ?? '';
@@ -300,7 +256,6 @@ class Builder
     /**
      * Add additional scripts to the DataTables JS initialization.
      *
-     * @param  string  $view
      * @return $this
      */
     public function addScript(string $view): static

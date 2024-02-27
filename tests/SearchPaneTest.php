@@ -16,20 +16,20 @@ class SearchPaneTest extends TestCase
     {
         $pane = SearchPane::make();
         $pane->className('className')
-             ->header('header')
-             ->show()
-             ->name('name')
-             ->orthogonal('orthogonal')
-             ->hideTotal()
-             ->threshold(1)
-             ->hideCount()
-             ->filterChanged('filterChanged')
-             ->emptyMessage('emptyMessage')
-             ->dtOpts([])
-             ->controls()
-             ->columns([])
-             ->clear()
-             ->cascadePanes();
+            ->header('header')
+            ->show()
+            ->name('name')
+            ->orthogonal('orthogonal')
+            ->hideTotal()
+            ->threshold(1)
+            ->hideCount()
+            ->filterChanged('filterChanged')
+            ->emptyMessage('emptyMessage')
+            ->dtOpts([])
+            ->controls()
+            ->columns([])
+            ->clear()
+            ->cascadePanes();
 
         $this->assertInstanceOf(SearchPane::class, $pane);
         $this->assertEquals('className', $pane->className);

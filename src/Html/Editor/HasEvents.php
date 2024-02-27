@@ -67,9 +67,8 @@ trait HasEvents
     /**
      * Add Editor event listener scripts.
      *
-     * @param  string  $event
-     * @param  mixed  $script
      * @return $this
+     *
      * @see https://editor.datatables.net/reference/event
      */
     public function on(string $event, mixed $script): static

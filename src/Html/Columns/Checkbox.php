@@ -9,7 +9,6 @@ trait Checkbox
     /**
      * Add a checkbox column.
      *
-     * @param  array  $attributes
      * @param  bool|int  $position  true to prepend, false to append or a zero-based index for positioning
      * @return $this
      */

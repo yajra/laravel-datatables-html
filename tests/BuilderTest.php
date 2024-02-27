@@ -12,23 +12,23 @@ use Yajra\DataTables\Html\Editor\Editor;
 
 class BuilderTest extends TestCase
 {
-     #[Test]
-     public function it_can_get_script_default_type_attribute()
-     {
-         $html = $this->getHtmlBuilder()->scripts()->toHtml();
+    #[Test]
+    public function it_can_get_script_default_type_attribute()
+    {
+        $html = $this->getHtmlBuilder()->scripts()->toHtml();
 
-         $this->assertStringContainsString('type="text/javascript"', $html);
-     }
+        $this->assertStringContainsString('type="text/javascript"', $html);
+    }
 
     #[Test]
-     public function it_can_set_script_type_attribute()
-     {
+    public function it_can_set_script_type_attribute()
+    {
         $html = $this->getHtmlBuilder()->scripts(attributes: ['type' => 'module'])->toHtml();
 
         $this->assertStringContainsString('type="module"', $html);
-     }
+    }
 
-     #[Test]
+    #[Test]
     public function it_can_set_multiple_script_attributes()
     {
         $html = $this->getHtmlBuilder()->scripts(attributes: ['prop1' => 'val1', 'prop2' => 'val2'])->toHtml();
@@ -86,10 +86,10 @@ class BuilderTest extends TestCase
         $builder = $this->getHtmlBuilder();
 
         $builder->setTableId('foo-table')
-                ->columns([
-                    Column::make('foo'),
-                    Column::make('baz'),
-                ]);
+            ->columns([
+                Column::make('foo'),
+                Column::make('baz'),
+            ]);
 
         $table = $builder->table()->toHtml();
 
@@ -287,6 +287,4 @@ class BuilderTest extends TestCase
         ]);
         $this->assertCount(2, $builder->getEditors());
     }
-
-
 }

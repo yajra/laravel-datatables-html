@@ -7,8 +7,8 @@ trait Select
     /**
      * Set language select option value.
      *
-     * @param  array  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.select
      */
     public function languageSelect(array $value): static
@@ -19,8 +19,8 @@ trait Select
     /**
      * Set language select cells option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.select.cells
      */
     public function languageSelectCells(array|string $value): static
@@ -31,8 +31,8 @@ trait Select
     /**
      * Set language select columns option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.select.columns
      */
     public function languageSelectColumns(array|string $value): static
@@ -43,8 +43,8 @@ trait Select
     /**
      * Set language select rows option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/language.select.rows
      */
     public function languageSelectRows(array|string $value): static

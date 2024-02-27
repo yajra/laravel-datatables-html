@@ -109,9 +109,6 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    /**
-     * @return \Yajra\DataTables\Html\Builder
-     */
     protected function getHtmlBuilder(): Builder
     {
         return app(Builder::class);

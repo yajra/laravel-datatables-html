@@ -14,8 +14,8 @@ trait Scroller
     /**
      * Set scroller boundaryScale option value.
      *
-     * @param  float  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller.boundaryScale
      */
     public function scrollerBoundaryScale(float $value = 0.5): static
@@ -26,8 +26,8 @@ trait Scroller
     /**
      * Set scroller option value.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller
      */
     public function scroller(array|bool $value = true): static
@@ -38,8 +38,8 @@ trait Scroller
     /**
      * Set scroller displayBuffer option value.
      *
-     * @param  int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller.displayBuffer
      */
     public function scrollerDisplayBuffer(int $value = 9): static
@@ -50,8 +50,8 @@ trait Scroller
     /**
      * Set scroller loadingIndicator option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller.loadingIndicator
      */
     public function scrollerLoadingIndicator(bool $value = true): static
@@ -62,8 +62,8 @@ trait Scroller
     /**
      * Set scroller rowHeight option value.
      *
-     * @param  int|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller.rowHeight
      */
     public function scrollerRowHeight(int|string $value = 'auto'): static
@@ -74,8 +74,8 @@ trait Scroller
     /**
      * Set scroller serverWait option value.
      *
-     * @param  int  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/scroller.serverWait
      */
     public function scrollerServerWait(int $value = 200): static
@@ -83,11 +83,7 @@ trait Scroller
         return $this->scroller(['serverWait' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getScroller(string $key = null): mixed
+    public function getScroller(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['scroller'] ?? true;

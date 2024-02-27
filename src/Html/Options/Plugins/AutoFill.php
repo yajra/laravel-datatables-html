@@ -14,8 +14,8 @@ trait AutoFill
     /**
      * Set autoFill alwaysAsk option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.alwaysAsk
      */
     public function autoFillAlwaysAsk(bool $value = true): static
@@ -27,8 +27,8 @@ trait AutoFill
      * Set autoFill option value.
      * Enable and configure the AutoFill extension for DataTables.
      *
-     * @param  array|bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill
      */
     public function autoFill(array|bool $value = true): static
@@ -39,8 +39,8 @@ trait AutoFill
     /**
      * Set autoFill columns option value.
      *
-     * @param  array|string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.columns
      */
     public function autoFillColumns(array|string $value): static
@@ -51,8 +51,8 @@ trait AutoFill
     /**
      * Set autoFill editor option value.
      *
-     * @param  string  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.editor
      */
     public function autoFillEditor(string $value): static
@@ -63,8 +63,8 @@ trait AutoFill
     /**
      * Set autoFill enable option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.enable
      */
     public function autoFillEnable(bool $value = true): static
@@ -75,11 +75,11 @@ trait AutoFill
     /**
      * Set autoFill focus option value.
      *
-     * @param  string|null  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.focus
      */
-    public function autoFillFocus(string $value = null): static
+    public function autoFillFocus(?string $value = null): static
     {
         return $this->autoFill(['focus' => $value]);
     }
@@ -87,8 +87,8 @@ trait AutoFill
     /**
      * Set autoFill horizontal option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.horizontal
      */
     public function autoFillHorizontal(bool $value = true): static
@@ -99,8 +99,8 @@ trait AutoFill
     /**
      * Set autoFill update option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.update
      */
     public function autoFillUpdate(bool $value = true): static
@@ -111,8 +111,8 @@ trait AutoFill
     /**
      * Set autoFill vertical option value.
      *
-     * @param  bool  $value
      * @return $this
+     *
      * @see https://datatables.net/reference/option/autoFill.vertical
      */
     public function autoFillVertical(bool $value = true): static
@@ -120,11 +120,7 @@ trait AutoFill
         return $this->autoFill(['vertical' => $value]);
     }
 
-    /**
-     * @param  string|null  $key
-     * @return mixed
-     */
-    public function getAutoFill(string $key = null): mixed
+    public function getAutoFill(?string $key = null): mixed
     {
         if (is_null($key)) {
             return $this->attributes['autoFill'] ?? true;
