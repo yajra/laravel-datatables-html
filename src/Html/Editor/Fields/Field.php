@@ -31,7 +31,7 @@ class Field extends Fluent
      */
     public function __construct($attributes = [])
     {
-        $attributes['type'] = $attributes['type'] ?? $this->type;
+        $attributes['type'] ??= $this->type;
 
         parent::__construct($attributes);
     }

@@ -20,21 +20,21 @@ class Builder
     use Macroable;
 
     // Select plugin constants.
-    const SELECT_STYLE_API = 'api';
+    final const SELECT_STYLE_API = 'api';
 
-    const SELECT_STYLE_SINGLE = 'single';
+    final const SELECT_STYLE_SINGLE = 'single';
 
-    const SELECT_STYLE_MULTI = 'multi';
+    final const SELECT_STYLE_MULTI = 'multi';
 
-    const SELECT_STYLE_OS = 'os';
+    final const SELECT_STYLE_OS = 'os';
 
-    const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
+    final const SELECT_STYLE_MULTI_SHIFT = 'multi+shift';
 
-    const SELECT_ITEMS_ROW = 'row';
+    final const SELECT_ITEMS_ROW = 'row';
 
-    const SELECT_ITEMS_COLUMN = 'column';
+    final const SELECT_ITEMS_COLUMN = 'column';
 
-    const SELECT_ITEMS_CELL = 'cell';
+    final const SELECT_ITEMS_CELL = 'cell';
 
     /**
      * The default type to use for the DataTables javascript.
@@ -53,7 +53,10 @@ class Builder
 
     protected string $template = '';
 
-    protected array $attributes = [];
+    protected array $attributes = [
+        'serverSide' => true,
+        'processing' => true,
+    ];
 
     protected string|array $ajax = '';
 
@@ -66,10 +69,6 @@ class Builder
 
         $this->collection = new Collection;
         $this->tableAttributes = $defaults;
-        $this->attributes = [
-            'serverSide' => true,
-            'processing' => true,
-        ];
     }
 
     /**

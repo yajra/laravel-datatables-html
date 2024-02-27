@@ -84,7 +84,7 @@ class Select2 extends Select
         if (is_array($data)) {
             $script = 'function(params) {';
             foreach ($data as $key => $value) {
-                $value = json_encode($value);
+                $value = json_encode($value, JSON_THROW_ON_ERROR);
                 $script .= " params.$key = $value; ";
             }
             $script .= 'return params; }';

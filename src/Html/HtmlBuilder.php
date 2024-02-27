@@ -9,22 +9,19 @@ use Illuminate\Support\HtmlString;
 class HtmlBuilder
 {
     /**
-     * The URL generator instance.
-     */
-    protected UrlGenerator $url;
-
-    /**
-     * The View Factory instance.
-     */
-    protected Factory $view;
-
-    /**
      * Create a new HTML builder instance.
      */
-    public function __construct(UrlGenerator $url, Factory $view)
+    public function __construct(
+        /**
+         * The URL generator instance.
+         */
+        protected UrlGenerator $url,
+        /**
+         * The View Factory instance.
+         */
+        protected Factory $view
+    )
     {
-        $this->url = $url;
-        $this->view = $view;
     }
 
     /**

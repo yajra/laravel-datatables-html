@@ -111,7 +111,7 @@ trait HasTable
         $currentClass = $this->getTableAttribute('class');
 
         $classes = array_diff(
-            (array) preg_split('#\s+#', $currentClass, -1, PREG_SPLIT_NO_EMPTY),
+            (array) preg_split('#\s+#', (string) $currentClass, -1, PREG_SPLIT_NO_EMPTY),
             (array) preg_split('#\s+#', $class, -1, PREG_SPLIT_NO_EMPTY)
         );
         $class = implode(' ', array_unique($classes));

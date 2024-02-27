@@ -213,7 +213,6 @@ class SearchPane extends Fluent
      * Get options from a model.
      *
      * @param  class-string<\Illuminate\Database\Eloquent\Model>|EloquentBuilder  $model
-     * @return $this
      */
     public function modelOptions(EloquentBuilder|string $model, string $value, string $key = 'id'): SearchPane
     {

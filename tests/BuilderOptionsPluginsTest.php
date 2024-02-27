@@ -273,9 +273,7 @@ class BuilderOptionsPluginsTest extends TestCase
         $builder->searchPanes(['hide' => true]);
         $this->assertEquals(['hide' => true], $builder->getAttribute('searchPanes'));
 
-        $builder->searchPanes(function () {
-            return ['show' => true];
-        });
+        $builder->searchPanes(fn() => ['show' => true]);
         $this->assertEquals(['show' => true], $builder->getAttribute('searchPanes'));
 
         $builder->searchPanes(SearchPane::make()->show()->cascadePanes());

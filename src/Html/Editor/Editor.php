@@ -24,15 +24,15 @@ class Editor extends Fluent
     use HasAuthorizations;
     use HasEvents;
 
-    const DISPLAY_LIGHTBOX = 'lightbox';
+    final const DISPLAY_LIGHTBOX = 'lightbox';
 
-    const DISPLAY_ENVELOPE = 'envelope';
+    final const DISPLAY_ENVELOPE = 'envelope';
 
-    const DISPLAY_BOOTSTRAP = 'bootstrap';
+    final const DISPLAY_BOOTSTRAP = 'bootstrap';
 
-    const DISPLAY_FOUNDATION = 'foundation';
+    final const DISPLAY_FOUNDATION = 'foundation';
 
-    const DISPLAY_JQUERYUI = 'jqueryui';
+    final const DISPLAY_JQUERYUI = 'jqueryui';
 
     public array $events = [];
 
@@ -43,6 +43,7 @@ class Editor extends Fluent
      */
     public function __construct($instance = 'editor')
     {
+        $attributes = [];
         $attributes['instance'] = $instance;
 
         parent::__construct($attributes);

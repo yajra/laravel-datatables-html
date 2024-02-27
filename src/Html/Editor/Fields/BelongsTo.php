@@ -19,7 +19,7 @@ class BelongsTo extends Select
         }
 
         $table = Str::singular($table);
-        $foreign = $foreign ?? $table.'_id';
+        $foreign ??= $table.'_id';
 
         return self::make($foreign, Str::title($table))
             ->modelOptions($class, $text, $id);
