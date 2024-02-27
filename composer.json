@@ -1,7 +1,8 @@
 {
   "name": "yajra/laravel-datatables-html",
-  "description": "Laravel DataTables HTML builder plugin for Laravel 5.4+.",
+  "description": "Laravel DataTables HTML builder plugin",
   "keywords": [
+    "yajra",
     "laravel",
     "dataTables",
     "jquery",
@@ -16,13 +17,13 @@
     }
   ],
   "require": {
-    "php": "^8.1",
+    "php": "^8.2",
     "ext-json": "*",
-    "yajra/laravel-datatables-oracle": "^10.0"
+    "yajra/laravel-datatables-oracle": "^11.0"
   },
   "require-dev": {
-    "nunomaduro/larastan": "^2.4",
-    "orchestra/testbench": "^7.21"
+    "larastan/larastan": "^2.9.1",
+    "orchestra/testbench": "^9"
   },
   "autoload": {
     "psr-4": {
