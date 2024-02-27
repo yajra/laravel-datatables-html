@@ -2,12 +2,13 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Html\Tests\Models\User;
 
 class FieldTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_create_a_field()
     {
         $field = Fields\Field::make('name');
@@ -18,7 +19,7 @@ class FieldTest extends TestCase
         $this->assertEquals('text', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_properties()
     {
         $field = Fields\Field::make('name');
@@ -34,7 +35,7 @@ class FieldTest extends TestCase
         $this->assertEquals('Test', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_belongs_to_field()
     {
         $field = Fields\BelongsTo::model(User::class, 'name');
@@ -44,7 +45,7 @@ class FieldTest extends TestCase
         $this->assertEquals('User', $field->label);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_boolean_field()
     {
         $field = Fields\Boolean::make('name');
@@ -56,7 +57,7 @@ class FieldTest extends TestCase
         $this->assertEquals([['label' => '', 'value' => 1]], $field->options);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_date_field()
     {
         $field = Fields\Date::make('name');
@@ -67,7 +68,7 @@ class FieldTest extends TestCase
         $this->assertEquals('YYYY-MM-DD', $field->format);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_datetime_field()
     {
         $field = Fields\DateTime::make('name');
@@ -118,7 +119,7 @@ class FieldTest extends TestCase
         $this->assertEquals('LLL', $field->getAttributes()['wireFormat']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_file_field()
     {
         $field = Fields\File::make('name');
@@ -127,7 +128,7 @@ class FieldTest extends TestCase
         // TODO: add more file field test
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_hidden_field()
     {
         $field = Fields\Hidden::make('name');
@@ -135,7 +136,7 @@ class FieldTest extends TestCase
         $this->assertEquals('hidden', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_image_field()
     {
         $field = Fields\Image::make('name');
@@ -143,7 +144,7 @@ class FieldTest extends TestCase
         $this->assertEquals('upload', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_number_field()
     {
         $field = Fields\Number::make('name');
@@ -151,7 +152,7 @@ class FieldTest extends TestCase
         $this->assertEquals('text', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_password_field()
     {
         $field = Fields\Password::make('name');
@@ -159,7 +160,7 @@ class FieldTest extends TestCase
         $this->assertEquals('password', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_radio_field()
     {
         $field = Fields\Radio::make('name');
@@ -167,7 +168,7 @@ class FieldTest extends TestCase
         $this->assertEquals('radio', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_read_only_field()
     {
         $field = Fields\ReadOnlyField::make('name');
@@ -175,7 +176,7 @@ class FieldTest extends TestCase
         $this->assertEquals('readonly', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_select_field()
     {
         $field = Fields\Select::make('name');
@@ -183,7 +184,7 @@ class FieldTest extends TestCase
         $this->assertEquals('select', $field->getType());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_select2_field()
     {
         $field = Fields\Select2::make('name')
@@ -227,7 +228,7 @@ class FieldTest extends TestCase
         $this->assertEquals('/test', $field->opts['ajax']['url']);;
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_text_field()
     {
         $field = Fields\Text::make('name')
@@ -238,7 +239,7 @@ class FieldTest extends TestCase
         $this->assertEquals('display: none;', $field->attr['style']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_textarea_field()
     {
         $field = Fields\TextArea::make('name');
@@ -252,7 +253,7 @@ class FieldTest extends TestCase
         $this->assertEquals('5', $field->attr['cols']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_time_field()
     {
         $field = Fields\Time::make('name');
@@ -263,7 +264,7 @@ class FieldTest extends TestCase
         $this->assertEquals('hh:mm a', $field->format);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_authorizations()
     {
         $field = Fields\Text::makeIf(true, 'name');
@@ -277,7 +278,7 @@ class FieldTest extends TestCase
         $this->assertEquals([], $field->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_serialized()
     {
         $field = Fields\Text::make('name')->data('user.name');

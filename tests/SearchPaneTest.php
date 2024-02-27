@@ -3,6 +3,7 @@
 namespace Yajra\DataTables\Html\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\SearchPane;
 use Yajra\DataTables\Html\Tests\Models\User;
 
@@ -10,7 +11,7 @@ class SearchPaneTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /** @test */
+    #[Test]
     public function it_has_setters()
     {
         $pane = SearchPane::make();
@@ -51,7 +52,7 @@ class SearchPaneTest extends TestCase
         $this->assertEquals(true, $pane->viewTotal);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_options()
     {
         $pane = SearchPane::make()->options([1, 2, 3]);

@@ -2,11 +2,12 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\ColumnDefinition;
 
 class ColumnDefinitionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_property_setters()
     {
         $def = ColumnDefinition::make()

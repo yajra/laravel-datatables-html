@@ -20,7 +20,7 @@ abstract class TestCase extends BaseTestCase
         $this->seedDatabase();
     }
 
-    protected function migrateDatabase()
+    protected function migrateDatabase(): void
     {
         /** @var \Illuminate\Database\Schema\Builder $schemaBuilder */
         $schemaBuilder = $this->app['db']->connection()->getSchemaBuilder();
@@ -59,7 +59,7 @@ abstract class TestCase extends BaseTestCase
         }
     }
 
-    protected function seedDatabase()
+    protected function seedDatabase(): void
     {
         $adminRole = Role::create(['role' => 'Administrator']);
         $userRole = Role::create(['role' => 'User']);
@@ -90,7 +90,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @param  \Illuminate\Foundation\Application  $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $app['config']->set('app.debug', true);
         $app['config']->set('database.default', 'sqlite');

@@ -2,11 +2,12 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\FormOptions;
 
 class EditorFormOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_setters()
     {
         $options = FormOptions::make();

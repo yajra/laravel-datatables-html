@@ -2,12 +2,13 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Column;
 
 class BuilderOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_callbacks_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -45,7 +46,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('test livewire', $builder->getAttribute('drawCallback'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_columns_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -103,7 +104,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertCount(4, $builder->getColumns());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_ajax_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -147,7 +148,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertStringContainsString('#formId', $builder->getAjax('data'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_features_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -181,7 +182,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals('50vh', $builder->getAttribute('scrollY'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_internationalisation_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -220,7 +221,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals('languageUrl', $builder->getLanguage('url'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_plugin_attribute_getter()
     {
         $builder = $this->getHtmlBuilder();
@@ -230,7 +231,7 @@ class BuilderOptionsTest extends TestCase
         $this->assertEquals(Builder::SELECT_STYLE_SINGLE, $builder->getPluginAttribute('select', 'style'));
     }
 
-    /** @test */
+    #[Test]
     public function it_has_options()
     {
         $builder = $this->getHtmlBuilder();

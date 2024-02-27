@@ -2,9 +2,11 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class BuilderOptionsLanguageTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_language_aria_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -33,7 +35,7 @@ class BuilderOptionsLanguageTest extends TestCase
         $this->assertEquals('languageAriaSortDescending', $builder->getLanguage('aria')['sortDescending']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_language_autofill_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -62,7 +64,7 @@ class BuilderOptionsLanguageTest extends TestCase
         $this->assertEquals('languageAutoFillInfo', $builder->getLanguage('autoFill')['info']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_language_paginate_options()
     {
         $builder = $this->getHtmlBuilder();
@@ -82,7 +84,7 @@ class BuilderOptionsLanguageTest extends TestCase
         $this->assertEquals('languagePaginatePrevious', $builder->getLanguage('paginate')['previous']);
     }
 
-    /** @test */
+    #[Test]
     public function it_has_language_select_options()
     {
         $builder = $this->getHtmlBuilder();
