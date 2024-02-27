@@ -36,8 +36,8 @@ class HtmlServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/resources/config/config.php', 'datatables-html');
 
-        $this->app->bind('datatables.html', fn() => $this->app->make(Html\Builder::class));
+        $this->app->bind('datatables.html', fn () => $this->app->make(Html\Builder::class));
 
-        DataTables::macro('getHtmlBuilder', fn(): Html\Builder => app('datatables.html'));
+        DataTables::macro('getHtmlBuilder', fn (): Html\Builder => app('datatables.html'));
     }
 }

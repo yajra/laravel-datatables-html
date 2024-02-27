@@ -20,8 +20,7 @@ class HtmlBuilder
          * The View Factory instance.
          */
         protected Factory $view
-    )
-    {
+    ) {
     }
 
     /**

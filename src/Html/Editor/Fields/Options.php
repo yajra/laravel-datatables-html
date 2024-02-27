@@ -39,7 +39,7 @@ class Options extends Collection
             $model = $model::query();
         }
 
-        return $model->get()->map(fn($model) => [
+        return $model->get()->map(fn ($model) => [
             'value' => $model->{$key},
             'label' => $model->{$value},
         ]);
@@ -63,7 +63,7 @@ class Options extends Collection
             $callback($query);
         }
 
-        return $query->get()->map(fn($row) => (array) $row);
+        return $query->get()->map(fn ($row) => (array) $row);
     }
 
     /**

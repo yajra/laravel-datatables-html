@@ -175,7 +175,7 @@ trait HasColumns
     {
         foreach ($names as $name) {
             // @phpstan-ignore-next-line
-            $this->collection = $this->collection->filter(fn(Column $column) => $column->name !== $name)->flatten();
+            $this->collection = $this->collection->filter(fn (Column $column) => $column->name !== $name)->flatten();
         }
 
         return $this;
