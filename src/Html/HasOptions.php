@@ -73,12 +73,37 @@ trait HasOptions
      * Set dom option value.
      *
      * @return $this
+     * @deprecated Use layout() method instead.
      *
      * @see https://datatables.net/reference/option/dom
      */
     public function dom(string $value): static
     {
         $this->attributes['dom'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set layout option value.
+     *
+     * @return $this
+     *
+     * @see https://datatables.net/reference/option/layout
+     */
+    public function layout(array|Layout|callable $value): static
+    {
+        if ($value instanceof Layout) {
+            $value = $value->toArray();
+        }
+
+        if (is_callable($value)) {
+            $layout = new Layout;
+            $value($layout);
+            $value = $layout->toArray();
+        }
+
+        $this->attributes['layout'] = $value;
 
         return $this;
     }
