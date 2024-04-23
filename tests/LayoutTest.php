@@ -4,7 +4,6 @@ namespace Yajra\DataTables\Html\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
-use Yajra\DataTables\Html\ColumnDefinition;
 use Yajra\DataTables\Html\Layout;
 
 class LayoutTest extends TestCase
