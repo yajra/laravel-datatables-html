@@ -73,8 +73,8 @@ trait HasOptions
      * Set dom option value.
      *
      * @return $this
-     * @deprecated Use layout() method instead.
      *
+     * @deprecated Use layout() method instead.
      * @see https://datatables.net/reference/option/dom
      */
     public function dom(string $value): static
