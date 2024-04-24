@@ -127,4 +127,50 @@ class LayoutTest extends TestCase
         $this->assertArrayHasKey('layout', $builder->getAttributes());
         $this->assertArrayHasKey('top', $builder->getAttributes()['layout']);
     }
+
+    #[Test]
+    public function it_can_accept_callable_as_parameter_in_builder(): void
+    {
+        $builder = resolve(Builder::class);
+        $builder->layout(fn (Layout $layout) => $layout->top('test'));
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('top', $builder->getAttributes()['layout']);
+    }
+
+    #[Test]
+    public function it_can_accept_js_selector_for_layout_content(): void
+    {
+        $builder = resolve(Builder::class);
+        $builder->layout(fn (Layout $layout) => $layout->topView('#test'));
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('top', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['top']);
+
+        $builder->layout(fn (Layout $layout) => $layout->bottomView('#test'));
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('bottom', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['bottom']);
+
+        $builder->layout(fn (Layout $layout) => $layout->topStartView('#test'));
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('topStart', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['topStart']);
+
+        $builder->layout(fn (Layout $layout) => $layout->topEndView('#test'));
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('topEnd', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['topEnd']);
+
+        $builder->layout(fn (Layout $layout) => $layout->bottomStartView('#test'));
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('bottomStart', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['bottomStart']);
+
+        $builder->layout(fn (Layout $layout) => $layout->bottomEndView('#test'));
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('bottomEnd', $builder->getAttributes()['layout']);
+        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['bottomEnd']);
+    }
 }
