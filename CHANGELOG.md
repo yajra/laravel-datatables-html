@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v11.2.0 (2024-04-24)
+
+- feat: load layout from view using selector #217
+
 ### v11.1.0 (2024-04-24)
 
 - feat: layout builder #216
