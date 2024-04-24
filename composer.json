@@ -53,8 +53,8 @@
         "rector": "./vendor/bin/rector",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G --ansi --no-progress --no-interaction --configuration=phpstan.neon.dist",
         "pr": [
-            "@pint",
             "@rector",
+            "@pint",
             "@stan",
             "@test"
         ]
