@@ -82,4 +82,49 @@ class LayoutTest extends TestCase
         $this->assertArrayHasKey('top1End', $builder->getAttributes()['layout']);
         $this->assertArrayHasKey('bottom1End', $builder->getAttributes()['layout']);
     }
+
+    #[Test]
+    public function it_has_factory_method(): void
+    {
+        $layout = Layout::make();
+        $this->assertInstanceOf(Layout::class, $layout);
+
+        $builder = resolve(Builder::class);
+        $builder->layout(Layout::make());
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+    }
+
+    #[Test]
+    public function it_can_be_macroable(): void
+    {
+        Layout::macro('test', fn () => 'test');
+
+        $layout = new Layout;
+        $this->assertEquals('test', $layout->test());
+    }
+
+    #[Test]
+    public function it_can_accept_array(): void
+    {
+        $layout = new Layout(['top' => 'test']);
+        $this->assertEquals('test', $layout->get('top'));
+    }
+
+    #[Test]
+    public function it_can_accept_array_as_parameter(): void
+    {
+        $layout = Layout::make(['top' => 'test']);
+        $this->assertEquals('test', $layout->get('top'));
+    }
+
+    #[Test]
+    public function it_can_accept_array_as_parameter_in_builder(): void
+    {
+        $builder = resolve(Builder::class);
+        $builder->layout(['top' => 'test']);
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('top', $builder->getAttributes()['layout']);
+    }
 }

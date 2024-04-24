@@ -11,6 +11,11 @@ class Layout extends Fluent
 {
     use Macroable;
 
+    public static function make(array $options = []): static
+    {
+        return new static($options);
+    }
+
     public function topStart(string|array|null $options, int $order = 0): static
     {
         return $this->top($options, $order, 'Start');
