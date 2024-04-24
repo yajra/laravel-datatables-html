@@ -4,6 +4,7 @@ namespace Yajra\DataTables\Html\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
+use Yajra\DataTables\Html\Enums\LayoutPosition;
 use Yajra\DataTables\Html\Layout;
 
 class LayoutTest extends TestCase
@@ -36,16 +37,16 @@ class LayoutTest extends TestCase
         $layout->bottom('test', 1);
         $this->assertEquals('test', $layout->get('bottom1'));
 
-        $layout->top('test', 1, 'Start');
+        $layout->top('test', 1, LayoutPosition::Start);
         $this->assertEquals('test', $layout->get('top1Start'));
 
-        $layout->bottom('test', 1, 'Start');
+        $layout->bottom('test', 1, LayoutPosition::Start);
         $this->assertEquals('test', $layout->get('bottom1Start'));
 
-        $layout->top('test', 1, 'End');
+        $layout->top('test', 1, LayoutPosition::End);
         $this->assertEquals('test', $layout->get('top1End'));
 
-        $layout->bottom('test', 1, 'End');
+        $layout->bottom('test', 1, LayoutPosition::End);
         $this->assertEquals('test', $layout->get('bottom1End'));
     }
 
@@ -62,10 +63,10 @@ class LayoutTest extends TestCase
             $layout->bottomEnd('test');
             $layout->top('test', 1);
             $layout->bottom('test', 1);
-            $layout->top('test', 1, 'Start');
-            $layout->bottom('test', 1, 'Start');
-            $layout->top('test', 1, 'End');
-            $layout->bottom('test', 1, 'End');
+            $layout->top('test', 1, LayoutPosition::Start);
+            $layout->bottom('test', 1, LayoutPosition::Start);
+            $layout->top('test', 1, LayoutPosition::End);
+            $layout->bottom('test', 1, LayoutPosition::End);
         });
 
         $this->assertArrayHasKey('layout', $builder->getAttributes());
@@ -156,7 +157,8 @@ class LayoutTest extends TestCase
         $builder->layout(fn (Layout $layout) => $layout->topStartView('#test'));
         $this->assertArrayHasKey('layout', $builder->getAttributes());
         $this->assertArrayHasKey('topStart', $builder->getAttributes()['layout']);
-        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['topStart']);
+        $this->assertEquals("function() { return $('#test').html(); }",
+            $builder->getAttributes()['layout']['topStart']);
 
         $builder->layout(fn (Layout $layout) => $layout->topEndView('#test'));
         $this->assertArrayHasKey('layout', $builder->getAttributes());
@@ -166,11 +168,15 @@ class LayoutTest extends TestCase
         $builder->layout(fn (Layout $layout) => $layout->bottomStartView('#test'));
         $this->assertArrayHasKey('layout', $builder->getAttributes());
         $this->assertArrayHasKey('bottomStart', $builder->getAttributes()['layout']);
-        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['bottomStart']);
+        $this->assertEquals("function() { return $('#test').html(); }",
+            $builder->getAttributes()['layout']['bottomStart']);
 
         $builder->layout(fn (Layout $layout) => $layout->bottomEndView('#test'));
         $this->assertArrayHasKey('layout', $builder->getAttributes());
         $this->assertArrayHasKey('bottomEnd', $builder->getAttributes()['layout']);
-        $this->assertEquals("function() { return $('#test').html(); }", $builder->getAttributes()['layout']['bottomEnd']);
+        $this->assertEquals(
+            "function() { return $('#test').html(); }",
+            $builder->getAttributes()['layout']['bottomEnd']
+        );
     }
 }
