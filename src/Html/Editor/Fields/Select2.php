@@ -38,6 +38,11 @@ class Select2 extends Select
         ]);
     }
 
+    public function multiple(bool $value = true): static
+    {
+        return $this->opts(['multiple' => $value]);
+    }
+
     /**
      * Set select2 ajax option.
      *
