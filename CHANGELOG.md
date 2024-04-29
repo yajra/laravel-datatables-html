@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v11.2.1 (2024-04-29)
+
+- fix: multiple config option of select2 #218
+
 ### v11.2.0 (2024-04-24)
 
 - feat: load layout from view using selector #217
