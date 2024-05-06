@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Yajra\DataTables\Html;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
+use InvalidArgumentException;
+use Throwable;
 use Yajra\DataTables\Html\Enums\LayoutPosition;
 
 class Layout extends Fluent
@@ -17,79 +20,104 @@ class Layout extends Fluent
         return new static($options);
     }
 
-    public function topStart(string|array|null $options, int $order = 0): static
+    public function top(array|string|null $options, ?int $order = null): static
     {
-        return $this->top($options, $order, LayoutPosition::Start);
-    }
-
-    public function top(array|string|null $options, ?int $order = null, ?LayoutPosition $position = null): static
-    {
-        if ($order > 0) {
-            $this->attributes["top{$order}{$position?->value}"] = $options;
-        } else {
-            $this->attributes["top{$position?->value}"] = $options;
-        }
+        $this->attributes[LayoutPosition::Top->withOrder($order)] = $options;
 
         return $this;
     }
 
-    public function topEnd(string|array|null $options, int $order = 0): static
+    public function topStart(string|array|null $options, ?int $order = null): static
     {
-        return $this->top($options, $order, LayoutPosition::End);
-    }
-
-    public function topEndView(string $selector, int $order = 0): static
-    {
-        return $this->topView($selector, $order, LayoutPosition::End);
-    }
-
-    public function topView(string $selector, int $order = 0, ?LayoutPosition $position = null): static
-    {
-        $script = "function() { return $('{$selector}').html(); }";
-
-        return $this->top($script, $order, $position);
-    }
-
-    public function bottomStartView(string $selector, int $order = 0): static
-    {
-        return $this->bottomView($selector, $order, LayoutPosition::Start);
-    }
-
-    public function bottomView(string $selector, int $order = 0, ?LayoutPosition $position = null): static
-    {
-        $script = "function() { return $('{$selector}').html(); }";
-
-        return $this->bottom($script, $order, $position);
-    }
-
-    public function bottom(array|string|null $options, ?int $order = null, ?LayoutPosition $position = null): static
-    {
-        if ($order > 0) {
-            $this->attributes["bottom{$order}{$position?->value}"] = $options;
-        } else {
-            $this->attributes["bottom{$position?->value}"] = $options;
-        }
+        $this->attributes[LayoutPosition::TopStart->withOrder($order)] = $options;
 
         return $this;
     }
 
-    public function bottomEndView(string $selector, int $order = 0): static
+    public function topEnd(string|array|null $options, ?int $order = null): static
     {
-        return $this->bottomView($selector, $order, LayoutPosition::End);
+        $this->attributes[LayoutPosition::TopEnd->withOrder($order)] = $options;
+
+        return $this;
     }
 
-    public function topStartView(string $selector, int $order = 0): static
+    public function topView(string $selector, ?int $order = null): static
     {
-        return $this->topView($selector, $order, LayoutPosition::Start);
+        return $this->top($this->renderCustomElement($selector), $order);
     }
 
-    public function bottomStart(string|array|null $options, int $order = 0): static
+    public function topStartView(string $selector, ?int $order = null): static
     {
-        return $this->bottom($options, $order, LayoutPosition::Start);
+        return $this->topStart($this->renderCustomElement($selector), $order);
     }
 
-    public function bottomEnd(string|array|null $options, int $order = 0): static
+    public function topEndView(string $selector, ?int $order = null): static
     {
-        return $this->bottom($options, $order, LayoutPosition::End);
+        return $this->topEnd($this->renderCustomElement($selector), $order);
+    }
+
+    public function bottom(array|string|null $options, ?int $order = null): static
+    {
+        $this->attributes[LayoutPosition::Bottom->withOrder($order)] = $options;
+
+        return $this;
+    }
+
+    public function bottomStart(string|array|null $options, ?int $order = null): static
+    {
+        $this->attributes[LayoutPosition::BottomStart->withOrder($order)] = $options;
+
+        return $this;
+    }
+
+    public function bottomEnd(string|array|null $options, ?int $order = null): static
+    {
+        $this->attributes[LayoutPosition::BottomEnd->withOrder($order)] = $options;
+
+        return $this;
+    }
+
+    public function bottomView(string $selector, ?int $order = null): static
+    {
+        return $this->bottom($this->renderCustomElement($selector), $order);
+    }
+
+    public function bottomStartView(string $selector, ?int $order = null): static
+    {
+        return $this->bottomStart($this->renderCustomElement($selector), $order);
+    }
+
+    public function bottomEndView(string $selector, ?int $order = null): static
+    {
+        return $this->bottomEnd($this->renderCustomElement($selector), $order);
+    }
+
+    /**
+     * @param  Renderable|view-string  $view
+     *
+     * @throws Throwable
+     */
+    public function addView(
+        Renderable|string $view,
+        LayoutPosition $layoutPosition,
+        ?int $order = null
+    ): static {
+        $html = $view instanceof Renderable ? $view->render() : view($view)->render();
+        $element = json_encode($html);
+
+        if ($element === false) {
+            throw new InvalidArgumentException("Cannot render view [$html] to json.");
+        }
+
+        $this->attributes[$layoutPosition->withOrder($order)] = $this->renderCustomElement($element, false);
+
+        return $this;
+    }
+
+    private function renderCustomElement(string $element, bool $asJsSelector = true): string
+    {
+        $html = $asJsSelector ? "$('{$element}').html()" : $element;
+
+        return "function() { return $html; }";
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
+use Illuminate\Support\Facades\View;
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Enums\LayoutPosition;
@@ -37,16 +39,16 @@ class LayoutTest extends TestCase
         $layout->bottom('test', 1);
         $this->assertEquals('test', $layout->get('bottom1'));
 
-        $layout->top('test', 1, LayoutPosition::Start);
+        $layout->topStart('test', 1);
         $this->assertEquals('test', $layout->get('top1Start'));
 
-        $layout->bottom('test', 1, LayoutPosition::Start);
+        $layout->bottomStart('test', 1);
         $this->assertEquals('test', $layout->get('bottom1Start'));
 
-        $layout->top('test', 1, LayoutPosition::End);
+        $layout->topEnd('test', 1);
         $this->assertEquals('test', $layout->get('top1End'));
 
-        $layout->bottom('test', 1, LayoutPosition::End);
+        $layout->bottomEnd('test', 1);
         $this->assertEquals('test', $layout->get('bottom1End'));
     }
 
@@ -63,10 +65,10 @@ class LayoutTest extends TestCase
             $layout->bottomEnd('test');
             $layout->top('test', 1);
             $layout->bottom('test', 1);
-            $layout->top('test', 1, LayoutPosition::Start);
-            $layout->bottom('test', 1, LayoutPosition::Start);
-            $layout->top('test', 1, LayoutPosition::End);
-            $layout->bottom('test', 1, LayoutPosition::End);
+            $layout->topStart('test', 1);
+            $layout->bottomStart('test', 1);
+            $layout->topEnd('test', 1);
+            $layout->bottomEnd('test', 1);
         });
 
         $this->assertArrayHasKey('layout', $builder->getAttributes());
@@ -178,5 +180,58 @@ class LayoutTest extends TestCase
             "function() { return $('#test').html(); }",
             $builder->getAttributes()['layout']['bottomEnd']
         );
+    }
+
+    #[Test]
+    public function it_can_accept_view_instance_or_string_for_layout_content(): void
+    {
+        View::addLocation(__DIR__.'/TestBlade');
+
+        $builder = resolve(Builder::class);
+
+        $view = view('test-view');
+
+        $builder->layout(fn (Layout $layout) => $layout
+            ->addView(
+                view: $view,
+                layoutPosition: LayoutPosition::TopStart,
+                order: 1
+            )->addView(
+                view: 'test-view',
+                layoutPosition: LayoutPosition::BottomEnd,
+                order: 2
+            ));
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('top1Start', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode($view->render()).'; }',
+            $builder->getAttributes()['layout']['top1Start']
+        );
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('bottom2End', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode($view->render()).'; }',
+            $builder->getAttributes()['layout']['bottom2End']
+        );
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_the_view_does_not_exist_when_adding_view(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('View [non-existent-view] not found.');
+
+        $builder = resolve(Builder::class);
+        $builder->layout(fn (Layout $layout) => $layout
+            ->addView(
+                view: 'non-existent-view',
+                layoutPosition: LayoutPosition::Top,
+            )
+            ->addView(
+                view: view('non-existent-view'),
+                layoutPosition: LayoutPosition::Bottom,
+            ));
     }
 }
