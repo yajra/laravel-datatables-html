@@ -93,8 +93,6 @@ class Layout extends Fluent
     }
 
     /**
-     * @param  Renderable|view-string  $view
-     *
      * @throws Throwable
      */
     public function addView(
@@ -102,7 +100,13 @@ class Layout extends Fluent
         LayoutPosition $layoutPosition,
         ?int $order = null
     ): static {
-        $html = $view instanceof Renderable ? $view->render() : view($view)->render();
+        if ($view instanceof Renderable) {
+            $html = $view->render();
+        } else {
+            // Support for inline component views
+            $html = strip_tags($view) !== $view ? $view : view($view)->render();
+        }
+
         $element = json_encode($html);
 
         if ($element === false) {
