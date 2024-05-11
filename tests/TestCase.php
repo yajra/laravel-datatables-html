@@ -3,6 +3,9 @@
 namespace Yajra\DataTables\Html\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Yajra\DataTables\DataTablesServiceProvider;
 use Yajra\DataTables\Html\Builder;
@@ -16,8 +19,11 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        config()->set('app.key', 'base64:6pASQ5U2UYo+w6noM9hwOPeHJ5vGP+BNruyMtRA8FWY=');
+
         $this->migrateDatabase();
         $this->seedDatabase();
+        $this->setupViewAndBladeDirectory();
     }
 
     protected function migrateDatabase(): void
@@ -104,6 +110,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
+            LivewireServiceProvider::class,
             DataTablesServiceProvider::class,
             HtmlServiceProvider::class,
         ];
@@ -112,5 +119,11 @@ abstract class TestCase extends BaseTestCase
     protected function getHtmlBuilder(): Builder
     {
         return app(Builder::class);
+    }
+
+    protected function setupViewAndBladeDirectory(): void
+    {
+        View::addLocation(__DIR__.'/TestComponents');
+        Blade::componentNamespace('Yajra\\DataTables\\Html\\Tests\\TestComponents', 'test');
     }
 }

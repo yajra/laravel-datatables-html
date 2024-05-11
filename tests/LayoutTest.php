@@ -2,12 +2,15 @@
 
 namespace Yajra\DataTables\Html\Tests;
 
-use Illuminate\Support\Facades\View;
 use InvalidArgumentException;
+use Livewire\Exceptions\ComponentNotFoundException;
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Enums\LayoutPosition;
 use Yajra\DataTables\Html\Layout;
+use Yajra\DataTables\Html\Tests\TestComponents\TestInlineView;
+use Yajra\DataTables\Html\Tests\TestComponents\TestLivewire;
+use Yajra\DataTables\Html\Tests\TestComponents\TestView;
 
 class LayoutTest extends TestCase
 {
@@ -185,8 +188,6 @@ class LayoutTest extends TestCase
     #[Test]
     public function it_can_accept_view_instance_or_string_for_layout_content(): void
     {
-        View::addLocation(__DIR__.'/TestBlade');
-
         $builder = resolve(Builder::class);
 
         $view = view('test-view');
@@ -196,24 +197,48 @@ class LayoutTest extends TestCase
                 view: $view,
                 layoutPosition: LayoutPosition::TopStart,
                 order: 1
-            )->addView(
+            )
+            ->addView(
                 view: 'test-view',
                 layoutPosition: LayoutPosition::BottomEnd,
                 order: 2
-            ));
+            )
+            ->addView(
+                view: (new TestView())->render(),
+                layoutPosition: LayoutPosition::Top,
+                order: 3
+            )
+            ->addView(
+                view: (new TestInlineView())->render(),
+                layoutPosition: LayoutPosition::Bottom,
+                order: 4
+            )
+        );
 
         $this->assertArrayHasKey('layout', $builder->getAttributes());
+
         $this->assertArrayHasKey('top1Start', $builder->getAttributes()['layout']);
         $this->assertEquals(
             'function() { return '.json_encode($view->render()).'; }',
             $builder->getAttributes()['layout']['top1Start']
         );
 
-        $this->assertArrayHasKey('layout', $builder->getAttributes());
         $this->assertArrayHasKey('bottom2End', $builder->getAttributes()['layout']);
         $this->assertEquals(
             'function() { return '.json_encode($view->render()).'; }',
             $builder->getAttributes()['layout']['bottom2End']
+        );
+
+        $this->assertArrayHasKey('top3', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode($view->render()).'; }',
+            $builder->getAttributes()['layout']['top3']
+        );
+
+        $this->assertArrayHasKey('bottom4', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode('<p>Test Inline View</p>').'; }',
+            $builder->getAttributes()['layout']['bottom4']
         );
     }
 
@@ -233,5 +258,40 @@ class LayoutTest extends TestCase
                 view: view('non-existent-view'),
                 layoutPosition: LayoutPosition::Bottom,
             ));
+    }
+
+    #[Test]
+    public function it_can_accept_livewire_component_as_layout_content(): void
+    {
+        $builder = resolve(Builder::class);
+        $builder->layout(fn (Layout $layout) => $layout
+            ->addLivewire(TestLivewire::class, LayoutPosition::TopStart, 1)
+            ->addLivewire(TestLivewire::class, LayoutPosition::BottomEnd, 2));
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('top1Start', $builder->getAttributes()['layout']);
+        $this->assertStringContainsString(
+            'test livewire',
+            $builder->getAttributes()['layout']['top1Start']
+        );
+
+        $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertArrayHasKey('bottom2End', $builder->getAttributes()['layout']);
+        $this->assertStringContainsString(
+            'test livewire',
+            $builder->getAttributes()['layout']['bottom2End']
+        );
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_the_livewire_component_does_not_exist_when_adding_livewire_component(): void
+    {
+        $this->expectException(ComponentNotFoundException::class);
+        $this->expectExceptionMessage('Unable to find component: [Yajra\DataTables\Html\Tests\TestComponents\TestView]');
+
+        $builder = resolve(Builder::class);
+        $builder->layout(fn (Layout $layout) => $layout
+            ->addLivewire(TestView::class, LayoutPosition::Top)
+            ->addLivewire(TestView::class, LayoutPosition::Bottom));
     }
 }
