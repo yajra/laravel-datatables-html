@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Yajra\DataTables\Html;
 
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\View\Component;
 use InvalidArgumentException;
 use Livewire\Livewire;
 use Throwable;
@@ -97,16 +99,15 @@ class Layout extends Fluent
      * @throws Throwable
      */
     public function addView(
-        Renderable|string $view,
+        Component|Renderable|string $view,
         LayoutPosition $layoutPosition,
         ?int $order = null
     ): static {
-        if ($view instanceof Renderable) {
-            $html = $view->render();
-        } else {
-            // Support for inline component views
-            $html = strip_tags($view) !== $view ? $view : view($view)->render();
+        if ($view instanceof Component) {
+            $view = Blade::renderComponent($view);
         }
+
+        $html = $view instanceof Renderable ? $view->render() : Blade::render($view);
 
         $element = json_encode($html);
 

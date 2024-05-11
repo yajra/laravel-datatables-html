@@ -194,6 +194,14 @@ class LayoutTest extends TestCase
 
         $builder->layout(fn (Layout $layout) => $layout
             ->addView(
+                view: new TestView(),
+                layoutPosition: LayoutPosition::Top,
+            )
+            ->addView(
+                view: new TestInlineView(),
+                layoutPosition: LayoutPosition::Bottom,
+            )
+            ->addView(
                 view: $view,
                 layoutPosition: LayoutPosition::TopStart,
                 order: 1
@@ -216,6 +224,19 @@ class LayoutTest extends TestCase
         );
 
         $this->assertArrayHasKey('layout', $builder->getAttributes());
+        $this->assertCount(6, $builder->getAttributes()['layout']);
+
+        $this->assertArrayHasKey('top', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode($view->render()).'; }',
+            $builder->getAttributes()['layout']['top']
+        );
+
+        $this->assertArrayHasKey('bottom', $builder->getAttributes()['layout']);
+        $this->assertEquals(
+            'function() { return '.json_encode('<p>Test Inline View</p>').'; }',
+            $builder->getAttributes()['layout']['bottom']
+        );
 
         $this->assertArrayHasKey('top1Start', $builder->getAttributes()['layout']);
         $this->assertEquals(
