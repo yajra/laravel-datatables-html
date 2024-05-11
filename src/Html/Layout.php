@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
+use Livewire\Livewire;
 use Throwable;
 use Yajra\DataTables\Html\Enums\LayoutPosition;
 
@@ -114,6 +115,27 @@ class Layout extends Fluent
         }
 
         $this->attributes[$layoutPosition->withOrder($order)] = $this->renderCustomElement($element, false);
+
+        return $this;
+    }
+
+    /**
+     * @param  class-string  $component
+     *
+     * @throws Throwable
+     */
+    public function addLivewire(
+        string $component,
+        LayoutPosition $layoutPosition,
+        ?int $order = null
+    ): static {
+        $html = json_encode(Livewire::mount($component));
+
+        if ($html === false) {
+            throw new InvalidArgumentException("Cannot render Livewire component [$component] to json.");
+        }
+
+        $this->attributes[$layoutPosition->withOrder($order)] = $this->renderCustomElement($html, false);
 
         return $this;
     }
