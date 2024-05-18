@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v11.3.0 (2024-05-18)
+
+- feat: Allow passing view and livewire components to layout builder #219
+
 ### v11.2.1 (2024-04-29)
 
 - fix: multiple config option of select2 #218
