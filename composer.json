@@ -25,7 +25,11 @@
         "larastan/larastan": "^2.9.1",
         "orchestra/testbench": "^9",
         "laravel/pint": "^1.14",
-        "rector/rector": "^1.0"
+        "rector/rector": "^1.0",
+        "livewire/livewire": "^3.4"
+    },
+    "suggest": {
+        "laravel/livewire": "Required for Livewire layout support."
     },
     "autoload": {
         "psr-4": {
