@@ -375,7 +375,7 @@ class Field extends Fluent
 
         return $this;
     }
-    
+
     /**
      * @return $this
      *
