@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v11.4.0 (2024-05-31)
+
+- feat: add className method to Editor Field #220
+
 ### v11.3.0 (2024-05-18)
 
 - feat: Allow passing view and livewire components to layout builder #219
