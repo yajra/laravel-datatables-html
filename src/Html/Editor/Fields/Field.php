@@ -375,4 +375,16 @@ class Field extends Fluent
 
         return $this;
     }
+
+    /**
+     * @return $this
+     *
+     * @see https://editor.datatables.net/reference/option/fields.className
+     */
+    public function className(string $className): static
+    {
+        $this->attributes['className'] = $className;
+
+        return $this;
+    }
 }
