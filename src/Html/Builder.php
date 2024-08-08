@@ -47,6 +47,11 @@ class Builder
     public Collection $collection;
 
     /**
+     * @var Collection<int, array>
+     */
+    public Collection $rows;
+
+    /**
      * @var array<string, string|null>
      */
     protected array $tableAttributes = [];
@@ -68,6 +73,7 @@ class Builder
         $defaults = $this->config->get('datatables-html.table', []);
 
         $this->collection = new Collection;
+        $this->rows = new Collection;
         $this->tableAttributes = $defaults;
     }
 
@@ -178,6 +184,18 @@ class Builder
 
         $tableHtml .= '<thead'.($this->theadClass ?? '').'>';
         $tableHtml .= '<tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
+
+        if ($this->attributes['serverSide'] === false) {
+            $tableHtml .= '<tbody>';
+            foreach ($this->getRows() as $row) {
+                $tableHtml .= '<tr>';
+                foreach ($this->getColumns() as $column) {
+                    $tableHtml .= '<td>'.$row->getCellContentForColumn($column).'</td>';
+                }
+                $tableHtml .= '</tr>';
+            }
+            $tableHtml .= '</tbody>';
+        }
 
         if ($drawFooter) {
             $tf = $this->compileTableFooter();
