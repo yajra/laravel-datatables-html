@@ -47,7 +47,7 @@ class Builder
     public Collection $collection;
 
     /**
-     * @var Collection<int, array>
+     * @var Collection<int, Row>
      */
     public Collection $rows;
 
