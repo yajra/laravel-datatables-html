@@ -92,7 +92,11 @@ trait HasColumns
 
                 $this->collection->push(new Column($attributes));
             } else {
-                $this->collection->push($value);
+
+                // Only add the column if it is authorized, otherwise ignore it.
+                if ($value->isAuthorized()) {
+                    $this->collection->push($value);
+                }
             }
         }
 
