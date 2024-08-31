@@ -20,8 +20,7 @@ class HtmlBuilder
          * The View Factory instance.
          */
         protected Factory $view
-    ) {
-    }
+    ) {}
 
     /**
      * Convert entities to HTML characters.

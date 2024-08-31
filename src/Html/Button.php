@@ -4,10 +4,12 @@ namespace Yajra\DataTables\Html;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Traits\Macroable;
 
 class Button extends Fluent implements Arrayable
 {
     use HasAuthorizations;
+    use Macroable;
 
     /**
      * Make a new button instance.
