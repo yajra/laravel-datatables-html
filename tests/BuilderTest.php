@@ -287,4 +287,19 @@ class BuilderTest extends TestCase
         ]);
         $this->assertCount(2, $builder->getEditors());
     }
+
+    #[Test]
+    public function it_ignores_unauthorized_columns(): void
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->columns([
+            Column::makeIf(false)
+                ->title('unauthorized_column'),
+
+            Column::make('authorized_column'),
+        ]);
+
+        $this->assertCount(1, $builder->getColumns());
+    }
 }
