@@ -194,11 +194,11 @@ class LayoutTest extends TestCase
 
         $builder->layout(fn (Layout $layout) => $layout
             ->addView(
-                view: new TestView(),
+                view: new TestView,
                 layoutPosition: LayoutPosition::Top,
             )
             ->addView(
-                view: new TestInlineView(),
+                view: new TestInlineView,
                 layoutPosition: LayoutPosition::Bottom,
             )
             ->addView(
@@ -212,12 +212,12 @@ class LayoutTest extends TestCase
                 order: 2
             )
             ->addView(
-                view: (new TestView())->render(),
+                view: (new TestView)->render(),
                 layoutPosition: LayoutPosition::Top,
                 order: 3
             )
             ->addView(
-                view: (new TestInlineView())->render(),
+                view: (new TestInlineView)->render(),
                 layoutPosition: LayoutPosition::Bottom,
                 order: 4
             )
