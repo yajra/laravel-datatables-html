@@ -4,6 +4,11 @@
 
 ### UNRELEASED
 
+### v11.5.1 (2024-08-31)
+
+- fix: unauthorized columns being displayed by builder #223
+- fix: #222
+
 ### v11.5.0 (2024-08-31)
 
 - feat: enable macro on Button builder #224
