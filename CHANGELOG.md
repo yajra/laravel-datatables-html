@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v11.5.0 (2024-08-31)
+
+- feat: enable macro on Button builder #224
+
 ### v11.4.0 (2024-05-31)
 
 - feat: add className method to Editor Field #220
