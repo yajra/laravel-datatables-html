@@ -319,7 +319,7 @@ class Editor extends Fluent
         return $this->hiddenOn('edit', $fields);
     }
 
-    public function __call($method, $parameters): mixed
+    public function __call($method, $parameters): static
     {
         if (Str::startsWith($method, 'on')) {
             $event = Str::camel(substr($method, 2, strlen($method) - 2));
