@@ -4,6 +4,8 @@ namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Html\Editor\Fields\Field;
 use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
@@ -22,7 +24,9 @@ use Yajra\DataTables\Utilities\Helper;
 class Editor extends Fluent
 {
     use HasAuthorizations;
-    use HasEvents;
+    use HasEvents, Macroable {
+        Macroable::__call as macroCall;
+    }
 
     final public const DISPLAY_LIGHTBOX = 'lightbox';
 
@@ -313,5 +317,22 @@ class Editor extends Fluent
     public function hiddenOnEdit(array $fields): static
     {
         return $this->hiddenOn('edit', $fields);
+    }
+
+    public function __call($method, $parameters): static
+    {
+        if (Str::startsWith($method, 'on')) {
+            $event = Str::camel(substr($method, 2, strlen($method) - 2));
+
+            return $this->on($event, $parameters[0]);
+        }
+
+        $macroCall = $this->macroCall($method, $parameters);
+
+        if (! $macroCall instanceof Editor) {
+            abort(500, sprintf('Method %s::%s must return an Editor instance.', static::class, $method));
+        }
+
+        return $this;
     }
 }
