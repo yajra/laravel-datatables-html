@@ -327,6 +327,12 @@ class Editor extends Fluent
             return $this->on($event, $parameters[0]);
         }
 
-        return $this->macroCall($method, $parameters);
+        $macroCall = $this->macroCall($method, $parameters);
+
+        if (! $macroCall instanceof Editor) {
+            abort(500, sprintf('Method %s::%s must return an Editor instance.', static::class, $method));
+        }
+
+        return $this;
     }
 }
