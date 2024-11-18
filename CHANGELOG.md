@@ -4,6 +4,11 @@
 
 ### UNRELEASED
 
+### v11.6.1 (2024-11-18)
+
+- Fix Marcoable trait usage together with Fluent helper #227
+- fix: yajra/laravel-datatables#3190
+- 
 ### v11.6.0 (2024-08-31)
 
 - feat: add macro in editor builder #225
