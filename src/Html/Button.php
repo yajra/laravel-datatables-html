@@ -429,7 +429,7 @@ class Button extends Fluent implements Arrayable
 
         return $this;
     }
-    
+
     /**
      * Handle dynamic calls to the fluent instance or macroable methods.
      *
