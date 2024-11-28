@@ -2,8 +2,6 @@
 
 namespace Yajra\DataTables\Html;
 
-use Illuminate\Support\Fluent;
-
 class Parameters extends Fluent
 {
     /**

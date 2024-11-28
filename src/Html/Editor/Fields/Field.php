@@ -6,9 +6,9 @@ use Closure;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use Yajra\DataTables\Html\Fluent;
 use Yajra\DataTables\Html\HasAuthorizations;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables\Html\Editor;
 
-use Illuminate\Support\Fluent;
+use Yajra\DataTables\Html\Fluent;
 
 /**
  * @see https://editor.datatables.net/reference/type/form-options
