@@ -302,7 +302,7 @@ class Column extends Fluent
      * @see https://datatables.net/reference/option/columns.data
      * @see https://datatables.net/manual/data/orthogonal-data
      */
-    public function data(array|string $value): static
+    public function setData(array|string $value): static
     {
         $this->attributes['data'] = $value;
 
