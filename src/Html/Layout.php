@@ -6,7 +6,6 @@ namespace Yajra\DataTables\Html;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\Component;
 use InvalidArgumentException;

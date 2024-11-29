@@ -3,7 +3,6 @@
 namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 

@@ -4,7 +4,6 @@ namespace Yajra\DataTables\Html;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
 
 class Button extends Fluent implements Arrayable

@@ -5,7 +5,6 @@ namespace Yajra\DataTables\Html;
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Support\Fluent;
 use Yajra\DataTables\Html\Editor\Fields\Options;
 
 class SearchPane extends Fluent

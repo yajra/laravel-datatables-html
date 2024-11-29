@@ -3,10 +3,10 @@
 namespace Yajra\DataTables\Html\Editor;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Html\Editor\Fields\Field;
+use Yajra\DataTables\Html\Fluent;
 use Yajra\DataTables\Html\HasAuthorizations;
 use Yajra\DataTables\Utilities\Helper;
 
