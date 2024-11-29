@@ -4,6 +4,13 @@
 
 ### UNRELEASED
 
+### v11.7.0 (2024-11-29)
+
+- feat: clone the "working" Fluent class from laravel #230
+- Fixes #229 
+- Closes yajra/laravel-datatables#3201
+- Fix: #231
+
 ### v11.6.2 (2024-11-18)
 
 - fix: checking of closure instance missing import #228
