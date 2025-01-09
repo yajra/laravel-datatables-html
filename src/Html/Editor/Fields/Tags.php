@@ -49,6 +49,7 @@ class Tags extends Field
      *     title?: string
      *     placeholder?: string
      *  } $i18n
+     *
      * @see https://editor.datatables.net/reference/field/tags#i18n
      */
     public function i18n(array $i18n): static
