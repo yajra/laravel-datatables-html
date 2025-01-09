@@ -36,6 +36,14 @@ class TagsTest extends TestCase
     }
 
     #[Test]
+    public function it_can_set_tags_i18n_props_directly(): void
+    {
+        $field = new Tags;
+        $field->addButton('Add Tag');
+        $this->assertSame('Add Tag', $field->toArray()['i18n']['addButton']);
+    }
+
+    #[Test]
     public function it_can_set_tags_i18n(): void
     {
         $field = new Tags;
