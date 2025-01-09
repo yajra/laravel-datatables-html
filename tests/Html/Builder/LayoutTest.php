@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Builder;
 
 use InvalidArgumentException;
 use Livewire\Exceptions\ComponentNotFoundException;
@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Enums\LayoutPosition;
 use Yajra\DataTables\Html\Layout;
+use Yajra\DataTables\Html\Tests\TestCase;
 use Yajra\DataTables\Html\Tests\TestComponents\TestInlineView;
 use Yajra\DataTables\Html\Tests\TestComponents\TestLivewire;
 use Yajra\DataTables\Html\Tests\TestComponents\TestView;

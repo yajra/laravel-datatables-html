@@ -1,8 +1,9 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Builder;
 
 use PHPUnit\Framework\Attributes\Test;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class BuilderOptionsLanguageTest extends TestCase
 {

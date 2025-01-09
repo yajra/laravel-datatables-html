@@ -1,12 +1,13 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Editor\Fields;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\Fields\Options;
 use Yajra\DataTables\Html\Tests\Models\User;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class FieldOptionsTest extends TestCase
 {
