@@ -46,7 +46,9 @@ class Tags extends Field
      */
     public function i18n(array $i18n): static
     {
-        $options = (array) $this->attributes['i18n'];
+        $options = isset($this->attributes['i18n'])
+            ? (array) $this->attributes['i18n']
+            : [];
 
         $this->attributes['i18n'] = array_merge($options, $i18n);
 
