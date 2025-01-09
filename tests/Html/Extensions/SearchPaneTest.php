@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests\Html\Builder;
+namespace Yajra\DataTables\Html\Tests\Html\Extensions;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use PHPUnit\Framework\Attributes\Test;
