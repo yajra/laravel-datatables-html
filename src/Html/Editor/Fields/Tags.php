@@ -42,19 +42,13 @@ class Tags extends Field
     }
 
     /**
-     * @param  array {
-     *     addButton?: string
-     *     inputPlaceholder?: string
-     *     noResults?: string
-     *     title?: string
-     *     placeholder?: string
-     *  } $i18n
-     *
      * @see https://editor.datatables.net/reference/field/tags#i18n
      */
     public function i18n(array $i18n): static
     {
-        $this->attributes['i18n'] = array_merge($this->attributes['i18n'] ?? [], $i18n);
+        $options = (array) $this->attributes['i18n'];
+
+        $this->attributes['i18n'] = array_merge($options, $i18n);
 
         return $this;
     }
