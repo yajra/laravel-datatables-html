@@ -1,10 +1,11 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Editor\Fields;
 
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Html\Tests\Models\User;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class FieldTest extends TestCase
 {

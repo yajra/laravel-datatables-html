@@ -1,9 +1,10 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Editor;
 
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Editor\FormOptions;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class EditorFormOptionsTest extends TestCase
 {

@@ -1,11 +1,12 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Builder;
 
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\SearchPane;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class BuilderOptionsPluginsTest extends TestCase
 {

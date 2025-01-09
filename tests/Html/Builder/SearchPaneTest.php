@@ -1,11 +1,12 @@
 <?php
 
-namespace Yajra\DataTables\Html\Tests;
+namespace Yajra\DataTables\Html\Tests\Html\Builder;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use PHPUnit\Framework\Attributes\Test;
 use Yajra\DataTables\Html\SearchPane;
 use Yajra\DataTables\Html\Tests\Models\User;
+use Yajra\DataTables\Html\Tests\TestCase;
 
 class SearchPaneTest extends TestCase
 {
