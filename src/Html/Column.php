@@ -28,6 +28,7 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
  * @property string $contentPadding
  * @property string $createdCell
  * @property string $exportFormat
+ * @property callable $exportRender
  *
  * @see https://datatables.net/reference/option/#columns
  */
