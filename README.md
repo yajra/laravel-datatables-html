@@ -1,6 +1,6 @@
 # Laravel DataTables Html Plugin
 
-[![Laravel 11.x](https://img.shields.io/badge/Laravel-11.x-orange.svg)](http://laravel.com)
+[![Laravel 12.x](https://img.shields.io/badge/Laravel-12.x-orange.svg)](http://laravel.com)
 [![Latest Stable Version](https://img.shields.io/packagist/v/yajra/laravel-datatables-html.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yajra/laravel-datatables-html/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/yajra/laravel-datatables-html.svg)](https://packagist.org/packages/yajra/laravel-datatables-html)
@@ -14,7 +14,7 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 
 ## Requirements
 
-- [Laravel 11.x](https://github.com/laravel/framework)
+- [Laravel 12.x](https://github.com/laravel/framework)
 - [Laravel DataTables](https://github.com/yajra/laravel-datatables)
 
 ## Documentations
@@ -29,10 +29,11 @@ This package is a plugin of [Laravel DataTables](https://github.com/yajra/larave
 | 9.x           | 9.x     |
 | 10.x          | 10.x    |
 | 11.x          | 11.x    |
+| 12.x          | 12.x    |
 
 ## Quick Installation
 
-`composer require yajra/laravel-datatables-html:^11`
+`composer require yajra/laravel-datatables-html:^12`
 
 #### Setup scripts with ViteJS
 
