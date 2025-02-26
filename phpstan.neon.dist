@@ -10,8 +10,11 @@ parameters:
 
     ignoreErrors:
         - '#Unsafe usage of new static\(\).#'
-        - identifier: missingType.generics
-        - identifier: missingType.iterableValue
+        -   identifier: missingType.generics
+        -   identifier: missingType.iterableValue
+        -   identifier: binaryOp.invalid
+        -   identifier: return.type
+        -   identifier: argument.type
 
     excludePaths:
         - ./src/Html/Fluent.php

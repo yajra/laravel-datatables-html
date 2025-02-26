@@ -271,9 +271,11 @@ class Button extends Fluent implements Arrayable
     {
         if (! isset($this->attributes['className'])) {
             $this->attributes['className'] = $class;
-        } else {
-            $this->attributes['className'] .= " $class";
+
+            return $this;
         }
+
+        $this->attributes['className'] = $this->attributes['className']." $class";
 
         return $this;
     }
