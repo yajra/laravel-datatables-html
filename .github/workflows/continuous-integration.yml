@@ -13,13 +13,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    services:
-      oracle:
-        image: deepdiver/docker-oracle-xe-11g:2.0
-        ports:
-          - 49160:22
-          - 1521:1521
-
     strategy:
       fail-fast: true
       matrix:
