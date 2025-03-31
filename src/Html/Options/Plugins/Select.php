@@ -208,6 +208,18 @@ trait Select
         return $this->select(['style' => Builder::SELECT_STYLE_MULTI_SHIFT]);
     }
 
+    /**
+     * Select keyboard navigation and selection.
+     *
+     * @return $this
+     *
+     * @see https://datatables.net/extensions/select/examples/initialisation/keys
+     */
+    public function selectKeys(bool $enabled = true): static
+    {
+        return $this->select(['keys' => $enabled]);
+    }
+
     public function getSelect(?string $key = null): mixed
     {
         if (is_null($key)) {
