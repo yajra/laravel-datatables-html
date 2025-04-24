@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener("DOMContentLoaded", function(){
     window.{{ config('datatables-html.namespace', 'LaravelDataTables') }} = window.{{ config('datatables-html.namespace', 'LaravelDataTables') }} || {};
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'}});
     @foreach($editors as $editor)
