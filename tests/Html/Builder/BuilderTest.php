@@ -98,10 +98,10 @@ class BuilderTest extends TestCase
         $this->assertEquals($expected, $table);
 
         $script = $builder->scripts()->toHtml();
-        $expected = '<script type="text/javascript">$(function(){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo-table"]=$("#foo-table").DataTable({"serverSide":true,"processing":true,"ajax":"","columns":[{"data":"foo","name":"foo","title":"Foo","orderable":true,"searchable":true},{"data":"baz","name":"baz","title":"Baz","orderable":true,"searchable":true}]});});</script>';
+        $expected = '<script type="text/javascript">document.addEventListener("DOMContentLoaded",function(){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo-table"]=$("#foo-table").DataTable({"serverSide":true,"processing":true,"ajax":"","columns":[{"data":"foo","name":"foo","title":"Foo","orderable":true,"searchable":true},{"data":"baz","name":"baz","title":"Baz","orderable":true,"searchable":true}]});});</script>';
         $this->assertEquals($expected, $script);
 
-        $expected = '$(function(){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo-table"]=$("#foo-table").DataTable({"serverSide":true,"processing":true,"ajax":"","columns":[{"data":"foo","name":"foo","title":"Foo","orderable":true,"searchable":true},{"data":"baz","name":"baz","title":"Baz","orderable":true,"searchable":true}]});});';
+        $expected = 'document.addEventListener("DOMContentLoaded",function(){window.LaravelDataTables=window.LaravelDataTables||{};window.LaravelDataTables["foo-table"]=$("#foo-table").DataTable({"serverSide":true,"processing":true,"ajax":"","columns":[{"data":"foo","name":"foo","title":"Foo","orderable":true,"searchable":true},{"data":"baz","name":"baz","title":"Baz","orderable":true,"searchable":true}]});});';
         $this->assertEquals($expected, $builder->generateScripts()->toHtml());
     }
 
