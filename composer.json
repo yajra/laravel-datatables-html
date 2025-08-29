@@ -19,7 +19,7 @@
     "php": "^8.0.2",
     "ext-json": "*",
     "yajra/laravel-datatables-oracle": "^10.0",
-    "laravelcollective/html": "^6.3.0"
+    "laravellux/html": "^6.3.0"
   },
   "require-dev": {
     "nunomaduro/larastan": "^2.1",
