@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.4.1 - 2025-08-29
+
+- fix: change laravelcollective/html form to laravellux/html #240
+
 ### v9.4.0 - 2023-02-20
 
 - feat: allow callable exportFormat parameter #167
