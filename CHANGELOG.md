@@ -8,6 +8,11 @@
 
 ## CHANGELOG
 
+### v9.4.2 - 2025-09-03
+
+- Fix namespace of laravellux/html HtmlServiceProvider #242
+- Fixes #241
+
 ### v9.4.1 - 2025-08-29
 
 - fix: change laravelcollective/html form to laravellux/html #240
