@@ -2,7 +2,7 @@
 
 namespace Yajra\DataTables;
 
-use LaravelLux\Html\HtmlServiceProvider as CollectiveHtml;
+use Collective\Html\HtmlServiceProvider as CollectiveHtml;
 use Illuminate\Support\ServiceProvider;
 
 class HtmlServiceProvider extends ServiceProvider
