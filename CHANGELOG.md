@@ -8,6 +8,10 @@
 
 ## CHANGELOG
 
+### v9.4.3 - 2025-09-06
+
+- Fix namespace of laravellux/html in Html/Builder #243
+
 ### v9.4.2 - 2025-09-03
 
 - Fix namespace of laravellux/html HtmlServiceProvider #242
