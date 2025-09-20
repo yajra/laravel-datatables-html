@@ -68,11 +68,12 @@ trait HasFeatures
     /**
      * Set ordering option value.
      *
+     * @param bool|array{indicators: bool, handler: bool} $value
      * @return $this
      *
      * @see https://datatables.net/reference/option/ordering
      */
-    public function ordering(bool $value = true): static
+    public function ordering(bool|array $value = true): static
     {
         $this->attributes['ordering'] = $value;
 
