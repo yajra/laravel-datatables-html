@@ -86,4 +86,15 @@ trait ColumnControl
 
         return $this;
     }
+
+    public function columnControlTitle(null|string|array $title = null, int|string $target = 1): static
+    {
+        if (is_array($title)) {
+            $this->addColumnControl($target, [['extend' => 'title', ...$title]]);
+        } else {
+            $this->addColumnControl($target, [['extend' => 'title', 'text' => $title]]);
+        }
+
+        return $this;
+    }
 }
