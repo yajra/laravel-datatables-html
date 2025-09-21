@@ -68,7 +68,7 @@ trait HasFeatures
     /**
      * Set ordering option value.
      *
-     * @param bool|array{indicators: bool, handler: bool} $value
+     * @param  bool|array{indicators: bool, handler: bool}  $value
      * @return $this
      *
      * @see https://datatables.net/reference/option/ordering

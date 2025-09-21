@@ -4,7 +4,7 @@ namespace Yajra\DataTables\Html;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
+use Yajra\DataTables\Html\Options\Plugins;
 
 /**
  * @property array|string $data
@@ -35,7 +35,8 @@ use Yajra\DataTables\Html\Options\Plugins\SearchPanes;
 class Column extends Fluent
 {
     use HasAuthorizations;
-    use SearchPanes;
+    use Plugins\SearchPanes;
+    use Plugins\ColumnControl;
 
     /**
      * @param  array  $attributes
