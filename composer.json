@@ -43,7 +43,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "12.x-dev"
+            "dev-master": "12.x-dev",
+            "dev-column-control": "12.x-cc"
         },
         "laravel": {
             "providers": [
