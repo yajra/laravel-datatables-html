@@ -35,8 +35,8 @@ use Yajra\DataTables\Html\Options\Plugins;
 class Column extends Fluent
 {
     use HasAuthorizations;
-    use Plugins\SearchPanes;
     use Plugins\ColumnControl;
+    use Plugins\SearchPanes;
 
     /**
      * @param  array  $attributes
