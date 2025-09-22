@@ -4,6 +4,10 @@
 
 ### UNRELEASED
 
+### v12.1.0 (2025-09-22)
+
+- feat: column control builder #244
+
 ### v12.0.2 (2025-04-28)
 
 - fix: use DOMContentLoaded #237
