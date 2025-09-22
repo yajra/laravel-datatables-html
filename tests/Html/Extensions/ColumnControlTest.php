@@ -15,7 +15,7 @@ class ColumnControlTest extends TestCase
         $builder = $this->getHtmlBuilder();
         $options = [
             'target' => 0,
-            'content' => ['search', 'order']
+            'content' => ['search', 'order'],
         ];
 
         $result = $builder->columnControl($options);
@@ -30,7 +30,7 @@ class ColumnControlTest extends TestCase
         $column = Column::make('name');
         $options = [
             'target' => 'thead:0',
-            'content' => ['search']
+            'content' => ['search'],
         ];
 
         $result = $column->columnControl($options);
@@ -50,7 +50,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'thead:1', 'content' => $content]
+            ['target' => 'thead:1', 'content' => $content],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -65,7 +65,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'thead:0', 'content' => $content]
+            ['target' => 'thead:0', 'content' => $content],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -81,7 +81,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot:2', 'content' => $content]
+            ['target' => 'tfoot:2', 'content' => $content],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -96,7 +96,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot:0', 'content' => $content]
+            ['target' => 'tfoot:0', 'content' => $content],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -110,7 +110,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot', 'content' => [['search']]]
+            ['target' => 'tfoot', 'content' => [['search']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -125,7 +125,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot', 'content' => [['customSearch']]]
+            ['target' => 'tfoot', 'content' => [['customSearch']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -140,7 +140,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 1, 'content' => ['order', 'searchDropdown']]
+            ['target' => 1, 'content' => ['order', 'searchDropdown']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
 
@@ -158,7 +158,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 0, 'content' => ['order', 'searchDropdown']]
+            ['target' => 0, 'content' => ['order', 'searchDropdown']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -174,7 +174,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 2, 'content' => $content]
+            ['target' => 2, 'content' => $content],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -188,7 +188,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 1, 'content' => ['search']]
+            ['target' => 1, 'content' => ['search']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -203,7 +203,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 3, 'content' => [['extend' => 'spacer']]]
+            ['target' => 3, 'content' => [['extend' => 'spacer']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -217,7 +217,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 1, 'content' => [['extend' => 'spacer']]]
+            ['target' => 1, 'content' => [['extend' => 'spacer']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -233,7 +233,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 2, 'content' => [['extend' => 'title', 'text' => 'My Title']]]
+            ['target' => 2, 'content' => [['extend' => 'title', 'text' => 'My Title']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -249,7 +249,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 3, 'content' => [['extend' => 'title', 'text' => 'Custom Title', 'className' => 'custom-class']]]
+            ['target' => 3, 'content' => [['extend' => 'title', 'text' => 'Custom Title', 'className' => 'custom-class']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -263,7 +263,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 1, 'content' => [['extend' => 'title', 'text' => null]]]
+            ['target' => 1, 'content' => [['extend' => 'title', 'text' => null]]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -279,7 +279,7 @@ class ColumnControlTest extends TestCase
         $builder->columnControlSpacer(1);
 
         $expected = [
-            ['target' => 1, 'content' => ['search', ['extend' => 'spacer']]]
+            ['target' => 1, 'content' => ['search', ['extend' => 'spacer']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -325,7 +325,7 @@ class ColumnControlTest extends TestCase
             ['target' => 'thead:0', 'content' => ['search']],
             ['target' => 'tfoot:0', 'content' => ['order']],
             ['target' => 2, 'content' => [['extend' => 'spacer']]],
-            ['target' => 3, 'content' => [['extend' => 'title', 'text' => 'Test Title']]]
+            ['target' => 3, 'content' => [['extend' => 'title', 'text' => 'Test Title']]],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
