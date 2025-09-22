@@ -29,6 +29,21 @@ class Options extends Collection
     }
 
     /**
+     * Create options from an array.
+     *
+     * @param  array<array-key, string|int|float|array{label: string, value: mixed}>  $data
+     */
+    public static function from(array $data): static
+    {
+        $items = [];
+        foreach ($data as $key => $value) {
+            $items[] = is_array($value) ? $value : ['label' => $value, 'value' => $key];
+        }
+
+        return new static($items);
+    }
+
+    /**
      * Get options from a model.
      *
      * @param  class-string<Model>|\Illuminate\Database\Eloquent\Builder  $model

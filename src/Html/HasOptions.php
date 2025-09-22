@@ -17,6 +17,7 @@ trait HasOptions
     use Options\Plugins\AutoFill;
     use Options\Plugins\Buttons;
     use Options\Plugins\ColReorder;
+    use Options\Plugins\ColumnControl;
     use Options\Plugins\FixedColumns;
     use Options\Plugins\FixedHeader;
     use Options\Plugins\KeyTable;
