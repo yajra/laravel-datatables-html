@@ -31,9 +31,19 @@ trait ColumnControl
         // get existing target and merge content if exists
         foreach ($this->attributes['columnControl'] as &$control) {
             if (isset($control['target']) && $control['target'] === $target) {
-                $control['content'] = array_unique(
-                    array_merge($control['content'] ?? [], $content)
-                );
+                $existingContent = $control['content'] ?? [];
+                $mergedContent = array_merge($existingContent, $content);
+
+                // Remove duplicates properly for mixed array types (strings and arrays)
+                $uniqueContent = [];
+                foreach ($mergedContent as $item) {
+                    $serialized = is_array($item) ? serialize($item) : $item;
+                    if (! in_array($serialized, array_map(fn ($i) => is_array($i) ? serialize($i) : $i, $uniqueContent))) {
+                        $uniqueContent[] = $item;
+                    }
+                }
+
+                $control['content'] = $uniqueContent;
 
                 return $this;
             }
@@ -60,7 +70,7 @@ trait ColumnControl
 
     public function columnControlFooterSearch(array $content = []): static
     {
-        $this->addColumnControl('tfoot', [$content] ?? ['search']);
+        $this->addColumnControl('tfoot', [empty($content) ? ['search'] : $content]);
 
         return $this;
     }
