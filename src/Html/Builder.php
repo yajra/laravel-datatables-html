@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Utilities\Helper;
@@ -260,6 +261,15 @@ class Builder
     public function addScript(string $view): static
     {
         $this->additionalScripts[] = $view;
+
+        return $this;
+    }
+
+    public function addScriptIfCan(string $permission, string $view): static
+    {
+        if (Gate::allows($permission)) {
+            $this->addScript($view);
+        }
 
         return $this;
     }
