@@ -263,4 +263,9 @@ class Builder
 
         return $this;
     }
+
+    public function getTemplate(): string
+    {
+        return $this->template;
+    }
 }
