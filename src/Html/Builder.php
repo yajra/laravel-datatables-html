@@ -263,4 +263,13 @@ class Builder
 
         return $this;
     }
+
+    public function addScriptIf(bool $condition, string $view): static
+    {
+        if ($condition) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
 }
