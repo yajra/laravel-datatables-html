@@ -263,4 +263,9 @@ class Builder
 
         return $this;
     }
+
+    public function getAdditionalScripts(): array
+    {
+        return $this->additionalScripts;
+    }
 }
