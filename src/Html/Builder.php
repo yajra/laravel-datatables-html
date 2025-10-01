@@ -265,9 +265,9 @@ class Builder
         return $this;
     }
 
-    public function addScriptIfCannot(string $permission, string $view): static
+    public function addScriptIfCannot(string $ability, string $view): static
     {
-        if (! (Gate::allows($permission))) {
+        if (! (Gate::allows($ability))) {
             $this->addScript($view);
         }
 
