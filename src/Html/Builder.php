@@ -272,7 +272,7 @@ class Builder
         return $this;
     }
 
-    public function templateData(array|\Closure $data = []): static
+    public function setTemplateData(array|\Closure $data = []): static
     {
         if ($data instanceof \Closure) {
             $data = $data($this) ?? [];
