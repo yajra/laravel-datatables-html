@@ -318,7 +318,6 @@ class BuilderTest extends TestCase
 
         $builder
             ->setTableId('my-table')
-            ->addScript('test-builder-script')
             ->setTemplateData(function (Builder $builder): array {
                 return [
                     'tableId' => $builder->getTableId(),
