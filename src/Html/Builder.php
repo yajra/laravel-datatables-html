@@ -273,6 +273,15 @@ class Builder
         return $this;
     }
 
+    public function addScriptIfCan(string $ability, string $view): static
+    {
+        if (Gate::allows($ability)) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
+
     public function addScriptIf(bool $condition, string $view): static
     {
         if ($condition) {
