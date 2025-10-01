@@ -278,4 +278,9 @@ class Builder
     {
         return $this->template;
     }
+
+    public function getAdditionalScripts(): array
+    {
+        return $this->additionalScripts;
+    }
 }
