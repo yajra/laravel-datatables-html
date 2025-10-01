@@ -276,7 +276,7 @@ class Builder
     {
         return $this->template;
     }
-  
+
     public function setTemplateData(array|\Closure $data = []): static
     {
         if ($data instanceof \Closure) {
