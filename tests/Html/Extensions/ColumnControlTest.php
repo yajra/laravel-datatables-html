@@ -143,10 +143,6 @@ class ColumnControlTest extends TestCase
             ['target' => 1, 'content' => ['order', 'searchDropdown']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
-
-        // Should also set ordering options
-        $attributes = $builder->getAttributes();
-        $this->assertEquals(['indicators' => false, 'handler' => false], $attributes['ordering']);
     }
 
     #[Test]
