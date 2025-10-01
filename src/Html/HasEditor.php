@@ -8,6 +8,8 @@ trait HasEditor
 {
     /**
      * Collection of Editors.
+     *
+     * @var array<array-key, Editor>
      */
     protected array $editors = [];
 
