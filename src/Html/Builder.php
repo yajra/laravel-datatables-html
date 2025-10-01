@@ -5,6 +5,7 @@ namespace Yajra\DataTables\Html;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Utilities\Helper;
@@ -272,9 +273,32 @@ class Builder
         return $this;
     }
 
+    public function addScriptIf(bool $condition, string $view): static
+    {
+        if ($condition) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
+
+    public function addScriptIfCannot(string $ability, string $view): static
+    {
+        if (Gate::denies($ability)) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
+
     public function getTemplate(): string
     {
         return $this->template;
+    }
+
+    public function getAdditionalScripts(): array
+    {
+        return $this->additionalScripts;
     }
 
     public function setTemplateData(array|\Closure $data = []): static
