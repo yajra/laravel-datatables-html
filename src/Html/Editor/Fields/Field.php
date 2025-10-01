@@ -387,4 +387,17 @@ class Field extends Fluent
 
         return $this;
     }
+
+   /**
+     * Add a format to indicate if a field is required.
+     *
+     * @return $this
+     */
+    public function required(bool $required = true): static
+    {
+        $requiredFieldHtml = $required ? '<span class="text-red-500">*</span>' : '';
+        $label = $this->get('label');
+
+        return $this->label(($label ?? '').' '.$requiredFieldHtml);
+    }
 }
