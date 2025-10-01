@@ -273,4 +273,32 @@ class Builder
 
         return $this;
     }
+
+    public function addScriptIf(bool $condition, string $view): static
+    {
+        if ($condition) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
+
+    public function addScriptIfCannot(string $ability, string $view): static
+    {
+        if (Gate::denies($ability)) {
+            $this->addScript($view);
+        }
+
+        return $this;
+    }
+
+    public function getTemplate(): string
+    {
+        return $this->template;
+    }
+
+    public function getAdditionalScripts(): array
+    {
+        return $this->additionalScripts;
+    }
 }

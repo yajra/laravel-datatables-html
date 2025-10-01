@@ -459,4 +459,18 @@ class Button extends Fluent implements Arrayable
 
         return $this;
     }
+
+    /**
+     * Request that the data be refreshed from the server when starting an edit.
+     *
+     * @return $this
+     *
+     * @see https://editor.datatables.net/reference/type/form-options#refresh
+     */
+    public function refresh(bool $value = true): static
+    {
+        $this->attributes['refresh'] = $value;
+
+        return $this;
+    }
 }
