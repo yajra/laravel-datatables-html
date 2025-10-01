@@ -388,7 +388,7 @@ class Field extends Fluent
         return $this;
     }
 
-   /**
+    /**
      * Add a format to indicate if a field is required.
      *
      * @return $this
