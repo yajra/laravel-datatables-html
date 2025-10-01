@@ -15,6 +15,7 @@ parameters:
         -   identifier: binaryOp.invalid
         -   identifier: return.type
         -   identifier: argument.type
+        -   identifier: offsetAccess.nonOffsetAccessible
 
     excludePaths:
         - ./src/Html/Fluent.php
