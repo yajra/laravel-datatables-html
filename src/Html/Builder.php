@@ -267,7 +267,7 @@ class Builder
 
     public function addScriptIfCannot(string $ability, string $view): static
     {
-        if (! (Gate::allows($ability))) {
+        if (Gate::allows($ability)) {
             $this->addScript($view);
         }
 
