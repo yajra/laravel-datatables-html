@@ -63,6 +63,8 @@ class Builder
 
     protected array $additionalScripts = [];
 
+    protected array $templateData = [];
+
     public function __construct(public Repository $config, public Factory $view, public HtmlBuilder $html)
     {
         /** @var array $defaults */
@@ -159,7 +161,13 @@ class Builder
 
         $template = $this->template ?: $configTemplate;
 
-        return $this->view->make($template, ['editors' => $this->editors, 'scripts' => $this->additionalScripts])->render();
+        return $this->view->make(
+            $template,
+            array_merge(
+                ['editors' => $this->editors, 'scripts' => $this->additionalScripts],
+                $this->templateData,
+            )
+        )->render();
     }
 
     /**
@@ -291,5 +299,16 @@ class Builder
     public function getAdditionalScripts(): array
     {
         return $this->additionalScripts;
+    }
+
+    public function setTemplateData(array|\Closure $data = []): static
+    {
+        if ($data instanceof \Closure) {
+            $data = $data($this) ?? [];
+        }
+
+        $this->templateData = $data;
+
+        return $this;
     }
 }

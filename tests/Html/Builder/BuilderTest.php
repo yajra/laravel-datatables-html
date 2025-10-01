@@ -303,4 +303,31 @@ class BuilderTest extends TestCase
 
         $this->assertCount(1, $builder->getColumns());
     }
+
+    #[Test]
+    public function it_can_set_template_data(): void
+    {
+        $builder = $this->getHtmlBuilder()
+            ->addScript('test-builder-script')
+            ->setTemplateData(['message' => 'Test Message']);
+
+        $this->assertStringContainsString(
+            "console.log({ tableId: 'noneset', message: 'Test Message' });",
+            $builder->generateScripts()->toHtml()
+        );
+
+        $builder
+            ->setTableId('my-table')
+            ->setTemplateData(function (Builder $builder): array {
+                return [
+                    'tableId' => $builder->getTableId(),
+                    'message' => 'Set Template Data Using Callback',
+                ];
+            });
+
+        $this->assertStringContainsString(
+            "console.log({ tableId: 'my-table', message: 'Set Template Data Using Callback' });",
+            $builder->generateScripts()->toHtml()
+        );
+    }
 }
