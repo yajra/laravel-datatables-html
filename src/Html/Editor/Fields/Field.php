@@ -393,7 +393,7 @@ class Field extends Fluent
      *
      * @return $this
      */
-    public function required(bool $required = true) : static
+    public function required(bool $required = true): static
     {
         /** @var Field $this */
         $requiredFieldHtml = $required ? '<span class="text-red-500">*</span>' : '';
