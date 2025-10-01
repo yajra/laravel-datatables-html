@@ -77,8 +77,7 @@ trait ColumnControl
 
     public function columnControlSearchDropdown(int|string $target = 0): static
     {
-        $this->addColumnControl($target, ['order', 'searchDropdown'])
-            ->ordering(['indicators' => false, 'handler' => false]);
+        $this->addColumnControl($target, ['order', 'searchDropdown']);
 
         return $this;
     }
