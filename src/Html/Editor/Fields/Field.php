@@ -395,10 +395,7 @@ class Field extends Fluent
      */
     public function required(bool $required = true): static
     {
-        /** @var Field $this */
         $requiredFieldHtml = $required ? '<span class="text-red-500">*</span>' : '';
-
-        /** @var string $label */
         $label = $this->get('label');
 
         return $this->label($label.' '.$requiredFieldHtml);
