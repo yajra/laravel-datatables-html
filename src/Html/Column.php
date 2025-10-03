@@ -89,6 +89,18 @@ class Column extends Fluent
     }
 
     /**
+     * Set column style.
+     *
+     * @return $this
+     */
+    public function style(string $css): static
+    {
+        $this->attributes['style'] = $css;
+
+        return $this;
+    }
+
+    /**
      * Create a computed column that is not searchable/orderable.
      */
     public static function computed(string $data, ?string $title = null): Column
