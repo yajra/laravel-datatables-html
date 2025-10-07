@@ -1,3 +1,10 @@
+# [12.4.0](https://github.com/yajra/laravel-datatables-html/compare/v12.3.1...v12.4.0) (2025-10-07)
+
+
+### Features
+
+* column default content ([b9f1df4](https://github.com/yajra/laravel-datatables-html/commit/b9f1df477b96cb8756324a68c0b10057e8e9070a))
+
 ## [12.3.1](https://github.com/yajra/laravel-datatables-html/compare/v12.3.0...v12.3.1) (2025-10-07)
 
 
