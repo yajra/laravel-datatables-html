@@ -110,7 +110,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot', 'content' => [['search']]],
+            ['target' => 'tfoot:0', 'content' => ['search']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }
@@ -125,7 +125,7 @@ class ColumnControlTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $result);
         $expected = [
-            ['target' => 'tfoot', 'content' => [['customSearch']]],
+            ['target' => 'tfoot:0', 'content' => ['customSearch']],
         ];
         $this->assertEquals($expected, $builder->getAttributes()['columnControl']);
     }

@@ -318,12 +318,10 @@ class BuilderTest extends TestCase
 
         $builder
             ->setTableId('my-table')
-            ->setTemplateData(function (Builder $builder): array {
-                return [
-                    'tableId' => $builder->getTableId(),
-                    'message' => 'Set Template Data Using Callback',
-                ];
-            });
+            ->setTemplateData(fn (Builder $builder): array => [
+                'tableId' => $builder->getTableId(),
+                'message' => 'Set Template Data Using Callback',
+            ]);
 
         $this->assertStringContainsString(
             "console.log({ tableId: 'my-table', message: 'Set Template Data Using Callback' });",
