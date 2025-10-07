@@ -100,6 +100,11 @@ trait HasTable
         return $this;
     }
 
+    public function getTheadClass(): ?string
+    {
+        return $this->theadClass;
+    }
+
     /**
      * Remove class names from the "class" attribute of HTML table.
      *
