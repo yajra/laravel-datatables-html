@@ -185,7 +185,7 @@ class Builder
                 ? '<tr class="search-filter">'.implode('', $this->compileTableSearchHeaders()).'</tr>'
                 : '';
 
-        $tableHtml .= '<thead'.($this->theadClass ?? '').'>';
+        $tableHtml .= '<thead'.($this->getTheadClass() ?? '').'>';
         $tableHtml .= '<tr>'.implode('', $th).'</tr>'.$searchHtml.'</thead>';
 
         if ($drawFooter) {
