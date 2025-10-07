@@ -1,3 +1,10 @@
+# [12.5.0](https://github.com/yajra/laravel-datatables-html/compare/v12.4.0...v12.5.0) (2025-10-07)
+
+
+### Features
+
+* **Builder:** add theadClass property getter ([a07184a](https://github.com/yajra/laravel-datatables-html/commit/a07184a943d9eac61c845aa6fd015603ee416673))
+
 # [12.4.0](https://github.com/yajra/laravel-datatables-html/compare/v12.3.1...v12.4.0) (2025-10-07)
 
 
