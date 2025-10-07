@@ -70,7 +70,7 @@ trait ColumnControl
 
     public function columnControlFooterSearch(array $content = []): static
     {
-        $this->addColumnControl('tfoot', [empty($content) ? ['search'] : $content]);
+        $this->columnControlFooter(empty($content) ? ['search'] : $content);
 
         return $this;
     }
