@@ -595,6 +595,20 @@ class Column extends Fluent
         return $this;
     }
 
+    /**
+     * Set column default content.
+     *
+     * @return $this
+     *
+     * @see https://datatables.net/reference/option/columns.defaultContent
+     */
+    public function defaultContent(string $content): static
+    {
+        $this->attributes['defaultContent'] = $content;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         if (! $this->isAuthorized()) {
