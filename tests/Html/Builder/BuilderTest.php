@@ -328,4 +328,21 @@ class BuilderTest extends TestCase
             $builder->generateScripts()->toHtml()
         );
     }
+
+    #[Test]
+    public function it_can_set_column_default_content(): void
+    {
+        $builder = $this->getHtmlBuilder();
+
+        $builder->columns([
+            Column::make('name'),
+            Column::make('email')->defaultContent('N/A'),
+            Column::make('age')->defaultContent('<button>&lt;18</button>'),
+        ]);
+
+        $this->assertCount(3, $builder->getColumns());
+        $this->assertNull($builder->getColumns()[0]->defaultContent);
+        $this->assertEquals('N/A', $builder->getColumns()[1]->defaultContent);
+        $this->assertEquals('<button>&lt;18</button>', $builder->getColumns()[2]->defaultContent);
+    }
 }
