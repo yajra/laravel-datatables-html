@@ -3,13 +3,8 @@
 
 ### Bug Fixes
 
-* cc footer search ([ad6f7a0](https://github.com/yajra/laravel-datatables-html/commit/ad6f7a0c2a3b573c4f10e63937aa16f03683dfdd)), closes [#3256](https://github.com/yajra/laravel-datatables-html/issues/3256)
+* cc footer search ([ad6f7a0](https://github.com/yajra/laravel-datatables-html/commit/ad6f7a0c2a3b573c4f10e63937aa16f03683dfdd)), closes [#3256](https://github.com/yajra/laravel-datatables/issues/3256)
 
-# Laravel DataTables Html Plugin.
-
-## CHANGELOG
-
-### UNRELEASED
 
 ### v12.1.0 (2025-09-22)
 
