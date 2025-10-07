@@ -12,6 +12,7 @@ trait HasOptions
     use Options\HasAjax;
     use Options\HasCallbacks;
     use Options\HasColumns;
+    use Options\HasRows;
     use Options\HasFeatures;
     use Options\HasInternationalisation;
     use Options\Plugins\AutoFill;
